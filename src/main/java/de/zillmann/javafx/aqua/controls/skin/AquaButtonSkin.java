@@ -32,15 +32,13 @@ import de.zillmann.javafx.aqua.util.BindableTransition;
 
 public class AquaButtonSkin extends ButtonSkin {
 
-	private BindableTransition defaulButtonTransition;
+	private BindableTransition defaultButtonTransition;
 
 	private InvalidationListener hoverListener;
 
-
-
 	public AquaButtonSkin(Button button) {
 		super(button);
-
+		registerChangeListener(button.disabledProperty(), "DISABLED");
 		if (getSkinnable().isDefaultButton()) {
 			/*
 			 * * were we already the defaultButton, before the listener was
@@ -48,7 +46,7 @@ public class AquaButtonSkin extends ButtonSkin {
 			 */
 			setDefaultButtonAnimation();
 		}
-		if (!getSkinnable().isFocused()){
+		if (!getSkinnable().isFocused()) {
 			setDropShadow();
 		}
 		/**
@@ -92,12 +90,12 @@ public class AquaButtonSkin extends ButtonSkin {
 				if (newValue != null) {
 					if (newValue.booleanValue()
 							&& getSkinnable().isDefaultButton()) {
-						if (defaulButtonTransition != null
-								&& defaulButtonTransition.getStatus() != Status.RUNNING) {
+						if (defaultButtonTransition != null
+								&& defaultButtonTransition.getStatus() != Status.RUNNING) {
 							setDefaultButtonAnimation();
 						}
-					} else if (defaulButtonTransition != null
-							&& defaulButtonTransition.getStatus() == Status.RUNNING) {
+					} else if (defaultButtonTransition != null
+							&& defaultButtonTransition.getStatus() == Status.RUNNING) {
 						setDefaultButtonAnimation();
 					}
 				}
@@ -142,7 +140,7 @@ public class AquaButtonSkin extends ButtonSkin {
 		}
 		return hoverListener;
 	}
-	
+
 	private void setFocusBorder() {
 		InnerShadow innerFocus = new InnerShadow();
 		innerFocus.setColor(Color.rgb(122, 170, 217, 0.9));
@@ -161,7 +159,7 @@ public class AquaButtonSkin extends ButtonSkin {
 		getSkinnable().setEffect(outerFocus);
 	}
 
-	private void setDropShadow(){
+	private void setDropShadow() {
 		DropShadow dropShadow = new DropShadow();
 		dropShadow.setColor(Color.rgb(192, 192, 198));
 		dropShadow.setBlurType(BlurType.GAUSSIAN);
@@ -172,7 +170,7 @@ public class AquaButtonSkin extends ButtonSkin {
 
 		getSkinnable().setEffect(dropShadow);
 	}
-	
+
 	@Override
 	protected void handleControlPropertyChanged(String p) {
 		super.handleControlPropertyChanged(p);
@@ -182,12 +180,22 @@ public class AquaButtonSkin extends ButtonSkin {
 				setFocusBorder();
 			} else if (getSkinnable().isFocused()) {
 				setFocusBorder();
-			} else if (!getSkinnable().isFocused() || getSkinnable().isDisable()) {
+			} else if (!getSkinnable().isFocused()
+					|| getSkinnable().isDisable()) {
 				setDropShadow();
 			}
 		}
 		if (p == "DEFAULT_BUTTON") {
 			setDefaultButtonAnimation();
+		}
+		if(p == "DISABLED"){
+			if (getSkinnable().isDefaultButton()){
+				if(getSkinnable().isDisabled() && defaultButtonTransition!= null && defaultButtonTransition.getStatus() != Status.RUNNING){
+					defaultButtonTransition.stop();
+				}else{
+					setDefaultButtonAnimation();
+				}
+			}
 		}
 		if (p == "BUTTON_SIZE") {
 			String property = (String) getSkinnable().getProperties().get(
@@ -204,149 +212,153 @@ public class AquaButtonSkin extends ButtonSkin {
 	}
 
 	private void setDefaultButtonAnimation() {
-		if (defaulButtonTransition != null
-				&& defaulButtonTransition.getStatus() == Status.RUNNING) {
-			defaulButtonTransition.stop();
-			getSkinnable().hoverProperty().removeListener(getHoverListener());
-		} else {
-			final Duration duration = Duration.millis(500);
-			defaulButtonTransition = new BindableTransition(duration);
-			defaulButtonTransition.setCycleCount(Timeline.INDEFINITE);
-			defaulButtonTransition.setAutoReverse(true);
+		if (!getSkinnable().isDisabled()) {
+			if (defaultButtonTransition != null
+					&& defaultButtonTransition.getStatus() == Status.RUNNING) {
+				defaultButtonTransition.stop();
+				getSkinnable().hoverProperty().removeListener(
+						getHoverListener());
+			} else {
+				final Duration duration = Duration.millis(500);
+				defaultButtonTransition = new BindableTransition(duration);
+				defaultButtonTransition.setCycleCount(Timeline.INDEFINITE);
+				defaultButtonTransition.setAutoReverse(true);
 
-			// The gradient
-			final Color startColor1 = Color.rgb(183, 206, 238);
-			final Color startColor2 = Color.rgb(142, 188, 237);
-			final Color startColor3 = Color.rgb(114, 174, 236);
-			final Color startColor4 = Color.rgb(178, 218, 242);
+				// The gradient
+				final Color startColor1 = Color.rgb(183, 206, 238);
+				final Color startColor2 = Color.rgb(142, 188, 237);
+				final Color startColor3 = Color.rgb(114, 174, 236);
+				final Color startColor4 = Color.rgb(178, 218, 242);
 
-			final Color endColor1 = Color.rgb(203, 243, 254);
-			final Color endColor2 = Color.rgb(166, 211, 248);
-			final Color endColor3 = Color.rgb(137, 198, 248);
-			final Color endColor4 = Color.rgb(203, 243, 254);
+				final Color endColor1 = Color.rgb(203, 243, 254);
+				final Color endColor2 = Color.rgb(166, 211, 248);
+				final Color endColor3 = Color.rgb(137, 198, 248);
+				final Color endColor4 = Color.rgb(203, 243, 254);
 
-			defaulButtonTransition.fractionProperty().addListener(
-					new ChangeListener<Number>() {
+				defaultButtonTransition.fractionProperty().addListener(
+						new ChangeListener<Number>() {
 
-						@Override
-						public void changed(
-								ObservableValue<? extends Number> observable,
-								Number oldValue, Number newValue) {
+							@Override
+							public void changed(
+									ObservableValue<? extends Number> observable,
+									Number oldValue, Number newValue) {
 
-							List<BackgroundFill> list = new ArrayList<>();
+								List<BackgroundFill> list = new ArrayList<>();
 
-							// the animated fill
-							list.add(BackgroundFillBuilder
-									.create()
-									.fill(LinearGradientBuilder
-											.create()
-											.startX(1.0)
-											.stops(new Stop(
-													0f,
-													Color.color(
-															(endColor1.getRed() - startColor1
-																	.getRed())
-																	* newValue
-																			.doubleValue()
-																	+ startColor1
-																			.getRed(),
-															(endColor1
-																	.getGreen() - startColor1
-																	.getGreen())
-																	* newValue
-																			.doubleValue()
-																	+ startColor1
-																			.getGreen(),
-															(endColor1
-																	.getBlue() - startColor1
-																	.getBlue())
-																	* newValue
-																			.doubleValue()
-																	+ startColor1
-																			.getBlue())),
-													new Stop(
-															0.5f,
-															Color.color(
-																	(endColor2
-																			.getRed() - startColor2
-																			.getRed())
-																			* newValue
-																					.doubleValue()
-																			+ startColor2
-																					.getRed(),
-																	(endColor2
-																			.getGreen() - startColor2
-																			.getGreen())
-																			* newValue
-																					.doubleValue()
-																			+ startColor2
-																					.getGreen(),
-																	(endColor2
-																			.getBlue() - startColor2
-																			.getBlue())
-																			* newValue
-																					.doubleValue()
-																			+ startColor2
-																					.getBlue())),
-													new Stop(
-															0.51f,
-															Color.color(
-																	(endColor3
-																			.getRed() - startColor3
-																			.getRed())
-																			* newValue
-																					.doubleValue()
-																			+ startColor3
-																					.getRed(),
-																	(endColor3
-																			.getGreen() - startColor3
-																			.getGreen())
-																			* newValue
-																					.doubleValue()
-																			+ startColor3
-																					.getGreen(),
-																	(endColor3
-																			.getBlue() - startColor3
-																			.getBlue())
-																			* newValue
-																					.doubleValue()
-																			+ startColor3
-																					.getBlue())),
-													new Stop(
-															1f,
-															Color.color(
-																	(endColor4
-																			.getRed() - startColor4
-																			.getRed())
-																			* newValue
-																					.doubleValue()
-																			+ startColor4
-																					.getRed(),
-																	(endColor4
-																			.getGreen() - startColor4
-																			.getGreen())
-																			* newValue
-																					.doubleValue()
-																			+ startColor4
-																					.getGreen(),
-																	(endColor4
-																			.getBlue() - startColor4
-																			.getBlue())
-																			* newValue
-																					.doubleValue()
-																			+ startColor4
-																					.getBlue())))
-											.build())
-									.radii(new CornerRadii(4.0)).build());
+								// the animated fill
+								list.add(BackgroundFillBuilder
+										.create()
+										.fill(LinearGradientBuilder
+												.create()
+												.startX(1.0)
+												.stops(new Stop(
+														0f,
+														Color.color(
+																(endColor1
+																		.getRed() - startColor1
+																		.getRed())
+																		* newValue
+																				.doubleValue()
+																		+ startColor1
+																				.getRed(),
+																(endColor1
+																		.getGreen() - startColor1
+																		.getGreen())
+																		* newValue
+																				.doubleValue()
+																		+ startColor1
+																				.getGreen(),
+																(endColor1
+																		.getBlue() - startColor1
+																		.getBlue())
+																		* newValue
+																				.doubleValue()
+																		+ startColor1
+																				.getBlue())),
+														new Stop(
+																0.5f,
+																Color.color(
+																		(endColor2
+																				.getRed() - startColor2
+																				.getRed())
+																				* newValue
+																						.doubleValue()
+																				+ startColor2
+																						.getRed(),
+																		(endColor2
+																				.getGreen() - startColor2
+																				.getGreen())
+																				* newValue
+																						.doubleValue()
+																				+ startColor2
+																						.getGreen(),
+																		(endColor2
+																				.getBlue() - startColor2
+																				.getBlue())
+																				* newValue
+																						.doubleValue()
+																				+ startColor2
+																						.getBlue())),
+														new Stop(
+																0.51f,
+																Color.color(
+																		(endColor3
+																				.getRed() - startColor3
+																				.getRed())
+																				* newValue
+																						.doubleValue()
+																				+ startColor3
+																						.getRed(),
+																		(endColor3
+																				.getGreen() - startColor3
+																				.getGreen())
+																				* newValue
+																						.doubleValue()
+																				+ startColor3
+																						.getGreen(),
+																		(endColor3
+																				.getBlue() - startColor3
+																				.getBlue())
+																				* newValue
+																						.doubleValue()
+																				+ startColor3
+																						.getBlue())),
+														new Stop(
+																1f,
+																Color.color(
+																		(endColor4
+																				.getRed() - startColor4
+																				.getRed())
+																				* newValue
+																						.doubleValue()
+																				+ startColor4
+																						.getRed(),
+																		(endColor4
+																				.getGreen() - startColor4
+																				.getGreen())
+																				* newValue
+																						.doubleValue()
+																				+ startColor4
+																						.getGreen(),
+																		(endColor4
+																				.getBlue() - startColor4
+																				.getBlue())
+																				* newValue
+																						.doubleValue()
+																				+ startColor4
+																						.getBlue())))
+												.build())
+										.radii(new CornerRadii(4.0)).build());
 
-							getSkinnable().setBackground(
-									new Background(list.get(0)));
-						}
+								getSkinnable().setBackground(
+										new Background(list.get(0)));
+							}
 
-					});
+						});
 
-			defaulButtonTransition.play();
-			getSkinnable().hoverProperty().addListener(getHoverListener());
+				defaultButtonTransition.play();
+				getSkinnable().hoverProperty().addListener(getHoverListener());
+			}
 		}
 	}
 }
