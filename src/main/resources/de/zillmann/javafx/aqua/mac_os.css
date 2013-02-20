@@ -5,7 +5,7 @@
 	-fx-text-base-color: black;
 	-fx-text-background-color: black;
 	-fx-font-smoothing-type: lcd; 
-	 -fx-disabled-opacity: 0.55;
+	-fx-disabled-opacity: 0.4;
 	
 }
 
@@ -90,7 +90,7 @@
 	-fx-background-radius: 2.5, 2.5;
 }
 
-.check-box:focused > .box{
+.check-box:focused > .box {
 	-fx-border-color: rgb(104, 155, 201);
 }
 
@@ -98,12 +98,18 @@
 	-fx-border-color: rgb(93, 135, 180);
 }
 
-.check-box:selected .box{
+.check-box:selected .box, .check-box:indeterminate .box {
 	-fx-border-color: linear-gradient(rgb(100, 103, 124) 0%, rgb(92, 94, 116) 100%);
 	-fx-background-color: 
 		linear-gradient(rgb(228, 250, 255) 0%, #91bdee 50%, #78b0ee 51%, rgb(228, 250, 255) 100% );
 	-fx-background-insets: 0;
 	-fx-background-radius:  2.5;
+}
+
+.check-box:indeterminate .mark{
+	-fx-background-insets: 2 0.2 2 0.2;
+	-fx-background-color: black;
+	-fx-shape: "M0,0H8V2H0Z";
 }
 
 .check-box:selected .mark {   
@@ -113,4 +119,12 @@
 		-fx-background-color: black;
 }
 
-
+.check-box:disabled .box{
+	-fx-background-color: rgb(250, 250, 250),
+		linear-gradient(
+			rgb(255, 255, 255) 0%, rgb(253,253,253) 25%,  
+			rgb(244, 244, 244) 50%, rgb(236, 236, 236) 51%,
+			rgb(243, 243, 243) 100% );
+	-fx-background-insets: 0, 1;
+	-fx-background-radius: 2.5, 2.5;
+}
