@@ -2,26 +2,45 @@
 	-fx-background-color: rgb(237, 237, 237);
 	/* 	default font */
 	-fx-font-family: 'lucida-grande';
-	-fx-font-size: 13pt;
 	-fx-text-base-color: black;
 	-fx-text-background-color: black;
-	-fx-font-smoothing-type: lcd;
+	-fx-font-smoothing-type: lcd; 
+	 -fx-disabled-opacity: 0.55;
+	
 }
 
-/* layout of a button */
+
+
+/*******************************************************************************
+ *                                                                             *
+ * Button                                                                      *
+ *                                                                             *
+ ******************************************************************************/
+
 .button {
 	-fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaButtonSkin";
 	/* gradients for glossy-aqua-effect */
-	-fx-background-color: #909090, rgb(255, 255, 255),
+	-fx-background-color: rgb(255, 255, 255),
 		linear-gradient(#ffffff 20%, #ececec 60%, #ececec 80%, #eeeeee 100%);
-	-fx-background-insets: 0, 1, 2;
-	-fx-background-radius: 5, 4, 4;
+	-fx-background-insets:  0, 1;
+	-fx-background-radius: 4, 4;
+	-fx-border-radius: 4;
+ 	-fx-border-width: 0.5;
+	-fx-border-color: rgb(129, 129, 129);
+	/*when effect-handling works properly, prefer using css for effects...*/
+	/*	-fx-effect: dropshadow(gaussian, rgb(192, 192, 198), 2, 0.2 , 0 , 0);*/
+	
 	/* distance of text to border */
-	-fx-padding: 0.166667em 1.1em 0.25em 1.1em;
+	-fx-padding: 0.07em 0.85em 0.1em 0.85em;
+}
+
+
+.button:default {
+	-fx-border-color: rgb(100, 103, 124);
 }
 
 .button:pressed:hover {
-	-fx-background-color: linear-gradient(rgb(82, 83, 170) 0%, rgb(69,69,112) 100%),
+	-fx-background-color:
 		linear-gradient(rgb(190, 214, 237) 0%, rgb(178, 213, 237) 100% ),
 		linear-gradient(rgb(165, 193, 238) 0%, rgb(108, 161, 231) 50%,
 		rgb(74, 138, 217) 50%, rgb(105, 167, 236) 75%, rgb(152, 201, 238) 100%
@@ -30,97 +49,68 @@
 		radius 50%, #78b0ee, transparent),
 		radial-gradient(focus-angle 0deg, focus-distance 95%, center 100% 50%,
 		radius 50%, #78b0ee, transparent);
-	-fx-background-insets: 0, 1, 2 1 2 1, 1 99 1 2, 1 2 1 99;
-	-fx-background-radius: 5, 4, 4, 4, 4;
+	-fx-background-insets: 0, 0, 1 99 1 2, 1 2 1 99;
+	-fx-background-radius: 4, 4, 4, 4;
 	/* distance of text to border */
-	-fx-padding: 0.166667em 1.1em 0.25em 1.1em;
+	-fx-padding: 0.07em 0.85em 0.1em 0.85em;
 }
 
-.button_small {
-	-fx-font-size: 11pt;
-	-fx-skin: "com.sun.javafx.scene.control.skin.AquaButtonSkin";
-	/* gradients for glossy-aqua-effect */
-	-fx-background-color: #909090, rgb(255, 255, 255),
-		linear-gradient(#ffffff 20%, #ececec 60%, #ececec 80%, #eeeeee 100%);
-	-fx-background-insets: 0, 1, 2;
-	-fx-background-radius: 7, 6, 6;
-	/* distance of text to border */
-	-fx-padding: 0.166667em 0.6em 0.25em 0.6em;
-}
 
-.button_small:pressed:hover {
-	-fx-background-color: linear-gradient(rgb(82, 83, 170) 0%, rgb(69,69,112) 100%),
-		linear-gradient(rgb(190, 214, 237) 0%, rgb(178, 213, 237) 100% ),
-		linear-gradient(rgb(165, 193, 238) 0%, rgb(108, 161, 231) 50%,
-		rgb(74, 138, 217) 50%, rgb(105, 167, 236) 75%, rgb(152, 201, 238) 100%
-		),
-		radial-gradient(focus-angle 180deg, focus-distance 95%, center 1% 50%,
-		radius 50%, #78b0ee, transparent),
-		radial-gradient(focus-angle 0deg, focus-distance 95%, center 100% 50%,
-		radius 50%, #78b0ee, transparent);
-	-fx-background-insets: 0, 1, 2 1 2 1, 1 99 1 2, 1 2 1 99;
-	-fx-background-radius: 7, 6, 6, 6, 6;
-	/* distance of text to border */
-	-fx-padding: 0.166667em 0.6em 0.25em 0.6em;
-}
-
+/*when effect-handling works properly, prefer using css for effects...*/
 /* .button:focused { */
-/* 		gradients for glossy-aqua-effect */
-/* 	-fx-background-color: */
-/* 		#909090, */
-/* 		rgb(255, 255, 255), */
-/* 		linear-gradient(#ffffff 20%, #ececec 60%, #ececec 80%, #eeeeee 100% ); */
-/* 	-fx-background-insets:  0, 1, 2 ; */
-/*     -fx-background-radius:  5, 4, 4; */
-/*     distance of text to border */
-/*     -fx-padding: 0.166667em 1.1em 0.25em 1.1em;  */
-/* 	-fx-effect: dropshadow(gaussian, rgb(107,155,202) , */
-/*                 4, 0.8 , 0 , 0); */
-/*     -fx-effect: innershadow(gaussian, rgb(107,155,202) , */
-/*                 4, 0.8 , 0 , 0);           */
+/* 	-fx-effect: dropshadow(gaussian, rgb(83, 138, 187), 5, 0.7 , 0 , 0), */
+/*     			innershadow(gaussian, rgba(122, 170, 217, 0.9), 3, 0.8 , 0 , 0); */           
 /* } */
 
-/* .button:blinkend { */
-/* 	-fx-background-color: */
-/* 		linear-gradient(#5253aa 0%, #454570 100%), */
-/* 		linear-gradient(#cfe5f3 0%, #91bdee 50%, #78b0ee 51%, #c0e3f3 100% ), */
-/* 		radial-gradient(focus-angle 180deg, focus-distance 95%,center 1% 50%, radius 50%, #78b0ee, transparent ), */
-/* 		radial-gradient(focus-angle 0deg, focus-distance 95%,center 100% 50%, radius 50%, #78b0ee, transparent ); */
-/* 	-fx-background-insets: 0, 1 ,1 99 1 1, 1 1 1 99; */
-/*     -fx-background-radius: 5, 4, 4, 4; */
-/*     distance of text to border */
-/*     -fx-padding: 0.166667em 1.1em 0.25em 1.1em;  */
-/* } */
 
+
+/*******************************************************************************
+ *                                                                             *
+ * CheckBox                                                                    *
+ *                                                                             *
+ ******************************************************************************/
 
 
 .check-box {
 	-fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaCheckBoxSkin";
-		-fx-font-smoothing-type: lcd;
 }
 
 .check-box .box {
-	-fx-border-insets: -5;
-	-fx-background-color: rgb(154, 154, 154), rgb(250, 250, 250),
-		linear-gradient(rgb(250, 250, 250) 0%, rgb(250, 250, 250) 38%,
-		rgb(238, 238, 238) 60%, rgb(238, 238, 238) 100% );
-	-fx-background-insets: 1, 2, 3;
-	-fx-background-radius: 2.5, 2.5, 2.5;
+	-fx-padding: 1.5;
+	-fx-border-radius: 2.5;
+ 	-fx-border-width: 0.5;
+	-fx-border-color: rgb(129, 129, 129);
+
+	-fx-background-color: rgb(250, 250, 250),
+		linear-gradient(
+			rgb(255, 255, 255) 0%, rgb(253,253,253) 25%,  
+			rgb(244, 244, 244) 50%, rgb(236, 236, 236) 51%,
+			rgb(243, 243, 243) 100% );
+	-fx-background-insets: 0, 1;
+	-fx-background-radius: 2.5, 2.5;
 }
 
+.check-box:focused > .box{
+	-fx-border-color: rgb(104, 155, 201);
+}
 
-
+.check-box:selected:focused > .box{
+	-fx-border-color: rgb(93, 135, 180);
+}
 
 .check-box:selected .box{
-	-fx-background-color: linear-gradient(rgb(97, 97, 176) 0%, rgb(81, 84, 122) 100%), 
+	-fx-border-color: linear-gradient(rgb(100, 103, 124) 0%, rgb(92, 94, 116) 100%);
+	-fx-background-color: 
 		linear-gradient(rgb(228, 250, 255) 0%, #91bdee 50%, #78b0ee 51%, rgb(228, 250, 255) 100% );
+	-fx-background-insets: 0;
+	-fx-background-radius:  2.5;
 }
 
-.check-box .mark {   
-	    -fx-background-insets: -5 -4 2 1, -5 -4 2 1;
+.check-box:selected .mark {   
+	    -fx-background-insets: -5 -3.5 2 0.5;
 		-fx-shape:
 		"m 18.174523,1027.137 c -0.18077,-0.4575 -0.184364,-0.8913 0.115901,-1.1721 0.300265,-0.2809 0.836622,-0.3601 1.288422,-0.041 0.4518,0.3191 2.020453,2.9316 2.020453,2.9316 l 5.41194,-8.0232 c -4e-6,0 0.516257,-0.6671 1.248682,-0.3099 0.648831,0.3165 0.559153,1.0373 0.559153,1.0373 0,0 -5.940433,9.3556 -6.15501,9.6287 -0.214577,0.273 -1.595078,0.2481 -1.817995,-0.027 -0.222917,-0.2751 -2.490777,-3.567 -2.671546,-4.0244 z";
-		-fx-stroke: black;
+		-fx-background-color: black;
 }
 
 

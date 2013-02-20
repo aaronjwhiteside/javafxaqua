@@ -1,9 +1,15 @@
 package de.zillmann.javafx.aqua.controls.skin;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.animation.Animation.Status;
 import javafx.animation.Timeline;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.css.PseudoClass;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -11,7 +17,13 @@ import javafx.scene.control.Button;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.InnerShadow;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundFillBuilder;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.LinearGradientBuilder;
+import javafx.scene.paint.Stop;
 import javafx.util.Duration;
 
 import com.sun.javafx.scene.control.skin.ButtonSkin;
@@ -20,15 +32,14 @@ import de.zillmann.javafx.aqua.util.BindableTransition;
 
 public class AquaButtonSkin extends ButtonSkin {
 
-	private DropShadow shadow;
-
 	private BindableTransition defaulButtonTransition;
+
+	private InvalidationListener hoverListener;
+
+
 
 	public AquaButtonSkin(Button button) {
 		super(button);
-
-		registerChangeListener(button.defaultButtonProperty(), "BUTTON_SIZE");
-		registerChangeListener(button.pressedProperty(), "PRESSED");
 
 		if (getSkinnable().isDefaultButton()) {
 			/*
@@ -37,64 +48,37 @@ public class AquaButtonSkin extends ButtonSkin {
 			 */
 			setDefaultButtonAnimation();
 		}
-
-		if ((String) getSkinnable().getProperties().get("BUTTON_SIZE") != null) {
-			String property = (String) getSkinnable().getProperties().get(
-					"BUTTON_SIZE");
-			if (property.equals("small")) {
-				getSkinnable().getStyleClass().setAll("button_small");
-			} else if (property.equals("medium")) {
-
-			} else if (property.equals("large")) {
-
-			}
+		if (!getSkinnable().isFocused()){
+			setDropShadow();
 		}
-
-		shadow = new DropShadow();
-		shadow.setColor(Color.rgb(215, 215, 215));
-		shadow.setBlurType(BlurType.GAUSSIAN);
-		shadow.setRadius(1.5);
-		shadow.setSpread(0.3);
-		shadow.setOffsetX(0.0);
-		shadow.setOffsetY(1.0);
-		getSkinnable().setEffect(shadow);
-
 		/**
-		 * TODO: pressed muss blinken bei default beenden und pressed-style
-		 * zeigen zieht man die gedrückte maus raus, dann normalen button
-		 * anzeigen hover darf kein neu-zeichnen auslösen...
+		 * if the button is a default button, it has to stop blinking when
+		 * pressed
 		 */
 		getSkinnable().setOnMousePressed(new EventHandler<Event>() {
-
 			@Override
 			public void handle(Event arg0) {
+				if (getSkinnable().isFocused()) {
+					// TODO: FOKUSWECHSEL VERHINDERN... DAS MUSS WEG...
+					setFocusBorder();
+				}
 				if (getSkinnable().isDefaultButton()) {
-					defaulButtonTransition.stop();
-					firstDefaultCssUpdate = true;
+					setDefaultButtonAnimation();
+					getSkinnable().pseudoClassStateChanged(
+							PseudoClass.getPseudoClass("hover"), true);
 				}
 			}
 		});
 
+		/**
+		 * if the button is default, the button has to start blinking again,
+		 * when mouse is released
+		 */
 		getSkinnable().setOnMouseReleased(new EventHandler<Event>() {
-
 			@Override
 			public void handle(Event arg0) {
 				if (getSkinnable().isDefaultButton()) {
-					defaulButtonTransition.play();
-					firstDefaultCssUpdate = false;
-				}
-			}
-		});
-
-		getSkinnable().setOnMouseExited(new EventHandler<Event>() {
-
-			@Override
-			public void handle(Event arg0) {
-
-				if (getSkinnable().isDefaultButton()
-						&& getSkinnable().isArmed()) {
-					firstDefaultCssUpdate = true;
-//					impl_processCSS(true);
+					setDefaultButtonAnimation();
 				}
 			}
 		});
@@ -106,22 +90,19 @@ public class AquaButtonSkin extends ButtonSkin {
 					ObservableValue<? extends Boolean> observableValue,
 					Boolean oldValue, Boolean newValue) {
 				if (newValue != null) {
-					if (newValue.booleanValue()) {
-						if (getSkinnable().isDefaultButton()
-								&& defaulButtonTransition != null
+					if (newValue.booleanValue()
+							&& getSkinnable().isDefaultButton()) {
+						if (defaulButtonTransition != null
 								&& defaulButtonTransition.getStatus() != Status.RUNNING) {
 							setDefaultButtonAnimation();
 						}
-					} else {
-						if (getSkinnable().isDefaultButton()
-								&& defaulButtonTransition != null
-								&& defaulButtonTransition.getStatus() == Status.RUNNING) {
-							setDefaultButtonAnimation();
-//							impl_processCSS(true);
-						}
+					} else if (defaulButtonTransition != null
+							&& defaulButtonTransition.getStatus() == Status.RUNNING) {
+						setDefaultButtonAnimation();
 					}
 				}
 			}
+
 		};
 
 		getSkinnable().sceneProperty().addListener(new ChangeListener<Scene>() {
@@ -149,51 +130,60 @@ public class AquaButtonSkin extends ButtonSkin {
 		}
 	}
 
+	private InvalidationListener getHoverListener() {
+		if (hoverListener == null) {
+			hoverListener = new InvalidationListener() {
+				@Override
+				public void invalidated(Observable observable) {
+					getSkinnable().pseudoClassStateChanged(
+							PseudoClass.getPseudoClass("hover"), false);
+				}
+			};
+		}
+		return hoverListener;
+	}
+	
 	private void setFocusBorder() {
 		InnerShadow innerFocus = new InnerShadow();
-		innerFocus.setColor(Color.rgb(122, 170, 217, 0.5));
+		innerFocus.setColor(Color.rgb(122, 170, 217, 0.9));
 		innerFocus.setBlurType(BlurType.GAUSSIAN);
-		innerFocus.setRadius(5.0);
+		innerFocus.setRadius(3.0);
 		innerFocus.setChoke(0.8);
 		innerFocus.setOffsetX(0.0);
-		innerFocus.setOffsetY(0.0);
-
 		DropShadow outerFocus = new DropShadow();
-		outerFocus.setColor(Color.rgb(122, 170, 217));
+		outerFocus.setColor(Color.rgb(113, 164, 212));
 		outerFocus.setBlurType(BlurType.GAUSSIAN);
-		outerFocus.setRadius(6.0);
-		outerFocus.setSpread(0.6);
+		outerFocus.setRadius(4.5);
+		outerFocus.setSpread(0.7);
 		outerFocus.setOffsetX(0.0);
 		outerFocus.setOffsetY(0.0);
 		outerFocus.setInput(innerFocus);
 		getSkinnable().setEffect(outerFocus);
 	}
 
+	private void setDropShadow(){
+		DropShadow dropShadow = new DropShadow();
+		dropShadow.setColor(Color.rgb(192, 192, 198));
+		dropShadow.setBlurType(BlurType.GAUSSIAN);
+		dropShadow.setRadius(2.0);
+		dropShadow.setSpread(0.2);
+		dropShadow.setOffsetX(0.0);
+		dropShadow.setOffsetY(0.0);
+
+		getSkinnable().setEffect(dropShadow);
+	}
+	
 	@Override
 	protected void handleControlPropertyChanged(String p) {
 		super.handleControlPropertyChanged(p);
-		if (p == "PRESSED") {
-			// TODO: FOKUSWECHSEL VERHINDERN...
-
-			if (getSkinnable().isFocused() ) {
-				setFocusBorder();
-			}
-		}
 		if (p == "FOCUSED") {
 
 			if (getSkinnable().isFocused() && getSkinnable().isDefaultButton()) {
-				DropShadow outerFocus = new DropShadow();
-				outerFocus.setColor(Color.rgb(122, 170, 217));
-				outerFocus.setBlurType(BlurType.GAUSSIAN);
-				outerFocus.setRadius(6.0);
-				outerFocus.setSpread(0.6);
-				outerFocus.setOffsetX(0.0);
-				outerFocus.setOffsetY(0.0);
-				getSkinnable().setEffect(outerFocus);
+				setFocusBorder();
 			} else if (getSkinnable().isFocused()) {
 				setFocusBorder();
-			} else if (!getSkinnable().isFocused()) {
-				getSkinnable().setEffect(shadow);
+			} else if (!getSkinnable().isFocused() || getSkinnable().isDisable()) {
+				setDropShadow();
 			}
 		}
 		if (p == "DEFAULT_BUTTON") {
@@ -217,7 +207,7 @@ public class AquaButtonSkin extends ButtonSkin {
 		if (defaulButtonTransition != null
 				&& defaulButtonTransition.getStatus() == Status.RUNNING) {
 			defaulButtonTransition.stop();
-			firstDefaultCssUpdate = true;
+			getSkinnable().hoverProperty().removeListener(getHoverListener());
 		} else {
 			final Duration duration = Duration.millis(500);
 			defaulButtonTransition = new BindableTransition(duration);
@@ -225,143 +215,138 @@ public class AquaButtonSkin extends ButtonSkin {
 			defaulButtonTransition.setAutoReverse(true);
 
 			// The gradient
-			final Color startColor1 = Color.rgb(207, 229, 243);
-			final Color endColor1 = Color.rgb(175, 203, 247);
-			final Color startColor2 = Color.rgb(120, 176, 238);
-			final Color endColor2 = Color.rgb(74, 138, 217);
-			final Color startColor3 = Color.rgb(192, 227, 243);
-			final Color endColor3 = Color.rgb(152, 201, 238);
+			final Color startColor1 = Color.rgb(183, 206, 238);
+			final Color startColor2 = Color.rgb(142, 188, 237);
+			final Color startColor3 = Color.rgb(114, 174, 236);
+			final Color startColor4 = Color.rgb(178, 218, 242);
 
-//			defaulButtonTransition.fractionProperty().addListener(
-//					new ChangeListener<Number>() {
-//
-//						@Override
-//						/**
-//						 * Very very very bad bad bad (!!) hack to simulate the blinking of a default-button.
-//						 * Because the background-color of a button cannot be changed by code I needed this dirty thing. Should be changed as soon as possible..
-//						 * Thanks to hendrikebbers for his BindableTransition.
-//						 * 
-//						 * The gradient rgb(207, 229, 243) 0%, rgb(120, 176, 238) 51%, rgb(192, 227, 243) 100% changes to rgb(165, 193,238) 0%, rgb(74, 138, 217) 50%, rgb(152, 201, 238) 100% and back
-//						 * 
-//						 * @param observableValue
-//						 * @param oldValue
-//						 * @param newValue
-//						 */
-//						public void changed(
-//								ObservableValue<? extends Number> observableValue,
-//								Number oldValue, Number newValue) {
-//
-//							List<BackgroundFill> liste = new ArrayList<BackgroundFill>();
-//							liste.add(// the border
-//							BackgroundFillCreator.create(
-//									LinearGradientBuilder
-//											.create()
-//											.startX(1.0)
-//											.stops(new Stop(0f, Color.rgb(82,
-//													83, 170)),
-//													new Stop(1f, Color.rgb(69,
-//															69, 112))).build(),
-//									5.0, Insets.EMPTY));
-//							liste.add(BackgroundFillCreator.create(
-//									LinearGradientBuilder
-//											.create()
-//											.startX(1.0)
-//											.stops(new Stop(
-//													0f,
-//													Color.color(
-//															(endColor1.getRed() - startColor1
-//																	.getRed())
-//																	* newValue
-//																			.doubleValue()
-//																	+ startColor1
-//																			.getRed(),
-//															(endColor1
-//																	.getGreen() - startColor1
-//																	.getGreen())
-//																	* newValue
-//																			.doubleValue()
-//																	+ startColor1
-//																			.getGreen(),
-//															(endColor1
-//																	.getBlue() - startColor1
-//																	.getBlue())
-//																	* newValue
-//																			.doubleValue()
-//																	+ startColor1
-//																			.getBlue())),
-//													new Stop(
-//															0.51f,
-//															Color.color(
-//																	(endColor2
-//																			.getRed() - startColor2
-//																			.getRed())
-//																			* newValue
-//																					.doubleValue()
-//																			+ startColor2
-//																					.getRed(),
-//																	(endColor2
-//																			.getGreen() - startColor2
-//																			.getGreen())
-//																			* newValue
-//																					.doubleValue()
-//																			+ startColor2
-//																					.getGreen(),
-//																	(endColor2
-//																			.getBlue() - startColor2
-//																			.getBlue())
-//																			* newValue
-//																					.doubleValue()
-//																			+ startColor2
-//																					.getBlue())),
-//													new Stop(
-//															1f,
-//															Color.color(
-//																	(endColor3
-//																			.getRed() - startColor3
-//																			.getRed())
-//																			* newValue
-//																					.doubleValue()
-//																			+ startColor3
-//																					.getRed(),
-//																	(endColor3
-//																			.getGreen() - startColor3
-//																			.getGreen())
-//																			* newValue
-//																					.doubleValue()
-//																			+ startColor3
-//																					.getGreen(),
-//																	(endColor3
-//																			.getBlue() - startColor3
-//																			.getBlue())
-//																			* newValue
-//																					.doubleValue()
-//																			+ startColor3
-//																					.getBlue())))
-//											.build(), 4.0, new Insets(1.0)));
-//
-//							AquaButtonSkin.this.impl_setBackgroundFills(liste);
-//						}
-//					});
+			final Color endColor1 = Color.rgb(203, 243, 254);
+			final Color endColor2 = Color.rgb(166, 211, 248);
+			final Color endColor3 = Color.rgb(137, 198, 248);
+			final Color endColor4 = Color.rgb(203, 243, 254);
 
-			firstDefaultCssUpdate = false;
+			defaulButtonTransition.fractionProperty().addListener(
+					new ChangeListener<Number>() {
+
+						@Override
+						public void changed(
+								ObservableValue<? extends Number> observable,
+								Number oldValue, Number newValue) {
+
+							List<BackgroundFill> list = new ArrayList<>();
+
+							// the animated fill
+							list.add(BackgroundFillBuilder
+									.create()
+									.fill(LinearGradientBuilder
+											.create()
+											.startX(1.0)
+											.stops(new Stop(
+													0f,
+													Color.color(
+															(endColor1.getRed() - startColor1
+																	.getRed())
+																	* newValue
+																			.doubleValue()
+																	+ startColor1
+																			.getRed(),
+															(endColor1
+																	.getGreen() - startColor1
+																	.getGreen())
+																	* newValue
+																			.doubleValue()
+																	+ startColor1
+																			.getGreen(),
+															(endColor1
+																	.getBlue() - startColor1
+																	.getBlue())
+																	* newValue
+																			.doubleValue()
+																	+ startColor1
+																			.getBlue())),
+													new Stop(
+															0.5f,
+															Color.color(
+																	(endColor2
+																			.getRed() - startColor2
+																			.getRed())
+																			* newValue
+																					.doubleValue()
+																			+ startColor2
+																					.getRed(),
+																	(endColor2
+																			.getGreen() - startColor2
+																			.getGreen())
+																			* newValue
+																					.doubleValue()
+																			+ startColor2
+																					.getGreen(),
+																	(endColor2
+																			.getBlue() - startColor2
+																			.getBlue())
+																			* newValue
+																					.doubleValue()
+																			+ startColor2
+																					.getBlue())),
+													new Stop(
+															0.51f,
+															Color.color(
+																	(endColor3
+																			.getRed() - startColor3
+																			.getRed())
+																			* newValue
+																					.doubleValue()
+																			+ startColor3
+																					.getRed(),
+																	(endColor3
+																			.getGreen() - startColor3
+																			.getGreen())
+																			* newValue
+																					.doubleValue()
+																			+ startColor3
+																					.getGreen(),
+																	(endColor3
+																			.getBlue() - startColor3
+																			.getBlue())
+																			* newValue
+																					.doubleValue()
+																			+ startColor3
+																					.getBlue())),
+													new Stop(
+															1f,
+															Color.color(
+																	(endColor4
+																			.getRed() - startColor4
+																			.getRed())
+																			* newValue
+																					.doubleValue()
+																			+ startColor4
+																					.getRed(),
+																	(endColor4
+																			.getGreen() - startColor4
+																			.getGreen())
+																			* newValue
+																					.doubleValue()
+																			+ startColor4
+																					.getGreen(),
+																	(endColor4
+																			.getBlue() - startColor4
+																			.getBlue())
+																			* newValue
+																					.doubleValue()
+																			+ startColor4
+																					.getBlue())))
+											.build())
+									.radii(new CornerRadii(4.0)).build());
+
+							getSkinnable().setBackground(
+									new Background(list.get(0)));
+						}
+
+					});
+
 			defaulButtonTransition.play();
+			getSkinnable().hoverProperty().addListener(getHoverListener());
 		}
 	}
-
-	private boolean firstDefaultCssUpdate = true;
-
-//	@Override
-//	public void impl_processCSS(boolean reapply) {
-//		if (defaulButtonTransition != null
-//				&& defaulButtonTransition.getStatus() == Status.RUNNING
-//				&& firstDefaultCssUpdate) {
-//			return;
-//		} else {
-//			super.impl_processCSS(reapply);
-//			if (defaulButtonTransition != null
-//					&& defaulButtonTransition.getStatus() == Status.RUNNING) {
-//				firstDefaultCssUpdate = true;
-//			}
-//		}
-//	}
 }
