@@ -4,23 +4,23 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
+import javafx.scene.control.RadioButton;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
-import com.sun.javafx.scene.control.skin.CheckBoxSkin;
+import com.sun.javafx.scene.control.skin.RadioButtonSkin;
 
-public class AquaCheckBoxSkin extends CheckBoxSkin {
+public class AquaRadioButtonSkin extends RadioButtonSkin {
 
-	public AquaCheckBoxSkin(CheckBox checkbox) {
-		super(checkbox);
-		setBoxShadow();
+	public AquaRadioButtonSkin(RadioButton radioButton) {
+		super(radioButton);
+		setDropShadow();
 
-		registerChangeListener(checkbox.focusedProperty(), "FOCUSED");
-		registerChangeListener(checkbox.selectedProperty(), "SELECTED");
+		registerChangeListener(radioButton.focusedProperty(), "FOCUSED");
+		registerChangeListener(radioButton.disabledProperty(), "DISABLED");
 
 		final ChangeListener<Boolean> windowFocusChangedListener = new ChangeListener<Boolean>() {
 
@@ -30,32 +30,30 @@ public class AquaCheckBoxSkin extends CheckBoxSkin {
 					Boolean oldValue, Boolean newValue) {
 				if (newValue != null) {
 					if (!newValue.booleanValue()) {
-						if (getSkinnable().isSelected()
-								| getSkinnable().isIndeterminate()) {
+						if (getSkinnable().isSelected()) {
 
 							for (int i = 0; i < getChildren().size(); i++) {
 								Node child = getChildren().get(i);
-								if (child.getStyleClass().get(0).equals("box")) {
-									child.setStyle("-fx-padding: 1.5;"
-											+ "-fx-border-radius: 2.5;"
+								if (child.getStyleClass().get(0)
+										.equals("radio")) {
+									child.setStyle("-fx-padding: 3.5;"
 											+ "-fx-border-width: 0.5;"
 											+ "-fx-border-color: rgb(129, 129, 129);"
-											+
-
-											"-fx-background-color: rgb(250, 250, 250),"
+											+ "-fx-border-radius: 1.0em;"
+											+ "-fx-background-color: rgb(250, 250, 250),"
 											+ "	linear-gradient("
 											+ "		rgb(255, 255, 255) 0%, rgb(253,253,253) 25%,  "
 											+ "		rgb(244, 244, 244) 50%, rgb(236, 236, 236) 51%,"
 											+ "		rgb(243, 243, 243) 100% );"
 											+ "-fx-background-insets: 0, 1;"
-											+ "-fx-background-radius: 2.5, 2.5;");
+											+ "-fx-background-radius: 1.0em;");
 								}
 							}
 						}
 					} else {
 						for (int i = 0; i < getChildren().size(); i++) {
 							Node child = getChildren().get(i);
-							if (child.getStyleClass().get(0).equals("box")) {
+							if (child.getStyleClass().get(0).equals("radio")) {
 								child.setStyle(null);
 							}
 						}
@@ -91,49 +89,6 @@ public class AquaCheckBoxSkin extends CheckBoxSkin {
 
 	}
 
-	private void setBoxShadow() {
-		DropShadow shadow = new DropShadow();
-		shadow.setColor(Color.rgb(172, 172, 184));
-		shadow.setBlurType(BlurType.ONE_PASS_BOX);
-		shadow.setRadius(2.0);
-		shadow.setSpread(0.2);
-		shadow.setOffsetX(0.0);
-		shadow.setOffsetY(0.8);
-
-		for (int i = 0; i < getChildren().size(); i++) {
-			Node child = getChildren().get(i);
-			if (child.getStyleClass().get(0).equals("box")) {
-				child.setEffect(shadow);
-			}
-		}
-	}
-
-	private void setSelectedFocusBorder() {
-		InnerShadow innerFocus = new InnerShadow();
-		innerFocus.setColor(Color.rgb(104, 155, 201, 0.7));
-		innerFocus.setBlurType(BlurType.ONE_PASS_BOX);
-		innerFocus.setRadius(6.5);
-		innerFocus.setChoke(0.7);
-		innerFocus.setOffsetX(0.0);
-		innerFocus.setOffsetY(0.0);
-
-		DropShadow outerFocus = new DropShadow();
-		outerFocus.setColor(Color.rgb(104, 155, 201));
-		outerFocus.setBlurType(BlurType.ONE_PASS_BOX);
-		outerFocus.setRadius(7.0);
-		outerFocus.setSpread(0.7);
-		outerFocus.setOffsetX(0.0);
-		outerFocus.setOffsetY(0.0);
-		outerFocus.setInput(innerFocus);
-
-		for (int i = 0; i < getChildren().size(); i++) {
-			Node child = getChildren().get(i);
-			if (child instanceof StackPane) {
-				child.setEffect(outerFocus);
-			}
-		}
-	}
-
 	private void setFocusBorder() {
 		InnerShadow innerFocus = new InnerShadow();
 		innerFocus.setColor(Color.rgb(104, 155, 201));
@@ -160,27 +115,31 @@ public class AquaCheckBoxSkin extends CheckBoxSkin {
 		}
 	}
 
+	private void setDropShadow() {
+		DropShadow dropShadow = new DropShadow();
+		dropShadow.setColor(Color.rgb(192, 192, 198));
+		dropShadow.setBlurType(BlurType.GAUSSIAN);
+		dropShadow.setRadius(2.0);
+		dropShadow.setSpread(0.2);
+		dropShadow.setOffsetX(0.0);
+		dropShadow.setOffsetY(0.0);
+
+		for (int i = 0; i < getChildren().size(); i++) {
+			Node child = getChildren().get(i);
+			if (child.getStyleClass().get(0).equals("radio")) {
+				child.setEffect(dropShadow);
+			}
+		}
+	}
+
 	@Override
 	protected void handleControlPropertyChanged(String p) {
 		super.handleControlPropertyChanged(p);
-		if (p == "SELECTED") {
-			if (getSkinnable().isFocused()) {
-				if (getSkinnable().isSelected()) {
-					setSelectedFocusBorder();
-				} else {
-					setFocusBorder();
-				}
-			}
-		}
 		if (p == "FOCUSED") {
 			if (getSkinnable().isFocused()) {
-				if (getSkinnable().isSelected()) {
-					setSelectedFocusBorder();
-				} else {
-					setFocusBorder();
-				}
+				setFocusBorder();
 			} else if (!getSkinnable().isFocused()) {
-				setBoxShadow();
+				setDropShadow();
 			}
 		}
 	}
