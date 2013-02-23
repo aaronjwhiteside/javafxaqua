@@ -97,6 +97,15 @@ public class AquaButtonSkin extends ButtonSkin {
 					} else if (defaultButtonTransition != null
 							&& defaultButtonTransition.getStatus() == Status.RUNNING) {
 						setDefaultButtonAnimation();
+						getSkinnable()
+								.setStyle(
+										"-fx-background-color: rgb(255, 255, 255),"
+												+ "	linear-gradient(#ffffff 20%, #ececec 60%, #ececec 80%, #eeeeee 100%);"
+												+ "-fx-background-insets:  0, 1;"
+												+ "-fx-background-radius: 4, 4;"
+												+ "-fx-border-radius: 4;"
+												+ "-fx-border-width: 0.5;"
+												+ "-fx-border-color: rgb(129, 129, 129);");
 					}
 				}
 			}
@@ -188,11 +197,13 @@ public class AquaButtonSkin extends ButtonSkin {
 		if (p == "DEFAULT_BUTTON") {
 			setDefaultButtonAnimation();
 		}
-		if(p == "DISABLED"){
-			if (getSkinnable().isDefaultButton()){
-				if(getSkinnable().isDisabled() && defaultButtonTransition!= null && defaultButtonTransition.getStatus() != Status.RUNNING){
+		if (p == "DISABLED") {
+			if (getSkinnable().isDefaultButton()) {
+				if (getSkinnable().isDisabled()
+						&& defaultButtonTransition != null
+						&& defaultButtonTransition.getStatus() != Status.RUNNING) {
 					defaultButtonTransition.stop();
-				}else{
+				} else {
 					setDefaultButtonAnimation();
 				}
 			}
