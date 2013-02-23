@@ -10,6 +10,55 @@
 }
 
 
+/*******************************************************************************
+ *                                                                             *
+ * TextField                                                                   *
+ *                                                                             *
+ ******************************************************************************/
+
+.text-field {
+	-fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaTextFieldSkin";
+	-fx-border-color: linear-gradient(rgb(184, 184, 184) 0%, rgb(205, 205, 205) 100%);
+ 	-fx-border-width: 0.5;
+    -fx-background-color: linear-gradient(rgb(155, 155, 155) 0%, rgb(172, 172, 172)  100%),
+    						 rgb(255, 255, 255),
+    					linear-gradient(rgb(224, 224, 224) 0%, rgb(255, 255, 255)  10%),
+    					linear-gradient(to right, rgb(224, 224, 224) 0%, transparent 1%),
+    					linear-gradient(to left, rgb(224, 224, 224) 0%, transparent 1%);
+    -fx-background-insets: 0.5, 1, 1, 1;
+    -fx-background-radius: 0, 0;
+   
+    -fx-padding: 0.26em 0.166667em  0.166667em 0.166667em;
+    -fx-text-fill: black;
+    -fx-highlight-fill: rgb(182, 214, 253);
+    -fx-highlight-text-fill: -fx-text-fill;
+    
+    -fx-prompt-text-fill: rgb(128, 128, 128);
+}
+
+
+.text-field:disabled {
+	-fx-disabled-opacity: 1.0;
+	-fx-background-color: linear-gradient(rgb(155, 155, 155, 0.4) 0%, rgb(172, 172, 172, 0.4)  100%),
+    						 rgb(255, 255, 255),
+    					linear-gradient(rgb(224, 224, 224, 0.4) 0%, rgb(255, 255, 255, 0.4)  10%),
+    					linear-gradient(to right, rgb(224, 224, 224) 0%, transparent 1%),
+    					linear-gradient(to left, rgb(224, 224, 224) 0%, transparent 1%);
+	-fx-border-color: linear-gradient(rgb(184, 184, 184, 0.4) 0%, rgb(205, 205, 205, 0.4) 100%);
+	-fx-text-fill: rgb(127, 127, 127);
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * PasswordField                                                               *
+ *                                                                             *
+ ******************************************************************************/
+
+.password-field {
+	-fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaPasswordFieldSkin";
+    -fx-text-fill: -fx-text-inner-color;
+}
+
 
 /*******************************************************************************
  *                                                                             *
