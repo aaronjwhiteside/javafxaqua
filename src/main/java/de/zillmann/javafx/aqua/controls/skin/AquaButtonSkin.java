@@ -152,16 +152,16 @@ public class AquaButtonSkin extends ButtonSkin {
 
 	private void setFocusBorder() {
 		InnerShadow innerFocus = new InnerShadow();
-		innerFocus.setColor(Color.rgb(122, 170, 217, 0.9));
-		innerFocus.setBlurType(BlurType.GAUSSIAN);
-		innerFocus.setRadius(3.0);
+		innerFocus.setColor(Color.rgb(104, 155, 201, 0.8));
+		innerFocus.setBlurType(BlurType.ONE_PASS_BOX);
+		innerFocus.setRadius(5.0);
 		innerFocus.setChoke(0.8);
 		innerFocus.setOffsetX(0.0);
 		DropShadow outerFocus = new DropShadow();
-		outerFocus.setColor(Color.rgb(113, 164, 212));
-		outerFocus.setBlurType(BlurType.GAUSSIAN);
-		outerFocus.setRadius(4.5);
-		outerFocus.setSpread(0.7);
+		outerFocus.setColor(Color.rgb(104, 155, 201));
+		outerFocus.setBlurType(BlurType.ONE_PASS_BOX);
+		outerFocus.setRadius(6.5);
+		outerFocus.setSpread(0.6);
 		outerFocus.setOffsetX(0.0);
 		outerFocus.setOffsetY(0.0);
 		outerFocus.setInput(innerFocus);
@@ -171,7 +171,7 @@ public class AquaButtonSkin extends ButtonSkin {
 	private void setDropShadow() {
 		DropShadow dropShadow = new DropShadow();
 		dropShadow.setColor(Color.rgb(192, 192, 198));
-		dropShadow.setBlurType(BlurType.GAUSSIAN);
+		dropShadow.setBlurType(BlurType.ONE_PASS_BOX);
 		dropShadow.setRadius(2.0);
 		dropShadow.setSpread(0.2);
 		dropShadow.setOffsetX(0.0);
