@@ -6,6 +6,8 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ContextMenuBuilder;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -31,6 +33,7 @@ public class ButtonDemo extends Application {
 		pane.setTop(txts);
 		
 		TextField tf1 = new TextField("MACBOOKPRO");
+		tf1.setContextMenu(ContextMenuBuilder.create().items(new MenuItem("test"), new MenuItem("test")).build());
 		textfieldBox1.getChildren().add(tf1);
 		
 		TextField tf2 = new TextField();

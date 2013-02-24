@@ -260,3 +260,18 @@
 			-fx-background-insets: 0;
 			-fx-background-radius: 1em;
 }
+
+
+/*******************************************************************************
+ *                                                                             *
+ * PopupMenu                                                                   *
+ *                                                                             *
+ ******************************************************************************/
+
+.context-menu {
+	-fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaContextMenuSkin";
+	-fx-border-color: red;
+    -fx-background-color: red;
+}
+
+
