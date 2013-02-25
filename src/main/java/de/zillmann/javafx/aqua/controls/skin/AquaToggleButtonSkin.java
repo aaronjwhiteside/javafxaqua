@@ -58,8 +58,8 @@ public class AquaToggleButtonSkin extends ToggleButtonSkin {
 		if (index == 0) {
 			getSkinnable()
 					.setStyle(
-							"-fx-background-radius: 3 0 0 3;"
-									+ "-fx-border-radius: 3 0 0 3;"
+							"-fx-background-radius: 4 0 0 4;"
+									+ "-fx-border-radius: 4 0 0 4;"
 									+ "-fx-background-insets: 0.5 0 0.5 0.5, 1 0 1 1 ;");
 		} else if (index == getSkinnable().getToggleGroup().getToggles().size() - 1) {
 			isLast=true;
@@ -91,8 +91,8 @@ public class AquaToggleButtonSkin extends ToggleButtonSkin {
 	private void setLastSelectedBorder(boolean selected){
 		String number= selected ? "-1":"0";
 		getSkinnable().setStyle(
-				"-fx-background-radius: 0 3 3 0;"
-				+ "-fx-border-radius: 0 3 3 0;" +
+				"-fx-background-radius: 0 4 4 0;"
+				+ "-fx-border-radius: 0 4 4 0;" +
 				"-fx-background-insets: 0.5 0.5 0.5 "+number+", 1 1 1 0 ;");
 	}
 }
