@@ -10,6 +10,7 @@ import javafx.scene.control.ContextMenuBuilder;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
@@ -64,6 +65,15 @@ public class ButtonDemo extends Application {
 		PasswordField pw1 = new PasswordField();
 		pw1.setText("password");
 		textfieldBox3.getChildren().add(pw1);
+		
+		HBox textareaBox = HBoxBuilder.create().spacing(10).padding(new Insets(10)).build();
+		txts.getChildren().add(textareaBox);
+		TextArea area = new TextArea();
+		area.setPromptText("TextArea");
+//		area.setDisable(true);
+		area.setPrefWidth(290);
+		area.setPrefHeight(80);
+		textareaBox.getChildren().add(area);
 		
 		VBox buttonBox = VBoxBuilder.create().padding(new Insets(10))
 				.spacing(10).build();
@@ -160,7 +170,7 @@ public class ButtonDemo extends Application {
 		toggleButtonBox.getChildren().add(tb3);
 		
 		
-		Scene myScene = new Scene(pane, 325, 350);
+		Scene myScene = new Scene(pane, 325, 400);
 		AquaFx.style(myScene);
 		
 		stage.setScene(myScene);

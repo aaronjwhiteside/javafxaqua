@@ -59,6 +59,47 @@
     -fx-text-fill: -fx-text-inner-color;
 }
 
+/*******************************************************************************
+ *                                                                             *
+ * TextArea                                                                    *
+ *                                                                             *
+ ******************************************************************************/
+
+.text-area {
+	-fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaTextAreaSkin";
+   	-fx-border-color: rgb(142, 142, 142) rgb(190, 190, 190) rgb(190, 190, 190) rgb(190, 190, 190);
+ 	-fx-border-width: 1;
+    -fx-background-color: rgb(255, 255, 255);
+    -fx-background-insets: 1;
+    -fx-background-radius: 0;
+/*    -fx-font-size: 0.966666em;*/
+/*    -fx-font-family: "helvetica";*/
+	-fx-text-fill: black;
+    -fx-highlight-fill: rgb(182, 214, 253);
+    -fx-highlight-text-fill: -fx-text-fill;
+    -fx-prompt-text-fill: rgb(128, 128, 128);
+}
+
+.text-area > .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.text-area .content {
+    -fx-padding: 1.2 3 2 1; 
+    -fx-cursor: text;
+}
+
+.text-area:focused {
+    -fx-prompt-text-fill: transparent;
+}
+
+.text-area:disabled {
+	-fx-disabled-opacity: 1.0;
+	-fx-background-color: rgb(255, 255, 255);
+   	-fx-border-color: rgb(142, 142, 142) rgb(190, 190, 190) rgb(190, 190, 190) rgb(190, 190, 190);
+	-fx-text-fill: rgb(127, 127, 127);
+}
+
 
 /*******************************************************************************
  *                                                                             *
