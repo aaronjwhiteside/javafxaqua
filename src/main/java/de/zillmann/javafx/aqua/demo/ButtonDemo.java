@@ -66,14 +66,20 @@ public class ButtonDemo extends Application {
 		pw1.setText("password");
 		textfieldBox3.getChildren().add(pw1);
 		
-		HBox textareaBox = HBoxBuilder.create().spacing(10).padding(new Insets(10)).build();
+		VBox textareaBox = VBoxBuilder.create().spacing(10).padding(new Insets(10)).build();
 		txts.getChildren().add(textareaBox);
 		TextArea area = new TextArea();
-		area.setPromptText("TextArea");
-//		area.setDisable(true);
+		area.setPromptText("TextArea promptText");
 		area.setPrefWidth(290);
-		area.setPrefHeight(80);
+		area.setPrefHeight(50);
 		textareaBox.getChildren().add(area);
+		
+		TextArea area2 = new TextArea();
+		area2.setText("Disabled");
+		area2.setDisable(true);
+		area2.setPrefWidth(290);
+		area2.setPrefHeight(50);
+		textareaBox.getChildren().add(area2);
 		
 		VBox buttonBox = VBoxBuilder.create().padding(new Insets(10))
 				.spacing(10).build();
@@ -170,7 +176,7 @@ public class ButtonDemo extends Application {
 		toggleButtonBox.getChildren().add(tb3);
 		
 		
-		Scene myScene = new Scene(pane, 325, 400);
+		Scene myScene = new Scene(pane, 325, 500);
 		AquaFx.style(myScene);
 		
 		stage.setScene(myScene);
