@@ -3,10 +3,7 @@ package de.zillmann.javafx.aqua.controls.skin;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.effect.BlurType;
 import javafx.scene.effect.ColorAdjust;
-import javafx.scene.effect.InnerShadow;
-import javafx.scene.paint.Color;
 
 import com.sun.javafx.scene.control.skin.ToggleButtonSkin;
 
@@ -88,15 +85,6 @@ public class AquaToggleButtonSkin extends ToggleButtonSkin {
 	}
 	
 	private void setSelectedEffect(){
-		InnerShadow innerShadow = new InnerShadow();
-		innerShadow.setColor(Color.rgb(94, 94, 94, 0.5));
-		innerShadow.setBlurType(BlurType.ONE_PASS_BOX);
-		innerShadow.setRadius(5.5);
-		innerShadow.setChoke(0.7);
-		innerShadow.setOffsetX(0.0);
-		innerShadow.setOffsetY(1.0);
-		getSkinnable().setEffect(innerShadow);
-
 		//TODO: set shadow of text 
 	}
 	
