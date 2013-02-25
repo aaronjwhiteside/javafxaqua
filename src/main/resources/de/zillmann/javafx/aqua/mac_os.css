@@ -274,4 +274,56 @@
     -fx-background-color: red;
 }
 
+/*******************************************************************************
+ *                                                                             *
+ * ToggleButton                                                                *
+ *                                                                             *
+ ******************************************************************************/
+
+.toggle-button {
+	-fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaToggleButtonSkin";
+	
+	-toggle-selected-base:linear-gradient(rgb(94, 94, 94) 0%, rgb(142, 142, 142) 20%, 
+    		rgb(153, 153, 153) 80%, rgb(177, 177, 177) 95%, rgb(142, 142, 142) 100%);
+    -toggle-base: linear-gradient(rgb(255, 255, 255) 0%, rgb(243, 243, 243) 50%, rgb(236, 236, 236) 50%, rgb(243, 243, 243) 100% );
+	
+	
+    -fx-background-color: rgb(147, 147, 147), -toggle-base;
+    	
+    -fx-background-insets: 0.5 0 0.5 0, 1 0 1 0 ;
+    -fx-background-radius: 0;
+    -fx-padding: 0.119em  0.733333em 0.12em  0.788888em; 
+    -fx-text-fill: -fx-text-base-color;
+    -fx-alignment: CENTER;
+    -fx-content-display: LEFT;
+    -fx-border-width: 0.5 1 0.5 0.5;
+    -fx-border-color:rgb(206, 206, 206) linear-gradient(rgb(255, 255, 255, 0) 0%, rgb(255, 255, 255, 0) 15%, rgb(201, 201, 201) 15%,  rgb(201, 201, 201) 85%, rgb(255, 255, 255, 0) 85%, rgb(255, 255, 255, 0) 100%) rgb(177, 177, 177) rgb(255, 255, 255, 0.0);	
+
+ 	-fx-effect: dropshadow( gaussian , rgb(172, 172, 184, 0.3) , 1.0 , 0.0001 , 0 , 1 );
+}
+
+.toggle-button:focused {
+    -fx-background-color: rgb(147, 147, 147), -toggle-base;
+}
+
+
+
+.toggle-button:selected {
+    -fx-background-color: rgb(87, 87, 87), -toggle-selected-base;
+    -fx-background-insets:0.5 0 0.5 -1, 0 1 0 0;
+    -fx-border-width: 0.5 0 0.5 0.5;
+    -fx-text-fill: rgb(255, 255, 255);
+    -fx-padding: 0.119em  0.788888em 0.12em  0.788888em; 
+    
+   -fx-effect:null;
+}
+
+.toggle-button:selected:focused {
+   fx-background-color: rgb(87, 87, 87), -toggle-selected-base;
+}
+
+.toggle-button:armed {
+}
+
+
 

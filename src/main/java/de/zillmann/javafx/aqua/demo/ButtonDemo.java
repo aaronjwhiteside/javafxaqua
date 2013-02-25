@@ -11,6 +11,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.HBoxBuilder;
@@ -138,8 +140,27 @@ public class ButtonDemo extends Application {
 		box6.setDisable(true);
 		checkBoxBox.getChildren().add(box6);
 		
+		HBox toggleButtonBox = HBoxBuilder.create().padding(new Insets(10)).build();
+		pane.setBottom(toggleButtonBox);
 		
-		Scene myScene = new Scene(pane, 325, 300);
+		final ToggleGroup group = new ToggleGroup();
+		ToggleButton tb1 = new ToggleButton("First");
+		tb1.setToggleGroup(group);
+		tb1.setSelected(true);
+		toggleButtonBox.getChildren().add(tb1);
+
+
+		ToggleButton tb2 = new ToggleButton("Proxies");
+		tb2.setToggleGroup(group);
+		toggleButtonBox.getChildren().add(tb2);
+
+
+		ToggleButton tb3 = new ToggleButton("Third");
+		tb3.setToggleGroup(group);
+		toggleButtonBox.getChildren().add(tb3);
+		
+		
+		Scene myScene = new Scene(pane, 325, 350);
 		AquaFx.style(myScene);
 		
 		stage.setScene(myScene);
