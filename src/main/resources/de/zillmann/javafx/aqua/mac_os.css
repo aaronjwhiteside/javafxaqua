@@ -338,7 +338,11 @@
     -fx-alignment: CENTER;
     -fx-content-display: LEFT;
     -fx-border-width: 0.5 1 0.5 0.5;
-    -fx-border-color:rgb(206, 206, 206) linear-gradient(rgb(255, 255, 255, 0) 0%, rgb(255, 255, 255, 0) 15%, rgb(201, 201, 201) 15%,  rgb(201, 201, 201) 85%, rgb(255, 255, 255, 0) 85%, rgb(255, 255, 255, 0) 100%) rgb(177, 177, 177) rgb(255, 255, 255, 0.0);	
+    -fx-border-color:rgb(206, 206, 206) 
+    		linear-gradient(rgb(255, 255, 255, 0) 0%, rgb(255, 255, 255, 0) 15%, rgb(201, 201, 201) 15%, 
+    			rgb(201, 201, 201) 85%, rgb(255, 255, 255, 0) 85%, rgb(255, 255, 255, 0) 100%) 
+    		rgb(177, 177, 177) 
+    		rgb(255, 255, 255, 0.0);	
 
  	-fx-effect: dropshadow( gaussian , rgb(172, 172, 184, 0.3) , 1.0 , 0.0001 , 0 , 1 );
 }
@@ -407,6 +411,126 @@
     -fx-background-insets: 0.5 0 -0.5 0, 0;
     -fx-padding: 0.4em 0.18em 0.4em 0.18em;
     -fx-shape:  "m 4.5,3.03125 -3.5,5.5 7,0 z m -3.5,10.875 3.5,5.5 3.5,-5.5 z";
+}
+
+
+/*******************************************************************************
+ *                                                                             *
+ * ScrollBar                                                                   *
+ *                                                                             *
+ ******************************************************************************/
+.scroll-bar {
+	-fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaScrollBarSkin";
+}
+
+.scroll-bar:horizontal, .scroll-bar:horizontal:focused, 
+.scroll-bar:horizontal > .track-background {
+    -fx-background-color:transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0 0 1 0;
+}
+
+.scroll-bar:horizontal:hover, .scroll-bar:horizontal:focused:hover, 
+.scroll-bar:horizontal:hover > .track-background {
+    -fx-background-color:transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0 0 1 0;
+}
+
+.scroll-bar:vertical, .scroll-bar:vertical:focused, 
+.scroll-bar:vertical > .track-background {
+    -fx-background-color:transparent;
+    -fx-background-insets: 0;	
+    -fx-padding: -1 1 -1 0;
+}
+
+.scroll-bar:vertical:hover, .scroll-bar:vertical:focused:hover,
+.scroll-bar:vertical:hover > .track-background {
+    -fx-background-color:transparent;
+    -fx-background-insets: 0;
+    -fx-padding: -1 -1 -1 0;
+}
+
+.scroll-bar:horizontal > .thumb, .scroll-bar:vertical > .thumb {
+    -fx-background-color: rgb(0, 0, 0, 0.5);
+    -fx-background-insets: 0;
+    -fx-background-radius: 4;
+}
+
+.scroll-bar:horizontal:hover > .thumb, .scroll-bar:vertical:hover > .thumb {
+    -fx-background-color: rgb(0, 0, 0, 0.5);
+    -fx-background-radius: 6;
+}
+
+.scroll-bar:vertical:hover > .thumb {
+    -fx-background-insets: 0 2 0 2;
+}
+
+.scroll-bar:horizontal:hover > .thumb {
+    -fx-background-insets: 2 0 2 0;
+}
+
+.scroll-bar > .thumb:hover {
+    -fx-color: -fx-hover-base;
+}
+
+.scroll-bar:horizontal > .track,
+.scroll-bar:vertical > .track {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+}
+
+.scroll-bar:horizontal:hover > .track,
+.scroll-bar:vertical:hover > .track {
+    -fx-border-color: rgb(198, 198, 198);
+}
+
+.scroll-bar:vertical:hover > .track {
+    -fx-background-color: linear-gradient(rgb(238, 238, 238, 0.8) 0%, rgb(255, 255, 255, 0.8) 100%);
+    -fx-border-width: 0 0 0 1;
+    -fx-border-insets: 0 0 0 -1;
+}
+
+.scroll-bar:horizontal:hover > .track {
+    -fx-background-color: linear-gradient(rgb(238, 238, 238, 0.8) 0%, rgb(255, 255, 255, 0.8) 100%);
+    -fx-border-width: 1 0 0 0;
+    -fx-border-insets: -1 0 0 0;
+}
+
+.scroll-bar > .increment-button,
+.scroll-bar > .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-insets:  0;
+    -fx-padding: 0.0em;
+}
+
+.scroll-bar:vertical:hover > .increment-button, 
+.scroll-bar:vertical:hover > .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-insets:  0;
+    -fx-padding: 0.0em 6pt 0.0em 0.0em;
+}
+
+.scroll-bar:horizontal:hover > .increment-button,
+.scroll-bar:horizontal:hover > .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-insets:  0;
+    -fx-padding: 6pt 0.0em 0 0.0em;
+}
+
+.scroll-bar:horizontal > .increment-button > .increment-arrow, 
+.scroll-bar:horizontal > .decrement-button > .decrement-arrow {
+    -fx-background-color: transparent;
+    -fx-background-insets:  0;
+    -fx-padding: 4pt 0.0em 0.0em 0.0em;
+}
+
+.scroll-bar:vertical > .increment-button > .increment-arrow,
+.scroll-bar:vertical > .decrement-button > .decrement-arrow {
+    -fx-background-color: transparent;
+    -fx-background-insets:  0;
+    -fx-padding: 0.0em 4pt 0.0em 0.0em;
 }
 
 

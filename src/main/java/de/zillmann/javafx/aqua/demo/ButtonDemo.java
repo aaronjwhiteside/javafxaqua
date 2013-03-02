@@ -11,6 +11,7 @@ import javafx.scene.control.ContextMenuBuilder;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
@@ -86,6 +87,9 @@ public class ButtonDemo extends Application {
 		area2.setPrefHeight(50);
 		textareaBox.getChildren().add(area2);
 
+		ScrollBar scBar = new ScrollBar();
+		txts.getChildren().add(scBar);
+		
 		VBox buttonBox = VBoxBuilder.create().padding(new Insets(10))
 				.spacing(10).build();
 		pane.setLeft(buttonBox);
@@ -129,6 +133,8 @@ public class ButtonDemo extends Application {
 		raBu4.setDisable(true);
 		raBu4.setSelected(true);
 		radioButtonBox.getChildren().add(raBu4);
+		
+		
 
 		VBox checkBoxBox = VBoxBuilder.create().padding(new Insets(10))
 				.spacing(10).build();
@@ -187,6 +193,8 @@ public class ButtonDemo extends Application {
 		choices2.getSelectionModel().selectFirst();
 		choices2.setDisable(true);
 		toggleButtonBox.getChildren().add(choices2);
+		
+		
 		
 		Scene myScene = new Scene(pane, 350, 500);
 		AquaFx.style(myScene);
