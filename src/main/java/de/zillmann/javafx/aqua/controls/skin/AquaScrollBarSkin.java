@@ -11,7 +11,7 @@ public class AquaScrollBarSkin extends ScrollBarSkin {
 	public AquaScrollBarSkin(ScrollBar scrollBar) {
 		super(scrollBar);
 
-		scrollBar.setVisible(false);
+//		scrollBar.setVisible(false);
 		registerChangeListener(scrollBar.hoverProperty(), "HOVER");
 		registerChangeListener(scrollBar.valueProperty(), "VALUE");
 		registerChangeListener(scrollBar.visibleProperty(), "VISIBLE");
@@ -19,15 +19,7 @@ public class AquaScrollBarSkin extends ScrollBarSkin {
 
 
 	}
-	
-	private EventHandler scrollHandler = new EventHandler<ScrollEvent>() {
 
-		@Override
-		public void handle(ScrollEvent event) {
-			System.out.println("Scoll");
-			
-		}
-	};
 
 	@Override
 	protected void handleControlPropertyChanged(String p) {
@@ -36,10 +28,11 @@ public class AquaScrollBarSkin extends ScrollBarSkin {
 			System.out.println("hover");
 		}if (p == "VALUE"){
 			System.out.println("scroll");
-		}if (p=="VISIBLE"){
-			if (getSkinnable().isVisible()){
-				getSkinnable().setVisible(false);
-			}
 		}
+//		if (p=="VISIBLE"){
+//			if (getSkinnable().isVisible()){
+//				getSkinnable().setVisible(false);
+//			}
+//		}
 	}
 }
