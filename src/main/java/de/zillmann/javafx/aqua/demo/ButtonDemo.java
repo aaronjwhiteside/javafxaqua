@@ -34,9 +34,6 @@ public class ButtonDemo extends Application {
 
 		HBox textfieldBox1 = HBoxBuilder.create().spacing(10)
 				.padding(new Insets(10)).build();
-		txts.getChildren().add(textfieldBox1);
-
-		pane.setTop(txts);
 
 		TextField tf1 = new TextField("MACBOOKPRO");
 		tf1.setContextMenu(ContextMenuBuilder.create()
@@ -45,10 +42,10 @@ public class ButtonDemo extends Application {
 
 		TextField tf2 = new TextField();
 		textfieldBox1.getChildren().add(tf2);
+		txts.getChildren().add(textfieldBox1);
 
 		HBox textfieldBox2 = HBoxBuilder.create().spacing(10)
 				.padding(new Insets(10)).build();
-		txts.getChildren().add(textfieldBox2);
 
 		TextField tf3 = new TextField("MACBOOKPRO");
 		tf3.setDisable(true);
@@ -58,10 +55,10 @@ public class ButtonDemo extends Application {
 		TextField tf4 = new TextField();
 		tf4.setPromptText("prompt text");
 		textfieldBox2.getChildren().add(tf4);
+		txts.getChildren().add(textfieldBox2);
 
 		HBox textfieldBox3 = HBoxBuilder.create().spacing(10)
 				.padding(new Insets(10)).build();
-		txts.getChildren().add(textfieldBox3);
 
 		TextField tf5 = new TextField("MACBOOKPRO");
 		tf5.setEditable(false);
@@ -70,10 +67,10 @@ public class ButtonDemo extends Application {
 		PasswordField pw1 = new PasswordField();
 		pw1.setText("password");
 		textfieldBox3.getChildren().add(pw1);
+		txts.getChildren().add(textfieldBox3);
 
 		VBox textareaBox = VBoxBuilder.create().spacing(10)
 				.padding(new Insets(10)).build();
-		txts.getChildren().add(textareaBox);
 		TextArea area = new TextArea();
 		area.setPromptText("TextArea promptText");
 		area.setPrefWidth(290);
@@ -86,13 +83,14 @@ public class ButtonDemo extends Application {
 		area2.setPrefWidth(290);
 		area2.setPrefHeight(50);
 		textareaBox.getChildren().add(area2);
-
+		txts.getChildren().add(textareaBox);
+		
 		ScrollBar scBar = new ScrollBar();
 		txts.getChildren().add(scBar);
+		pane.setTop(txts);
 		
 		VBox buttonBox = VBoxBuilder.create().padding(new Insets(10))
 				.spacing(10).build();
-		pane.setLeft(buttonBox);
 
 		Button b1 = new Button();
 		b1.setText("Default");
@@ -113,10 +111,10 @@ public class ButtonDemo extends Application {
 		b4.setText("Normal");
 		b4.setDisable(true);
 		buttonBox.getChildren().add(b4);
+		pane.setLeft(buttonBox);
 
 		VBox radioButtonBox = VBoxBuilder.create().padding(new Insets(10))
 				.spacing(10).build();
-		pane.setCenter(radioButtonBox);
 
 		RadioButton raBu1 = new RadioButton("Normal");
 		radioButtonBox.getChildren().add(raBu1);
@@ -133,12 +131,11 @@ public class ButtonDemo extends Application {
 		raBu4.setDisable(true);
 		raBu4.setSelected(true);
 		radioButtonBox.getChildren().add(raBu4);
-		
+		pane.setCenter(radioButtonBox);
 		
 
 		VBox checkBoxBox = VBoxBuilder.create().padding(new Insets(10))
 				.spacing(10).build();
-		pane.setRight(checkBoxBox);
 
 		CheckBox box1 = new CheckBox("Normal");
 		checkBoxBox.getChildren().add(box1);
@@ -164,10 +161,10 @@ public class ButtonDemo extends Application {
 		box6.setIndeterminate(true);
 		box6.setDisable(true);
 		checkBoxBox.getChildren().add(box6);
+		pane.setRight(checkBoxBox);
 
 		HBox toggleButtonBox = HBoxBuilder.create().padding(new Insets(10))
 				.build();
-		pane.setBottom(toggleButtonBox);
 
 		ToggleGroup group = new ToggleGroup();
 		ToggleButton tb1 = new ToggleButton("First");
@@ -193,11 +190,10 @@ public class ButtonDemo extends Application {
 		choices2.getSelectionModel().selectFirst();
 		choices2.setDisable(true);
 		toggleButtonBox.getChildren().add(choices2);
-		
-		
+		pane.setBottom(toggleButtonBox);
 		
 		Scene myScene = new Scene(pane, 350, 500);
-		AquaFx.style(myScene);
+		AquaFx.style();
 
 		stage.setScene(myScene);
 		stage.show();

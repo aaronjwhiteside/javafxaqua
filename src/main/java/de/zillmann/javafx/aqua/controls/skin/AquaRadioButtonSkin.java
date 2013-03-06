@@ -20,7 +20,6 @@ public class AquaRadioButtonSkin extends RadioButtonSkin {
 		setDropShadow();
 
 		registerChangeListener(radioButton.focusedProperty(), "FOCUSED");
-		registerChangeListener(radioButton.disabledProperty(), "DISABLED");
 
 		final ChangeListener<Boolean> windowFocusChangedListener = new ChangeListener<Boolean>() {
 
@@ -31,13 +30,11 @@ public class AquaRadioButtonSkin extends RadioButtonSkin {
 				if (newValue != null) {
 					if (!newValue.booleanValue()) {
 						if (getSkinnable().isSelected()) {
-
 							for (int i = 0; i < getChildren().size(); i++) {
 								Node child = getChildren().get(i);
 								if (child.getStyleClass().get(0)
 										.equals("radio")) {
-									child.setStyle("-fx-padding: 3.5;"
-											+ "-fx-border-width: 0.5;"
+									child.setStyle("-fx-border-width: 0.5;"
 											+ "-fx-border-color: rgb(129, 129, 129);"
 											+ "-fx-border-radius: 1.0em;"
 											+ "-fx-background-color: rgb(250, 250, 250),"
@@ -46,7 +43,8 @@ public class AquaRadioButtonSkin extends RadioButtonSkin {
 											+ "		rgb(244, 244, 244) 50%, rgb(236, 236, 236) 51%,"
 											+ "		rgb(243, 243, 243) 100% );"
 											+ "-fx-background-insets: 0, 1;"
-											+ "-fx-background-radius: 1.0em;");
+											+ "-fx-background-radius: 1.0em;"
+											+ "-fx-padding: 3.5;");
 								}
 							}
 						}
@@ -59,7 +57,6 @@ public class AquaRadioButtonSkin extends RadioButtonSkin {
 						}
 					}
 				}
-
 			}
 		};
 
@@ -77,7 +74,6 @@ public class AquaRadioButtonSkin extends RadioButtonSkin {
 					newScene.getWindow().focusedProperty()
 							.addListener(windowFocusChangedListener);
 				}
-
 			}
 		});
 
@@ -86,7 +82,6 @@ public class AquaRadioButtonSkin extends RadioButtonSkin {
 			getSkinnable().getScene().getWindow().focusedProperty()
 					.addListener(windowFocusChangedListener);
 		}
-
 	}
 
 	private void setFocusBorder() {
@@ -118,9 +113,9 @@ public class AquaRadioButtonSkin extends RadioButtonSkin {
 	private void setDropShadow() {
 		DropShadow dropShadow = new DropShadow();
 		dropShadow.setColor(Color.rgb(192, 192, 198));
-		dropShadow.setBlurType(BlurType.GAUSSIAN);
+		dropShadow.setBlurType(BlurType.ONE_PASS_BOX);
 		dropShadow.setRadius(2.0);
-		dropShadow.setSpread(0.2);
+		dropShadow.setSpread(0.1);
 		dropShadow.setOffsetX(0.0);
 		dropShadow.setOffsetY(0.0);
 

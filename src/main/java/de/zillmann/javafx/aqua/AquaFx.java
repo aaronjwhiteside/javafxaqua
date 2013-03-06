@@ -1,11 +1,11 @@
 package de.zillmann.javafx.aqua;
 
-import javafx.scene.Scene;
+import javafx.application.Application;
 
 public class AquaFx {
-
-	public static void style(Scene scene) {
-		scene.getStylesheets().add(
-				AquaFx.class.getResource("mac_os.css").toExternalForm());
+	private final static String AQUA_CSS_NAME = AquaFx.class.getResource("mac_os.css").toExternalForm();
+	
+	public static void style() {
+		Application.setUserAgentStylesheet(AQUA_CSS_NAME);
 	}
 }

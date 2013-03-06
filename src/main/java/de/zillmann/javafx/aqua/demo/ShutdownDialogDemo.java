@@ -74,7 +74,7 @@ public class ShutdownDialogDemo extends Application {
 		borderPane.setBottom(hbox);
 
 		Scene myScene = new Scene(borderPane, 470, 172);
-		AquaFx.style(myScene);
+		AquaFx.style();
 		stage.setResizable(false);
 		stage.setScene(myScene);
 		stage.show();

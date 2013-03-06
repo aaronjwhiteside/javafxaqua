@@ -5,11 +5,8 @@ import java.util.List;
 
 import javafx.animation.Animation.Status;
 import javafx.animation.Timeline;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.css.PseudoClass;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -34,11 +31,30 @@ public class AquaButtonSkin extends ButtonSkin {
 
 	private BindableTransition defaultButtonTransition;
 
-	private InvalidationListener hoverListener;
+	private String usualButtonStyle = "-fx-background-color: rgb(255, 255, 255),"
+			+ "linear-gradient(#ffffff 20%, #ececec 60%, #ececec 80%, #eeeeee 100%);"
+			+ "-fx-background-insets:  0, 1;"
+			+ "-fx-background-radius: 4, 4;"
+			+ "-fx-border-radius: 4;"
+			+ "-fx-border-width: 0.5;"
+			+ "-fx-border-color: rgb(129, 129, 129);";
+
+	private String armedButtonStyle = "	-fx-background-color:"
+			+ "linear-gradient(rgb(190, 214, 237) 0%, rgb(178, 213, 237) 100% ),"
+			+ "linear-gradient(rgb(165, 193, 238) 0%, rgb(108, 161, 231) 50%,"
+			+ "rgb(74, 138, 217) 50%, rgb(105, 167, 236) 75%, rgb(152, 201, 238) 100%),"
+			+ "radial-gradient(focus-angle 180deg, focus-distance 95%, center 1% 50%,"
+			+ "radius 50%, #78b0ee, transparent),"
+			+ "radial-gradient(focus-angle 0deg, focus-distance 95%, center 100% 50%,"
+			+ "radius 50%, #78b0ee, transparent);"
+			+ "-fx-background-insets: 0, 0, 1 1 1 2, 1 2 1 1;"
+			+ "-fx-background-radius: 4, 4, 4, 4;"
+			+ "-fx-border-color: rgb(100, 103, 124);";
 
 	public AquaButtonSkin(Button button) {
 		super(button);
 		registerChangeListener(button.disabledProperty(), "DISABLED");
+		registerChangeListener(button.hoverProperty(), "HOVER");
 		if (getSkinnable().isDefaultButton()) {
 			/*
 			 * * were we already the defaultButton, before the listener was
@@ -57,13 +73,11 @@ public class AquaButtonSkin extends ButtonSkin {
 			@Override
 			public void handle(Event arg0) {
 				if (getSkinnable().isFocused()) {
-					// TODO: FOKUSWECHSEL VERHINDERN... DAS MUSS WEG...
 					setFocusBorder();
 				}
 				if (getSkinnable().isDefaultButton()) {
 					setDefaultButtonAnimation();
-					getSkinnable().pseudoClassStateChanged(
-							PseudoClass.getPseudoClass("hover"), true);
+					getSkinnable().setStyle(armedButtonStyle);
 				}
 			}
 		});
@@ -97,19 +111,13 @@ public class AquaButtonSkin extends ButtonSkin {
 					} else if (defaultButtonTransition != null
 							&& defaultButtonTransition.getStatus() == Status.RUNNING) {
 						setDefaultButtonAnimation();
-						getSkinnable()
-								.setStyle(
-										"-fx-background-color: rgb(255, 255, 255),"
-												+ "	linear-gradient(#ffffff 20%, #ececec 60%, #ececec 80%, #eeeeee 100%);"
-												+ "-fx-background-insets:  0, 1;"
-												+ "-fx-background-radius: 4, 4;"
-												+ "-fx-border-radius: 4;"
-												+ "-fx-border-width: 0.5;"
-												+ "-fx-border-color: rgb(129, 129, 129);");
+
+						// button has to look like a usual button
+						getSkinnable().setStyle(usualButtonStyle);
+						getSkinnable().impl_reapplyCSS();
 					}
 				}
 			}
-
 		};
 
 		getSkinnable().sceneProperty().addListener(new ChangeListener<Scene>() {
@@ -126,7 +134,6 @@ public class AquaButtonSkin extends ButtonSkin {
 					newScene.getWindow().focusedProperty()
 							.addListener(windowFocusChangedListener);
 				}
-
 			}
 		});
 
@@ -135,19 +142,6 @@ public class AquaButtonSkin extends ButtonSkin {
 			getSkinnable().getScene().getWindow().focusedProperty()
 					.addListener(windowFocusChangedListener);
 		}
-	}
-
-	private InvalidationListener getHoverListener() {
-		if (hoverListener == null) {
-			hoverListener = new InvalidationListener() {
-				@Override
-				public void invalidated(Observable observable) {
-					getSkinnable().pseudoClassStateChanged(
-							PseudoClass.getPseudoClass("hover"), false);
-				}
-			};
-		}
-		return hoverListener;
 	}
 
 	private void setFocusBorder() {
@@ -176,15 +170,24 @@ public class AquaButtonSkin extends ButtonSkin {
 		dropShadow.setSpread(0.2);
 		dropShadow.setOffsetX(0.0);
 		dropShadow.setOffsetY(0.0);
-
 		getSkinnable().setEffect(dropShadow);
 	}
 
 	@Override
 	protected void handleControlPropertyChanged(String p) {
 		super.handleControlPropertyChanged(p);
+		if (p == "HOVER"){
+			if (getSkinnable().isDefaultButton()
+					&& getSkinnable().isPressed()
+					&& getSkinnable().isHover()) {
+				getSkinnable().setStyle(armedButtonStyle);
+			} else if (getSkinnable().isDefaultButton()
+					&& getSkinnable().isPressed()
+					&& !getSkinnable().isHover()) {
+				getSkinnable().setStyle(usualButtonStyle);
+			}
+		}
 		if (p == "FOCUSED") {
-
 			if (getSkinnable().isFocused() && getSkinnable().isDefaultButton()) {
 				setFocusBorder();
 			} else if (getSkinnable().isFocused()) {
@@ -208,18 +211,6 @@ public class AquaButtonSkin extends ButtonSkin {
 				}
 			}
 		}
-		if (p == "BUTTON_SIZE") {
-			String property = (String) getSkinnable().getProperties().get(
-					"BUTTON_SIZE");
-			if (property.equals("small")) {
-				getSkinnable().getStyleClass().setAll("button_small");
-			} else if (property.equals("medium")) {
-
-			} else if (property.equals("large")) {
-
-			}
-		}
-
 	}
 
 	private void setDefaultButtonAnimation() {
@@ -227,8 +218,6 @@ public class AquaButtonSkin extends ButtonSkin {
 			if (defaultButtonTransition != null
 					&& defaultButtonTransition.getStatus() == Status.RUNNING) {
 				defaultButtonTransition.stop();
-				getSkinnable().hoverProperty().removeListener(
-						getHoverListener());
 			} else {
 				final Duration duration = Duration.millis(500);
 				defaultButtonTransition = new BindableTransition(duration);
@@ -368,7 +357,6 @@ public class AquaButtonSkin extends ButtonSkin {
 						});
 
 				defaultButtonTransition.play();
-				getSkinnable().hoverProperty().addListener(getHoverListener());
 			}
 		}
 	}
