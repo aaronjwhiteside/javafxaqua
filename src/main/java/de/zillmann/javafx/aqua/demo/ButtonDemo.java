@@ -181,7 +181,7 @@ public class ButtonDemo extends Application {
 		toggleButtonBox.getChildren().add(tb3);
 
 		ChoiceBox<String> choices = new ChoiceBox<String>(
-				FXCollections.observableArrayList("First", "Second", "Third"));
+				FXCollections.observableArrayList("4", "10", "12"));
 		choices.getSelectionModel().selectFirst();
 		toggleButtonBox.getChildren().add(choices);
 		
@@ -194,7 +194,6 @@ public class ButtonDemo extends Application {
 		
 		Scene myScene = new Scene(pane, 350, 500);
 		AquaFx.style();
-
 		stage.setScene(myScene);
 		stage.show();
 

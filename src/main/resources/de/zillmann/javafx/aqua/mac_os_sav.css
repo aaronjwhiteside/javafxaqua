@@ -253,7 +253,7 @@
 }
 
 .radio-button .radio {
-	-fx-padding: 0.2916665 /*3.5*/
+	-fx-padding: 0.2916665; /*3.5*/
 	-fx-border-width: 0.5;
 	-fx-border-color: rgb(129, 129, 129);
 	-fx-border-radius: 1.0em;
@@ -335,8 +335,8 @@
     -fx-background-color: transparent;
     -fx-background-insets:0;
     -fx-padding:0.00333em 0em 0.083333em 0em;
--fx-border-width: 1 0 1 0;
--fx-border-color:transparent;
+	-fx-border-width: 1 0 1 0;
+	-fx-border-color:transparent;
 }
 
 .menu-item > .left-container {
