@@ -1150,28 +1150,27 @@
 .scroll-bar:horizontal > .track-background {
     -fx-background-color:transparent;
     -fx-background-insets: 0.0;
-    -fx-padding: 0.0 0.0 1.0 0.0;
+    -fx-padding: 0.0 0.0 2.0 0.0;
 }
-
 .scroll-bar:horizontal:hover, .scroll-bar:horizontal:focused:hover, 
 .scroll-bar:horizontal:hover > .track-background {
     -fx-background-color:transparent;
     -fx-background-insets: 0.0;
-    -fx-padding: 0.0 0.0 1.0 0.0;
+    -fx-padding: 0.0 0.0 0.0 0.0;
 }
 
-.scroll-bar:vertical, .scroll-bar:vertical:focused, 
-.scroll-bar:vertical > .track-background {
-    -fx-background-color:transparent;
-    -fx-background-insets: 0.0;	
-    -fx-padding: -1.0 1.0 -1.0 0.0;
-}
-
-.scroll-bar:vertical:hover, .scroll-bar:vertical:focused:hover,
-.scroll-bar:vertical:hover > .track-background {
+.scroll-bar:vertical{
     -fx-background-color:transparent;
     -fx-background-insets: 0.0;
-    -fx-padding: -1.0 -1.0 -1.0 0.0;
+    -fx-padding: -1.0 2.0 -1.0 0.0;
+} 
+
+.scroll-bar:vertical > .track-background,
+.scroll-bar:vertical:hover > .track-background,
+.scroll-bar:vertical:hover, .scroll-bar:vertical:focused:hover {
+    -fx-background-color:transparent;
+    -fx-background-insets: 0.0;
+    -fx-padding: -1.0 0.0 -1.0 0.0;
 }
 
 .scroll-bar:horizontal > .thumb, .scroll-bar:vertical > .thumb {
@@ -1287,18 +1286,18 @@
 }
 
 .scroll-pane > * > .scroll-bar:horizontal {
-    -fx-background-insets: 0.0, 1.0 0.0 0.0 0.0;
+    -fx-background-insets: 0.0, 0.0 0.0 0.0 0.0;
     -fx-padding: 0.0 0.0 0.0 0.0;
 }
 
 .scroll-pane > * > .scroll-bar:vertical {
-    -fx-background-insets: 0.0, 0.0 0.0 0.0 1.0;
+    -fx-background-insets: 0.0, 0.0 0.0 0.0 0.0;
     -fx-padding: 0.0 0.0 0.0 0.0;
 }
 
 .scroll-pane > .corner {
-    -fx-background-color: -fx-box-border, -fx-base;
-    -fx-background-insets: 0.0, 1.0 0.0 0.0 1.0;
+    -fx-background-color: transparent;
+    -fx-background-insets: 0.0, 0.0 0.0 0.0 0.0;
 }
 
 .scroll-pane:disabled {
