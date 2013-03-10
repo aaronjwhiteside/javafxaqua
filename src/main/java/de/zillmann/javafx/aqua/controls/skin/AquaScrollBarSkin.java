@@ -25,9 +25,9 @@ public class AquaScrollBarSkin extends ScrollBarSkin {
 	protected void handleControlPropertyChanged(String p) {
 		super.handleControlPropertyChanged(p);
 		if (p == "HOVER") {
-			System.out.println("hover");
+//			System.out.println("hover");
 		}if (p == "VALUE"){
-			System.out.println("scroll");
+//			System.out.println("scroll");
 		}
 //		if (p=="VISIBLE"){
 //			if (getSkinnable().isVisible()){
