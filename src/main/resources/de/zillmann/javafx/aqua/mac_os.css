@@ -434,10 +434,6 @@
     -fx-border-color: rgb(100.0, 103.0, 124.0);
 }
 
-.button:default:hover {
- -fx-background-color: red;
- }
-
 .button:cancel {
 }
 
