@@ -8,19 +8,20 @@ import javafx.stage.Stage;
 
 public class NsIconDemo extends Application {
 
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		FlowPane pane = new FlowPane();
-		for (NsImageIcon nsImageIcon : NsImageIcon.values()) {
-			pane.getChildren().add(new ImageView(NsImageIconLoader.load(nsImageIcon)));
-		}
-		
-		Scene myScene = new Scene(pane);
-		primaryStage.setScene(myScene);
-		primaryStage.show();
-	}
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        FlowPane pane = new FlowPane();
+        for (NsImageIcon nsImageIcon : NsImageIcon.values()) {
+            pane.getChildren().add(
+                    new ImageView(NsImageIconLoader.load(nsImageIcon)));
+        }
 
-	public static void main(String[] args) {
-		launch(args);
-	}
+        Scene myScene = new Scene(pane);
+        primaryStage.setScene(myScene);
+        primaryStage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 }

@@ -15,127 +15,127 @@ import com.sun.javafx.scene.control.skin.RadioButtonSkin;
 
 public class AquaRadioButtonSkin extends RadioButtonSkin {
 
-	public AquaRadioButtonSkin(RadioButton radioButton) {
-		super(radioButton);
-		setDropShadow();
+    public AquaRadioButtonSkin(RadioButton radioButton) {
+        super(radioButton);
+        setDropShadow();
 
-		registerChangeListener(radioButton.focusedProperty(), "FOCUSED");
+        registerChangeListener(radioButton.focusedProperty(), "FOCUSED");
 
-		final ChangeListener<Boolean> windowFocusChangedListener = new ChangeListener<Boolean>() {
+        final ChangeListener<Boolean> windowFocusChangedListener = new ChangeListener<Boolean>() {
 
-			@Override
-			public void changed(
-					ObservableValue<? extends Boolean> observableValue,
-					Boolean oldValue, Boolean newValue) {
-				if (newValue != null) {
-					if (!newValue.booleanValue()) {
-						if (getSkinnable().isSelected()) {
-							for (int i = 0; i < getChildren().size(); i++) {
-								Node child = getChildren().get(i);
-								if (child.getStyleClass().get(0)
-										.equals("radio")) {
-									child.setStyle("-fx-border-width: 0.5;"
-											+ "-fx-border-color: rgb(129, 129, 129);"
-											+ "-fx-border-radius: 1.0em;"
-											+ "-fx-background-color: rgb(250, 250, 250),"
-											+ "	linear-gradient("
-											+ "		rgb(255, 255, 255) 0%, rgb(253,253,253) 25%,  "
-											+ "		rgb(244, 244, 244) 50%, rgb(236, 236, 236) 51%,"
-											+ "		rgb(243, 243, 243) 100% );"
-											+ "-fx-background-insets: 0, 1;"
-											+ "-fx-background-radius: 1.0em;"
-											+ "-fx-padding: 3.5;");
-								}
-							}
-						}
-					} else {
-						for (int i = 0; i < getChildren().size(); i++) {
-							Node child = getChildren().get(i);
-							if (child.getStyleClass().get(0).equals("radio")) {
-								child.setStyle(null);
-							}
-						}
-					}
-				}
-			}
-		};
+            @Override
+            public void changed(
+                    ObservableValue<? extends Boolean> observableValue,
+                    Boolean oldValue, Boolean newValue) {
+                if (newValue != null) {
+                    if (!newValue.booleanValue()) {
+                        if (getSkinnable().isSelected()) {
+                            for (int i = 0; i < getChildren().size(); i++) {
+                                Node child = getChildren().get(i);
+                                if (child.getStyleClass().get(0)
+                                        .equals("radio")) {
+                                    child.setStyle("-fx-border-width: 0.5;"
+                                            + "-fx-border-color: rgb(129, 129, 129);"
+                                            + "-fx-border-radius: 1.0em;"
+                                            + "-fx-background-color: rgb(250, 250, 250),"
+                                            + "	linear-gradient("
+                                            + "		rgb(255, 255, 255) 0%, rgb(253,253,253) 25%,  "
+                                            + "		rgb(244, 244, 244) 50%, rgb(236, 236, 236) 51%,"
+                                            + "		rgb(243, 243, 243) 100% );"
+                                            + "-fx-background-insets: 0, 1;"
+                                            + "-fx-background-radius: 1.0em;"
+                                            + "-fx-padding: 3.5;");
+                                }
+                            }
+                        }
+                    } else {
+                        for (int i = 0; i < getChildren().size(); i++) {
+                            Node child = getChildren().get(i);
+                            if (child.getStyleClass().get(0).equals("radio")) {
+                                child.setStyle(null);
+                            }
+                        }
+                    }
+                }
+            }
+        };
 
-		getSkinnable().sceneProperty().addListener(new ChangeListener<Scene>() {
+        getSkinnable().sceneProperty().addListener(new ChangeListener<Scene>() {
 
-			@Override
-			public void changed(
-					ObservableValue<? extends Scene> observableValue,
-					Scene oldScene, Scene newScene) {
-				if (oldScene != null && oldScene.getWindow() != null) {
-					oldScene.getWindow().focusedProperty()
-							.removeListener(windowFocusChangedListener);
-				}
-				if (newScene != null && newScene.getWindow() != null) {
-					newScene.getWindow().focusedProperty()
-							.addListener(windowFocusChangedListener);
-				}
-			}
-		});
+            @Override
+            public void changed(
+                    ObservableValue<? extends Scene> observableValue,
+                    Scene oldScene, Scene newScene) {
+                if (oldScene != null && oldScene.getWindow() != null) {
+                    oldScene.getWindow().focusedProperty()
+                            .removeListener(windowFocusChangedListener);
+                }
+                if (newScene != null && newScene.getWindow() != null) {
+                    newScene.getWindow().focusedProperty()
+                            .addListener(windowFocusChangedListener);
+                }
+            }
+        });
 
-		if (getSkinnable().getScene() != null
-				&& getSkinnable().getScene().getWindow() != null) {
-			getSkinnable().getScene().getWindow().focusedProperty()
-					.addListener(windowFocusChangedListener);
-		}
-	}
+        if (getSkinnable().getScene() != null
+                && getSkinnable().getScene().getWindow() != null) {
+            getSkinnable().getScene().getWindow().focusedProperty()
+                    .addListener(windowFocusChangedListener);
+        }
+    }
 
-	private void setFocusBorder() {
-		InnerShadow innerFocus = new InnerShadow();
-		innerFocus.setColor(Color.rgb(104, 155, 201));
-		innerFocus.setBlurType(BlurType.ONE_PASS_BOX);
-		innerFocus.setRadius(6.5);
-		innerFocus.setChoke(0.7);
-		innerFocus.setOffsetX(0.0);
-		innerFocus.setOffsetY(0.0);
+    private void setFocusBorder() {
+        InnerShadow innerFocus = new InnerShadow();
+        innerFocus.setColor(Color.rgb(104, 155, 201));
+        innerFocus.setBlurType(BlurType.ONE_PASS_BOX);
+        innerFocus.setRadius(6.5);
+        innerFocus.setChoke(0.7);
+        innerFocus.setOffsetX(0.0);
+        innerFocus.setOffsetY(0.0);
 
-		DropShadow outerFocus = new DropShadow();
-		outerFocus.setColor(Color.rgb(104, 155, 201));
-		outerFocus.setBlurType(BlurType.ONE_PASS_BOX);
-		outerFocus.setRadius(5.0);
-		outerFocus.setSpread(0.6);
-		outerFocus.setOffsetX(0.0);
-		outerFocus.setOffsetY(0.0);
-		outerFocus.setInput(innerFocus);
+        DropShadow outerFocus = new DropShadow();
+        outerFocus.setColor(Color.rgb(104, 155, 201));
+        outerFocus.setBlurType(BlurType.ONE_PASS_BOX);
+        outerFocus.setRadius(5.0);
+        outerFocus.setSpread(0.6);
+        outerFocus.setOffsetX(0.0);
+        outerFocus.setOffsetY(0.0);
+        outerFocus.setInput(innerFocus);
 
-		for (int i = 0; i < getChildren().size(); i++) {
-			Node child = getChildren().get(i);
-			if (child instanceof StackPane) {
-				child.setEffect(outerFocus);
-			}
-		}
-	}
+        for (int i = 0; i < getChildren().size(); i++) {
+            Node child = getChildren().get(i);
+            if (child instanceof StackPane) {
+                child.setEffect(outerFocus);
+            }
+        }
+    }
 
-	private void setDropShadow() {
-		DropShadow dropShadow = new DropShadow();
-		dropShadow.setColor(Color.rgb(192, 192, 198));
-		dropShadow.setBlurType(BlurType.ONE_PASS_BOX);
-		dropShadow.setRadius(2.0);
-		dropShadow.setSpread(0.1);
-		dropShadow.setOffsetX(0.0);
-		dropShadow.setOffsetY(0.0);
+    private void setDropShadow() {
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setColor(Color.rgb(192, 192, 198));
+        dropShadow.setBlurType(BlurType.ONE_PASS_BOX);
+        dropShadow.setRadius(2.0);
+        dropShadow.setSpread(0.1);
+        dropShadow.setOffsetX(0.0);
+        dropShadow.setOffsetY(0.0);
 
-		for (int i = 0; i < getChildren().size(); i++) {
-			Node child = getChildren().get(i);
-			if (child.getStyleClass().get(0).equals("radio")) {
-				child.setEffect(dropShadow);
-			}
-		}
-	}
+        for (int i = 0; i < getChildren().size(); i++) {
+            Node child = getChildren().get(i);
+            if (child.getStyleClass().get(0).equals("radio")) {
+                child.setEffect(dropShadow);
+            }
+        }
+    }
 
-	@Override
-	protected void handleControlPropertyChanged(String p) {
-		super.handleControlPropertyChanged(p);
-		if (p == "FOCUSED") {
-			if (getSkinnable().isFocused()) {
-				setFocusBorder();
-			} else if (!getSkinnable().isFocused()) {
-				setDropShadow();
-			}
-		}
-	}
+    @Override
+    protected void handleControlPropertyChanged(String p) {
+        super.handleControlPropertyChanged(p);
+        if (p == "FOCUSED") {
+            if (getSkinnable().isFocused()) {
+                setFocusBorder();
+            } else if (!getSkinnable().isFocused()) {
+                setDropShadow();
+            }
+        }
+    }
 }

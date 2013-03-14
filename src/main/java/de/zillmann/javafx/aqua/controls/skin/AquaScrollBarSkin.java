@@ -31,7 +31,7 @@ public class AquaScrollBarSkin extends ScrollBarSkin {
     public AquaScrollBarSkin(ScrollBar scrollBar) {
         super(scrollBar);
 
-        if (getNode().getParent() instanceof ScrollPane){
+        if (getNode().getParent() instanceof ScrollPane) {
             fadeable = true;
         }
         scrollBar.setVisible(!fadeable);

@@ -15,19 +15,19 @@ import javafx.util.Duration;
  */
 public class BindableTransition extends Transition {
 
-	private DoubleProperty fraction;
+    private DoubleProperty fraction;
 
-	public BindableTransition(Duration duration) {
-		fraction = new SimpleDoubleProperty();
-		setCycleDuration(duration);
-	}
+    public BindableTransition(Duration duration) {
+        fraction = new SimpleDoubleProperty();
+        setCycleDuration(duration);
+    }
 
-	@Override
-	protected final void interpolate(double frac) {
-		fraction.set(frac);
-	}
+    @Override
+    protected final void interpolate(double frac) {
+        fraction.set(frac);
+    }
 
-	public ReadOnlyDoubleProperty fractionProperty() {
-		return fraction;
-	}
+    public ReadOnlyDoubleProperty fractionProperty() {
+        return fraction;
+    }
 }

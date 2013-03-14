@@ -8,91 +8,92 @@ import javafx.scene.effect.ColorAdjust;
 import com.sun.javafx.scene.control.skin.ToggleButtonSkin;
 
 public class AquaToggleButtonSkin extends ToggleButtonSkin {
-	private boolean isLast=false;
-	
-	public AquaToggleButtonSkin(ToggleButton contextMenu) {
-		super(contextMenu);
+    private boolean isLast = false;
 
-		registerChangeListener(contextMenu.selectedProperty(), "SELECTED");
+    public AquaToggleButtonSkin(ToggleButton contextMenu) {
+        super(contextMenu);
 
-		if (getSkinnable().isSelected()) {
-			setSelectedEffect();
-		} 
+        registerChangeListener(contextMenu.selectedProperty(), "SELECTED");
 
-		EventHandler<Event> stopHandler = new EventHandler<Event>() {
-			@Override
-			public void handle(Event arg0) {
-				getSkinnable().setEffect(null);
-			}
-		};
+        if (getSkinnable().isSelected()) {
+            setSelectedEffect();
+        }
 
-		EventHandler<Event> startHandler = new EventHandler<Event>() {
-			@Override
-			public void handle(Event arg0) {
-				getSkinnable().setEffect(new ColorAdjust(0, 0, -0.15, 0));
-			}
-		};
+        EventHandler<Event> stopHandler = new EventHandler<Event>() {
+            @Override
+            public void handle(Event arg0) {
+                getSkinnable().setEffect(null);
+            }
+        };
 
-		/**
-		 * a hover-effect when mouse is pressed
-		 */
-		getSkinnable().setOnMousePressed(startHandler);
+        EventHandler<Event> startHandler = new EventHandler<Event>() {
+            @Override
+            public void handle(Event arg0) {
+                getSkinnable().setEffect(new ColorAdjust(0, 0, -0.15, 0));
+            }
+        };
 
-		/**
-		 * TODO: when hover && pressed a hover, when hovers
-		 */
-		// getSkinnable().setOnMouseEntered(startHandler);
+        /**
+         * a hover-effect when mouse is pressed
+         */
+        getSkinnable().setOnMousePressed(startHandler);
 
-		/**
-		 * when mouse exits, no dark
-		 */
-		getSkinnable().setOnMouseExited(stopHandler);
+        /**
+         * TODO: when hover && pressed a hover, when hovers
+         */
+        // getSkinnable().setOnMouseEntered(startHandler);
 
-		/**
-		 * when mouse is released, no dark
-		 */
-		getSkinnable().setOnMouseReleased(stopHandler);
+        /**
+         * when mouse exits, no dark
+         */
+        getSkinnable().setOnMouseExited(stopHandler);
 
-		int index = getSkinnable().getToggleGroup().getToggles()
-				.indexOf(getSkinnable());
-		if (index == 0) {
-			getSkinnable()
-					.setStyle(
-							"-fx-background-radius: 4 0 0 4;"
-									+ "-fx-border-radius: 4 0 0 4;"
-									+ "-fx-background-insets: 0.5 0 0.5 0.5, 1 0 1 1 ;");
-		} else if (index == getSkinnable().getToggleGroup().getToggles().size() - 1) {
-			isLast=true;
-			setLastSelectedBorder(getSkinnable().isSelected());
-		}
-	}
+        /**
+         * when mouse is released, no dark
+         */
+        getSkinnable().setOnMouseReleased(stopHandler);
 
-	@Override
-	protected void handleControlPropertyChanged(String p) {
-		super.handleControlPropertyChanged(p);
-		if (p == "SELECTED") {
-			if(getSkinnable().isSelected()){
-				setSelectedEffect();
-				if(isLast){
-					setLastSelectedBorder(true);
-				}
-			}else{
-				if(isLast){
-					setLastSelectedBorder(false);
-				}
-			}
-		}
-	}
-	
-	private void setSelectedEffect(){
-		//TODO: set shadow of text 
-	}
-	
-	private void setLastSelectedBorder(boolean selected){
-		String number= selected ? "-1":"0";
-		getSkinnable().setStyle(
-				"-fx-background-radius: 0 4 4 0;"
-				+ "-fx-border-radius: 0 4 4 0;" +
-				"-fx-background-insets: 0.5 0.5 0.5 "+number+", 1 1 1 0 ;");
-	}
+        int index = getSkinnable().getToggleGroup().getToggles()
+                .indexOf(getSkinnable());
+        if (index == 0) {
+            getSkinnable()
+                    .setStyle(
+                            "-fx-background-radius: 4 0 0 4;"
+                                    + "-fx-border-radius: 4 0 0 4;"
+                                    + "-fx-background-insets: 0.5 0 0.5 0.5, 1 0 1 1 ;");
+        } else if (index == getSkinnable().getToggleGroup().getToggles().size() - 1) {
+            isLast = true;
+            setLastSelectedBorder(getSkinnable().isSelected());
+        }
+    }
+
+    @Override
+    protected void handleControlPropertyChanged(String p) {
+        super.handleControlPropertyChanged(p);
+        if (p == "SELECTED") {
+            if (getSkinnable().isSelected()) {
+                setSelectedEffect();
+                if (isLast) {
+                    setLastSelectedBorder(true);
+                }
+            } else {
+                if (isLast) {
+                    setLastSelectedBorder(false);
+                }
+            }
+        }
+    }
+
+    private void setSelectedEffect() {
+        // TODO: set shadow of text
+    }
+
+    private void setLastSelectedBorder(boolean selected) {
+        String number = selected ? "-1" : "0";
+        getSkinnable().setStyle(
+                "-fx-background-radius: 0 4 4 0;"
+                        + "-fx-border-radius: 0 4 4 0;"
+                        + "-fx-background-insets: 0.5 0.5 0.5 " + number
+                        + ", 1 1 1 0 ;");
+    }
 }
