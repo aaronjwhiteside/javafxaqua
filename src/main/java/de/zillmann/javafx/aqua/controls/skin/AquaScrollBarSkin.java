@@ -1,10 +1,17 @@
 package de.zillmann.javafx.aqua.controls.skin;
 
+import javafx.animation.FadeTransition;
+import javafx.animation.FadeTransitionBuilder;
+import javafx.animation.SequentialTransition;
+import javafx.animation.SequentialTransitionBuilder;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollBar;
+import javafx.scene.control.ScrollPane;
 import javafx.util.Duration;
 
 import com.sun.javafx.scene.control.skin.ScrollBarSkin;
@@ -13,130 +20,227 @@ import de.zillmann.javafx.aqua.util.BindableTransition;
 
 public class AquaScrollBarSkin extends ScrollBarSkin {
 
-	private BindableTransition defaultScrollbarTransition;
+    private BindableTransition growScrollbarTransition;
+    private FadeTransition fadeIn;
+    private SequentialTransition fadeOutSeq;
+    private boolean alreadyFaded = false;
+    private boolean alreadyHovered = false;
+    private boolean wide = false;
+    private boolean fadeable = false;
 
-	public AquaScrollBarSkin(ScrollBar scrollBar) {
-		super(scrollBar);
+    public AquaScrollBarSkin(ScrollBar scrollBar) {
+        super(scrollBar);
 
-		// scrollBar.setVisible(false);
+        if (getNode().getParent() instanceof ScrollPane){
+            fadeable = true;
+        }
+        scrollBar.setVisible(!fadeable);
+        registerChangeListener(scrollBar.hoverProperty(), "HOVER");
+        registerChangeListener(scrollBar.valueProperty(), "VALUE");
+        registerChangeListener(scrollBar.visibleProperty(), "VISIBLE");
+    }
 
-		registerChangeListener(scrollBar.hoverProperty(), "HOVER");
-		registerChangeListener(scrollBar.valueProperty(), "VALUE");
-		registerChangeListener(scrollBar.visibleProperty(), "VISIBLE");
-	}
+    @Override
+    protected void handleControlPropertyChanged(String p) {
+        super.handleControlPropertyChanged(p);
+        if (p == "HOVER") {
+            setGrowScrollbarAnimation();
+            if (getSkinnable().isHover() && fadeable) {
+                fadeOutSeq.stop();
+            } else if (fadeable) {
+                fadeOutSeq.playFromStart();
+            }
+        }
+        if (p == "VALUE") {
+            /*
+             * when value changes, scrolling is activated and the scrollbar has
+             * to fade in for some time and fade out again, when there is no
+             * further interaction
+             */
+            if (fadeable && fadeOutSeq != null
+                    && fadeOutSeq.getCurrentRate() != 0.0d) {
+                fadeOutSeq.playFromStart();
+            } else if (fadeable) {
+                fading();
+            }
+        }
+        if (p == "VISIBLE") {
+            if (fadeable && getSkinnable().isVisible()) {
+                fading();
+            }
+        }
+    }
 
-	@Override
-	protected void handleControlPropertyChanged(String p) {
-		super.handleControlPropertyChanged(p);
-		if (p == "HOVER") {
-			setDefaultScrollbarAnimation();
-		}
-		if (p == "VALUE") {
-			/*
-			 * when value changes, scrolling is activated and the scrollbar has
-			 * to be visible for some time and disappear again, when there is no
-			 * further interaction
-			 */
-			// System.out.println("scroll");
-			// if (!getSkinnable().isVisible()) {
-			// getSkinnable().setVisible(true);
-			// }
-		}
-		// if (p=="VISIBLE"){
-		// if (getSkinnable().isVisible()){
-		// getSkinnable().setVisible(false);
-		// }
-		// }
-	}
+    private void fading() {
+        if (fadeIn == null) {
+            // FadeTransition fadeout = new FadeTransition();
+            // fadeout.setDelay(Duration.millis(300));
+            // fadeout.setFromValue(1.0);
+            // fadeout.setToValue(0.0);
+            // fadeout.setOnFinished(new EventHandler<ActionEvent>() {
+            //
+            // @Override
+            // public void handle(
+            // ActionEvent event) {
+            // alreadyFaded = false;
+            // alreadyHovered = false;
+            // wide = false;
+            // getSkinnable().setStyle(
+            // null);
+            // for (int i = 0; i < getChildren()
+            // .size(); i++) {
+            // Node child = getChildren()
+            // .get(i);
+            // child.setStyle(null);
+            // }
+            // }
+            // });
+            //
+            // fadeOutSeq = new SequentialTransition();
+            // fadeOutSeq.setDelay(Duration.millis(2000));
+            // fadeOutSeq.getChildren().add(fadeout);
 
-	private void setDefaultScrollbarAnimation() {
-		if (getSkinnable().isHover()) {
+            fadeOutSeq = SequentialTransitionBuilder
+                    .create()
+                    .delay(Duration.millis(2000))
+                    .children(
+                            FadeTransitionBuilder
+                                    .create()
+                                    .delay(Duration.millis(300))
+                                    .fromValue(1.0)
+                                    .toValue(0.0)
+                                    .onFinished(
+                                            new EventHandler<ActionEvent>() {
 
-			if (defaultScrollbarTransition == null) {
+                                                @Override
+                                                public void handle(
+                                                        ActionEvent event) {
+                                                    alreadyFaded = false;
+                                                    alreadyHovered = false;
+                                                    wide = false;
+                                                    getSkinnable().setStyle(
+                                                            null);
+                                                    for (int i = 0; i < getChildren()
+                                                            .size(); i++) {
+                                                        Node child = getChildren()
+                                                                .get(i);
+                                                        child.setStyle(null);
+                                                    }
+                                                }
+                                            }).build()).node(getSkinnable())
+                    .build();
 
-				final Duration duration = Duration.millis(200);
-				defaultScrollbarTransition = new BindableTransition(duration);
-				defaultScrollbarTransition.setCycleCount(1);
+            fadeIn = FadeTransitionBuilder.create().delay(Duration.millis(100))
+                    .node(getSkinnable()).fromValue(0.0).toValue(1.0)
+                    .onFinished(new EventHandler<ActionEvent>() {
 
-				final double startWidth = 4;
-				final double endWidth = 6;
+                        @Override
+                        public void handle(ActionEvent event) {
+                            alreadyFaded = true;
+                            fadeOutSeq.playFromStart();
+                        }
+                    }).build();
+        }
+        if (fadeIn.getCurrentRate() == 0.0d && !alreadyFaded) {
+            fadeIn.play();
+        }
 
-				defaultScrollbarTransition.fractionProperty().addListener(
-						new ChangeListener<Number>() {
+    }
 
-							@Override
-							public void changed(
-									ObservableValue<? extends Number> observable,
-									Number oldValue, Number newValue) {
+    private void setGrowScrollbarAnimation() {
+        if (!alreadyHovered) {
+            if (getSkinnable().isHover()) {
 
-								for (int i = 0; i < getChildren().size(); i++) {
-									Node child = getChildren().get(i);
-									if (child.getStyleClass().get(0)
-											.equals("increment-button")
-											|| child.getStyleClass().get(0)
-													.equals("decrement-button")) {
-										if (getSkinnable().getOrientation() == Orientation.VERTICAL) {
-											child.setStyle("-fx-padding: 0.0em "
-													+ ((endWidth - startWidth)
-															* newValue
-																	.doubleValue() + startWidth)
-													+ "pt 0.0em 0.0em;}");
-										} else if (getSkinnable()
-												.getOrientation() == Orientation.HORIZONTAL) {
-											child.setStyle("-fx-padding: "
-													+ ((endWidth - startWidth)
-															* newValue
-																	.doubleValue() + startWidth)
-													+ "pt  0.0em 0.0em 0.0em;}");
-										}
-									}
-								}
-							}
-						});
-			}
-			defaultScrollbarTransition.play();
-		} else {
-			if (defaultScrollbarTransition != null) {
-				defaultScrollbarTransition.stop();
-			}
-			if (getSkinnable().getOrientation() == Orientation.VERTICAL) {
-				getSkinnable().setStyle(" -fx-padding: -1.0 0.0 -1.0 0.0;");
-			}else{
-				getSkinnable().setStyle(" -fx-padding: 0.0 0.0 0.0 0.0;");
-			}
-			for (int i = 0; i < getChildren().size(); i++) {
-				Node child = getChildren().get(i);
-				if (child.getStyleClass().get(0).equals("track")) {
-					if (getSkinnable().getOrientation() == Orientation.VERTICAL) {
-						child.setStyle("-fx-background-color: linear-gradient(rgb(238.0, 238.0, 238.0, 0.8) 0.0%, rgb(255.0, 255.0, 255.0, 0.8) 100.0%);"
-								+ "-fx-border-width: 0.0 0.0 0.0 1.0;"
-								+ "-fx-border-insets: 0.0 0.0 0.0 -1.0;"
-								+ "-fx-border-color: rgb(198.0, 198.0, 198.0);");
-					} else if (getSkinnable().getOrientation() == Orientation.HORIZONTAL) {
-						child.setStyle("-fx-background-color: linear-gradient(rgb(238.0, 238.0, 238.0, 0.8) 0.0%, rgb(255.0, 255.0, 255.0, 0.8) 100.0%);"
-								+ "-fx-border-width: 1.0 0.0 0.0 0.0;"
-								+ "-fx-border-insets: -1.0 0.0 0.0 0.0;"
-								+ "-fx-border-color: rgb(198.0, 198.0, 198.0);");
-					}
-				} else if (child.getStyleClass().get(0).equals("thumb")) {
-					if (getSkinnable().getOrientation() == Orientation.VERTICAL) {
-						child.setStyle("-fx-background-radius: 6.0;"
-								+ "-fx-background-insets: 0.0 2.0 0.0 2.0;");
-					} else if (getSkinnable().getOrientation() == Orientation.HORIZONTAL) {
-						child.setStyle("-fx-background-radius: 6.0;"
-								+ "-fx-background-insets: 2.0 0.0 2.0 0.0;");
-					}
-				} else if (child.getStyleClass().get(0)
-						.equals("increment-button")
-						|| child.getStyleClass().get(0)
-								.equals("decrement-button")) {
-					if (getSkinnable().getOrientation() == Orientation.VERTICAL) {
-						child.setStyle("-fx-padding: 0.0em 6.0pt 0.0em 0.0em");
-					} else if (getSkinnable().getOrientation() == Orientation.HORIZONTAL) {
-						child.setStyle("-fx-padding: 6.0pt 0.0em 0.0em 0.0em");
-					}
-				}
-			}
-		}
-	}
+                if (growScrollbarTransition == null) {
+
+                    final Duration duration = Duration.millis(200);
+                    growScrollbarTransition = new BindableTransition(duration);
+                    growScrollbarTransition.setCycleCount(1);
+
+                    final double startWidth = 4;
+                    final double endWidth = 6;
+
+                    growScrollbarTransition.fractionProperty().addListener(
+                            new ChangeListener<Number>() {
+
+                                @Override
+                                public void changed(
+                                        ObservableValue<? extends Number> observable,
+                                        Number oldValue, Number newValue) {
+
+                                    for (int i = 0; i < getChildren().size(); i++) {
+                                        Node child = getChildren().get(i);
+                                        if (child.getStyleClass().get(0)
+                                                .equals("increment-button")
+                                                || child.getStyleClass()
+                                                        .get(0)
+                                                        .equals("decrement-button")) {
+                                            if (getSkinnable().getOrientation() == Orientation.VERTICAL) {
+                                                child.setStyle("-fx-padding: 0.0em "
+                                                        + ((endWidth - startWidth)
+                                                                * newValue
+                                                                        .doubleValue() + startWidth)
+                                                        + "pt 0.0em 0.0em;}");
+                                            } else if (getSkinnable()
+                                                    .getOrientation() == Orientation.HORIZONTAL) {
+                                                child.setStyle("-fx-padding: "
+                                                        + ((endWidth - startWidth)
+                                                                * newValue
+                                                                        .doubleValue() + startWidth)
+                                                        + "pt  0.0em 0.0em 0.0em;}");
+                                            }
+                                        }
+                                    }
+                                }
+                            });
+                }
+                growScrollbarTransition.play();
+            }
+            alreadyHovered = true;
+        } else if (!wide && !getSkinnable().isHover()) {
+            System.out.println("wird gesetzt");
+            if (growScrollbarTransition != null) {
+                growScrollbarTransition.stop();
+            }
+            if (getSkinnable().getOrientation() == Orientation.VERTICAL) {
+                getSkinnable().setStyle(" -fx-padding: -1.0 0.0 -1.0 0.0;");
+            } else {
+                getSkinnable().setStyle(" -fx-padding: 0.0 0.0 0.0 0.0;");
+            }
+            for (int i = 0; i < getChildren().size(); i++) {
+                Node child = getChildren().get(i);
+                if (child.getStyleClass().get(0).equals("track")) {
+                    if (getSkinnable().getOrientation() == Orientation.VERTICAL) {
+                        child.setStyle("-fx-background-color: linear-gradient(rgb(238.0, 238.0, 238.0, 0.8) 0.0%, rgb(255.0, 255.0, 255.0, 0.8) 100.0%);"
+                                + "-fx-border-width: 0.0 0.0 0.0 1.0;"
+                                + "-fx-border-insets: 0.0 0.0 0.0 -1.0;"
+                                + "-fx-border-color: rgb(198.0, 198.0, 198.0);");
+                    } else if (getSkinnable().getOrientation() == Orientation.HORIZONTAL) {
+                        child.setStyle("-fx-background-color: linear-gradient(rgb(238.0, 238.0, 238.0, 0.8) 0.0%, rgb(255.0, 255.0, 255.0, 0.8) 100.0%);"
+                                + "-fx-border-width: 1.0 0.0 0.0 0.0;"
+                                + "-fx-border-insets: -1.0 0.0 0.0 0.0;"
+                                + "-fx-border-color: rgb(198.0, 198.0, 198.0);");
+                    }
+                } else if (child.getStyleClass().get(0).equals("thumb")) {
+                    if (getSkinnable().getOrientation() == Orientation.VERTICAL) {
+                        child.setStyle("-fx-background-radius: 6.0;"
+                                + "-fx-background-insets: 0.0 2.0 0.0 2.0;");
+                    } else if (getSkinnable().getOrientation() == Orientation.HORIZONTAL) {
+                        child.setStyle("-fx-background-radius: 6.0;"
+                                + "-fx-background-insets: 2.0 0.0 2.0 0.0;");
+                    }
+                } else if (child.getStyleClass().get(0)
+                        .equals("increment-button")
+                        || child.getStyleClass().get(0)
+                                .equals("decrement-button")) {
+                    if (getSkinnable().getOrientation() == Orientation.VERTICAL) {
+                        child.setStyle("-fx-padding: 0.0em 6.0pt 0.0em 0.0em");
+                    } else if (getSkinnable().getOrientation() == Orientation.HORIZONTAL) {
+                        child.setStyle("-fx-padding: 6.0pt 0.0em 0.0em 0.0em");
+                    }
+                }
+            }
+            wide = true;
+        }
+    }
 }
