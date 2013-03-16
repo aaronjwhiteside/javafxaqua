@@ -315,18 +315,18 @@
     
     
     /****************
-    *				*
-    * AQUA STUFF	*
-    *				*
+    *                *
+    * AQUA STUFF    *
+    *                *
     ****************/
     -fx-text-base-color: black;
     
     /* background color for dialogs */
-	-fx-background-color: rgb(237.0, 237.0, 237.0);
-	/* 	default font */
-	-fx-font-family: 'lucida-grande';
-	-fx-text-background-color: -fx-text-base-color;
-	-fx-disabled-opacity: 0.4; 
+    -fx-background-color: rgb(237.0, 237.0, 237.0);
+    /*     default font */
+    -fx-font-family: 'lucida-grande';
+    -fx-text-background-color: -fx-text-base-color;
+    -fx-disabled-opacity: 0.4; 
 }
 
 .mnemonic-underline {
@@ -390,14 +390,14 @@
 
 .button{
     -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaButtonSkin";
-	/* gradients for glossy-aqua-effect */
-	-fx-background-color: rgb(255.0, 255.0, 255.0),
-		linear-gradient(#ffffff 20.0%, #ececec 60.0%, #ececec 80.0%, #eeeeee 100.0%);
-	-fx-background-insets:  0.0, 1.0;
-	-fx-background-radius: 4.0, 4.0;
-	-fx-border-radius: 4.0;
- 	-fx-border-width: 0.5;
-	-fx-border-color: rgb(129.0, 129.0, 129.0);
+    /* gradients for glossy-aqua-effect */
+    -fx-background-color: rgb(255.0, 255.0, 255.0),
+        linear-gradient(#ffffff 20.0%, #ececec 60.0%, #ececec 80.0%, #eeeeee 100.0%);
+    -fx-background-insets:  0.0, 1.0;
+    -fx-background-radius: 4.0, 4.0;
+    -fx-border-radius: 4.0;
+    -fx-border-width: 0.5;
+    -fx-border-color: rgb(129.0, 129.0, 129.0);
     -fx-padding: 0.07em 0.85em 0.1em 0.85em;
     
     -fx-text-fill: -fx-text-base-color;
@@ -405,28 +405,28 @@
     -fx-content-display: LEFT;
     
     /*when effect-handling works properly, prefer using css for effects...*/
-	/*	-fx-effect: dropshadow(gaussian, rgb(192, 192, 198), 2, 0.2 , 0 , 0);*/
+    /*    -fx-effect: dropshadow(gaussian, rgb(192, 192, 198), 2, 0.2 , 0 , 0);*/
 }
 
 /*.button:focused {*/
     /*when effect-handling works properly, prefer using css for effects...*/
-/* 	-fx-effect: dropshadow(gaussian, rgb(83, 138, 187), 5, 0.7 , 0 , 0), */
-/*     			innershadow(gaussian, rgba(122, 170, 217, 0.9), 3, 0.8 , 0 , 0); */           
+/*     -fx-effect: dropshadow(gaussian, rgb(83, 138, 187), 5, 0.7 , 0 , 0), */
+/*                 innershadow(gaussian, rgba(122, 170, 217, 0.9), 3, 0.8 , 0 , 0); */           
 /*}*/
 
  .button:armed, .button:default:armed{
-	-fx-background-color:
-		linear-gradient(rgb(190.0, 214.0, 237.0) 0.0%, rgb(178.0, 213.0, 237.0) 100.0% ),
-		linear-gradient(rgb(165.0, 193.0, 238.0) 0.0%, rgb(108.0, 161.0, 231.0) 50.0%,
-		rgb(74.0, 138.0, 217.0) 50.0%, rgb(105.0, 167.0, 236.0) 75.0%, rgb(152.0, 201.0, 238.0) 100.0%
-		),
-		radial-gradient(focus-angle 180.0deg, focus-distance 95.0%, center 1.0% 50.0%,
-		radius 50.0%, #78b0ee, transparent),
-		radial-gradient(focus-angle 0.0deg, focus-distance 95.0%, center 100.0% 50.0%,
-		radius 50.0%, #78b0ee, transparent);
-	-fx-background-insets: 0.0, 0.0, 1.0 1.0 1.0 2.0, 1.0 2.0 1.0 1.0;
-	-fx-background-radius: 4.0, 4.0, 4.0, 4.0;
-	 -fx-border-color: rgb(100.0, 103.0, 124.0);
+    -fx-background-color:
+        linear-gradient(rgb(190.0, 214.0, 237.0) 0.0%, rgb(178.0, 213.0, 237.0) 100.0% ),
+        linear-gradient(rgb(165.0, 193.0, 238.0) 0.0%, rgb(108.0, 161.0, 231.0) 50.0%,
+        rgb(74.0, 138.0, 217.0) 50.0%, rgb(105.0, 167.0, 236.0) 75.0%, rgb(152.0, 201.0, 238.0) 100.0%
+        ),
+        radial-gradient(focus-angle 180.0deg, focus-distance 95.0%, center 1.0% 50.0%,
+        radius 50.0%, #78b0ee, transparent),
+        radial-gradient(focus-angle 0.0deg, focus-distance 95.0%, center 100.0% 50.0%,
+        radius 50.0%, #78b0ee, transparent);
+    -fx-background-insets: 0.0, 0.0, 1.0 1.0 1.0 2.0, 1.0 2.0 1.0 1.0;
+    -fx-background-radius: 4.0, 4.0, 4.0, 4.0;
+    -fx-border-color: rgb(100.0, 103.0, 124.0);
 }
 
 
@@ -511,73 +511,73 @@
  ******************************************************************************/
 
 .radio-button {
-  	-fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaRadioButtonSkin";
+      -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaRadioButtonSkin";
     -fx-label-padding: 0.083333em 0.0em 0.0em 0.166667em;
     -fx-text-fill: -fx-text-base-color;
 }
 
 .radio-button > .radio  {
-	-fx-border-width: 0.5;
-	-fx-border-color: rgb(129.0, 129.0, 129.0);
-	-fx-border-radius: 1.0em;
-	-fx-background-color: rgb(250.0, 250.0, 250.0),
-		linear-gradient(
-			rgb(255.0, 255.0, 255.0) 0.0%, rgb(253.0,253.0,253.0) 25.0%,  
-			rgb(244.0, 244.0, 244.0) 50.0%, rgb(236.0, 236.0, 236.0) 51.0%,
-			rgb(243.0, 243.0, 243.0) 100.0% );
-	-fx-background-insets: 0.0, 1.0;
-	-fx-background-radius: 1.0em;
-	-fx-padding: 3.5;
+    -fx-border-width: 0.5;
+    -fx-border-color: rgb(129.0, 129.0, 129.0);
+    -fx-border-radius: 1.0em;
+    -fx-background-color: rgb(250.0, 250.0, 250.0),
+        linear-gradient(
+            rgb(255.0, 255.0, 255.0) 0.0%, rgb(253.0,253.0,253.0) 25.0%,  
+            rgb(244.0, 244.0, 244.0) 50.0%, rgb(236.0, 236.0, 236.0) 51.0%,
+            rgb(243.0, 243.0, 243.0) 100.0% );
+    -fx-background-insets: 0.0, 1.0;
+    -fx-background-radius: 1.0em;
+    -fx-padding: 3.5;
 }
 
 .radio-button:armed > .radio {
     -fx-background-color: rgb(250.0, 250.0, 250.0),
-		linear-gradient(
-			rgb(224.0, 224.0, 224.0) 0.0%, rgb(214.0, 214.0, 214.0) 50.0%,  
-			rgb(207.0, 207.0, 207.0) 51.0%, rgb(208.0, 208.0, 208.0) 100.0% );
-	-fx-background-insets: 0.0, 1.0;
-	-fx-background-radius: 1.0em, 1.0em;
+        linear-gradient(
+            rgb(224.0, 224.0, 224.0) 0.0%, rgb(214.0, 214.0, 214.0) 50.0%,  
+            rgb(207.0, 207.0, 207.0) 51.0%, rgb(208.0, 208.0, 208.0) 100.0% );
+    -fx-background-insets: 0.0, 1.0;
+    -fx-background-radius: 1.0em, 1.0em;
 }
 
 .radio-button:selected > .radio {
-	-fx-border-color: linear-gradient(
-		rgb(100.0, 103.0, 124.0) 0.0%, rgb(92.0, 94.0, 116.0) 100.0%);
-	-fx-background-color: 
-		linear-gradient(
-			rgb(228.0, 250.0, 255.0) 0.0%, #91bdee 50.0%, 
-			#78b0ee 51.0%, rgb(228.0, 250.0, 255.0) 100.0% );
-	-fx-background-insets: 0.0;
-	-fx-background-radius: 1.0em;
+    -fx-border-color: linear-gradient(
+        rgb(100.0, 103.0, 124.0) 0.0%, rgb(92.0, 94.0, 116.0) 100.0%);
+    -fx-background-color: 
+        linear-gradient(
+            rgb(228.0, 250.0, 255.0) 0.0%, #91bdee 50.0%, 
+            #78b0ee 51.0%, rgb(228.0, 250.0, 255.0) 100.0% );
+    -fx-background-insets: 0.0;
+    -fx-background-radius: 1.0em;
 }
 
 .radio-button:selected:disabled > .radio {
-	-fx-background-color: linear-gradient(
-			rgb(255.0, 255.0, 255.0) 0.0%, rgb(253.0,253.0,253.0) 25.0%,  
-			rgb(244.0, 244.0, 244.0) 50.0%, rgb(236.0, 236.0, 236.0) 51.0%,
-			rgb(243.0, 243.0, 243.0) 100.0% );
-	-fx-background-insets: 0.0;
-	-fx-background-radius: 1.0em;
+    -fx-background-color: linear-gradient(
+            rgb(255.0, 255.0, 255.0) 0.0%, rgb(253.0,253.0,253.0) 25.0%,  
+            rgb(244.0, 244.0, 244.0) 50.0%, rgb(236.0, 236.0, 236.0) 51.0%,
+            rgb(243.0, 243.0, 243.0) 100.0% );
+    -fx-background-insets: 0.0;
+    -fx-background-radius: 1.0em;
 }
 
 .radio-button:selected:armed > .radio{
-	-fx-background-color: 
-		linear-gradient(
-			rgb(151.0, 199.0, 225.0) 0.0%, rgb(103.0, 159.0, 222.0) 50.0%,  
-			rgb(70.0, 144.0, 227.0) 50.0%, rgb(119.0, 178.0, 233.0) 82.0%, rgb(165.0, 205.0, 237.0) 100.0% );
-			-fx-background-insets: 0.0;
-			-fx-background-radius: 1.0em;
+    -fx-background-color: 
+        linear-gradient(
+            rgb(151.0, 199.0, 225.0) 0.0%, rgb(103.0, 159.0, 222.0) 50.0%,  
+            rgb(70.0, 144.0, 227.0) 50.0%, rgb(119.0, 178.0, 233.0) 82.0%, rgb(165.0, 205.0, 237.0) 100.0% );
+            -fx-background-insets: 0.0;
+            -fx-background-radius: 1.0em;
 }
 
 .radio-button > .radio > .dot {
-	-fx-background-color: transparent;
-	-fx-background-insets: 1.0;
-	-fx-background-radius: 1.0em;
-	-fx-padding: 0.25em; 
+    -fx-background-color: transparent;
+    -fx-background-insets: 1.0;
+    -fx-background-radius: 1.0em;
+    -fx-padding: 0.25em; 
 }
 
 .radio-button:selected > .radio > .dot {
-	-fx-background-color: black;
-	-fx-effect: dropshadow(one-pass-box, rgb(255.0, 255.0, 255.0, 0.8), 1.0, 0.0 , 0.0 , 1.0);
+    -fx-background-color: black;
+    -fx-effect: dropshadow(one-pass-box, rgb(255.0, 255.0, 255.0, 0.8), 1.0, 0.0 , 0.0 , 1.0);
 }
 
 .radio-button:disabled {
@@ -595,97 +595,97 @@
  ******************************************************************************/
 
 .check-box {
-	-fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaCheckBoxSkin";
+    -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaCheckBoxSkin";
     -fx-label-padding: 0.083333em 0.0em 0.0em 0.166667em;
     -fx-text-fill: -fx-text-base-color;
 }
 
 .check-box > .box {
    -fx-border-radius: 2.5;
- 	-fx-border-width: 0.5;
-	-fx-border-color: rgb(129.0, 129.0, 129.0);
-	-fx-background-color: rgb(250.0, 250.0, 250.0),
-		linear-gradient(
-			rgb(255.0, 255.0, 255.0) 0.0%, rgb(253.0,253.0,253.0) 25.0%,  
-			rgb(244.0, 244.0, 244.0) 50.0%, rgb(236.0, 236.0, 236.0) 51.0%,
-			rgb(243.0, 243.0, 243.0) 100.0% );
-	-fx-background-insets: 0.0, 1.0;
-	-fx-background-radius: 2.5, 2.5;
-	-fx-padding: 6.0;
+    -fx-border-width: 0.5;
+    -fx-border-color: rgb(129.0, 129.0, 129.0);
+    -fx-background-color: rgb(250.0, 250.0, 250.0),
+        linear-gradient(
+            rgb(255.0, 255.0, 255.0) 0.0%, rgb(253.0,253.0,253.0) 25.0%,  
+            rgb(244.0, 244.0, 244.0) 50.0%, rgb(236.0, 236.0, 236.0) 51.0%,
+            rgb(243.0, 243.0, 243.0) 100.0% );
+    -fx-background-insets: 0.0, 1.0;
+    -fx-background-radius: 2.5, 2.5;
+    -fx-padding: 6.0;
 }
 
 .check-box:disabled > .box{
-	-fx-background-color: rgb(250.0, 250.0, 250.0),
-		linear-gradient(
-			rgb(255.0, 255.0, 255.0) 0.0%, rgb(253.0,253.0,253.0) 25.0%,  
-			rgb(244.0, 244.0, 244.0) 50.0%, rgb(236.0, 236.0, 236.0) 51.0%,
-			rgb(243.0, 243.0, 243.0) 100.0% );
-	-fx-background-insets: 0.0, 1.0;
-	-fx-background-radius: 2.5, 2.5;
+    -fx-background-color: rgb(250.0, 250.0, 250.0),
+        linear-gradient(
+            rgb(255.0, 255.0, 255.0) 0.0%, rgb(253.0,253.0,253.0) 25.0%,  
+            rgb(244.0, 244.0, 244.0) 50.0%, rgb(236.0, 236.0, 236.0) 51.0%,
+            rgb(243.0, 243.0, 243.0) 100.0% );
+    -fx-background-insets: 0.0, 1.0;
+    -fx-background-radius: 2.5, 2.5;
 }
 
 .check-box:focused > .box {
- 	-fx-border-color: rgb(104.0, 155.0, 201.0);
+     -fx-border-color: rgb(104.0, 155.0, 201.0);
 }
 
 .check-box:selected .box, .check-box:indeterminate .box {
-	-fx-border-color: linear-gradient(rgb(100.0, 103.0, 124.0) 0.0%, rgb(92.0, 94.0, 116.0) 100.0%);
-	-fx-background-color:
-		linear-gradient(
-			rgb(228.0, 250.0, 255.0) 0.0%, #91bdee 50.0%, #78b0ee 51.0%, 
-			rgb(228.0, 250.0, 255.0) 100.0% );
-	-fx-background-insets: 0.0;
+    -fx-border-color: linear-gradient(rgb(100.0, 103.0, 124.0) 0.0%, rgb(92.0, 94.0, 116.0) 100.0%);
+    -fx-background-color:
+        linear-gradient(
+            rgb(228.0, 250.0, 255.0) 0.0%, #91bdee 50.0%, #78b0ee 51.0%, 
+            rgb(228.0, 250.0, 255.0) 100.0% );
+    -fx-background-insets: 0.0;
 }
 
 .check-box:selected:disabled .box, .check-box:indeterminate:disabled .box {
-	-fx-border-color: rgb(129.0, 129.0, 129.0);
-	-fx-background-color:
-		linear-gradient(
-			rgb(255.0, 255.0, 255.0) 0.0%, rgb(253.0,253.0,253.0) 25.0%,  
-			rgb(244.0, 244.0, 244.0) 50.0%, rgb(236.0, 236.0, 236.0) 51.0%,
-			rgb(243.0, 243.0, 243.0) 100.0% );
-	-fx-background-insets: 0.0;
+    -fx-border-color: rgb(129.0, 129.0, 129.0);
+    -fx-background-color:
+        linear-gradient(
+            rgb(255.0, 255.0, 255.0) 0.0%, rgb(253.0,253.0,253.0) 25.0%,  
+            rgb(244.0, 244.0, 244.0) 50.0%, rgb(236.0, 236.0, 236.0) 51.0%,
+            rgb(243.0, 243.0, 243.0) 100.0% );
+    -fx-background-insets: 0.0;
 }
 
 .check-box:armed > .box {
    -fx-background-color: rgb(250.0, 250.0, 250.0),
-		linear-gradient(
-			rgb(224.0, 224.0, 224.0) 0.0%, rgb(214.0, 214.0, 214.0) 50.0%,  
-			rgb(207.0, 207.0, 207.0) 51.0%, rgb(208.0, 208.0, 208.0) 100.0% );
-	-fx-background-insets: 0.0, 1.0;
-	-fx-background-radius: 2.5, 2.5;
+        linear-gradient(
+            rgb(224.0, 224.0, 224.0) 0.0%, rgb(214.0, 214.0, 214.0) 50.0%,  
+            rgb(207.0, 207.0, 207.0) 51.0%, rgb(208.0, 208.0, 208.0) 100.0% );
+    -fx-background-insets: 0.0, 1.0;
+    -fx-background-radius: 2.5, 2.5;
 }
 
 .check-box:selected:armed > .box {
-	-fx-background-color: 
-		linear-gradient(
-			rgb(151.0, 199.0, 225.0) 0.0%, rgb(103.0, 159.0, 222.0) 50.0%,  
-			rgb(70.0, 144.0, 227.0) 50.0%, rgb(119.0, 178.0, 233.0) 82.0%, rgb(165.0, 205.0, 237.0) 100.0% );
-	-fx-background-insets: 0.0;
-	-fx-background-radius: 2.5;
+    -fx-background-color: 
+        linear-gradient(
+            rgb(151.0, 199.0, 225.0) 0.0%, rgb(103.0, 159.0, 222.0) 50.0%,  
+            rgb(70.0, 144.0, 227.0) 50.0%, rgb(119.0, 178.0, 233.0) 82.0%, rgb(165.0, 205.0, 237.0) 100.0% );
+    -fx-background-insets: 0.0;
+    -fx-background-radius: 2.5;
 }
 
 
 .check-box > .box > .mark, .check-box:disabled > .box > .mark {
-	-fx-effect: dropshadow(one-pass-box, rgb(255.0, 255.0, 255.0, 0.8), 0.0, 0.0 , -1.0 , 1.0);
+    -fx-effect: dropshadow(one-pass-box, rgb(255.0, 255.0, 255.0, 0.8), 0.0, 0.0 , -1.0 , 1.0);
     -fx-background-color: transparent;
-   	-fx-background-insets: -9.5 -7.8 -2.5 -4.5;
-	-fx-shape: "m 18.174523,1027.137 c -0.18077,-0.4575 -0.184364,-0.8913 0.115901,-1.1721 0.300265,-0.2809 0.836622,-0.3601 1.288422,-0.041 0.4518,0.3191 2.020453,2.9316 2.020453,2.9316 l 5.41194,-8.0232 c -4e-6,0 0.516257,-0.6671 1.248682,-0.3099 0.648831,0.3165 0.559153,1.0373 0.559153,1.0373 0,0 -5.940433,9.3556 -6.15501,9.6287 -0.214577,0.273 -1.595078,0.2481 -1.817995,-0.027 -0.222917,-0.2751 -2.490777,-3.567 -2.671546,-4.0244 z";
+       -fx-background-insets: -9.5 -7.8 -2.5 -4.5;
+    -fx-shape: "m 18.174523,1027.137 c -0.18077,-0.4575 -0.184364,-0.8913 0.115901,-1.1721 0.300265,-0.2809 0.836622,-0.3601 1.288422,-0.041 0.4518,0.3191 2.020453,2.9316 2.020453,2.9316 l 5.41194,-8.0232 c -4e-6,0 0.516257,-0.6671 1.248682,-0.3099 0.648831,0.3165 0.559153,1.0373 0.559153,1.0373 0,0 -5.940433,9.3556 -6.15501,9.6287 -0.214577,0.273 -1.595078,0.2481 -1.817995,-0.027 -0.222917,-0.2751 -2.490777,-3.567 -2.671546,-4.0244 z";
 }
 
 /* TODO: scale the shape - the problem is that it is not within a square
  * boundary.
  */
 .check-box:indeterminate > .box > .mark {
-	-fx-effect: dropshadow(one-pass-box, rgb(255.0, 255.0, 255.0, 0.8), 1.0, 0.0 , 0.0 , 1.5);
-	-fx-background-color: -fx-text-base-color;
-   	-fx-background-insets: -0.5 0.5 0.5 -0.5;
+    -fx-effect: dropshadow(one-pass-box, rgb(255.0, 255.0, 255.0, 0.8), 1.0, 0.0 , 0.0 , 1.5);
+    -fx-background-color: -fx-text-base-color;
+       -fx-background-insets: -0.5 0.5 0.5 -0.5;
     -fx-shape: "M0,0H8V2H0Z";
     -fx-scale-shape: false;
 }
 
 .check-box:selected > .box > .mark {
-		-fx-background-color: black;
+        -fx-background-color: black;
 }
 
 .check-box:disabled {
@@ -742,10 +742,10 @@
  ******************************************************************************/
 
 .context-menu {
-	-fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaContextMenuSkin";
-	-fx-border-color: rgb(209.0, 209.0, 209.0, 0.4);
-	-fx-border-width: 0.5;
-	-fx-border-radius: 6.0;
+    -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaContextMenuSkin";
+    -fx-border-color: rgb(209.0, 209.0, 209.0, 0.4);
+    -fx-border-width: 0.5;
+    -fx-border-radius: 6.0;
     -fx-background-color: rgb(255.0, 255.0, 255.0, 0.95);
     -fx-background-insets: 0.0;
     -fx-background-radius: 6.0;
@@ -891,8 +891,8 @@
     -fx-background-color: transparent;
     -fx-background-insets:0.0;
     -fx-padding:0.0em 0.0em 0.083333em 0.0em;
-	-fx-border-width: 1.0 0.0 1.0 0.0;
-	-fx-border-color:transparent;
+    -fx-border-width: 1.0 0.0 1.0 0.0;
+    -fx-border-color:transparent;
 }
 
 .menu-item > .left-container {
@@ -915,16 +915,16 @@
 }
 
 .menu-item:focused {
-	-fx-border-width: 1.0 0.0 1.0 0.0;
-	-fx-border-color: rgb(90.0, 130.0, 235.0) transparent rgb(23.0, 89.0, 231.0) transparent;
+    -fx-border-width: 1.0 0.0 1.0 0.0;
+    -fx-border-color: rgb(90.0, 130.0, 235.0) transparent rgb(23.0, 89.0, 231.0) transparent;
     -fx-background-color: linear-gradient(rgb(101.0, 140.0, 245.0) 0.0%, rgb(41.0, 103.0, 243.0) 100.0%);
 }
 
 .menu-item:focused:disabled {
-	-fx-border-color: transparent;
-	-fx-background-color:transparent;
-	-fx-text-fill: -fx-text-base-color;
-	}
+    -fx-border-color: transparent;
+    -fx-background-color:transparent;
+    -fx-text-fill: -fx-text-base-color;
+    }
 
 .menu-item:focused > .label {
     -fx-text-fill: white;
@@ -935,7 +935,7 @@
 }
 
 .menu-item > .right-container {
-	-fx-background-color: purple;
+    -fx-background-color: purple;
     -fx-padding: 0.0em 0.0em 0.0em 0.5em;
 }
 
@@ -1000,11 +1000,11 @@
 
 .choice-box {
 -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaChoiceBoxSkin";
-	-choice-base: linear-gradient(rgb(255.0, 255.0, 255.0) 25.0%, rgb(243.0, 243.0, 243.0) 50.0%, rgb(236.0, 236.0, 236.0) 50.0%, rgb(243.0, 243.0, 243.0) 100.0% );
-	-fx-border-radius: 4.0;
- 	-fx-border-width: 0.5;
-	-fx-border-color: rgb(207.0, 207.0, 207.0);
-	
+    -choice-base: linear-gradient(rgb(255.0, 255.0, 255.0) 25.0%, rgb(243.0, 243.0, 243.0) 50.0%, rgb(236.0, 236.0, 236.0) 50.0%, rgb(243.0, 243.0, 243.0) 100.0% );
+    -fx-border-radius: 4.0;
+     -fx-border-width: 0.5;
+    -fx-border-color: rgb(207.0, 207.0, 207.0);
+    
     -fx-background-color: linear-gradient(rgb(147.0, 147.0, 147.0) 0.0%, rgb(127.0, 127.0, 127.0) 100.0%), -choice-base;
     -fx-background-insets: 0.5, 1.0;
     -fx-background-radius: 4.0, 4.0;
@@ -1014,10 +1014,10 @@
 }
 
 .choice-box:focused {
-	-fx-border-radius: 4.0;
- 	-fx-border-width: 0.5;
-	-fx-border-color: rgb(207.0, 207.0, 207.0);
-	
+    -fx-border-radius: 4.0;
+     -fx-border-width: 0.5;
+    -fx-border-color: rgb(207.0, 207.0, 207.0);
+    
     -fx-background-color: linear-gradient(rgb(147.0, 147.0, 147.0) 0.0%, rgb(127.0, 127.0, 127.0) 100.0%), -choice-base;
     -fx-background-insets: 0.5, 1.0;
     -fx-background-radius: 4.0, 4.0;
@@ -1142,7 +1142,7 @@
  *                                                                             *
  ******************************************************************************/
 .scroll-bar {
-	-fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaScrollBarSkin";
+    -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaScrollBarSkin";
 }
 
 
@@ -1275,7 +1275,7 @@
  ******************************************************************************/
 
 .scroll-pane {
-	-fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaScrollPaneSkin";
+    -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaScrollPaneSkin";
 }
 
 .scroll-pane > * > .scroll-bar:horizontal {
@@ -1342,14 +1342,14 @@
  *                                                                             *
  ******************************************************************************/
 
-.text-field {	-fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaTextFieldSkin";
-	-fx-border-color: linear-gradient(rgb(184.0, 184.0, 184.0) 0.0%, rgb(205.0, 205.0, 205.0) 100.0%);
- 	-fx-border-width: 0.5;
+.text-field {    -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaTextFieldSkin";
+    -fx-border-color: linear-gradient(rgb(184.0, 184.0, 184.0) 0.0%, rgb(205.0, 205.0, 205.0) 100.0%);
+     -fx-border-width: 0.5;
     -fx-background-color: linear-gradient(rgb(155.0, 155.0, 155.0) 0.0%, rgb(172.0, 172.0, 172.0)  100.0%),
-    						 rgb(255.0, 255.0, 255.0),
-    					linear-gradient(rgb(224.0, 224.0, 224.0) 0.0%, rgb(255.0, 255.0, 255.0)  10.0%),
-    					linear-gradient(to right, rgb(224.0, 224.0, 224.0) 0.0%, transparent 1.0%),
-    					linear-gradient(to left, rgb(224.0, 224.0, 224.0) 0.0%, transparent 1.0%);
+                             rgb(255.0, 255.0, 255.0),
+                        linear-gradient(rgb(224.0, 224.0, 224.0) 0.0%, rgb(255.0, 255.0, 255.0)  10.0%),
+                        linear-gradient(to right, rgb(224.0, 224.0, 224.0) 0.0%, transparent 1.0%),
+                        linear-gradient(to left, rgb(224.0, 224.0, 224.0) 0.0%, transparent 1.0%);
     -fx-background-insets: 0.5, 1.0, 1.0, 1.0;
     -fx-background-radius: 0.0, 0.0;
    
@@ -1361,19 +1361,19 @@
 }
 
 .text-field:focused {
-	-fx-highlight-fill: rgb(182.0, 214.0, 253.0);
+    -fx-highlight-fill: rgb(182.0, 214.0, 253.0);
     -fx-highlight-text-fill: -fx-text-fill; 
 }
 
 .text-field:disabled {
     -fx-opacity: 1.0;
-	-fx-background-color: linear-gradient(rgb(155.0, 155.0, 155.0, 0.4) 0.0%, rgb(172.0, 172.0, 172.0, 0.4)  100.0%),
-    						 rgb(255.0, 255.0, 255.0),
-    					linear-gradient(rgb(224.0, 224.0, 224.0, 0.4) 0.0%, rgb(255.0, 255.0, 255.0, 0.4)  10.0%),
-    					linear-gradient(to right, rgb(224.0, 224.0, 224.0) 0.0%, transparent 1.0%),
-    					linear-gradient(to left, rgb(224.0, 224.0, 224.0) 0.0%, transparent 1.0%);
-	-fx-border-color: linear-gradient(rgb(184.0, 184.0, 184.0, 0.4) 0.0%, rgb(205.0, 205.0, 205.0, 0.4) 100.0%);
-	-fx-text-fill: rgb(127.0, 127.0, 127.0);
+    -fx-background-color: linear-gradient(rgb(155.0, 155.0, 155.0, 0.4) 0.0%, rgb(172.0, 172.0, 172.0, 0.4)  100.0%),
+                             rgb(255.0, 255.0, 255.0),
+                        linear-gradient(rgb(224.0, 224.0, 224.0, 0.4) 0.0%, rgb(255.0, 255.0, 255.0, 0.4)  10.0%),
+                        linear-gradient(to right, rgb(224.0, 224.0, 224.0) 0.0%, transparent 1.0%),
+                        linear-gradient(to left, rgb(224.0, 224.0, 224.0) 0.0%, transparent 1.0%);
+    -fx-border-color: linear-gradient(rgb(184.0, 184.0, 184.0, 0.4) 0.0%, rgb(205.0, 205.0, 205.0, 0.4) 100.0%);
+    -fx-text-fill: rgb(127.0, 127.0, 127.0);
 }
 
 /*******************************************************************************
@@ -1383,7 +1383,7 @@
  ******************************************************************************/
 
 .password-field {
-	-fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaPasswordFieldSkin";
+    -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaPasswordFieldSkin";
     -fx-text-fill: black;
 }
 
@@ -1395,13 +1395,13 @@
 
 .text-area {
     -fx-padding: 1.0;
-	-fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaTextAreaSkin";
-   	-fx-border-color: rgb(142.0, 142.0, 142.0) rgb(190.0, 190.0, 190.0) rgb(190.0, 190.0, 190.0) rgb(190.0, 190.0, 190.0);
- 	-fx-border-width: 1.0;
+    -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaTextAreaSkin";
+       -fx-border-color: rgb(142.0, 142.0, 142.0) rgb(190.0, 190.0, 190.0) rgb(190.0, 190.0, 190.0) rgb(190.0, 190.0, 190.0);
+     -fx-border-width: 1.0;
     -fx-background-color: rgb(255.0, 255.0, 255.0);
     -fx-background-insets: 1.0;
     -fx-background-radius: 0.0;
-	-fx-text-fill: black;
+    -fx-text-fill: black;
     -fx-prompt-text-fill: rgb(128.0, 128.0, 128.0);
     -fx-highlight-fill: transparent;
 }
@@ -1422,10 +1422,10 @@
 }
 
 .text-area:disabled {
- 	-fx-opacity: 1.0;
-	-fx-background-color: rgb(255.0, 255.0, 255.0);
-   	-fx-border-color: rgb(142.0, 142.0, 142.0) rgb(190.0, 190.0, 190.0) rgb(190.0, 190.0, 190.0) rgb(190.0, 190.0, 190.0);
-	-fx-text-fill: rgb(127.0, 127.0, 127.0);
+     -fx-opacity: 1.0;
+    -fx-background-color: rgb(255.0, 255.0, 255.0);
+       -fx-border-color: rgb(142.0, 142.0, 142.0) rgb(190.0, 190.0, 190.0) rgb(190.0, 190.0, 190.0) rgb(190.0, 190.0, 190.0);
+    -fx-text-fill: rgb(127.0, 127.0, 127.0);
 }
 
 /*******************************************************************************
@@ -3350,43 +3350,43 @@ Only the properties with values that are different from the TextBox are specifie
     -fx-padding: -2.0 8.0 -2.0 8.0;
 }
 .custom-color-dialog .controls-pane #toggle-button-left:focused {
-	-fx-background-radius: 3.0 0.0 0.0 3.0;
-	-fx-background-insets: -1.4 0.0 -1.4 -1.4, 0.0 0.0 0.0 0.0, 1.0, 2.0;
-	-fx-border-color: transparent;
+    -fx-background-radius: 3.0 0.0 0.0 3.0;
+    -fx-background-insets: -1.4 0.0 -1.4 -1.4, 0.0 0.0 0.0 0.0, 1.0, 2.0;
+    -fx-border-color: transparent;
 }
 .custom-color-dialog .controls-pane #toggle-button-left:selected, .controls-pane #toggle-button-left:selected:focused {
         -fx-background-insets: 0.0 0.0 -1.0 0.0, 0.0, 1.0 0.0 1.0 1.0, 1.0 0.0 1.0 1.0;
-	-fx-border-color: transparent;
+    -fx-border-color: transparent;
 }
 .custom-color-dialog .controls-pane #toggle-button-center {
-	-fx-background-radius: 0.0;
+    -fx-background-radius: 0.0;
         -fx-background-insets: 0.0;
-	-fx-background-insets: 0.0 0.0 -1.0 0.0, 0.0, 1.0 0.0 1.0 0.0, 2.0 0.0 2.0 0.0;
-	-fx-border-color: transparent -fx-outer-border transparent transparent;
+    -fx-background-insets: 0.0 0.0 -1.0 0.0, 0.0, 1.0 0.0 1.0 0.0, 2.0 0.0 2.0 0.0;
+    -fx-border-color: transparent -fx-outer-border transparent transparent;
         -fx-border-insets: 4.0 0.0 4.0 0.0;
-	-fx-padding: -2.0 8.0 -2.0 8.0;
+    -fx-padding: -2.0 8.0 -2.0 8.0;
 }
 .custom-color-dialog .controls-pane #toggle-button-center:focused {
-	-fx-background-radius: 0.0;
-	-fx-background-insets: -1.4 0.0 -1.4 -1.0, 0.0 0.0 0.0 -1.0, 1.0 1.0 1.0 0.0, 2.0 2.0 2.0 1.0;
-	-fx-border-color: transparent;
+    -fx-background-radius: 0.0;
+    -fx-background-insets: -1.4 0.0 -1.4 -1.0, 0.0 0.0 0.0 -1.0, 1.0 1.0 1.0 0.0, 2.0 2.0 2.0 1.0;
+    -fx-border-color: transparent;
 }
 .custom-color-dialog .controls-pane #toggle-button-center:selected, .controls-pane #toggle-button-center:selected:focused {
-	-fx-background-insets: -1.4 0.0 -1.4 -1.0, 0.0 0.0 0.0 -1.0, 1.0 1.0 1.0 0.0, 1.0 1.0 1.0 0.0;
-	-fx-border-color: transparent;
+    -fx-background-insets: -1.4 0.0 -1.4 -1.0, 0.0 0.0 0.0 -1.0, 1.0 1.0 1.0 0.0, 1.0 1.0 1.0 0.0;
+    -fx-border-color: transparent;
 }
 
 .custom-color-dialog .controls-pane #toggle-button-right {
-	-fx-background-radius: 0.0 3.0 3.0 0.0;
+    -fx-background-radius: 0.0 3.0 3.0 0.0;
     -fx-background-insets: 0.0 0.0 -1.0 0.0, 0.0, 1.0 1.0 1.0 0.0, 2.0 2.0 2.0 0.0;
-	-fx-padding: 3.0 8.0 3.0 8.0;
+    -fx-padding: 3.0 8.0 3.0 8.0;
 }
 .custom-color-dialog .controls-pane #toggle-button-right:focused {
-	-fx-background-radius: 0.0 3.0 3.0 0.0;
-	-fx-background-insets: -1.4 -1.4 -1.4 -1.0, 0.0 0.0 0.0 -1.0, 1.0 1.0 1.0 0.0, 2.0 2.0 2.0 1.0;
+    -fx-background-radius: 0.0 3.0 3.0 0.0;
+    -fx-background-insets: -1.4 -1.4 -1.4 -1.0, 0.0 0.0 0.0 -1.0, 1.0 1.0 1.0 0.0, 2.0 2.0 2.0 1.0;
 }
 .custom-color-dialog .controls-pane #toggle-button-right:selected, .controls-pane #toggle-button-right:selected:focused {
-	-fx-background-insets: -1.4 -1.4 -1.4 -1.0, 0.0 0.0 0.0 -1.0, 1.0 1.0 1.0 0.0, 1.0 1.0 1.0 0.0;
+    -fx-background-insets: -1.4 -1.4 -1.4 -1.0, 0.0 0.0 0.0 -1.0, 1.0 1.0 1.0 0.0, 1.0 1.0 1.0 0.0;
 }
 
 .custom-color-dialog .controls-pane .current-new-color-grid #transparent-current, .controls-pane .current-new-color-grid #transparent-new {
