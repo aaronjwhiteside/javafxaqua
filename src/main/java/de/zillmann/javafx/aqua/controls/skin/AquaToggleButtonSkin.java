@@ -3,97 +3,78 @@ package de.zillmann.javafx.aqua.controls.skin;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.BlurType;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.InnerShadow;
+import javafx.scene.paint.Color;
 
 import com.sun.javafx.scene.control.skin.ToggleButtonSkin;
 
 public class AquaToggleButtonSkin extends ToggleButtonSkin {
-    private boolean isLast = false;
 
-    public AquaToggleButtonSkin(ToggleButton contextMenu) {
-        super(contextMenu);
+    public AquaToggleButtonSkin(ToggleButton button) {
+        super(button);
 
-        registerChangeListener(contextMenu.selectedProperty(), "SELECTED");
+        registerChangeListener(button.focusedProperty(), "FOCUSED");
 
-        if (getSkinnable().isSelected()) {
-            setSelectedEffect();
+        if (getSkinnable().isFocused()) {
+            setFocusBorder();
+        } else {
+            setDropShadow();
         }
-
-        EventHandler<Event> stopHandler = new EventHandler<Event>() {
+        /**
+         * if the button is a default button, it has to stop blinking when
+         * pressed
+         */
+        getSkinnable().setOnMousePressed(new EventHandler<Event>() {
             @Override
             public void handle(Event arg0) {
-                getSkinnable().setEffect(null);
+                if (getSkinnable().isFocused()) {
+                    setFocusBorder();
+                }
+
             }
-        };
+        });
 
-        EventHandler<Event> startHandler = new EventHandler<Event>() {
-            @Override
-            public void handle(Event arg0) {
-                getSkinnable().setEffect(new ColorAdjust(0, 0, -0.15, 0));
-            }
-        };
+    }
 
-        /**
-         * a hover-effect when mouse is pressed
-         */
-        getSkinnable().setOnMousePressed(startHandler);
+    private void setFocusBorder() {
+        InnerShadow innerFocus = new InnerShadow();
+        innerFocus.setColor(Color.rgb(104, 155, 201, 0.8));
+        innerFocus.setBlurType(BlurType.ONE_PASS_BOX);
+        innerFocus.setRadius(5.0);
+        innerFocus.setChoke(0.8);
+        DropShadow outerFocus = new DropShadow();
+        outerFocus.setColor(Color.rgb(104, 155, 201, 0.8));
+        outerFocus.setBlurType(BlurType.ONE_PASS_BOX);
+        outerFocus.setRadius(6.5);
+        outerFocus.setSpread(0.6);
+        outerFocus.setInput(innerFocus);
+        getSkinnable().setEffect(outerFocus);
+    }
 
-        /**
-         * TODO: when hover && pressed a hover, when hovers
-         */
-        // getSkinnable().setOnMouseEntered(startHandler);
-
-        /**
-         * when mouse exits, no dark
-         */
-        getSkinnable().setOnMouseExited(stopHandler);
-
-        /**
-         * when mouse is released, no dark
-         */
-        getSkinnable().setOnMouseReleased(stopHandler);
-
-        int index = getSkinnable().getToggleGroup().getToggles()
-                .indexOf(getSkinnable());
-        if (index == 0) {
-            getSkinnable()
-                    .setStyle(
-                            "-fx-background-radius: 4 0 0 4;"
-                                    + "-fx-border-radius: 4 0 0 4;"
-                                    + "-fx-background-insets: 0.5 0 0.5 0.5, 1 0 1 1 ;");
-        } else if (index == getSkinnable().getToggleGroup().getToggles().size() - 1) {
-            isLast = true;
-            setLastSelectedBorder(getSkinnable().isSelected());
-        }
+    private void setDropShadow() {
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setColor(Color.rgb(192, 192, 198));
+        dropShadow.setBlurType(BlurType.ONE_PASS_BOX);
+        dropShadow.setRadius(2.0);
+        dropShadow.setSpread(0.2);
+        dropShadow.setOffsetX(0.0);
+        dropShadow.setOffsetY(0.0);
+        getSkinnable().setEffect(dropShadow);
     }
 
     @Override
     protected void handleControlPropertyChanged(String p) {
         super.handleControlPropertyChanged(p);
-        if (p == "SELECTED") {
-            if (getSkinnable().isSelected()) {
-                setSelectedEffect();
-                if (isLast) {
-                    setLastSelectedBorder(true);
-                }
-            } else {
-                if (isLast) {
-                    setLastSelectedBorder(false);
-                }
+        if (p == "FOCUSED") {
+            if (getSkinnable().isFocused()) {
+                setFocusBorder();
+            } else if (!getSkinnable().isFocused()
+                    || getSkinnable().isDisable()) {
+                setDropShadow();
             }
         }
     }
 
-    private void setSelectedEffect() {
-        // TODO: set shadow of text
-    }
-
-    private void setLastSelectedBorder(boolean selected) {
-        String number = selected ? "-1" : "0";
-        getSkinnable().setStyle(
-                "-fx-background-radius: 0 4 4 0;"
-                        + "-fx-border-radius: 0 4 4 0;"
-                        + "-fx-background-insets: 0.5 0.5 0.5 " + number
-                        + ", 1 1 1 0 ;");
-    }
 }
