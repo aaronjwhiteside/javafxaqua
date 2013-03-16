@@ -62,7 +62,9 @@ public class AquaButtonSkin extends ButtonSkin {
              */
             setDefaultButtonAnimation();
         }
-        if (!getSkinnable().isFocused()) {
+        if (getSkinnable().isFocused()) {
+            setFocusBorder();
+        }else{
             setDropShadow();
         }
         /**
