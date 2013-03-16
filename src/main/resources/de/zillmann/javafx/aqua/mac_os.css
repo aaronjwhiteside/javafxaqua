@@ -1205,7 +1205,7 @@
 }
 
 .scroll-bar:vertical:hover > .track {
-    -fx-background-color: linear-gradient(rgb(238.0, 238.0, 238.0, 0.8) 0.0%, rgb(255.0, 255.0, 255.0, 0.8) 100.0%);
+    -fx-background-color: linear-gradient(rgb(238.0, 238.0, 238.0, 0.7) 0.0%, rgb(255.0, 255.0, 255.0, 0.7) 100.0%);
     -fx-border-width: 0.0 0.0 0.0 1.0;
     -fx-border-insets: 0.0 0.0 0.0 -1.0;
 }
@@ -1276,14 +1276,6 @@
 
 .scroll-pane {
 	-fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaScrollPaneSkin";
-    -fx-background-color: -fx-box-border,-fx-background;
-    -fx-background-insets: 0.0, 1.0;
-    -fx-padding: 1.0;
-}
-
-.scroll-pane:focused {
-    -fx-background-color: -fx-focus-color, -fx-box-border, -fx-background;
-    -fx-background-insets: -1.4, 0.0, 1.0;
 }
 
 .scroll-pane > * > .scroll-bar:horizontal {

@@ -46,8 +46,9 @@ public class AquaScrollBarSkin extends ScrollBarSkin {
         if (p == "HOVER") {
             setGrowScrollbarAnimation();
             if (getSkinnable().isHover() && fadeable) {
+                fadeOutSeq.jumpTo(Duration.millis(0));
                 fadeOutSeq.stop();
-            } else if (fadeable) {
+            } else if (fadeable && alreadyFaded) {
                 fadeOutSeq.playFromStart();
             }
         }
@@ -73,33 +74,6 @@ public class AquaScrollBarSkin extends ScrollBarSkin {
 
     private void fading() {
         if (fadeIn == null) {
-            // FadeTransition fadeout = new FadeTransition();
-            // fadeout.setDelay(Duration.millis(300));
-            // fadeout.setFromValue(1.0);
-            // fadeout.setToValue(0.0);
-            // fadeout.setOnFinished(new EventHandler<ActionEvent>() {
-            //
-            // @Override
-            // public void handle(
-            // ActionEvent event) {
-            // alreadyFaded = false;
-            // alreadyHovered = false;
-            // wide = false;
-            // getSkinnable().setStyle(
-            // null);
-            // for (int i = 0; i < getChildren()
-            // .size(); i++) {
-            // Node child = getChildren()
-            // .get(i);
-            // child.setStyle(null);
-            // }
-            // }
-            // });
-            //
-            // fadeOutSeq = new SequentialTransition();
-            // fadeOutSeq.setDelay(Duration.millis(2000));
-            // fadeOutSeq.getChildren().add(fadeout);
-
             fadeOutSeq = SequentialTransitionBuilder
                     .create()
                     .delay(Duration.millis(2000))
@@ -148,57 +122,57 @@ public class AquaScrollBarSkin extends ScrollBarSkin {
     }
 
     private void setGrowScrollbarAnimation() {
-        if (!alreadyHovered) {
-            if (getSkinnable().isHover()) {
 
-                if (growScrollbarTransition == null) {
+        if (getSkinnable().isHover() && !alreadyHovered && alreadyFaded) {
 
-                    final Duration duration = Duration.millis(200);
-                    growScrollbarTransition = new BindableTransition(duration);
-                    growScrollbarTransition.setCycleCount(1);
+            if (growScrollbarTransition == null) {
+                growScrollbarTransition = new BindableTransition(
+                        Duration.millis(200));
+                growScrollbarTransition.setCycleCount(1);
 
-                    final double startWidth = 4;
-                    final double endWidth = 6;
+                final double startWidth = 4;
+                final double endWidth = 6;
 
-                    growScrollbarTransition.fractionProperty().addListener(
-                            new ChangeListener<Number>() {
+                growScrollbarTransition.fractionProperty().addListener(
+                        new ChangeListener<Number>() {
 
-                                @Override
-                                public void changed(
-                                        ObservableValue<? extends Number> observable,
-                                        Number oldValue, Number newValue) {
+                            @Override
+                            public void changed(
+                                    ObservableValue<? extends Number> observable,
+                                    Number oldValue, Number newValue) {
 
-                                    for (int i = 0; i < getChildren().size(); i++) {
-                                        Node child = getChildren().get(i);
-                                        if (child.getStyleClass().get(0)
-                                                .equals("increment-button")
-                                                || child.getStyleClass()
-                                                        .get(0)
-                                                        .equals("decrement-button")) {
-                                            if (getSkinnable().getOrientation() == Orientation.VERTICAL) {
-                                                child.setStyle("-fx-padding: 0.0em "
-                                                        + ((endWidth - startWidth)
-                                                                * newValue
-                                                                        .doubleValue() + startWidth)
-                                                        + "pt 0.0em 0.0em;}");
-                                            } else if (getSkinnable()
-                                                    .getOrientation() == Orientation.HORIZONTAL) {
-                                                child.setStyle("-fx-padding: "
-                                                        + ((endWidth - startWidth)
-                                                                * newValue
-                                                                        .doubleValue() + startWidth)
-                                                        + "pt  0.0em 0.0em 0.0em;}");
-                                            }
+                                for (int i = 0; i < getChildren().size(); i++) {
+                                    Node child = getChildren().get(i);
+                                    if (child.getStyleClass().get(0)
+                                            .equals("increment-button")
+                                            || child.getStyleClass().get(0)
+                                                    .equals("decrement-button")) {
+                                        if (getSkinnable().getOrientation() == Orientation.VERTICAL) {
+                                            child.setStyle("-fx-padding: 0.0em "
+                                                    + ((endWidth - startWidth)
+                                                            * newValue
+                                                                    .doubleValue() + startWidth)
+                                                    + "pt 0.0em 0.0em;}");
+                                        } else if (getSkinnable()
+                                                .getOrientation() == Orientation.HORIZONTAL) {
+                                            child.setStyle("-fx-padding: "
+                                                    + ((endWidth - startWidth)
+                                                            * newValue
+                                                                    .doubleValue() + startWidth)
+                                                    + "pt  0.0em 0.0em 0.0em;}");
                                         }
                                     }
                                 }
-                            });
-                }
-                growScrollbarTransition.play();
+                            }
+                        });
             }
+            growScrollbarTransition.play();
             alreadyHovered = true;
-        } else if (!wide && !getSkinnable().isHover()) {
-            System.out.println("wird gesetzt");
+        } else if (!wide && !getSkinnable().isHover() && alreadyHovered) {
+            /*
+             * when scrollbar is shown and we hover out, it still should be
+             * shown for the time of the fadeOut- transition
+             */
             if (growScrollbarTransition != null) {
                 growScrollbarTransition.stop();
             }
