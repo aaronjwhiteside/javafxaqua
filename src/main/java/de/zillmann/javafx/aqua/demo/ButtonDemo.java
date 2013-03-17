@@ -10,6 +10,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ContextMenuBuilder;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.HyperlinkBuilder;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
@@ -38,9 +39,15 @@ public class ButtonDemo extends Application {
         HBox textfieldBox1 = HBoxBuilder.create().spacing(10)
                 .padding(new Insets(10)).build();
 
+        Menu item1 = new Menu("test submenu");
+        MenuItem subMenuItem1 = new MenuItem("Sub Menu Item 1");
+        MenuItem subMenuItem2 = new MenuItem("Sub Menu Item 2");
+        MenuItem subMenuItem3 = new MenuItem("Sub Menu Item 3");
+        item1.getItems().addAll(subMenuItem1, subMenuItem2, subMenuItem3);
+        
         TextField tf1 = new TextField("MACBOOKPRO");
         tf1.setContextMenu(ContextMenuBuilder.create()
-                .items(new MenuItem("test"), new MenuItem("test")).build());
+                .items(new MenuItem("test"), item1, new MenuItem("test")).build());
         textfieldBox1.getChildren().add(tf1);
 
         TextField tf2 = new TextField();
