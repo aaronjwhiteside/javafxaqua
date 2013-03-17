@@ -400,8 +400,8 @@
     -toggle-armed-base:linear-gradient(rgb(87.0, 87.0, 87.0) 0.0%, rgb(113.0, 113.0, 113.0) 12.0%, 
         rgb(125.0, 125.0, 125.0) 87.0%, rgb(129.0, 129.0, 129.0) 87.1%, rgb(155.0, 155.0, 155.0) 100.0%); 
 
-    -toggle-shadow-armed: linear-gradient(to right, rgb(87.0, 87.0, 87.0, 0.5) 0.0%, transparent 3%, transparent 97%, rgb(87.0, 87.0, 87.0, 0.5) 100%);
-    -toggle-shadow: linear-gradient(to right, rgb(87.0, 87.0, 87.0, 0.3) 0.0%, transparent 3%, transparent 97%, rgb(87.0, 87.0, 87.0, 0.3) 100%);
+    -toggle-shadow-armed: linear-gradient(to right, rgb(87.0, 87.0, 87.0, 0.5) 0.0%, transparent 3.0%, transparent 97.0%, rgb(87.0, 87.0, 87.0, 0.5) 100.0%);
+    -toggle-shadow: linear-gradient(to right, rgb(87.0, 87.0, 87.0, 0.3) 0.0%, transparent 3.0%, transparent 97.0%, rgb(87.0, 87.0, 87.0, 0.3) 100.0%);
 
 }
 
@@ -409,12 +409,12 @@
     
     /* gradients for glossy-aqua-effect */
     -fx-background-color: rgb(255.0, 255.0, 255.0),
-        linear-gradient(#ffffff 20.0%, #ececec 60.0%, #ececec 80.0%, #eeeeee 100.0%);
+        linear-gradient(rgb(255.0, 255.0, 255.0) 25.0%, rgb(243.0, 243.0, 243.0) 50.0%, rgb(236.0, 236.0, 236.0) 50.0%, rgb(243.0, 243.0, 243.0) 100.0% );
     -fx-background-insets:  0.0, 1.0;
     -fx-background-radius: 4.0, 4.0;
     -fx-border-radius: 4.0;
     -fx-border-width: 0.5;
-    -fx-border-color: rgb(129.0, 129.0, 129.0);
+    -fx-border-color: rgb(147.0, 147.0, 147.0) rgb(129.0, 129.0, 129.0) rgb(129.0, 129.0, 129.0) rgb(129.0, 129.0, 129.0);
     -fx-padding: 0.07em 0.85em 0.1em 0.85em;
     
     -fx-text-fill: -fx-text-base-color;
@@ -468,7 +468,52 @@
     -fx-stroke: -fx-text-base-color;
 }
 
+/*********** PILL BUTTONS *****************************************************/
 
+.button.left-pill,
+.toggle-button.left-pill {
+    -fx-background-radius: 4.0 0.0 0.0 4.0, 4.0 0.0 0.0 4.0;
+    -fx-background-insets:  0.0, 1.0 0.0 0.0 1.0;
+    -fx-border-radius: 4.0 0.0 0.0 4.0;
+    -fx-border-width:0.5 0.0 0.5 0.5;
+}
+
+.button.center-pill,
+.toggle-button.center-pill {
+    -fx-background-radius: 0.0;
+    -fx-background-insets:  0.0, 1.0 0.0 0.0 0.0;
+    -fx-border-radius: 0.0;
+    -fx-border-width:0.5 0.0 0.5 1.0;
+    -fx-border-style: solid solid solid segments(15.0, 2.5) phase 15.0 centered;
+    -fx-border-color: rgb(147.0, 147.0, 147.0) rgb(129.0, 129.0, 129.0) rgb(129.0, 129.0, 129.0)
+        rgb(203.0, 203.0, 203.0);
+}
+.button.right-pill,
+.toggle-button.right-pill {
+    -fx-background-radius: 0.0 4.0 4.0 0.0, 0.0 4.0 4.0 0.0;
+    -fx-background-insets:  0.0, 1.0 1.0 0.0 0.0;
+    -fx-border-radius: 0.0 4.0 4.0 0.0;
+    -fx-border-width:0.5 0.5 0.5 1.0;
+    -fx-border-style: solid solid solid segments(15.0, 2.25) phase 15.0 centered;
+    -fx-border-color: rgb(147.0, 147.0, 147.0) rgb(129.0, 129.0, 129.0) rgb(129.0, 129.0, 129.0)
+        rgb(203.0, 203.0, 203.0);
+}
+
+.button.center-pill:armed,
+.toggle-button.center-pill:selected, .toggle-button.center-pill:selected:armed {
+    -fx-border-width:0.5 1.0 0.5 1.0;
+    -fx-border-color: rgb(147.0, 147.0, 147.0) rgb(74.0, 74.0, 74.0) rgb(129.0, 129.0, 129.0)
+        rgb(74.0, 74.0, 74.0);
+    -fx-border-style: solid solid inside solid solid centered;
+}
+
+.button.right-pill:armed,
+.toggle-button.right-pill:selected, .toggle-button.right-pill:selected:armed {
+    -fx-border-width:0.5 0.5 0.5 1.0;
+    -fx-border-color: rgb(147.0, 147.0, 147.0) rgb(129.0, 129.0, 129.0) rgb(129.0, 129.0, 129.0)
+        rgb(74.0, 74.0, 74.0);
+    -fx-border-style: solid solid solid solid centered;
+}
 
 /*******************************************************************************
  *                                                                             *

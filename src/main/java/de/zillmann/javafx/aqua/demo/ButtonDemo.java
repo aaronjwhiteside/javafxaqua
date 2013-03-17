@@ -15,6 +15,7 @@ import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleButtonBuilder;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -166,19 +167,28 @@ public class ButtonDemo extends Application {
                 .build();
 
         ToggleGroup group = new ToggleGroup();
-        ToggleButton tb1 = new ToggleButton("First");
-        tb1.setToggleGroup(group);
-        tb1.setSelected(true);
+
+        ToggleButton tb1 = ToggleButtonBuilder.create().text("First")
+                .toggleGroup(group).selected(true).styleClass("left-pill")
+                .build();
         toggleButtonBox.getChildren().add(tb1);
 
-        ToggleButton tb2 = new ToggleButton("Second");
-        tb2.setToggleGroup(group);
+        ToggleButton tb2 = ToggleButtonBuilder.create().text("Second")
+                .toggleGroup(group).selected(true).styleClass("center-pill")
+                .build();
         toggleButtonBox.getChildren().add(tb2);
 
-        ToggleButton tb3 = new ToggleButton("Third");
-        tb3.setToggleGroup(group);
+        ToggleButton tb3 = ToggleButtonBuilder.create().text("Third")
+                .toggleGroup(group).selected(true).styleClass("right-pill")
+                .build();
         toggleButtonBox.getChildren().add(tb3);
+        
+        ToggleButton tb4 = ToggleButtonBuilder.create().text("Alone")
+                .selected(true)
+                .build();
+        toggleButtonBox.getChildren().add(tb4);
 
+        
         ChoiceBox<String> choices = new ChoiceBox<String>(
                 FXCollections.observableArrayList("4", "10", "12"));
         choices.getSelectionModel().selectFirst();
@@ -191,7 +201,7 @@ public class ButtonDemo extends Application {
         toggleButtonBox.getChildren().add(choices2);
         pane.setBottom(toggleButtonBox);
 
-        Scene myScene = new Scene(pane, 350, 500);
+        Scene myScene = new Scene(pane, 400, 500);
         AquaFx.style();
         stage.setScene(myScene);
         stage.show();
