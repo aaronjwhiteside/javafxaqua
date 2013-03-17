@@ -2,8 +2,6 @@ package de.zillmann.javafx.aqua.controls.skin;
 
 import java.util.List;
 
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.effect.BlurType;
@@ -26,19 +24,10 @@ public class AquaToggleButtonSkin extends ToggleButtonSkin {
         } else {
             setDropShadow();
         }
-        /**
-         * if the button is a default button, it has to stop blinking when
-         * pressed
-         */
-        getSkinnable().setOnMousePressed(new EventHandler<Event>() {
-            @Override
-            public void handle(Event arg0) {
-                if (getSkinnable().isFocused()) {
-                    setFocusBorder();
-                }
-
-            }
-        });
+      
+        if (getSkinnable().isSelected()){
+            adjustToggleGroupBorders();
+        }
 
     }
 
@@ -86,22 +75,25 @@ public class AquaToggleButtonSkin extends ToggleButtonSkin {
             }
         }
         if (p == "SELECTED") {
-            if (getSkinnable().isSelected() && getSkinnable().getToggleGroup() != null) {
-                List<Toggle> toggles = getSkinnable().getToggleGroup().getToggles();
-                int i = toggles.indexOf(getSkinnable().getToggleGroup()
-                        .getSelectedToggle());
-                if (toggles.size() > i + 1) {
-                    ToggleButton toggle = (ToggleButton) toggles.get(i + 1);
-                    if (toggle.getStyleClass().contains("right-pill")) {
-                        toggle.setStyle("-fx-border-width:0.5 0.5 0.5 0.0;");
-                    } else if (toggle.getStyleClass().contains("center-pill")) {
-                        toggle.setStyle("-fx-border-width:0.5 0.0 0.5 0.0;");
-                    }
-                }
-            } else {
-                getSkinnable().setStyle(null);
-            }
+           adjustToggleGroupBorders();
         }
     }
 
+    private void adjustToggleGroupBorders(){
+        if (getSkinnable().isSelected() && getSkinnable().getToggleGroup() != null) {
+            List<Toggle> toggles = getSkinnable().getToggleGroup().getToggles();
+            int i = toggles.indexOf(getSkinnable().getToggleGroup()
+                    .getSelectedToggle());
+            if (toggles.size() > i + 1) {
+                ToggleButton toggle = (ToggleButton) toggles.get(i + 1);
+                if (toggle.getStyleClass().contains("right-pill")) {
+                    toggle.setStyle("-fx-border-width:0.5 0.5 0.5 0.0;");
+                } else if (toggle.getStyleClass().contains("center-pill")) {
+                    toggle.setStyle("-fx-border-width:0.5 0.0 0.5 0.0;");
+                }
+            }
+        } else {
+            getSkinnable().setStyle(null);
+        }
+    }
 }

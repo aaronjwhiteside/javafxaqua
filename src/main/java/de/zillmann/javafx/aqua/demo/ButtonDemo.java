@@ -174,12 +174,12 @@ public class ButtonDemo extends Application {
         toggleButtonBox.getChildren().add(tb1);
 
         ToggleButton tb2 = ToggleButtonBuilder.create().text("Second")
-                .toggleGroup(group).selected(true).styleClass("center-pill")
+                .toggleGroup(group).styleClass("center-pill")
                 .build();
         toggleButtonBox.getChildren().add(tb2);
 
         ToggleButton tb3 = ToggleButtonBuilder.create().text("Third")
-                .toggleGroup(group).selected(true).styleClass("right-pill")
+                .toggleGroup(group).styleClass("right-pill")
                 .build();
         toggleButtonBox.getChildren().add(tb3);
         
