@@ -680,7 +680,7 @@
 .check-box > .box > .mark, .check-box:disabled > .box > .mark {
     -fx-effect: dropshadow(one-pass-box, rgb(255.0, 255.0, 255.0, 0.8), 0.0, 0.0 , -1.0 , 1.0);
     -fx-background-color: transparent;
-       -fx-background-insets: -9.5 -7.8 -2.5 -4.5;
+    -fx-background-insets: -9.5 -7.8 -2.5 -4.5;
     -fx-shape: "m 18.174523,1027.137 c -0.18077,-0.4575 -0.184364,-0.8913 0.115901,-1.1721 0.300265,-0.2809 0.836622,-0.3601 1.288422,-0.041 0.4518,0.3191 2.020453,2.9316 2.020453,2.9316 l 5.41194,-8.0232 c -4e-6,0 0.516257,-0.6671 1.248682,-0.3099 0.648831,0.3165 0.559153,1.0373 0.559153,1.0373 0,0 -5.940433,9.3556 -6.15501,9.6287 -0.214577,0.273 -1.595078,0.2481 -1.817995,-0.027 -0.222917,-0.2751 -2.490777,-3.567 -2.671546,-4.0244 z";
 }
 
@@ -690,13 +690,13 @@
 .check-box:indeterminate > .box > .mark {
     -fx-effect: dropshadow(one-pass-box, rgb(255.0, 255.0, 255.0, 0.8), 1.0, 0.0 , 0.0 , 1.5);
     -fx-background-color: -fx-text-base-color;
-       -fx-background-insets: -0.5 0.5 0.5 -0.5;
+    -fx-background-insets: -0.5 0.5 0.5 -0.5;
     -fx-shape: "M0,0H8V2H0Z";
     -fx-scale-shape: false;
 }
 
 .check-box:selected > .box > .mark {
-        -fx-background-color: black;
+    -fx-background-color: black;
 }
 
 .check-box:disabled {
@@ -714,35 +714,22 @@
  ******************************************************************************/
 
 .hyperlink {
-    -fx-padding: 0.166667em; /* 2 */
     -fx-cursor: hand;
     -fx-content-display: LEFT;
-    -fx-text-fill: -fx-text-background-color;
-    -fx-border-color: transparent;
-    -fx-border-width: 1.0px;
+    -fx-text-fill: rgb(94, 162, 218);
 }
 
-.hyperlink:visited {
-    -fx-text-fill: -fx-accent;
-}
-
-.hyperlink:focused {
-    -fx-color: -fx-focused-base;
-    -fx-border-color: -fx-focus-color;
-    -fx-border-style: segments(0.166667em, 0.166667em);
-    -fx-border-width: 1.0px;
-}
-
-.hyperlink:disabled {
-    -fx-opacity: -fx-disabled-opacity;
-}
-
-.hyperlink:hover {
+.hyperlink:focused, .hyperlink:hover {
     -fx-underline: true;
 }
 
+.hyperlink:disabled {
+    -fx-text-fill: -fx-text-base-color;
+    -fx-opacity: -fx-disabled-opacity;
+}
+
 .hyperlink:show-mnemonics > .mnemonic-underline {
-    -fx-stroke: -fx-text-fill;
+    -fx-text-fill: -fx-text-base-color;
 } 
 
 

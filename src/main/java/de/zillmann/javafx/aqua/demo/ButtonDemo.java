@@ -8,6 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ContextMenuBuilder;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.HyperlinkBuilder;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
@@ -88,6 +90,13 @@ public class ButtonDemo extends Application {
 
         ScrollBar scBar = new ScrollBar();
         txts.getChildren().add(scBar);
+
+        Hyperlink link = new Hyperlink("Hyperlink");
+        Hyperlink link2 = HyperlinkBuilder.create().text("disabled Link")
+                .disable(true).build();
+        txts.getChildren().add(link);
+        txts.getChildren().add(link2);
+
         pane.setTop(txts);
 
         VBox buttonBox = VBoxBuilder.create().padding(new Insets(10))
@@ -163,6 +172,9 @@ public class ButtonDemo extends Application {
         checkBoxBox.getChildren().add(box6);
         pane.setRight(checkBoxBox);
 
+        
+        VBox bottomBox = VBoxBuilder.create().padding(new Insets(10)).build();
+        
         HBox toggleButtonBox = HBoxBuilder.create().padding(new Insets(10))
                 .build();
 
@@ -174,34 +186,37 @@ public class ButtonDemo extends Application {
         toggleButtonBox.getChildren().add(tb1);
 
         ToggleButton tb2 = ToggleButtonBuilder.create().text("Second")
-                .toggleGroup(group).styleClass("center-pill")
-                .build();
+                .toggleGroup(group).styleClass("center-pill").build();
         toggleButtonBox.getChildren().add(tb2);
 
         ToggleButton tb3 = ToggleButtonBuilder.create().text("Third")
-                .toggleGroup(group).styleClass("right-pill")
-                .build();
+                .toggleGroup(group).styleClass("right-pill").build();
         toggleButtonBox.getChildren().add(tb3);
-        
-        ToggleButton tb4 = ToggleButtonBuilder.create().text("Alone")
-                .selected(true)
-                .build();
-        toggleButtonBox.getChildren().add(tb4);
 
+        ToggleButton tb4 = ToggleButtonBuilder.create().text("Alone")
+                .selected(true).build();
+        toggleButtonBox.getChildren().add(tb4);
         
+        bottomBox.getChildren().add(toggleButtonBox);
+        
+        HBox choiceBoxBox = HBoxBuilder.create().padding(new Insets(10))
+                .build();
+
         ChoiceBox<String> choices = new ChoiceBox<String>(
                 FXCollections.observableArrayList("4", "10", "12"));
         choices.getSelectionModel().selectFirst();
-        toggleButtonBox.getChildren().add(choices);
+        choiceBoxBox.getChildren().add(choices);
 
         ChoiceBox<String> choices2 = new ChoiceBox<String>(
                 FXCollections.observableArrayList("A", "B", "C"));
         choices2.getSelectionModel().selectFirst();
         choices2.setDisable(true);
-        toggleButtonBox.getChildren().add(choices2);
-        pane.setBottom(toggleButtonBox);
+        choiceBoxBox.getChildren().add(choices2);
+        bottomBox.getChildren().add(choiceBoxBox);
+        
+        pane.setBottom(bottomBox);
 
-        Scene myScene = new Scene(pane, 400, 500);
+        Scene myScene = new Scene(pane, 400, 600);
         AquaFx.style();
         stage.setScene(myScene);
         stage.show();
