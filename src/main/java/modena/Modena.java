@@ -339,7 +339,7 @@ public class Modena extends Application {
                             .styleClass("left-pill")
                             .build(),
                         ToggleButtonBuilder.create()
-                            .text("Caspian")
+                            .text("MacOS Aqua")
                             .toggleGroup(themesToggleGroup)
                             .selected(!modena)
                             .onAction(rebuild)
