@@ -166,12 +166,12 @@ public class AquaButtonSkin extends ButtonSkin {
 
     private void setDropShadow() {
         DropShadow dropShadow = new DropShadow();
-        dropShadow.setColor(Color.rgb(192, 192, 198));
+        dropShadow.setColor(Color.rgb(172, 172, 184));
         dropShadow.setBlurType(BlurType.ONE_PASS_BOX);
         dropShadow.setRadius(2.0);
-        dropShadow.setSpread(0.2);
+        dropShadow.setSpread(0.1);
         dropShadow.setOffsetX(0.0);
-        dropShadow.setOffsetY(0.0);
+        dropShadow.setOffsetY(0.8);
         getSkinnable().setEffect(dropShadow);
     }
 

@@ -25,7 +25,7 @@
 
 /*******************************************************************************
  *                                                                             *
- * CSS Styles for core infrastructure bits.  The .root section provides the   *
+ * CSS Styles for core infrastructure bits.  The .root section provides the    *
  * overall default font and colors used by the rest of the sections.           *
  *                                                                             *
  ******************************************************************************/
@@ -684,9 +684,6 @@
     -fx-shape: "m 18.174523,1027.137 c -0.18077,-0.4575 -0.184364,-0.8913 0.115901,-1.1721 0.300265,-0.2809 0.836622,-0.3601 1.288422,-0.041 0.4518,0.3191 2.020453,2.9316 2.020453,2.9316 l 5.41194,-8.0232 c -4e-6,0 0.516257,-0.6671 1.248682,-0.3099 0.648831,0.3165 0.559153,1.0373 0.559153,1.0373 0,0 -5.940433,9.3556 -6.15501,9.6287 -0.214577,0.273 -1.595078,0.2481 -1.817995,-0.027 -0.222917,-0.2751 -2.490777,-3.567 -2.671546,-4.0244 z";
 }
 
-/* TODO: scale the shape - the problem is that it is not within a square
- * boundary.
- */
 .check-box:indeterminate > .box > .mark {
     -fx-effect: dropshadow(one-pass-box, rgb(255.0, 255.0, 255.0, 0.8), 1.0, 0.0 , 0.0 , 1.5);
     -fx-background-color: -fx-text-base-color;
@@ -978,10 +975,10 @@
  ******************************************************************************/
 
 .choice-box {
--fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaChoiceBoxSkin";
+    -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaChoiceBoxSkin";
     -choice-base: linear-gradient(rgb(255.0, 255.0, 255.0) 25.0%, rgb(243.0, 243.0, 243.0) 50.0%, rgb(236.0, 236.0, 236.0) 50.0%, rgb(243.0, 243.0, 243.0) 100.0% );
     -fx-border-radius: 4.0;
-     -fx-border-width: 0.5;
+    -fx-border-width: 0.5;
     -fx-border-color: rgb(207.0, 207.0, 207.0);
     
     -fx-background-color: linear-gradient(rgb(147.0, 147.0, 147.0) 0.0%, rgb(127.0, 127.0, 127.0) 100.0%), -choice-base;
@@ -1124,13 +1121,13 @@
     -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaScrollBarSkin";
 }
 
-
 .scroll-bar:horizontal, .scroll-bar:horizontal:focused, 
 .scroll-bar:horizontal > .track-background {
     -fx-background-color:transparent;
     -fx-background-insets: 0.0;
     -fx-padding: 0.0 0.0 2.0 0.0;
 }
+
 .scroll-bar:horizontal:hover, .scroll-bar:horizontal:focused:hover, 
 .scroll-bar:horizontal:hover > .track-background {
     -fx-background-color:transparent;
@@ -1234,18 +1231,7 @@
     -fx-opacity: -fx-disabled-opacity;
 }
 
-/* Uncomment when RT-10521 is fixed.
-.scroll-bar .thumb:pressed {
-    -fx-color: -fx-pressed-base;
-}
-*/
 
-/* The opacity of the parent is applied to the children.  So we make the
- * opacity 1.0 here to avoid double translucency.
- */
-/*:disabled > * > .scroll-bar {
-    -fx-opacity: 1.0;
-}*/
 
 /*******************************************************************************
  *                                                                             *
@@ -1332,7 +1318,7 @@
     -fx-background-insets: 0.5, 1.0, 1.0, 1.0;
     -fx-background-radius: 0.0, 0.0;
    
-    -fx-padding: 0.26em 0.166667em  0.166667em 0.166667em;
+    -fx-padding: 0.166667em 0.166667em  0.166667em 0.166667em;
     -fx-text-fill: black;
     -fx-highlight-fill: rgb(182.0, 214.0, 253.0);
     -fx-prompt-text-fill: rgb(128.0, 128.0, 128.0);
