@@ -98,10 +98,10 @@ public class AquaToggleButtonSkin extends ToggleButtonSkin {
         } else if (!getSkinnable().isSelected()
                 && getSkinnable().getToggleGroup() != null) {
             List<Toggle> toggles = getSkinnable().getToggleGroup().getToggles();
-            int i = toggles.indexOf(getSkinnable().getToggleGroup()
-                    .getSelectedToggle());
+            int i = toggles.indexOf(getSkinnable());
             if (toggles.size() > i + 1) {
                 ToggleButton toggle = (ToggleButton) toggles.get(i + 1);
+                
                 toggle.getStyleClass().remove("neighbor");
             }
         }
