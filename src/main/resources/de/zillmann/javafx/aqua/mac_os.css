@@ -480,11 +480,11 @@
 
 .button.center-pill,
 .toggle-button.center-pill {
-    -fx-background-radius: 0.0;
+    -fx-background-radius: 0.0, 0.0;
     -fx-background-insets:  0.0, 1.0 0.0 0.0 0.0;
     -fx-border-radius: 0.0;
     -fx-border-width:0.5 0.0 0.5 1.0;
-    -fx-border-style: solid solid solid segments(15.0, 2.5) phase 15.0 centered;
+    -fx-border-style: solid solid solid segments(15.0, 2.5) phase 15.0 ;
     -fx-border-color: rgb(147.0, 147.0, 147.0) rgb(129.0, 129.0, 129.0) rgb(129.0, 129.0, 129.0)
         rgb(203.0, 203.0, 203.0);
 }
@@ -499,12 +499,26 @@
         rgb(203.0, 203.0, 203.0);
 }
 
+
+.button.center-pill.neighbor,
+.toggle-button.center-pill.neighbor{
+    -fx-border-style: solid solid solid solid;
+    -fx-border-color: rgb(147.0, 147.0, 147.0) rgb(129.0, 129.0, 129.0) rgb(129.0, 129.0, 129.0)
+        rgb(74.0, 74.0, 74.0);
+}
+.button.right-pill.neighbor,
+.toggle-button.right-pill.neighbor {
+    -fx-border-style: solid solid solid solid centered;
+    -fx-border-color: rgb(147.0, 147.0, 147.0) rgb(129.0, 129.0, 129.0) rgb(129.0, 129.0, 129.0)
+        rgb(74.0, 74.0, 74.0);
+}
+
 .button.center-pill:armed,
 .toggle-button.center-pill:selected, .toggle-button.center-pill:selected:armed {
-    -fx-border-width:0.5 1.0 0.5 1.0;
+    -fx-border-width:0.5 0.0 0.5 1.0;
     -fx-border-color: rgb(147.0, 147.0, 147.0) rgb(74.0, 74.0, 74.0) rgb(129.0, 129.0, 129.0)
         rgb(74.0, 74.0, 74.0);
-    -fx-border-style: solid solid inside solid solid centered;
+    -fx-border-style: solid solid solid solid;
 }
 
 .button.right-pill:armed,
@@ -745,6 +759,7 @@
     -fx-background-insets: 0.0;
     -fx-background-radius: 6.0;
     -fx-padding: 0.25em 0.0em 0.25em 0.0em; 
+    -fx-effect: dropshadow( three-pass-box , rgba(0.0,0.0,0.0,0.6) , 8.0, 0.0 , 0.0 , 0.0 );
 }
 
 .context-menu > .separator {
@@ -841,6 +856,7 @@
     -fx-background-insets: 0.0, 1.0 0.0 1.0 0.0;
     -fx-background-radius: 0.0, 0.0 ;
 }
+
 
 /* Show nothing for background of normal menu button in a menu bar */
 .menu-bar > .container > .menu-button {
@@ -1034,16 +1050,7 @@
     -fx-background-radius: 14.0;
 }
 
-/* TODO: need to use the ID here.  For some reason, the other form does not
- * work.  This might be related to popup issues.
- */
-/*.choice-box > * > .menu-item-radio {*/
-/* */#choice-box-menu-item > * > .menu-item-radio {}
-    /* When we show RadioMenuItems in ChoiceBox, we replace the radio shape with
-       a check mark, which looks much better 
-    -fx-scale-shape: false;
-    -fx-stroke: yellow;
-/*}*/
+#choice-box-menu-item > * > .menu-item-radio {}
 
 
 /*******************************************************************************

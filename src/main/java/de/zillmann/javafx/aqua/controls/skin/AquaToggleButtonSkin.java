@@ -24,8 +24,8 @@ public class AquaToggleButtonSkin extends ToggleButtonSkin {
         } else {
             setDropShadow();
         }
-      
-        if (getSkinnable().isSelected()){
+
+        if (getSkinnable().isSelected()) {
             adjustToggleGroupBorders();
         }
 
@@ -75,25 +75,35 @@ public class AquaToggleButtonSkin extends ToggleButtonSkin {
             }
         }
         if (p == "SELECTED") {
-           adjustToggleGroupBorders();
+            adjustToggleGroupBorders();
         }
     }
 
-    private void adjustToggleGroupBorders(){
-        if (getSkinnable().isSelected() && getSkinnable().getToggleGroup() != null) {
+    private void adjustToggleGroupBorders() {
+        if (getSkinnable().isSelected() && getSkinnable().isSelected()
+                && getSkinnable().getToggleGroup() != null) {
             List<Toggle> toggles = getSkinnable().getToggleGroup().getToggles();
             int i = toggles.indexOf(getSkinnable().getToggleGroup()
                     .getSelectedToggle());
             if (toggles.size() > i + 1) {
                 ToggleButton toggle = (ToggleButton) toggles.get(i + 1);
-                if (toggle.getStyleClass().contains("right-pill")) {
-                    toggle.setStyle("-fx-border-width:0.5 0.5 0.5 0.0;");
-                } else if (toggle.getStyleClass().contains("center-pill")) {
-                    toggle.setStyle("-fx-border-width:0.5 0.0 0.5 0.0;");
+                toggle.getStyleClass().add("neighbor");
+                for (int j = 0; toggles.size() > j; j++) {
+                    if (j != i + 1) {
+                        ((ToggleButton) toggles.get(j)).getStyleClass().remove(
+                                "neighbor");
+                    }
                 }
             }
-        } else {
-            getSkinnable().setStyle(null);
+        } else if (!getSkinnable().isSelected()
+                && getSkinnable().getToggleGroup() != null) {
+            List<Toggle> toggles = getSkinnable().getToggleGroup().getToggles();
+            int i = toggles.indexOf(getSkinnable().getToggleGroup()
+                    .getSelectedToggle());
+            if (toggles.size() > i + 1) {
+                ToggleButton toggle = (ToggleButton) toggles.get(i + 1);
+                toggle.getStyleClass().remove("neighbor");
+            }
         }
     }
 }
