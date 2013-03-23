@@ -2,11 +2,14 @@ package de.zillmann.javafx.aqua.demo;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ComboBoxBuilder;
 import javafx.scene.control.ContextMenuBuilder;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.HyperlinkBuilder;
@@ -44,10 +47,11 @@ public class ButtonDemo extends Application {
         MenuItem subMenuItem2 = new MenuItem("Sub Menu Item 2");
         MenuItem subMenuItem3 = new MenuItem("Sub Menu Item 3");
         item1.getItems().addAll(subMenuItem1, subMenuItem2, subMenuItem3);
-        
+
         TextField tf1 = new TextField("MACBOOKPRO");
         tf1.setContextMenu(ContextMenuBuilder.create()
-                .items(new MenuItem("test"), item1, new MenuItem("test")).build());
+                .items(new MenuItem("test"), item1, new MenuItem("test"))
+                .build());
         textfieldBox1.getChildren().add(tf1);
 
         TextField tf2 = new TextField();
@@ -179,9 +183,8 @@ public class ButtonDemo extends Application {
         checkBoxBox.getChildren().add(box6);
         pane.setRight(checkBoxBox);
 
-        
-        VBox bottomBox = VBoxBuilder.create().padding(new Insets(10)).build();
-        
+        VBox bottomBox = VBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
+
         HBox toggleButtonBox = HBoxBuilder.create().padding(new Insets(10))
                 .build();
 
@@ -203,10 +206,10 @@ public class ButtonDemo extends Application {
         ToggleButton tb4 = ToggleButtonBuilder.create().text("Alone")
                 .selected(true).build();
         toggleButtonBox.getChildren().add(tb4);
-        
+
         bottomBox.getChildren().add(toggleButtonBox);
-        
-        HBox choiceBoxBox = HBoxBuilder.create().padding(new Insets(10))
+
+        HBox choiceBoxBox = HBoxBuilder.create().padding(new Insets(10)).spacing(10)
                 .build();
 
         ChoiceBox<String> choices = new ChoiceBox<String>(
@@ -220,7 +223,18 @@ public class ButtonDemo extends Application {
         choices2.setDisable(true);
         choiceBoxBox.getChildren().add(choices2);
         bottomBox.getChildren().add(choiceBoxBox);
-        
+
+        HBox comboBoxBox = HBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
+        ObservableList items = FXCollections.observableArrayList("A", "B", "C");
+        ComboBox combo1 = ComboBoxBuilder.create().editable(true).items(items)
+                .build();
+        comboBoxBox.getChildren().add(combo1);
+        ComboBox combo2 = ComboBoxBuilder.create().editable(false).items(items)
+                .promptText("test").build();
+        comboBoxBox.getChildren().add(combo2);
+
+        bottomBox.getChildren().add(comboBoxBox);
+
         pane.setBottom(bottomBox);
 
         Scene myScene = new Scene(pane, 400, 600);

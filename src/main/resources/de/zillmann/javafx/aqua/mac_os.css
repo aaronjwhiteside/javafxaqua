@@ -727,7 +727,7 @@
 .hyperlink {
     -fx-cursor: hand;
     -fx-content-display: LEFT;
-    -fx-text-fill: rgb(94, 162, 218);
+    -fx-text-fill: rgb(94.0, 162.0, 218.0);
 }
 
 .hyperlink:focused, .hyperlink:hover {
@@ -972,7 +972,7 @@
 
 .menu > .right-container > .arrow {
     -fx-padding: 0.38em 0.3em 0.38em 0.267em; 
-    -fx-background-color: rgb(64, 64, 64);
+    -fx-background-color: rgb(64.0, 64.0, 64.0);
     -fx-shape: "M0,-4L4,0L0,4Z";
 }
 
@@ -3061,57 +3061,37 @@
 /* -------------- CODE  FOR THE NON-EDITABLE COMBO-BOX -------------- */
 
 /* ------- MAIN BUTTON ------- */
-.combo-box-base  {
-    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
-    -fx-background-radius: 5.0, 5.0, 4.0, 3.0;
-    -fx-background-insets: 0.0 0.0 -1.0 0.0, 0.0, 1.0, 2.0;
-    -fx-padding: 0.0;
-}
 
-.combo-box-base:hover {
-    -fx-color: -fx-hover-base;
-}
-
-/*------- THIS SPECIFIES THE BUTTON COLOR WHEN THE POPUP MENU IS SHOWING -------*/
-.combo-box-base:showing {
-    -fx-color: -fx-pressed-base;
-}
-
-.combo-box-base:focused {
-    -fx-background-color: -fx-focus-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
-    -fx-background-radius: 6.4, 4.0, 5.0, 3.0;
-    -fx-background-insets: -1.4, 0.0, 1.0, 2.0;
+/* ------- OPEN BUTTON ------- */
+.combo-box-base > .arrow-button {
+    -fx-background-color: 
+        linear-gradient(rgb(155.0, 155.0, 155.0) 0.0%, rgb(172.0, 172.0, 172.0)  100.0%),
+        rgb(255.0, 255.0, 255.0),
+        linear-gradient(rgb(255.0, 255.0, 255.0) 25.0%, rgb(243.0, 243.0, 243.0) 50.0%, rgb(236.0, 236.0, 236.0) 50.0%, rgb(243.0, 243.0, 243.0) 100.0% );
+    -fx-background-insets: 0.5 0.5 0.5 0.0, 1.0 1.5 1.0 0.5, 1.0 2.0 1.0 0.5;
+    -fx-background-radius: 0.0 4.0 4.0 0.0, 0.0 3.0 3.0 0.0;
+    -fx-border-width: 0.5 0.5 0.5 0.0;
+    -fx-border-color: rgb(169.0, 169.0, 169.0) rgb(205.0, 205.0, 205.0) rgb(205.0, 205.0, 205.0) rgb(205.0, 205.0, 205.0);
+    -fx-border-radius: 0.0 4.0 4.0 0.0;
+    -fx-padding: 0.0em 0.4em 0.0em 0.433333em; 
 }
 
 .combo-box-base:disabled {
     -fx-opacity: 0.4;
 }
 
-/* ------- OPEN BUTTON ------- */
-.combo-box-base > .arrow-button {
-    -fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color;
-    -fx-background-insets: 0.0, 1.0, 2.0;
-    -fx-background-radius: 0.0 5.0 5.0 0.0, 0.0 4.0 4.0 0.0, 0.0 3.0 3.0 0.0;
-    -fx-padding: 0.0 0.667em 0.0 0.667em; /* 6 8 6 8 */
-    /*-fx-padding: 0; *//* 6 8 6 8 */
-}
-
-.combo-box-base:hover > .arrow-button {
-    -fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color;
-    -fx-background-insets: 0.0, 1.0, 2.0;
-    -fx-background-radius: 0.0 5.0 5.0 0.0, 0.0 4.0 4.0 0.0, 0.0 3.0 3.0 0.0;
-}
-
 .combo-box-base:showing > .arrow-button {
-    -fx-color: -fx-pressed-base;
+    -fx-background-color: 
+        linear-gradient(rgb(155.0, 155.0, 155.0) 0.0%, rgb(172.0, 172.0, 172.0)  100.0%),
+        linear-gradient(rgb(225.0, 225.0, 225.0) 25.0%, rgb(213.0, 213.0, 213.0) 50.0%, rgb(207.0, 207.0, 207.0) 50.0%, rgb(212.0, 212.0, 212.0) 100.0% );
+    -fx-background-insets: 0.5 0.5 0.5 0.0, 1.0 1.0 1.0 0.5;
 } 
 
-/* ------- ARROW* ------- */
 .combo-box-base > .arrow-button > .arrow,
 .web-view .form-select-button .arrow {
-    -fx-background-insets: 1.0 0.0 -1.0 0.0, 0.0;
-    -fx-background-color: -fx-mark-highlight-color, -fx-mark-color;
-    -fx-padding: 0.166667em 0.333333em 0.166667em 0.333333em; /* 2 4 2 4 */
+    -fx-background-insets: 0.5 0.0 -0.5 0.0, 0.0;
+    -fx-background-color: rgb(255.0, 255.0, 255.0), rgb(71.0, 71.0, 71.0);
+    -fx-padding: 0.2em 0.266667em 0.166667em 0.266667em;
     -fx-shape: "M 0 0 h 7 l -3.5 4 z";
 }
 
@@ -3128,57 +3108,61 @@ all inherit from Menu Control's popup-menu. --- */
 /* -------------- CODE  FOR THE EDITABLE COMBO-BOX -------------- */
 
 /* ------- TEXTBOX SEGMENT OF COMBO BOX ------- */
-/*--- The editable ComboBox TextBox inherits its properties from the TextBox Control.
-Only the properties with values that are different from the TextBox are specified here. ---*/
 
 .combo-box-base:editable > .text-field {
-    -fx-padding: 0.166667em 0.416667em 0.25em 0.416667em; /* 2 5 3 5 */
-    /*-fx-padding: 0px;*/
-    /*-fx-background-color: yellow;*/
-    -fx-background-radius: 4.0 0.0 0.0 4.0, 3.0 0.0 0.0 3.0, 2.0 0.0 0.0 2.0;
-    -fx-background-insets: 0.0 0.0 -1.0 0.0, 0.0, 1.0 0.0 1.0 1.0;
+    -fx-border-color: rgb(169.0, 169.0, 169.0) rgb(205.0, 205.0, 205.0) rgb(205.0, 205.0, 205.0) rgb(205.0, 205.0, 205.0);
+    -fx-border-width: 0.5 0.0 0.5 0.5;
+    -fx-background-color: linear-gradient(rgb(155.0, 155.0, 155.0) 0.0%, rgb(172.0, 172.0, 172.0)  100.0%),
+                        linear-gradient(rgb(224.0, 224.0, 224.0) 0.0%, rgb(255.0, 255.0, 255.0)  10.0%),
+                        linear-gradient(to right, rgb(224.0, 224.0, 224.0) 0.0%, transparent 1.0%);
+    -fx-background-insets: 0.5 0.0 0.5 0.5, 1.0 0.5 1.0 1.0, 1.5 1.0 1.0 1.0;
 }
 
-.combo-box-base:editable:contains-focus {
-    -fx-background-color: -fx-focus-color, -fx-outer-border, -fx-control-inner-background;
-    -fx-background-radius: 5.4, 3.0, 2.0;
-    -fx-background-insets: -1.4, 0.0, 1.0;
-}
 
 /* -------------- STYLES FOR THE DEFAULT LISTVIEW-BASED COMBOBOX ------------- */
 
-/* Customie the ListCell that appears in the ComboBox button itself */
+.combo-box{
+            -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaComboBoxListViewSkin";
+}
+
+/* Customize the ListCell that appears in the ComboBox button itself */
 .combo-box > .list-cell {
-    -fx-background: transparent;
-    -fx-background-color: transparent;
     -fx-text-fill: -fx-text-base-color;
-    -fx-padding: 0.25em 0.0 0.166667em 0.583333em; /* 3 0 2 7 */
-    -fx-cell-size: 1.75em; /* 21 */
+    -fx-padding: 0.12em 0.5em 0.18em 0.583333em;
+    -choice-base: linear-gradient(rgb(255.0, 255.0, 255.0) 25.0%, rgb(243.0, 243.0, 243.0) 50.0%, rgb(236.0, 236.0, 236.0) 50.0%, rgb(243.0, 243.0, 243.0) 100.0% );
+    -fx-border-radius: 4.0 0.0 0.0 4.0;
+    -fx-border-width: 0.5 0.0 0.5 0.5;
+    -fx-border-color: rgb(169.0, 169.0, 169.0) rgb(205.0, 205.0, 205.0) rgb(205.0, 205.0, 205.0) rgb(205.0, 205.0, 205.0);
+    -fx-background-color: linear-gradient(rgb(155.0, 155.0, 155.0) 0.0%, rgb(172.0, 172.0, 172.0)  100.0%),
+        -choice-base;
+    -fx-background-insets: 0.5 0.0 0.5 0.5, 1.0 0.0 1.0 1.0;
+    -fx-background-radius: 4.0 0.0 0.0 4.0, 4.0 0.0 0.0 4.0;
+    -fx-content-display: LEFT;
+}
+
+.combo-box > .list-cell {
+    -fx-opacity: 1.0;
 }
 
 .combo-box-popup > .list-view {
-    -fx-background-color: -fx-box-border, -fx-control-inner-background;
-    -fx-background-insets: 0.0, 1.0;
-    -fx-effect: dropshadow( three-pass-box , rgba(0.0,0.0,0.0,0.6) , 8.0, 0.0 , 0.0 , 0.0 );
+    -fx-background-color: white;
+    -fx-background-insets: 0.5;
+    -fx-background-radius: 0;
+    -fx-border-color:  rgba(0.0,0.0,0.0,0.4);
+    -fx-border-width: 0.5;
+    -fx-effect: dropshadow( three-pass-box , rgba(0.0,0.0,0.0,0.4) , 7.0, 0.0 , 0.0 , 4.0 ); 
 }
 
 .combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell {
     -fx-padding: 4.0 0.0 4.0 5.0;
-    
     /* No alternate highlighting */
-    -fx-background-color: -fx-control-inner-background;
+    -fx-background-color: transparent;
 }
 
 .combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected, 
 .combo-box-popup  > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected:hover {
-    -fx-background: -fx-accent;
-    -fx-background-color: -fx-selection-bar;
-    -fx-text-fill: -fx-selection-bar-text;
-}
-
-.combo-box-popup  > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:hover {
-    -fx-background-color: -fx-cell-hover-color;
-    -fx-text-fill: -fx-text-inner-color;
+    -fx-background-color:  rgb(60, 119, 212);
+    -fx-text-fill: white;
 }
 
 /* -------------------------- STYLES FOR THE COLOR-PICKER CONTROL ----- */

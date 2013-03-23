@@ -1,5 +1,6 @@
 package de.zillmann.javafx.aqua.controls.skin;
 
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
@@ -37,15 +38,16 @@ public class AquaTextFieldSkin extends TextFieldSkin {
         getSkinnable().setEffect(outerFocus);
     }
 
-    @Override
-    protected void handleControlPropertyChanged(String p) {
+    @Override protected void handleControlPropertyChanged(String p) {
         super.handleControlPropertyChanged(p);
 
         if (p == "FOCUSED") {
-            if (getSkinnable().isFocused()) {
-                setFocusBorder();
-            } else {
-                getSkinnable().setEffect(null);
+            if (!(getSkinnable().getParent() instanceof ComboBox)) {
+                if (getSkinnable().isFocused()) {
+                    setFocusBorder();
+                } else {
+                    getSkinnable().setEffect(null);
+                }
             }
         }
     }
