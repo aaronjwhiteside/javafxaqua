@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.ColorPickerBuilder;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ComboBoxBuilder;
 import javafx.scene.control.ContextMenuBuilder;
@@ -28,19 +30,18 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.HBoxBuilder;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.VBoxBuilder;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import de.zillmann.javafx.aqua.AquaFx;
 
 public class ButtonDemo extends Application {
 
-    @Override
-    public void start(Stage stage) throws Exception {
+    @Override public void start(Stage stage) throws Exception {
         BorderPane pane = new BorderPane();
 
         VBox txts = new VBox();
 
-        HBox textfieldBox1 = HBoxBuilder.create().spacing(10)
-                .padding(new Insets(10)).build();
+        HBox textfieldBox1 = HBoxBuilder.create().spacing(10).padding(new Insets(10)).build();
 
         Menu item1 = new Menu("test submenu");
         MenuItem subMenuItem1 = new MenuItem("Sub Menu Item 1");
@@ -49,17 +50,14 @@ public class ButtonDemo extends Application {
         item1.getItems().addAll(subMenuItem1, subMenuItem2, subMenuItem3);
 
         TextField tf1 = new TextField("MACBOOKPRO");
-        tf1.setContextMenu(ContextMenuBuilder.create()
-                .items(new MenuItem("test"), item1, new MenuItem("test"))
-                .build());
+        tf1.setContextMenu(ContextMenuBuilder.create().items(new MenuItem("test"), item1, new MenuItem("test")).build());
         textfieldBox1.getChildren().add(tf1);
 
         TextField tf2 = new TextField();
         textfieldBox1.getChildren().add(tf2);
         txts.getChildren().add(textfieldBox1);
 
-        HBox textfieldBox2 = HBoxBuilder.create().spacing(10)
-                .padding(new Insets(10)).build();
+        HBox textfieldBox2 = HBoxBuilder.create().spacing(10).padding(new Insets(10)).build();
 
         TextField tf3 = new TextField("MACBOOKPRO");
         tf3.setDisable(true);
@@ -71,8 +69,7 @@ public class ButtonDemo extends Application {
         textfieldBox2.getChildren().add(tf4);
         txts.getChildren().add(textfieldBox2);
 
-        HBox textfieldBox3 = HBoxBuilder.create().spacing(10)
-                .padding(new Insets(10)).build();
+        HBox textfieldBox3 = HBoxBuilder.create().spacing(10).padding(new Insets(10)).build();
 
         TextField tf5 = new TextField("MACBOOKPRO");
         tf5.setEditable(false);
@@ -83,8 +80,7 @@ public class ButtonDemo extends Application {
         textfieldBox3.getChildren().add(pw1);
         txts.getChildren().add(textfieldBox3);
 
-        VBox textareaBox = VBoxBuilder.create().spacing(10)
-                .padding(new Insets(10)).build();
+        VBox textareaBox = VBoxBuilder.create().spacing(10).padding(new Insets(10)).build();
         TextArea area = new TextArea();
         area.setPromptText("TextArea promptText");
         area.setPrefWidth(290);
@@ -103,15 +99,13 @@ public class ButtonDemo extends Application {
         txts.getChildren().add(scBar);
 
         Hyperlink link = new Hyperlink("Hyperlink");
-        Hyperlink link2 = HyperlinkBuilder.create().text("disabled Link")
-                .disable(true).build();
+        Hyperlink link2 = HyperlinkBuilder.create().text("disabled Link").disable(true).build();
         txts.getChildren().add(link);
         txts.getChildren().add(link2);
 
         pane.setTop(txts);
 
-        VBox buttonBox = VBoxBuilder.create().padding(new Insets(10))
-                .spacing(10).build();
+        VBox buttonBox = VBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
 
         Button b1 = new Button();
         b1.setText("Default");
@@ -134,8 +128,7 @@ public class ButtonDemo extends Application {
         buttonBox.getChildren().add(b4);
         pane.setLeft(buttonBox);
 
-        VBox radioButtonBox = VBoxBuilder.create().padding(new Insets(10))
-                .spacing(10).build();
+        VBox radioButtonBox = VBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
 
         RadioButton raBu1 = new RadioButton("Normal");
         radioButtonBox.getChildren().add(raBu1);
@@ -154,8 +147,7 @@ public class ButtonDemo extends Application {
         radioButtonBox.getChildren().add(raBu4);
         pane.setCenter(radioButtonBox);
 
-        VBox checkBoxBox = VBoxBuilder.create().padding(new Insets(10))
-                .spacing(10).build();
+        VBox checkBoxBox = VBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
 
         CheckBox box1 = new CheckBox("Normal");
         checkBoxBox.getChildren().add(box1);
@@ -185,59 +177,66 @@ public class ButtonDemo extends Application {
 
         VBox bottomBox = VBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
 
-        HBox toggleButtonBox = HBoxBuilder.create().padding(new Insets(10))
-                .build();
+        HBox toggleButtonBox = HBoxBuilder.create().padding(new Insets(10)).build();
 
         ToggleGroup group = new ToggleGroup();
 
-        ToggleButton tb1 = ToggleButtonBuilder.create().text("First")
-                .toggleGroup(group).selected(true).styleClass("left-pill")
-                .build();
+        ToggleButton tb1 = ToggleButtonBuilder.create().text("First").toggleGroup(group).selected(true).styleClass("left-pill").build();
         toggleButtonBox.getChildren().add(tb1);
 
-        ToggleButton tb2 = ToggleButtonBuilder.create().text("Second")
-                .toggleGroup(group).styleClass("center-pill").build();
+        ToggleButton tb2 = ToggleButtonBuilder.create().text("Second").toggleGroup(group).styleClass("center-pill").build();
         toggleButtonBox.getChildren().add(tb2);
 
-        ToggleButton tb3 = ToggleButtonBuilder.create().text("Third")
-                .toggleGroup(group).styleClass("right-pill").build();
+        ToggleButton tb3 = ToggleButtonBuilder.create().text("Third").toggleGroup(group).styleClass("right-pill").build();
         toggleButtonBox.getChildren().add(tb3);
 
-        ToggleButton tb4 = ToggleButtonBuilder.create().text("Alone")
-                .selected(true).build();
+        ToggleButton tb4 = ToggleButtonBuilder.create().text("Alone").selected(true).build();
         toggleButtonBox.getChildren().add(tb4);
 
         bottomBox.getChildren().add(toggleButtonBox);
 
-        HBox choiceBoxBox = HBoxBuilder.create().padding(new Insets(10)).spacing(10)
-                .build();
+        HBox choiceBoxBox = HBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
 
-        ChoiceBox<String> choices = new ChoiceBox<String>(
-                FXCollections.observableArrayList("4", "10", "12"));
+        ChoiceBox<String> choices = new ChoiceBox<String>(FXCollections.observableArrayList("4", "10", "12"));
         choices.getSelectionModel().selectFirst();
         choiceBoxBox.getChildren().add(choices);
 
-        ChoiceBox<String> choices2 = new ChoiceBox<String>(
-                FXCollections.observableArrayList("A", "B", "C"));
+        ChoiceBox<String> choices2 = new ChoiceBox<String>(FXCollections.observableArrayList("A", "B", "C"));
         choices2.getSelectionModel().selectFirst();
         choices2.setDisable(true);
         choiceBoxBox.getChildren().add(choices2);
         bottomBox.getChildren().add(choiceBoxBox);
 
-        HBox comboBoxBox = HBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
         ObservableList items = FXCollections.observableArrayList("A", "B", "C");
-        ComboBox combo1 = ComboBoxBuilder.create().editable(true).items(items)
-                .build();
-        comboBoxBox.getChildren().add(combo1);
-        ComboBox combo2 = ComboBoxBuilder.create().editable(false).items(items)
-                .promptText("test").build();
-        comboBoxBox.getChildren().add(combo2);
+
+        HBox editableComboBoxBox = HBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
+        ComboBox combo1 = ComboBoxBuilder.create().editable(true).items(items).promptText("test").build();
+        editableComboBoxBox.getChildren().add(combo1);
+        ComboBox combo2 = ComboBoxBuilder.create().editable(true).items(items).promptText("test").disable(true).build();
+        editableComboBoxBox.getChildren().add(combo2);
+
+        bottomBox.getChildren().add(editableComboBoxBox);
+
+        HBox comboBoxBox = HBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
+        ComboBox combo3 = ComboBoxBuilder.create().editable(false).items(items).promptText("test").build();
+        comboBoxBox.getChildren().add(combo3);
+        ComboBox combo4 = ComboBoxBuilder.create().editable(false).items(items).promptText("test").disable(true).build();
+        comboBoxBox.getChildren().add(combo4);
+
+        ColorPicker color = new ColorPicker(Color.rgb(194, 222, 254));
+        comboBoxBox.getChildren().add(color);
+        ColorPicker color2 = new ColorPicker(Color.rgb(194, 222, 254));
+        color2.getStyleClass().add("button");
+        comboBoxBox.getChildren().add(color2);
+        ColorPicker color3 = new ColorPicker(Color.rgb(194, 222, 254));
+        color3.getStyleClass().add("split-button");
+        comboBoxBox.getChildren().add(color3);
 
         bottomBox.getChildren().add(comboBoxBox);
 
         pane.setBottom(bottomBox);
 
-        Scene myScene = new Scene(pane, 400, 600);
+        Scene myScene = new Scene(pane, 500, 650);
         AquaFx.style();
         stage.setScene(myScene);
         stage.show();

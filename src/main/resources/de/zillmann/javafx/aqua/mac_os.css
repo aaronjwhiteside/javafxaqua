@@ -3147,7 +3147,7 @@ all inherit from Menu Control's popup-menu. --- */
 .combo-box-popup > .list-view {
     -fx-background-color: white;
     -fx-background-insets: 0.5;
-    -fx-background-radius: 0;
+    -fx-background-radius: 0.0;
     -fx-border-color:  rgba(0.0,0.0,0.0,0.4);
     -fx-border-width: 0.5;
     -fx-effect: dropshadow( three-pass-box , rgba(0.0,0.0,0.0,0.4) , 7.0, 0.0 , 0.0 , 4.0 ); 
@@ -3161,49 +3161,82 @@ all inherit from Menu Control's popup-menu. --- */
 
 .combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected, 
 .combo-box-popup  > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected:hover {
-    -fx-background-color:  rgb(60, 119, 212);
+    -fx-background-color:  rgb(60.0, 119.0, 212.0);
     -fx-text-fill: white;
 }
 
 /* -------------------------- STYLES FOR THE COLOR-PICKER CONTROL ----- */
 
 .color-picker {
-    -fx-color-rect-width: 0.916667em; /* 11px */
-    -fx-color-rect-height: 0.916667em; /* 11px */
+    -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaColorPickerSkin";
+    
+    -fx-color-rect-width: 1.7em; 
+    -fx-color-rect-height: 0.8em;  
+    
+    -choice-base: linear-gradient(rgb(255.0, 255.0, 255.0) 25.0%, rgb(243.0, 243.0, 243.0) 50.0%, rgb(236.0, 236.0, 236.0) 50.0%, rgb(243.0, 243.0, 243.0) 100.0% );
+    -fx-border-radius: 3.5;
+    -fx-border-width: 0.5;
+    -fx-border-color: rgb(207.0, 207.0, 207.0);
+    
+    -fx-background-color: linear-gradient(rgb(147.0, 147.0, 147.0) 0.0%, rgb(127.0, 127.0, 127.0) 100.0%), -choice-base;
+    -fx-background-insets: 0.5, 1.0;
+    -fx-background-radius: 3.5, 3.5;
+    -fx-padding:0.0 1.2 0.0 0.0;
+    -fx-alignment: CENTER;
+    -fx-content-display: LEFT;
 }
-.color-picker > .arrow-button {
+
+.color-picker > .arrow-button, .color-picker.button > .arrow-button > .arrow {
+  -fx-background-color: null;
+  -fx-border-color: null;
+}
+
+.color-picker.split-button > .arrow-button {
     -fx-background-color: null;
-    -fx-background-insets: 0.0, 1.0, 2.0;
-    -fx-background-radius: 0.0 5.0 5.0 0.0, 0.0 4.0 4.0 0.0, 0.0 3.0 3.0 0.0;
+    -fx-background-insets: 1.0 -1.0 -1.0 0.0;
+    -fx-border-width: 0.0 0.0 0.0 1.0;
+    -fx-border-color: linear-gradient(rgb(155.0, 155.0, 155.0) 0.0%, rgb(172.0, 172.0, 172.0)  100.0%);
+    -fx-border-radius: 0.0 3.5 3.5 0.0;
+    -fx-border-insets: 1.0 -1.0 -1.0 0.0;
 }
 
-.color-picker > .split-button > .arrow-button {
-    -fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color;
-    -fx-background-insets: 0.0, 1.0, 2.0;
-    -fx-background-radius: 0.0 5.0 5.0 0.0, 0.0 4.0 4.0 0.0, 0.0 3.0 3.0 0.0;
-    -fx-padding: 0.5em 0.416667em 0.5em 0.416667em; /* 6 5 6 5 */
+.color-picker.split-button:showing > .arrow-button {
+    -fx-background-color: 
+        linear-gradient(rgb(225.0, 225.0, 225.0) 25.0%, rgb(213.0, 213.0, 213.0) 50.0%, rgb(207.0, 207.0, 207.0) 50.0%, rgb(212.0, 212.0, 212.0) 100.0% );
+    -fx-background-insets: 1.0 -1.0 -1.0 0.0;
+} 
+
+.color-picker.split-button > .arrow-button > .arrow{
+    -fx-background-color: rgb(255.0, 255.0, 255.0), rgb(71.0, 71.0, 71.0);
+    -fx-padding: 0.2em 0.266667em 0.166667em 0.266667em;
+    -fx-shape: "M 0 0 h 7 l -3.5 4 z";
 }
 
-.color-picker:hover {
-    -fx-color: -fx-base;
+.color-picker > .arrow-button > .arrow{
+    -fx-background-color: rgb(110.0, 110.0, 110.0, 0.5), rgb(71.0, 71.0, 71.0);
+    -fx-background-insets: 1.0 -1.0 0.0 0.0, 1.0 0.0 0.0 0.0;
+    -fx-padding: 0.5em 0.18em 0.366667em 0.18em;
+    -fx-shape:  "m 4.5,3.03125 -3.5,5.5 7,0 z m -3.5,10.875 3.5,5.5 3.5,-5.5 z";
 }
 
-.color-picker > .split-button > .arrow-button:hover {
-    -fx-color: -fx-hover-base;
+.color-picker:showing > .arrow-button {
+    -fx-background-color: null
+} 
+
+.color-picker > .color-picker-label{
+    -fx-padding: 0.05em 0.3em 0.21em 0.613em; 
 }
 
-.color-picker > .split-button > .color-picker-label:hover {
-     -fx-color: -fx-hover-base;
+.color-picker > .color-picker-label > .picker-color{
+   /* This is just needed for debugging...
+    * -fx-padding: 0.0em 0.15em 0.0em 0.0em;
+    -fx-background-color: blue; */
 }
 
-.color-picker > .color-picker-label > .picker-color {
-    -fx-padding: 0.416667em 0.333333em 0.416667em 0.333333em; /* 5 4 5 4 */
-    -fx-background-color: null;
-}
 
 .color-picker > .color-picker-label > .picker-color > .picker-color-rect {
-    -fx-stroke: -fx-pressed-base;
-    -fx-stroke-type: inside;
+    -fx-stroke: rgb(141.0, 141.0, 141.0);
+    -fx-stroke-width: 1.0;
 }
 
 .color-palette {
