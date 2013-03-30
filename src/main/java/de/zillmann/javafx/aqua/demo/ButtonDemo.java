@@ -25,6 +25,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleButtonBuilder;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.HBoxBuilder;
@@ -110,6 +111,7 @@ public class ButtonDemo extends Application {
         Button b1 = new Button();
         b1.setText("Default");
         b1.setDefaultButton(true);
+        b1.setTooltip(new Tooltip("This is a ToolTip"));
         buttonBox.getChildren().add(b1);
 
         Button b2 = new Button();
