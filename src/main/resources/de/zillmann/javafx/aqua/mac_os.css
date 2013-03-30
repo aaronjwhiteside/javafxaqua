@@ -1918,22 +1918,27 @@
  ******************************************************************************/
 
 .progress-bar {
+    -fx-border-color: rgb(146, 146, 146);
+    -fx-border-width: 0.5;
+    -fx-border-radius: 2.5;
     -fx-background-color:
-        -fx-box-border,
-        linear-gradient(to bottom, derive(-fx-color,30.0%) 5.0%, derive(-fx-color,-17.0%));
-    -fx-background-insets: 0.0, 1.0;
-    -fx-indeterminate-bar-length: 60.0;
+        linear-gradient(rgb(176, 176, 176), rgb(207, 207, 207)),
+        linear-gradient(rgb(190, 190, 190) 0%, rgb(213, 213, 213) 15%, rgb(230, 230, 230) 50%, rgb(235, 235, 235) 100%),
+        linear-gradient(to left, rgb(196, 196, 196, 0.5) 0%, rgb(220, 220, 220, 0.2) 2% , transparent);
+    -fx-background-insets: 0.5, 1.0, 1.0;
+    -fx-background-radius: 2, 2, 2;
+    -fx-indeterminate-bar-length: 60;
     -fx-indeterminate-bar-escape: true;
     -fx-indeterminate-bar-flip: true;
     -fx-indeterminate-bar-animation-time: 2.0;
 }
 
 .progress-bar > .bar {
+    -fx-border-color:linear-gradient(to bottom, rgb(161, 161, 161), rgb(208, 208, 208));
+    -fx-border-width: 0.0 0.5 0.0 0.0;
     -fx-background-color:
-        -fx-box-border,
-        linear-gradient(to bottom, derive(-fx-accent,95.0%), derive(-fx-accent,10.0%)),
-        linear-gradient(to bottom, derive(-fx-accent,38.0%), -fx-accent);
-    -fx-background-insets: 0.0, 1.0, 2.0;
+      radial-gradient(center 50% 50%, radius 50%, rgb(84, 170, 240), rgb(90, 192, 246));
+    -fx-background-insets: 0.0;
     -fx-padding: 0.416667em; /* 5 */
 }
 
@@ -1942,10 +1947,8 @@
 }
 
 .progress-bar > .track {
-     -fx-background-color:
-        -fx-box-border,
-        linear-gradient(to bottom, derive(-fx-color,-15.0%), derive(-fx-color,2.2%) 20.0%, derive(-fx-color,60.0%));
-    -fx-background-insets:  0.0, 1.0;
+   /*-fx-background-color:red;
+    -fx-background-insets:  0.0; */  
 }
 
 .progress-bar:disabled {
@@ -1959,38 +1962,34 @@
  ******************************************************************************/
 
 .progress-indicator {
-    -fx-indeterminate-segment-count: 8.0;
+    -fx-indeterminate-segment-count: 12.0;
 }
 
 .progress-indicator > .determinate-indicator > .indicator {
     -fx-background-color:
         -fx-box-border,
-        -fx-outer-border,
-        -fx-inner-border,
-        -fx-body-color;
-    -fx-background-insets: 1.0 0.0 -1.0 0.0, 0.0, 1.0, 2.0;
+        linear-gradient(rgb(176, 176, 176), rgb(207, 207, 207)),
+        linear-gradient(rgb(190, 190, 190) 0%, rgb(213, 213, 213) 15%, rgb(230, 230, 230) 50%, rgb(235, 235, 235) 100%),
+        linear-gradient(to left, rgb(196, 196, 196, 0.5) 0%, rgb(220, 220, 220, 0.2) 2% , transparent);
+    -fx-background-insets: 0.5 0.0 -0.5 0.0, 0.0, 0.5, 1.0;
     -fx-padding: 0.083333em; /* 1 */
 }
 
 .progress-indicator > .determinate-indicator > .progress {
     -fx-background-color:
-        linear-gradient(to bottom, derive(-fx-accent,38.0%), derive(-fx-accent,-60.0%)),
-        linear-gradient(to bottom, derive(-fx-accent,20.0%), -fx-accent);
-    -fx-background-insets: 0.0, 1.0;
-    -fx-padding: 0.75em; /* 9 */
+        -fx-box-border,
+       radial-gradient(center 50% 50%, radius 50%, rgb(84, 170, 240), rgb(90, 192, 246));
+    -fx-background-insets: 0.0, 0.5;
+    -fx-padding: 0.166667em; /* 9 */
 }
 
 /* TODO: scaling the shape seems to make it disappear */
 .progress-indicator > .determinate-indicator > .tick {
-    -fx-background-color: -fx-mark-color, white;
+    -fx-background-color: -fx-box-border, white;
     -fx-background-insets: 1.0 0.0 -1.0 0.0, 0.0;
     -fx-padding: 0.416667em; /* 5 */
-    -fx-shape: "M 0,5 L 2.5,5 L 3.7,7.5 L 7.5,0 L 10,0 L 5,10 L 2.5,10 Z";
+    -fx-shape: "m 18.174523,1027.137 c -0.18077,-0.4575 -0.184364,-0.8913 0.115901,-1.1721 0.300265,-0.2809 0.836622,-0.3601 1.288422,-0.041 0.4518,0.3191 2.020453,2.9316 2.020453,2.9316 l 5.41194,-8.0232 c -4e-6,0 0.516257,-0.6671 1.248682,-0.3099 0.648831,0.3165 0.559153,1.0373 0.559153,1.0373 0,0 -5.940433,9.3556 -6.15501,9.6287 -0.214577,0.273 -1.595078,0.2481 -1.817995,-0.027 -0.222917,-0.2751 -2.490777,-3.567 -2.671546,-4.0244 z";
     -fx-scale-shape: false;
-}
-
-.progress-indicator:indeterminate > .spinner {
-    -fx-padding: 0.833333em; /* 10 */
 }
 
 .progress-indicator > .percentage {
@@ -2002,32 +2001,49 @@
     -fx-opacity: -fx-disabled-opacity;
 }
 
+.progress-indicator:indeterminate > .spinner {
+    -fx-padding: 0.083333em; 
+}
+
 .progress-indicator:indeterminate .segment {
-    -fx-background-color: -fx-accent;
+    -fx-background-color: rgb(95, 95, 98), rgb(122, 122, 125);
+    -fx-background-insets:0.0, 0.5;
 }
 .progress-indicator:indeterminate .segment0 {
-    -fx-shape:"M18.191,4.264l-2.457,1.721l0,0C16.559,7.161,17,8.564,17,10h3C20,7.948,19.369,5.946,18.191,4.264z";
+    -fx-shape:"m 14.321262,6.5816808 c -0.824944,0.3797564 -0.10368,1.8484772 0.718513,1.3544717 L 18.786514,5.9486042 C 19.644992,5.4932031 18.92648,4.1387308 18.068001,4.5941315 z";
 }
 .progress-indicator:indeterminate .segment1 {
-    -fx-shape:"M11.736,0.152l-0.521,2.955l0,0c1.416,0.249,2.719,0.928,3.734,1.943l2.122-2.121C15.62,1.478,13.758,0.508,11.736,0.152z";
+    -fx-shape:"m 15.372451,9.2445322 c -0.906719,-0.051108 -0.957826,1.5843588 0,1.5332498 l 4.241273,0 c 0.97179,0 0.97179,-1.5332498 0,-1.5332498 z";
 }
 .progress-indicator:indeterminate .segment2 {
-    -fx-shape:"M10,0C7.947,0,5.945,0.631,4.264,1.809l1.72,2.457l0,0C7.162,3.442,8.563,3,10,3V0z";
+    -fx-shape:"m 14.423504,13.443113 c -0.824945,-0.379757 -0.10368,-1.848478 0.718512,-1.354472 l 3.746739,1.987548 c 0.858478,0.455401 0.139967,1.809873 -0.718512,1.354473 z";
 }
 .progress-indicator:indeterminate .segment3 {
-    -fx-shape:"M2.929,2.929C1.478,4.38,0.508,6.242,0.152,8.264l2.955,0.521l0,0C3.356,7.369,4.035,6.066,5.05,5.05l0,0L2.929,2.929z";
+    -fx-shape:"m 12.10997,15.070611 c -0.49762,-0.759687 0.893182,-1.621681 1.327834,-0.766626 l 2.120636,3.673051 c 0.485895,0.841595 -0.841938,1.60822 -1.327833,0.766625 z";
 }
 .progress-indicator:indeterminate .segment4 {
-    -fx-shape:"M0,10c0,2.052,0.631,4.055,1.809,5.735l2.458-1.721C3.442,12.838,3,11.437,3,10H0z";
+    -fx-shape:"m 9.2224559,19.539943 c -0.051108,0.906718 1.5843581,0.957826 1.5332501,0 l 0,-4.241273 c 0,-0.97179 -1.5332501,-0.97179 -1.5332501,0 z";
 }
 .progress-indicator:indeterminate .segment5 {
-    -fx-shape:"M8.785,16.894c-1.416-0.25-2.719-0.929-3.735-1.944l0,0l-2.122,2.122c1.451,1.45,3.313,2.42,5.335,2.776L8.785,16.894z";
+    -fx-shape:"M 8.0465401,15.070611 C 8.5441601,14.310924 7.1533584,13.44893 6.7187068,14.303985 l -2.1206366,3.673051 c -0.485895,0.841595 0.8419383,1.60822 1.3278333,0.766625 z";
 }
 .progress-indicator:indeterminate .segment6 {
-    -fx-shape:"M14.016,15.734C12.838,16.558,11.437,17,10,17v3c2.053,0,4.055-0.632,5.736-1.809L14.016,15.734z";
+    -fx-shape:"M 5.7330066,13.443113 C 6.5579512,13.063356 5.8366865,11.594635 5.0144939,12.088641 L 1.2677551,14.076189 C 0.409277,14.53159 1.1277888,15.886062 1.9862674,15.430662 z";
 }
 .progress-indicator:indeterminate .segment7 {
-    -fx-shape:"M16.894,11.215c-0.249,1.415-0.929,2.719-1.944,3.734l2.122,2.122c1.45-1.451,2.421-3.314,2.776-5.335L16.894,11.215z";
+    -fx-shape:"m 0.42171041,9.2083842 c -0.90671825,-0.051108 -0.95782608,1.5843588 0,1.5332498 l 4.24127319,0 c 0.9717899,0 0.9717899,-1.5332498 0,-1.5332498 z";
+}
+.progress-indicator:indeterminate .segment8 {
+    -fx-shape:"M 5.7330066,6.5305598 C 6.5579512,6.9103162 5.8366865,8.3790371 5.0144939,7.8850315 L 1.2677551,5.8974832 C 0.409277,5.4420823 1.1277888,4.0876101 1.9862674,4.5430105 z";
+}
+.progress-indicator:indeterminate .segment9 {
+    -fx-shape:"M 8.0465401,4.9030617 C 8.5441601,5.6627485 7.1533584,6.5247425 6.7187068,5.6696872 L 4.5980702,1.9966363 C 4.1121752,1.1550418 5.4400085,0.38841683 5.9259035,1.2300114 z";
+}
+.progress-indicator:indeterminate .segment10 {
+    -fx-shape:"m 9.2224559,4.62535 c -0.051108,0.9067177 1.5843581,0.957826 1.5332501,0 l 0,-4.24127319 c 0,-0.9717899 -1.5332501,-0.9717899 -1.5332501,0 z";
+}
+.progress-indicator:indeterminate .segment11 {
+    -fx-shape:"m 12.007729,4.9541827 c -0.49762,0.7596865 0.893181,1.6216808 1.327833,0.7666252 L 15.456199,2.0477574 C 15.942094,1.2061627 14.61426,0.43953765 14.128365,1.2811324 z";
 }
 
 /*******************************************************************************
@@ -3145,11 +3161,22 @@ all inherit from Menu Control's popup-menu. --- */
 }
 
 .combo-box-popup > .list-view {
+ /*  This should be the non-editable style.. 
+    -fx-background-color:rgb(255.0, 255.0, 255.0, 0.95);
+    -fx-background-radius: 6.0;
+    -fx-background-insets: 0.0;
+    -fx-border-width: 0.5;
+    -fx-border-radius: 6.0;
+    -fx-border-color: rgb(209.0, 209.0, 209.0, 0.4);
+    -fx-padding: 0.25em 0.0em 0.25em 0.0em; */
+    
+    
     -fx-background-color: white;
     -fx-background-insets: 0.5;
     -fx-background-radius: 0.0;
-    -fx-border-color:  rgba(0.0,0.0,0.0,0.4);
-    -fx-border-width: 0.5;
+    -fx-border-color: transparent; /*rgba(0.0,0.0,0.0,0.4);*/
+    -fx-border-insets:-5;
+    -fx-border-width: 5.0 0.5 0.5 0.5;
     -fx-effect: dropshadow( three-pass-box , rgba(0.0,0.0,0.0,0.4) , 7.0, 0.0 , 0.0 , 4.0 ); 
 }
 
@@ -3229,7 +3256,7 @@ all inherit from Menu Control's popup-menu. --- */
 
 .color-picker > .color-picker-label > .picker-color{
    /* This is just needed for debugging...
-    * -fx-padding: 0.0em 0.15em 0.0em 0.0em;
+    -fx-padding: 0.0em 0.15em 0.0em 0.0em;
     -fx-background-color: blue; */
 }
 
@@ -3241,28 +3268,23 @@ all inherit from Menu Control's popup-menu. --- */
 
 .color-palette {
     -fx-spacing: 15.0px;
-     -fx-background-color:
-        derive(-fx-color,-40.0%),
-        derive(-fx-color,100.0%),
-        linear-gradient(to bottom, 
-        derive(-fx-color,100.0%) 0.0%, 
-        derive(-fx-color,50.0%) 12.0%, 
-        derive(-fx-color,65.0%) 88.0%, 
-        derive(-fx-color,23.0%) 100.0%);
-    -fx-background-insets: 0.0, 1.0, 2.0;
-    -fx-background-radius: 0.0 6.0 6.0 6.0, 0.0 5.0 5.0 5.0, 0.0 4.0 4.0 4.0;
+    -fx-background-color:rgb(255.0, 255.0, 255.0, 0.95);
+    -fx-background-radius: 6.0;
+    -fx-border-width: 0.5;
+    -fx-border-radius: 6.0;
+    -fx-border-color: rgb(209.0, 209.0, 209.0, 0.4);
     -fx-padding: 15.0 15.0 15.0 15.0;
     -fx-effect: dropshadow( three-pass-box , rgba(0.0,0.0,0.0,0.6) , 8.0, 0.0 , 0.0 , 0.0 );
 }
 
 .color-palette > .color-picker-grid > .color-square > .color-rect {
-    -fx-stroke: black;
+    -fx-stroke: rgb(141.0, 141.0, 141.0);
     -fx-stroke-width: 0.4;
     -fx-border-color: black;
 }
 
 .color-palette > .color-picker-grid {
-    -fx-border-color: black;
+   /* -fx-border-color: black;*/
 }
 
 .color-palette > .color-picker-grid > .color-square {
