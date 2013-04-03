@@ -488,6 +488,7 @@
     -fx-border-color: rgb(147.0, 147.0, 147.0) rgb(129.0, 129.0, 129.0) rgb(129.0, 129.0, 129.0)
         rgb(203.0, 203.0, 203.0);
 }
+
 .button.right-pill,
 .toggle-button.right-pill {
     -fx-background-radius: 0.0 4.0 4.0 0.0, 0.0 4.0 4.0 0.0;
@@ -1829,7 +1830,7 @@
 
 .tooltip {
     -fx-background-color:
-       rgb(251, 250, 205, 0.95);
+       rgb(251.0, 250.0, 205.0, 0.95);
     -fx-background-insets: 0.5;
     -fx-border-color: rgb(125.0, 125.0, 125.0, 0.4);
     -fx-border-width: 0.5;
@@ -1918,26 +1919,26 @@
  ******************************************************************************/
 
 .progress-bar {
-    -fx-border-color: rgb(146, 146, 146);
+    -fx-border-color: rgb(146.0, 146.0, 146.0);
     -fx-border-width: 0.5;
     -fx-border-radius: 2.5;
     -fx-background-color:
-        linear-gradient(rgb(176, 176, 176), rgb(207, 207, 207)),
-        linear-gradient(rgb(190, 190, 190) 0%, rgb(213, 213, 213) 15%, rgb(230, 230, 230) 50%, rgb(235, 235, 235) 100%),
-        linear-gradient(to left, rgb(196, 196, 196, 0.5) 0%, rgb(220, 220, 220, 0.2) 2% , transparent);
+        linear-gradient(rgb(176.0, 176.0, 176.0), rgb(207.0, 207.0, 207.0)),
+        linear-gradient(rgb(190.0, 190.0, 190.0) 0.0%, rgb(213.0, 213.0, 213.0) 15.0%, rgb(230.0, 230.0, 230.0) 50.0%, rgb(235.0, 235.0, 235.0) 100.0%),
+        linear-gradient(to left, rgb(196.0, 196.0, 196.0, 0.5) 0.0%, rgb(220.0, 220.0, 220.0, 0.2) 2.0% , transparent);
     -fx-background-insets: 0.5, 1.0, 1.0;
-    -fx-background-radius: 2, 2, 2;
-    -fx-indeterminate-bar-length: 60;
+    -fx-background-radius: 2.0, 2.0, 2.0;
+    -fx-indeterminate-bar-length: 60.0;
     -fx-indeterminate-bar-escape: true;
     -fx-indeterminate-bar-flip: true;
     -fx-indeterminate-bar-animation-time: 2.0;
 }
 
 .progress-bar > .bar {
-    -fx-border-color:linear-gradient(to bottom, rgb(161, 161, 161), rgb(208, 208, 208));
+    -fx-border-color:linear-gradient(to bottom, rgb(161.0, 161.0, 161.0), rgb(208.0, 208.0, 208.0));
     -fx-border-width: 0.0 0.5 0.0 0.0;
     -fx-background-color:
-      radial-gradient(center 50% 50%, radius 50%, rgb(84, 170, 240), rgb(90, 192, 246));
+      radial-gradient(center 50.0% 50.0%, radius 50.0%, rgb(84.0, 170.0, 240.0), rgb(90.0, 192.0, 246.0));
     -fx-background-insets: 0.0;
     -fx-padding: 0.416667em; /* 5 */
 }
@@ -1968,9 +1969,9 @@
 .progress-indicator > .determinate-indicator > .indicator {
     -fx-background-color:
         -fx-box-border,
-        linear-gradient(rgb(176, 176, 176), rgb(207, 207, 207)),
-        linear-gradient(rgb(190, 190, 190) 0%, rgb(213, 213, 213) 15%, rgb(230, 230, 230) 50%, rgb(235, 235, 235) 100%),
-        linear-gradient(to left, rgb(196, 196, 196, 0.5) 0%, rgb(220, 220, 220, 0.2) 2% , transparent);
+        linear-gradient(rgb(176.0, 176.0, 176.0), rgb(207.0, 207.0, 207.0)),
+        linear-gradient(rgb(190.0, 190.0, 190.0) 0.0%, rgb(213.0, 213.0, 213.0) 15.0%, rgb(230.0, 230.0, 230.0) 50.0%, rgb(235.0, 235.0, 235.0) 100.0%),
+        linear-gradient(to left, rgb(196.0, 196.0, 196.0, 0.5) 0.0%, rgb(220.0, 220.0, 220.0, 0.2) 2.0% , transparent);
     -fx-background-insets: 0.5 0.0 -0.5 0.0, 0.0, 0.5, 1.0;
     -fx-padding: 0.083333em; /* 1 */
 }
@@ -1978,7 +1979,7 @@
 .progress-indicator > .determinate-indicator > .progress {
     -fx-background-color:
         -fx-box-border,
-       radial-gradient(center 50% 50%, radius 50%, rgb(84, 170, 240), rgb(90, 192, 246));
+       radial-gradient(center 50.0% 50.0%, radius 50.0%, rgb(84.0, 170.0, 240.0), rgb(90.0, 192.0, 246.0));
     -fx-background-insets: 0.0, 0.5;
     -fx-padding: 0.166667em; /* 9 */
 }
@@ -2006,7 +2007,7 @@
 }
 
 .progress-indicator:indeterminate .segment {
-    -fx-background-color: rgb(95, 95, 98), rgb(122, 122, 125);
+    -fx-background-color: rgb(95.0, 95.0, 98.0), rgb(122.0, 122.0, 125.0);
     -fx-background-insets:0.0, 0.5;
 }
 .progress-indicator:indeterminate .segment0 {
@@ -2604,117 +2605,124 @@
  ******************************************************************************/
 
 .tab-pane {
-    /* -fx-tab-min-width: 4.583em;  55 */
-    /* -fx-tab-max-width: 4.583em; 55 */
-    -fx-tab-min-height: 1.75em; /* 21 */
-    -fx-tab-max-height: 1.75em; /* 21 */
+    -fx-skin: 'de.zillmann.javafx.aqua.controls.skin.AquaTabPaneSkin';
+    -fx-padding: 1.0em;
 }
+
+.tab-pane > .tab-content-area {
+    -fx-border-color: rgb(193.0, 193.0, 193.0);
+    -fx-background-color: rgb(227.0, 227.0, 227.0),
+        linear-gradient(to right, rgb(193.0, 193.0, 193.0, 0.5) 0%, transparent 0.4%, transparent 99.6%, rgb(193.0, 193.0, 193.0, 0.5));    
+            -fx-alignment: center;
+        
+}
+
+.tab-pane:top > .tab-content-area{
+    -fx-border-width: 0.0 0.5 0.5 0.5;
+    -fx-border-radius: 0.0 0.0 6.0 6.0;
+    -fx-background-radius: 0.0 0.0 6.0 6.0;
+    -fx-background-insets: 0.0;
+}
+
+.tab-pane:right > .tab-content-area{
+    -fx-border-width: 0.5 0.0 0.5 0.5;
+    -fx-border-radius: 6.0 0.0 0.0 6.0;
+    -fx-background-radius: 6.0 0.0 0.0 6.0;
+}
+
+.tab-pane:bottom > .tab-content-area{
+    -fx-border-width: 0.5 0.5 0.0 0.5;
+    -fx-border-radius: 6.0 6.0 0.0 0.0;
+    -fx-background-radius: 6.0 6.0 0.0 0.0;    
+}
+
+.tab-pane:left > .tab-content-area{
+    -fx-border-width: 0.5 0.5 0.5 0.0;
+    -fx-border-radius: 0.0 6.0 6.0 0.0;
+    -fx-background-radius: 0.0 6.0 6.0 0.0;
+}
+
 
 .tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {
     -fx-background-color: transparent;    
     -fx-alignment: CENTER;
     -fx-text-fill: -fx-text-base-color;
 }
-/*
-.tab *.tab-label Text {
-    -fx-effect: dropshadow(two-pass-box , rgba(255, 255, 255, 0.4), 1, 0.0 , 0, 1);
-}*/
 
-.tab-pane > .tab-content-area {
-    -fx-background-color: -fx-control-inner-background;
-    -fx-padding: 0.0em; /* 0 */
-    /* -fx-opacity: -fx-disabled-opacity;*/
-}
 
 .tab-pane > .tab-header-area > .headers-region > .tab {
-    /* This is how it is done in Button, but the -1 inset caused a white line  */
-    /* to appear beneath the tab, which looks bad, so it's taken out below.    */
-/*    -fx-background-color: -fx-shadow-highlight-color, -fx-tab-border-color, -fx-inner-border, -fx-body-color;
-    -fx-background-radius: 5 5 0 0, 5 5 0 0, 4 4 0 0, 3 3 0 0;
-    -fx-background-insets: 0 0 -1 0, 0, 1, 2;*/
-    /*-fx-background-insets: 0, 1, 2;*/
-    -fx-background-insets: 0.0 1.0 1.0 0.0, 1.0 2.0 1.0 1.0, 2.0 3.0 1.0 2.0;
-    -fx-background-radius: 5.0 5.0 0.0 0.0, 4.0 4.0 0.0 0.0, 3.0 3.0 0.0 0.0;
-    -fx-padding: 0.083333em 0.5em 0.083333em 0.5em; /* 1 6 1 6 */
-/*    -fx-text-fill: -fx-text-base-color;*/
+    -fx-background-color: rgb(255.0, 255.0, 255.0),
+        linear-gradient(rgb(255.0, 255.0, 255.0) 25.0%, rgb(243.0, 243.0, 243.0) 50.0%, rgb(236.0, 236.0, 236.0) 50.0%, rgb(243.0, 243.0, 243.0) 100.0% );
+    /*-fx-background-insets:  0.0, 1.0;
+    -fx-background-radius: 4.0, 4.0;
+    -fx-border-radius: 4.0;
+    -fx-border-width: 0.5;
+    -fx-border-color: rgb(147.0, 147.0, 147.0) rgb(129.0, 129.0, 129.0) rgb(129.0, 129.0, 129.0) rgb(129.0, 129.0, 129.0);*/
+    -fx-padding: 0.07em 0.85em 0.1em 0.85em;
+    
+    -fx-text-fill: -fx-text-base-color;
+    -fx-alignment: CENTER;
+    -fx-content-display: LEFT;
+    
+    
+        -fx-background-radius: 0.0, 0.0;
+    -fx-background-insets:  0.0, 1.0 0.0 0.0 0.0;
+    -fx-border-radius: 0.0;
+    -fx-border-width:0.5 0.0 0.5 1.0;
+    -fx-border-style: solid solid solid segments(15.0, 2.5) phase 15.0 ;
+    -fx-border-color: rgb(147.0, 147.0, 147.0) rgb(129.0, 129.0, 129.0) rgb(129.0, 129.0, 129.0) rgb(203.0, 203.0, 203.0);
 }
 
-.tab-pane > .tab-header-area > .headers-region > .tab:top {
-    -fx-background-color: -fx-tab-border-color, -fx-inner-border, -fx-body-color;
+
+.tab-pane > .tab-header-area > .headers-region > .first-tab{
+    -fx-background-radius: 4.0 0.0 0.0 4.0, 4.0 0.0 0.0 4.0;
+    -fx-background-insets:  0.0, 1.0 0.0 0.0 1.0;
+    -fx-border-radius: 4.0 0.0 0.0 4.0;
+    -fx-border-width:0.5 0.0 0.5 0.5;
+    -fx-border-style: solid;
+    -fx-border-color: rgb(147.0, 147.0, 147.0) rgb(129.0, 129.0, 129.0) rgb(129.0, 129.0, 129.0) rgb(129.0, 129.0, 129.0);
 }
 
-.tab-pane > .tab-header-area > .headers-region > .tab:right {
-    -fx-background-color: -fx-tab-border-color, -fx-inner-border-bottomup, -fx-body-color-bottomup;
+.tab-pane > .tab-header-area > .headers-region > .last-tab{
+    -fx-background-radius: 0.0 4.0 4.0 0.0, 0.0 4.0 4.0 0.0;
+    -fx-background-insets:  0.0, 1.0 1.0 0.0 0.0;
+    -fx-border-radius: 0.0 4.0 4.0 0.0;
+    -fx-border-width:0.5 0.5 0.5 1.0;
+    -fx-border-style: solid solid solid segments(15.0, 2.25) phase 15.0 centered;
+    -fx-border-color: rgb(147.0, 147.0, 147.0) rgb(129.0, 129.0, 129.0) rgb(129.0, 129.0, 129.0) rgb(203.0, 203.0, 203.0);
 }
 
-.tab-pane > .tab-header-area > .headers-region > .tab:bottom {
-    -fx-background-color: -fx-tab-border-color, -fx-inner-border-bottomup, -fx-body-color-bottomup;
-}
-
-.tab-pane > .tab-header-area > .headers-region > .tab:left {
-    -fx-background-color: -fx-tab-border-color, -fx-inner-border, -fx-body-color;
-}
-
-.tab-pane > .tab-header-area > .headers-region > .tab:hover {
+.tab-pane > .tab-header-area > .headers-region > .tab:armed {
     -fx-color: -fx-hover-base;
 }
 
 .tab-pane > .tab-header-area > .headers-region > .tab:selected {
-/*    -fx-background-color: white;*/
-
-/*    -fx-background-color: -fx-tab-border-color, -fx-inner-border, -fx-body-color;
-    -fx-background-radius: 5 5 0 0, 4 4 0 0, 3 3 0 0;
-    -fx-background-insets: 0, 1 1 0 1, 2 2 0 2;*/
-    -fx-background-color: -fx-tab-border-color, -fx-control-inner-background;
+/*    -fx-background-color: -fx-tab-border-color, -fx-control-inner-background;
     -fx-background-insets: 0.0 1.0 0.0 0.0, 1.0 2.0 0.0 1.0;
-    -fx-background-radius: 5.0 5.0 0.0 0.0, 4.0 4.0 0.0 0.0;
-}
-
-.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
-    -fx-border-style: segments(0.166667em, 0.166667em);
-    -fx-border-width: 1.0;
-    -fx-border-color: -fx-focus-color;
+    -fx-background-radius: 5.0 5.0 0.0 0.0, 4.0 4.0 0.0 0.0; */
 }
 
 .tab-pane > .tab-header-area > .headers-region > .tab:disabled {
     -fx-opacity: -fx-disabled-opacity;
 }
 
-.tab-pane > .tab-header-area > .headers-region > .tab:disabled:hover {
-    -fx-color: -fx-base;
-    -fx-opacity: -fx-disabled-opacity;
+.tab-pane:top > .tab-header-area{
+      /*  -fx-padding: 0 0.0 0.0 2.0em;
+  just for debugging */  
 }
 
-.tab-pane > .tab-header-area > .tab-header-background {
-    -fx-background-color: -fx-outer-border, -fx-inner-border, derive(-fx-color, -20.0%);
-    -fx-effect: innershadow(two-pass-box , rgba(0.0,0.0,0.0,0.6) , 4.0, 0.0 , 0.0 , 0.0);
+.tab-pane:top > .tab-header-area > .tab-header-background {
+    -fx-background-color: transparent, rgb(227.0, 227.0, 227.0);
+    -fx-background-insets: 0.0, 9.0 0.0 0.0 0.0;
+    -fx-background-radius: 0.0, 6.0 6.0 0.0 0.0;
+    -fx-border-color: transparent, rgb(193.0, 193.0, 193.0);
+    -fx-border-width: 0.0, 0.5 0.5 0.0 0.5;
+    -fx-border-radius: 0.0, 6.0 6.0 0.0 0.0;
+    -fx-border-insets: 0.0, 9.0 0.0 0.0 0.0;
+    -fx-effect: innershadow(one-pass-box, rgb(193.0, 193.0, 193.0, 0.6), 6.0, 0.6, 0.0, 2.0);
 }
 
-/*.tab-pane *.tab-header-area {*/
-    /* I would like to use -fx-tab-border-color here, but for some reason it */
-    /* just isn't the correct color, even though it works in :top above */
-/*    -fx-background-color: -fx-tab-border-color, lightgray;*/
-/*}*/
 
-.tab-pane:top > .tab-header-area {
-    -fx-background-insets: 0.0, 0.0 0.0 1.0 0.0;
-    -fx-padding: 0.416667em 0.166667em 0.0em 0.833em; /* 5 2 0 10 */
-}
-
-.tab-pane:bottom > .tab-header-area {
-    -fx-background-insets: 0.0, 1.0 0.0 0.0 0.0;
-    -fx-padding: 0.0 0.166667em 0.416667em 0.833em; /* 0 2 5 0 */
-}
-
-.tab-pane:left > .tab-header-area {
-    -fx-background-insets: 0.0, 0.0 1.0 0.0 0.0;
-    -fx-padding: 0.833em 0.0em 0.166667em 0.416667em; /* 10 0 2 5 */
-}
-
-.tab-pane:right > .tab-header-area {
-    -fx-background-insets: 0.0, 0.0 0.0 0.0 1.0;
-    -fx-padding: 0.833em 0.416667em 0.166667em 0.0em; /* 10 5 2 0 */
-}
 
 /* TODO: scaling the shape seems to make it way too large */
 .tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-close-button {
@@ -2741,7 +2749,7 @@
     -fx-padding: 0.0em 0.416667em 0.0em 0.416667em; /* 0 5 0 5 */
 }
 
-.tab-pane > .tab-header-area > .control-buttons-tab > .container > .tab-down-button:hover {
+.tab-pane > .tab-header-area > .control-buttons-tab > .container > .tab-down-button:armed {
     -fx-background-color: -fx-body-color;
     -fx-color: -fx-hover-base;
 }
@@ -2752,42 +2760,6 @@
     -fx-padding: 0.238083em 0.416667em 0.238083em 0.416667em; /* 2.857 5 2.857 5 */
     -fx-shape: "M 0 0 H 7 L 3.5 4 z";
 }
-
-/* FLOATING TABS CUSTOMISATION */
-.tab-pane.floating > .tab-header-area > .tab-header-background {
-    -fx-background-color: null;
-}
-
-.tab-pane.floating > .tab-header-area {
-    -fx-background-color: null;
-}
-
-.tab-pane.floating > .tab-content-area {
-    -fx-background-color: -fx-tab-border-color, -fx-control-inner-background;
-    -fx-background-insets: 0.0, 1.0;
-    -fx-background-radius: 5.0, 4.0;
-    -fx-padding: 2.0;
-}
-
-.tab-pane.floating > .tab-header-area > .headers-region > .tab {
-    -fx-background-color: -fx-tab-border-color, -fx-inner-border, -fx-body-color;
-    -fx-background-insets: 0.0 1.0 1.0 0.0, 1.0 2.0 1.0 1.0, 2.0 3.0 1.0 2.0;
-    -fx-background-radius: 5.0 5.0 0.0 0.0, 4.0 4.0 0.0 0.0, 3.0 3.0 0.0 0.0;
-}
-
-.tab-pane.floating  > .tab-header-area > .headers-region > .tab:selected {
-    -fx-background-color: -fx-tab-border-color, -fx-control-inner-background;
-    -fx-background-insets: 0.0 1.0 -1.0 0.0, 1.0 2.0 -1.0 1.0;
-    -fx-background-radius: 5.0 5.0 0.0 0.0, 4.0 4.0 0.0 0.0;
-}
-
-/*.tab-pane:floating *.control-buttons-tab {
-    -fx-padding: 0.083333em 0.25em 0.083333em 0.25em;
-    -fx-background-color: -fx-tab-border-color, -fx-inner-border, -fx-body-color;
-    -fx-background-radius: 5 5 0 0, 4 4 0 0, 3 3 0 0;
-    -fx-background-insets: 0, 1 1 0 1, 2 2 0 2;
-}*/
-
 
 
 
@@ -3161,22 +3133,12 @@ all inherit from Menu Control's popup-menu. --- */
 }
 
 .combo-box-popup > .list-view {
- /*  This should be the non-editable style.. 
-    -fx-background-color:rgb(255.0, 255.0, 255.0, 0.95);
-    -fx-background-radius: 6.0;
-    -fx-background-insets: 0.0;
-    -fx-border-width: 0.5;
-    -fx-border-radius: 6.0;
-    -fx-border-color: rgb(209.0, 209.0, 209.0, 0.4);
-    -fx-padding: 0.25em 0.0em 0.25em 0.0em; */
-    
-    
     -fx-background-color: white;
-    -fx-background-insets: 0.5;
+    -fx-background-insets: 0.0;
     -fx-background-radius: 0.0;
-    -fx-border-color: transparent; /*rgba(0.0,0.0,0.0,0.4);*/
-    -fx-border-insets:-5;
-    -fx-border-width: 5.0 0.5 0.5 0.5;
+    -fx-border-color: rgba(0.0,0.0,0.0,0.4);
+    -fx-border-insets: 0.0;
+    -fx-border-width: 0.5;
     -fx-effect: dropshadow( three-pass-box , rgba(0.0,0.0,0.0,0.4) , 7.0, 0.0 , 0.0 , 4.0 ); 
 }
 
