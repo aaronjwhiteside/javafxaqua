@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Side;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -44,12 +45,10 @@ public class ButtonDemo extends Application {
 
     @Override public void start(Stage stage) throws Exception {
         BorderPane pane = new BorderPane();
-
-        /**
-         * TabPane 1
-         */
+       
+        VBox topPane = VBoxBuilder.create().spacing(10).padding(new Insets(10)).build();
         TabPane tabPane = new TabPane();
-        // tabPane.getStyleClass().add("floating");
+        tabPane.setSide(Side.BOTTOM);
         Tab tabTextfield = new Tab();
         tabTextfield.setText("Textfield");
         VBox txts = new VBox();
@@ -119,7 +118,7 @@ public class ButtonDemo extends Application {
 
         tabC.setContent(hyperlinks);
         tabPane.getTabs().add(tabC);
-        
+
         Tab tabChoiceBox = new Tab();
         tabChoiceBox.setText("ChoiceBox");
         HBox choiceBoxBox = HBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
@@ -137,7 +136,7 @@ public class ButtonDemo extends Application {
 
         Tab tabComboBox = new Tab();
         tabComboBox.setText("ComboBox");
-        
+
         VBox comboVBox = VBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
         ObservableList items = FXCollections.observableArrayList("A", "B", "C");
         HBox editableComboBoxBox = HBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
@@ -158,7 +157,7 @@ public class ButtonDemo extends Application {
 
         Tab tabColorPickerBox = new Tab();
         tabColorPickerBox.setText("ColorPicker");
-        
+
         HBox colorPickerBox = HBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
         ColorPicker color = new ColorPicker(Color.rgb(194, 222, 254));
         colorPickerBox.getChildren().add(color);
@@ -168,15 +167,16 @@ public class ButtonDemo extends Application {
         ColorPicker color3 = new ColorPicker(Color.rgb(194, 222, 254));
         color3.getStyleClass().add("split-button");
         colorPickerBox.getChildren().add(color3);
-        
+
         tabColorPickerBox.setContent(colorPickerBox);
         tabPane.getTabs().add(tabColorPickerBox);
-        
-        pane.setTop(tabPane);
+        topPane.getChildren().add(tabPane);
+        pane.setTop(topPane);
 
         /**
          * TabPane 2
          */
+        VBox centerPane = VBoxBuilder.create().spacing(10).padding(new Insets(10)).build();
         TabPane buttonTabPane = new TabPane();
 
         // Create Tabs
@@ -287,22 +287,22 @@ public class ButtonDemo extends Application {
 
         tabG.setContent(togglesBox);
         buttonTabPane.getTabs().add(tabG);
-        
+
         Tab tabH = new Tab();
         tabH.setText("Progress");
-        
-        final Float[] values = new Float[] {-1.0f, 0f, 0.6f, 1.0f};
+
+        final Float[] values = new Float[] { -1.0f, 0f, 0.6f, 1.0f };
         final ProgressBar[] pbs = new ProgressBar[values.length];
         final ProgressIndicator[] pins = new ProgressIndicator[values.length];
-        final HBox hbs [] = new HBox [values.length];
+        final HBox hbs[] = new HBox[values.length];
         for (int i = 0; i < values.length; i++) {
             final Label label = new Label();
             label.setText("progress: " + values[i]);
             label.setPrefWidth(100d);
- 
+
             final ProgressBar pb = pbs[i] = new ProgressBar();
             pb.setProgress(values[i]);
- 
+
             final ProgressIndicator pin = pins[i] = new ProgressIndicator();
             pin.setProgress(values[i]);
             final HBox hb = hbs[i] = new HBox();
@@ -310,7 +310,7 @@ public class ButtonDemo extends Application {
             hb.setAlignment(Pos.CENTER_LEFT);
             hb.getChildren().addAll(label, pb, pin);
         }
- 
+
         final VBox vb = new VBox();
         vb.setSpacing(5);
         vb.setPadding(new Insets(10));
@@ -318,8 +318,8 @@ public class ButtonDemo extends Application {
         tabH.setContent(vb);
 
         buttonTabPane.getTabs().add(tabH);
-        pane.setCenter(buttonTabPane);
-
+        centerPane.getChildren().add(buttonTabPane);
+        pane.setCenter(centerPane);
 
         Scene myScene = new Scene(pane, 650, 500);
         AquaFx.style();
