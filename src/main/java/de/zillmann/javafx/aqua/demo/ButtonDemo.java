@@ -3,6 +3,8 @@ package de.zillmann.javafx.aqua.demo;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Side;
@@ -42,13 +44,17 @@ import javafx.stage.Stage;
 import de.zillmann.javafx.aqua.AquaFx;
 
 public class ButtonDemo extends Application {
+    final Tab tabH = new Tab();
+    final Tab tabI = new Tab();
+
+
 
     @Override public void start(Stage stage) throws Exception {
         BorderPane pane = new BorderPane();
        
         VBox topPane = VBoxBuilder.create().spacing(10).padding(new Insets(10)).build();
         TabPane tabPane = new TabPane();
-        tabPane.setSide(Side.BOTTOM);
+//        tabPane.setSide(Side.RIGHT);
         Tab tabTextfield = new Tab();
         tabTextfield.setText("Textfield");
         VBox txts = new VBox();
@@ -185,9 +191,16 @@ public class ButtonDemo extends Application {
 
         VBox buttonBox = VBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
         Button b1 = new Button();
-        b1.setText("Default");
+        b1.setText("Default (push to enable Tab 'Progress')");
         b1.setDefaultButton(true);
         b1.setTooltip(new Tooltip("This is a ToolTip"));
+        b1.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override public void handle(ActionEvent event) {
+                tabI.setDisable(false);
+                tabH.setDisable(false);
+            }
+        });
         buttonBox.getChildren().add(b1);
         Button b2 = new Button();
         b2.setText("Default");
@@ -195,7 +208,13 @@ public class ButtonDemo extends Application {
         b2.setDefaultButton(true);
         buttonBox.getChildren().add(b2);
         Button b3 = new Button();
-        b3.setText("Normal");
+        b3.setText("Normal (push to disable Tab 'Progress')");
+        b3.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override public void handle(ActionEvent event) {
+                tabH.setDisable(true);
+            }
+        });
         buttonBox.getChildren().add(b3);
         Button b4 = new Button();
         b4.setText("Normal");
@@ -288,7 +307,7 @@ public class ButtonDemo extends Application {
         tabG.setContent(togglesBox);
         buttonTabPane.getTabs().add(tabG);
 
-        Tab tabH = new Tab();
+//        Tab tabH = new Tab();
         tabH.setText("Progress");
 
         final Float[] values = new Float[] { -1.0f, 0f, 0.6f, 1.0f };
@@ -316,10 +335,20 @@ public class ButtonDemo extends Application {
         vb.setPadding(new Insets(10));
         vb.getChildren().addAll(hbs);
         tabH.setContent(vb);
-
         buttonTabPane.getTabs().add(tabH);
+
+        tabI.setText("Disabled Tab");
+        tabI.setDisable(true);
+        buttonTabPane.getTabs().add(tabI);
+        
         centerPane.getChildren().add(buttonTabPane);
         pane.setCenter(centerPane);
+        
+        
+        TabPane bottomPane = new TabPane(); 
+        Tab onlyTab = new Tab("single tab");
+        bottomPane.getTabs().add(onlyTab); 
+        pane.setBottom(bottomPane); 
 
         Scene myScene = new Scene(pane, 650, 500);
         AquaFx.style();

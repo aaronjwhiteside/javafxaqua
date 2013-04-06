@@ -80,7 +80,7 @@ public class AquaToggleButtonSkin extends ToggleButtonSkin {
     }
 
     private void adjustToggleGroupBorders() {
-        if (getSkinnable().isSelected() && getSkinnable().isSelected()
+        if (getSkinnable().isSelected()
                 && getSkinnable().getToggleGroup() != null) {
             List<Toggle> toggles = getSkinnable().getToggleGroup().getToggles();
             int i = toggles.indexOf(getSkinnable().getToggleGroup()
