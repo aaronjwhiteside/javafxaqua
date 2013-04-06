@@ -47,14 +47,12 @@ public class ButtonDemo extends Application {
     final Tab tabH = new Tab();
     final Tab tabI = new Tab();
 
-
-
     @Override public void start(Stage stage) throws Exception {
         BorderPane pane = new BorderPane();
-       
+
         VBox topPane = VBoxBuilder.create().spacing(10).padding(new Insets(10)).build();
         TabPane tabPane = new TabPane();
-//        tabPane.setSide(Side.RIGHT);
+        // tabPane.setSide(Side.RIGHT);
         Tab tabTextfield = new Tab();
         tabTextfield.setText("Textfield");
         VBox txts = new VBox();
@@ -195,7 +193,7 @@ public class ButtonDemo extends Application {
         b1.setDefaultButton(true);
         b1.setTooltip(new Tooltip("This is a ToolTip"));
         b1.setOnAction(new EventHandler<ActionEvent>() {
-            
+
             @Override public void handle(ActionEvent event) {
                 tabI.setDisable(false);
                 tabH.setDisable(false);
@@ -210,7 +208,7 @@ public class ButtonDemo extends Application {
         Button b3 = new Button();
         b3.setText("Normal (push to disable Tab 'Progress')");
         b3.setOnAction(new EventHandler<ActionEvent>() {
-            
+
             @Override public void handle(ActionEvent event) {
                 tabH.setDisable(true);
             }
@@ -265,6 +263,7 @@ public class ButtonDemo extends Application {
         checkBoxBox.getChildren().add(box6);
         tabF.setContent(checkBoxBox);
         buttonTabPane.getTabs().add(tabF);
+        buttonTabPane.getSelectionModel().select(tabF);
 
         Tab tabG = new Tab();
         tabG.setText("Toggles & Pills");
@@ -307,7 +306,7 @@ public class ButtonDemo extends Application {
         tabG.setContent(togglesBox);
         buttonTabPane.getTabs().add(tabG);
 
-//        Tab tabH = new Tab();
+        // Tab tabH = new Tab();
         tabH.setText("Progress");
 
         final Float[] values = new Float[] { -1.0f, 0f, 0.6f, 1.0f };
@@ -340,15 +339,14 @@ public class ButtonDemo extends Application {
         tabI.setText("Disabled Tab");
         tabI.setDisable(true);
         buttonTabPane.getTabs().add(tabI);
-        
+
         centerPane.getChildren().add(buttonTabPane);
         pane.setCenter(centerPane);
-        
-        
-        TabPane bottomPane = new TabPane(); 
+
+        TabPane bottomPane = new TabPane();
         Tab onlyTab = new Tab("single tab");
-        bottomPane.getTabs().add(onlyTab); 
-        pane.setBottom(bottomPane); 
+        bottomPane.getTabs().add(onlyTab);
+        pane.setBottom(bottomPane);
 
         Scene myScene = new Scene(pane, 650, 500);
         AquaFx.style();

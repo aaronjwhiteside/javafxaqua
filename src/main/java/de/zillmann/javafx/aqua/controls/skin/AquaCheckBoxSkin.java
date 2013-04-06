@@ -36,15 +36,7 @@ public class AquaCheckBoxSkin extends CheckBoxSkin {
                             for (int i = 0; i < getChildren().size(); i++) {
                                 Node child = getChildren().get(i);
                                 if (child.getStyleClass().get(0).equals("box")) {
-                                    child.setStyle("   -fx-border-radius: 2.5;"
-                                            + "-fx-border-width: 0.5;"
-                                            + "-fx-border-color: rgb(129, 129, 129);"
-                                            + "-fx-background-color: rgb(250, 250, 250),"
-                                            + "	linear-gradient(rgb(255, 255, 255) 0%, rgb(253,253,253) 25%,  "
-                                            + "	rgb(244, 244, 244) 50%, rgb(236, 236, 236) 51%, rgb(243, 243, 243) 100% );"
-                                            + "-fx-background-insets: 0, 1;"
-                                            + "-fx-background-radius: 2.5, 2.5;"
-                                            + "-fx-padding: 6;");
+                                    child.getStyleClass().add("unfocused");
                                 }
                             }
                         }
@@ -52,7 +44,7 @@ public class AquaCheckBoxSkin extends CheckBoxSkin {
                         for (int i = 0; i < getChildren().size(); i++) {
                             Node child = getChildren().get(i);
                             if (child.getStyleClass().get(0).equals("box")) {
-                                child.setStyle(null);
+                                child.getStyleClass().remove("unfocused");
                             }
                         }
                     }
