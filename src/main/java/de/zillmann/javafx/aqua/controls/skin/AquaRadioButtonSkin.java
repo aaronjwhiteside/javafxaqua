@@ -23,28 +23,14 @@ public class AquaRadioButtonSkin extends RadioButtonSkin {
 
         final ChangeListener<Boolean> windowFocusChangedListener = new ChangeListener<Boolean>() {
 
-            @Override
-            public void changed(
-                    ObservableValue<? extends Boolean> observableValue,
-                    Boolean oldValue, Boolean newValue) {
+            @Override public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
                 if (newValue != null) {
                     if (!newValue.booleanValue()) {
                         if (getSkinnable().isSelected()) {
                             for (int i = 0; i < getChildren().size(); i++) {
                                 Node child = getChildren().get(i);
-                                if (child.getStyleClass().get(0)
-                                        .equals("radio")) {
-                                    child.setStyle("-fx-border-width: 0.5;"
-                                            + "-fx-border-color: rgb(129, 129, 129);"
-                                            + "-fx-border-radius: 1.0em;"
-                                            + "-fx-background-color: rgb(250, 250, 250),"
-                                            + "	linear-gradient("
-                                            + "		rgb(255, 255, 255) 0%, rgb(253,253,253) 25%,  "
-                                            + "		rgb(244, 244, 244) 50%, rgb(236, 236, 236) 51%,"
-                                            + "		rgb(243, 243, 243) 100% );"
-                                            + "-fx-background-insets: 0, 1;"
-                                            + "-fx-background-radius: 1.0em;"
-                                            + "-fx-padding: 3.5;");
+                                if (child.getStyleClass().get(0).equals("radio")) {
+                                    child.getStyleClass().add("unfocused");
                                 }
                             }
                         }
@@ -52,7 +38,7 @@ public class AquaRadioButtonSkin extends RadioButtonSkin {
                         for (int i = 0; i < getChildren().size(); i++) {
                             Node child = getChildren().get(i);
                             if (child.getStyleClass().get(0).equals("radio")) {
-                                child.setStyle(null);
+                                child.getStyleClass().remove("unfocused");
                             }
                         }
                     }
@@ -62,25 +48,18 @@ public class AquaRadioButtonSkin extends RadioButtonSkin {
 
         getSkinnable().sceneProperty().addListener(new ChangeListener<Scene>() {
 
-            @Override
-            public void changed(
-                    ObservableValue<? extends Scene> observableValue,
-                    Scene oldScene, Scene newScene) {
+            @Override public void changed(ObservableValue<? extends Scene> observableValue, Scene oldScene, Scene newScene) {
                 if (oldScene != null && oldScene.getWindow() != null) {
-                    oldScene.getWindow().focusedProperty()
-                            .removeListener(windowFocusChangedListener);
+                    oldScene.getWindow().focusedProperty().removeListener(windowFocusChangedListener);
                 }
                 if (newScene != null && newScene.getWindow() != null) {
-                    newScene.getWindow().focusedProperty()
-                            .addListener(windowFocusChangedListener);
+                    newScene.getWindow().focusedProperty().addListener(windowFocusChangedListener);
                 }
             }
         });
 
-        if (getSkinnable().getScene() != null
-                && getSkinnable().getScene().getWindow() != null) {
-            getSkinnable().getScene().getWindow().focusedProperty()
-                    .addListener(windowFocusChangedListener);
+        if (getSkinnable().getScene() != null && getSkinnable().getScene().getWindow() != null) {
+            getSkinnable().getScene().getWindow().focusedProperty().addListener(windowFocusChangedListener);
         }
     }
 
@@ -127,8 +106,7 @@ public class AquaRadioButtonSkin extends RadioButtonSkin {
         }
     }
 
-    @Override
-    protected void handleControlPropertyChanged(String p) {
+    @Override protected void handleControlPropertyChanged(String p) {
         super.handleControlPropertyChanged(p);
         if (p == "FOCUSED") {
             if (getSkinnable().isFocused()) {

@@ -553,6 +553,20 @@
     -fx-padding: 3.5;
 }
 
+.radio-button > .radio.unfocused {
+    -fx-border-width: 0.5;
+    -fx-border-color: rgb(129, 129, 129);
+    -fx-border-radius: 1.0em;
+    -fx-background-color: rgb(250, 250, 250),
+        linear-gradient(
+            rgb(255, 255, 255) 0%, rgb(253,253,253) 25%,
+            rgb(244, 244, 244) 50%, rgb(236, 236, 236) 51%,
+            rgb(243, 243, 243) 100% );
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 1.0em;
+    -fx-padding: 3.5;
+}
+
 .radio-button:armed > .radio {
     -fx-background-color: rgb(250.0, 250.0, 250.0),
         linear-gradient(
