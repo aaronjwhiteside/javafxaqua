@@ -338,7 +338,8 @@
 
     -toggle-shadow-armed: linear-gradient(to right, rgb(87.0, 87.0, 87.0, 0.5) 0.0%, transparent 3.0%, transparent 97.0%, rgb(87.0, 87.0, 87.0, 0.5) 100.0%);
     -toggle-shadow: linear-gradient(to right, rgb(87.0, 87.0, 87.0, 0.3) 0.0%, transparent 3.0%, transparent 97.0%, rgb(87.0, 87.0, 87.0, 0.3) 100.0%);
-    
+
+    -choice-base: linear-gradient(rgb(255.0, 255.0, 255.0) 25.0%, rgb(243.0, 243.0, 243.0) 50.0%, rgb(236.0, 236.0, 236.0) 50.0%, rgb(243.0, 243.0, 243.0) 100.0% );
 }
 
 .mnemonic-underline {
@@ -1018,7 +1019,6 @@
 
 .choice-box {
     -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaChoiceBoxSkin";
-    -choice-base: linear-gradient(rgb(255.0, 255.0, 255.0) 25.0%, rgb(243.0, 243.0, 243.0) 50.0%, rgb(236.0, 236.0, 236.0) 50.0%, rgb(243.0, 243.0, 243.0) 100.0% );
     -fx-border-radius: 4.0;
     -fx-border-width: 0.5;
     -fx-border-color: rgb(207.0, 207.0, 207.0);
@@ -3184,7 +3184,6 @@ all inherit from Menu Control's popup-menu. --- */
 .combo-box > .list-cell {
     -fx-text-fill: -fx-text-base-color;
     -fx-padding: 0.12em 0.5em 0.18em 0.583333em;
-    -choice-base: linear-gradient(rgb(255.0, 255.0, 255.0) 25.0%, rgb(243.0, 243.0, 243.0) 50.0%, rgb(236.0, 236.0, 236.0) 50.0%, rgb(243.0, 243.0, 243.0) 100.0% );
     -fx-border-radius: 4.0 0.0 0.0 4.0;
     -fx-border-width: 0.5 0.0 0.5 0.5;
     -fx-border-color: rgb(169.0, 169.0, 169.0) rgb(205.0, 205.0, 205.0) rgb(205.0, 205.0, 205.0) rgb(205.0, 205.0, 205.0);
@@ -3193,9 +3192,6 @@ all inherit from Menu Control's popup-menu. --- */
     -fx-background-insets: 0.5 0.0 0.5 0.5, 1.0 0.0 1.0 1.0;
     -fx-background-radius: 4.0 0.0 0.0 4.0, 4.0 0.0 0.0 4.0;
     -fx-content-display: LEFT;
-}
-
-.combo-box > .list-cell {
     -fx-opacity: 1.0;
 }
 
@@ -3229,7 +3225,6 @@ all inherit from Menu Control's popup-menu. --- */
     -fx-color-rect-width: 1.7em; 
     -fx-color-rect-height: 0.8em;  
     
-    -choice-base: linear-gradient(rgb(255.0, 255.0, 255.0) 25.0%, rgb(243.0, 243.0, 243.0) 50.0%, rgb(236.0, 236.0, 236.0) 50.0%, rgb(243.0, 243.0, 243.0) 100.0% );
     -fx-border-radius: 3.5;
     -fx-border-width: 0.5;
     -fx-border-color: rgb(207.0, 207.0, 207.0);
@@ -3720,38 +3715,28 @@ all inherit from Menu Control's popup-menu. --- */
  ********************************************************************************/
 
 .html-editor {
-    -fx-border-width: 1.0;
-    -fx-border-style: solid;
-    -fx-padding: 0.0;
-    -fx-border-color: derive(-fx-base,-35.0%);
+    -fx-border-width: 0.5 0.5 0.5 0.5;
+    -fx-border-style: solid outside;
+    -fx-padding: 0;
+    -fx-border-color: rgb(115.0, 115.0, 115.0, 0.5);
 }
-.html-editor .button,
-.html-editor .toggle-button {
-    -fx-padding: 0.333333em 0.833333em 0.416667em 0.833333em; /* 2 10 3 10 */
-}
-.html-editor .combo-box > .list-cell {
-    -fx-cell-size: 2.0833em; /* 21 */
-}
-/* Each Toolbar is constructed of two stacked shapes */
+
 .html-editor > * > .top-toolbar {
     -fx-background-color:
-        linear-gradient(to bottom, white 10.0%, derive(-fx-base, 50.0%) 90.0%),
-        linear-gradient(to bottom, derive(-fx-base, 65.0%) 0.0%, derive(-fx-base, 5.0%) 90.0%);
-    -fx-background-insets: 0.0, 1.0;
-    -fx-border-color: transparent transparent derive(-fx-base,-20.0%) transparent, transparent;
-    -fx-border-width: 1.0, 0.0;
-    -fx-padding: 0.333em 0.5em 0.333em 0.5em; /* 4 6 4 6;*/
+        linear-gradient(to bottom, rgb(233.0, 233.0, 233.0), rgb(173.0, 173.0, 173.0) 99%, rgb(233.0, 233.0, 233.0));
+    -fx-background-insets: 0.0;
+    -fx-border-color: rgb(107.0, 107.0, 107.0);
+    -fx-border-width: 0.0 0.0 1.0 0.0;
+    -fx-padding: 0.333em 0.5em 0.333em 0.5em;
 }
 
 .html-editor > * > .bottom-toolbar {
     -fx-background-color:
-        linear-gradient(to bottom,  derive(-fx-base, 50.0%) 10.0%, derive(-fx-base, -60.0%) 90.0%),
-        linear-gradient(to bottom,  derive(-fx-base, 5.0%) 0.0%, derive(-fx-base, -15.0%) 90.0%);
-    -fx-background-insets: 0.0, 1.0;
-    -fx-border-color: transparent derive(-fx-base,50.0%) transparent derive(-fx-base,50.0%),
-    transparent transparent derive(-fx-base,-60.0%) transparent;
-    -fx-border-width: 1.0, 0.0;
-    -fx-padding: 0.166667em 0.5em 0.166667em 1.5em; /* 2 6 2 6;*/
+        linear-gradient(to bottom, rgb(233.0, 233.0, 233.0), rgb(180.0, 180.0, 180.0) 1%, rgb(184.0, 184.0, 184.0));
+    -fx-background-insets: 0.0;
+    -fx-border-color: rgb(154.0, 154.0, 154.0);
+    -fx-border-width: 0.0 0.0 0.5 0.0;
+    -fx-padding: 0.166667em 0.5em 0.166667em 0.5em;
 }
 
 .html-editor-foreground, .html-editor-background {
@@ -3759,94 +3744,68 @@ all inherit from Menu Control's popup-menu. --- */
     -fx-color-rect-x: 0.0;
     -fx-color-rect-y: 10.0;
     -fx-color-rect-width: 16.0;
-    -fx-color-rect-height: 5.0;
+    -fx-color-rect-height: 4.0;
+    /*-fx-padding: 0.5 0.0 -1.5 0.0;*/
     -fx-padding: 0.0;
+    -fx-background-color: rgb(245.0, 245.0, 245.0),
+        linear-gradient(rgb(230.0, 230.0, 230.0), rgb(182.0, 182.0, 182.0));
+    -fx-background-insets:0.0, 1.0 0.0 0.0 0.0;
+    -fx-border-width: 1.0;
+    -fx-border-insets:-1.0;
+    -fx-border-color: rgb(147.0, 147.0, 147.0) rgb(129.0, 129.0, 129.0) rgb(129.0, 129.0, 129.0) rgb(129.0, 129.0, 129.0);
+} 
+.html-editor-foreground .label, .html-editor-background .label{
+    -fx-padding: 1.5 0.0 1.0 8.0;
 }
-.html-editor-foreground > .color-picker-label,
-.html-editor-background > .color-picker-label {
-    -fx-padding: 0.0 0.0 -0.083333em 0.0;
-}
-/* Note: The Separator is constructed of a 1-pixel shape
-whose borders are styled.  Only the right border is specified
-with a color; the other three borders are transparent.*/
-
-/* Note: This first section of CSS (below) specifies the Separator’s color.
-Specifying the color here ensures the same color for both .top-toolbar
-and .bottom-toolbar Separators, as they will inherit the color. */
 
 .html-editor > * > * > .separator:vertical > .line{
     -fx-border-style: solid;
     -fx-background-color: null;
-    -fx-border-color: transparent derive(-fx-base,-35.0%) transparent transparent; /* #878787 */
-}
-
-/* Note: This next section of CSS (below) specifies the Separator’s length.
-The length of the Separator is determined by adding its -fx-padding values
-to the top and bottom -fx-padding values of the parent toolbar. */
-
-.html-editor > * > .top-toolbar > .separator {
-    -fx-padding: 1.0 0.0 1.0 0.0;
+    -fx-border-color: transparent rgb(129.0, 129.0, 129.0) transparent transparent;
 }
 
 .html-editor > * > .bottom-toolbar:horizontal {
-    -fx-padding: 0.417em; /* 5px */
+    -fx-padding: 0.417em;
 }
 
-.html-editor > * > .bottom-toolbar > .separator {
-    -fx-padding:  1.0 2.0 1.0 2.0;
+.html-editor .button ,
+.html-editor .toggle-button {
+    -fx-background-color: rgb(245.0, 245.0, 245.0),
+        linear-gradient(rgb(230.0, 230.0, 230.0), rgb(182.0, 182.0, 182.0));
+    -fx-background-insets:0.0, 1.0 0.0 0.0 0.0;
+    -fx-border-width: 1.0;
+    -fx-border-insets:-1.0;
+    -fx-border-color: rgb(122, 122, 122);
+    -fx-padding: 0.10em 0.85em 0.07em 0.85em;
 }
 
-.html-editor > * > * > .button {
-    -fx-background-color: null;
-    -fx-background-insets: -1.0, 0.0, 1.0;
-    -fx-background-radius: 0.25em; /* 3 */
-    -fx-padding: 0.25em;  /* 3 */
-    -fx-alignment: CENTER;
-    -fx-graphic-vpos: CENTER;
+.html-editor .button:armed ,
+.html-editor .toggle-button:selected{
+    -fx-background-color: rgb(205.0, 205.0, 205.0),
+        linear-gradient(rgb(183.0, 183.0, 183.0), rgb(144.0, 144.0, 144.0));
+    -fx-border-color: rgb(122, 122, 122);
 }
 
-.html-editor > * > .top-toolbar > .button:hover {
-    -fx-background-color: transparent, derive(-fx-base,-10.0%), derive(-fx-base,65.0%);
+.html-editor .combo-box > .list-cell {
+    -fx-border-radius: 4.0 0.0 0.0 4.0;
+    -fx-border-width: 1.0 0.0 1.0 1.0;
+    -fx-border-color: rgb(122, 122, 122);
+    -fx-border-insets:-1.0;
+    -fx-background-color: rgb(245.0, 245.0, 245.0),
+        linear-gradient(rgb(230.0, 230.0, 230.0), rgb(182.0, 182.0, 182.0));
+    -fx-background-insets: 0.0, 1.0 0.0 0.0 0.0;
+    -fx-background-radius: 3.5 0.0 0.0 3.5, 3.5 0.0 0.0 3.5;
+    -fx-padding: 0.10em 0.85em 0.07em 0.85em;
 }
 
-.html-editor > * > .bottom-toolbar > .button:hover {
-    -fx-background-color: transparent, derive(-fx-base,-25.0%), derive(-fx-base,15.0%);
+.html-editor .combo-box > .arrow-button {
+    -fx-background-color: rgb(245.0, 245.0, 245.0),
+        linear-gradient(rgb(230.0, 230.0, 230.0), rgb(182.0, 182.0, 182.0));
+    -fx-background-insets: 0.0, 1.0 0.0 0.0 0.0;
+    -fx-background-radius: 0.0 4.0 4.0 0.0, 0.0 3.0 3.0 0.0;
+    -fx-border-width: 1.0 1.0 1.0 0.0;
+    -fx-border-color: rgb(122, 122, 122);
+    -fx-border-radius: 0.0 4.0 4.0 0.0;
+    -fx-border-insets:-1.0;
 }
 
-.html-editor > * > * > .toggle-button {
-    -fx-background-color: transparent;
-    -fx-background-insets: -1.0, 0.0, 1.0;
-    -fx-background-radius: 3.0;
-    -fx-padding: 0.25em;  /* 3 */
-    -fx-alignment: CENTER;
-    -fx-graphic-vpos: CENTER;
-}
-
-.html-editor > * > .top-toolbar > .toggle-button:hover {
-    -fx-background-color: transparent, derive(-fx-base,-10.0%), derive(-fx-base,65.0%);
-}
-
-.html-editor > * > .bottom-toolbar > .toggle-button:hover {
-    -fx-background-color: transparent, derive(-fx-base,-25.0%), derive(-fx-base,15.0%);
-}
-
-.html-editor > * > .toggle-button:focused {
-    -fx-color: transparent;
-    -fx-background-color: -fx-focus-color, derive(-fx-base,-25.0%), derive(-fx-base,15.0%);
-    -fx-background-insets: -1.2, 0.0, 1.0;
-    -fx-background-radius: 3.2, 3.0, 3.0;
-}
-
-.html-editor > * > * > .toggle-button:selected {
-    -fx-background-color: transparent,
-    linear-gradient(to bottom,  derive(-fx-base, -70.0%) 10.0%, derive(-fx-base, -40.0%) 90.0%),
-    linear-gradient(to bottom,  derive(-fx-base, -40.0%) 0.0%, derive(-fx-base, -20.0%) 50.0%, derive(-fx-base, -10.0%) 98.0%, derive(-fx-base, -35.0%) 100.0%);
-}
-
-.html-editor > * > * > .font-menu-button {
-    -fx-background-radius: 5.0, 5.0, 4.0, 3.0;
-}
-
-.html-editor > * > * > .font-menu-button .label{
-    -fx-padding: 0.166667em 0.5em 0.25em 0.5em; /* 2 6 3 6 */
-}

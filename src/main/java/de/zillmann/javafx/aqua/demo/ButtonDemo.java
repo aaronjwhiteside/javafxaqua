@@ -7,7 +7,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.geometry.Side;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -40,6 +39,10 @@ import javafx.scene.layout.HBoxBuilder;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.VBoxBuilder;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Box;
+import javafx.scene.shape.BoxBuilder;
+import javafx.scene.web.HTMLEditor;
+import javafx.scene.web.HTMLEditorBuilder;
 import javafx.stage.Stage;
 import de.zillmann.javafx.aqua.AquaFx;
 
@@ -52,7 +55,8 @@ public class ButtonDemo extends Application {
 
         VBox topPane = VBoxBuilder.create().spacing(10).padding(new Insets(10)).build();
         TabPane tabPane = new TabPane();
-        // tabPane.setSide(Side.RIGHT);
+//         tabPane.setSide(Side.RIGHT);
+        
         Tab tabTextfield = new Tab();
         tabTextfield.setText("Textfield");
         VBox txts = new VBox();
@@ -174,6 +178,16 @@ public class ButtonDemo extends Application {
 
         tabColorPickerBox.setContent(colorPickerBox);
         tabPane.getTabs().add(tabColorPickerBox);
+        
+        Tab tabHTMLBox = new Tab();
+        tabHTMLBox.setText("HTML");
+        VBox htmlbox = VBoxBuilder.create().padding(new Insets(5)).build();
+        HTMLEditor htmlEditor = HTMLEditorBuilder.create().prefHeight(200).prefWidth(300).build();
+        htmlbox.getChildren().add(htmlEditor);
+        tabHTMLBox.setContent(htmlbox);
+        tabPane.getTabs().add(tabHTMLBox);
+
+        tabPane.getSelectionModel().select(tabHTMLBox);
         topPane.getChildren().add(tabPane);
         pane.setTop(topPane);
 
@@ -263,8 +277,7 @@ public class ButtonDemo extends Application {
         checkBoxBox.getChildren().add(box6);
         tabF.setContent(checkBoxBox);
         buttonTabPane.getTabs().add(tabF);
-        buttonTabPane.getSelectionModel().select(tabF);
-
+       
         Tab tabG = new Tab();
         tabG.setText("Toggles & Pills");
 
