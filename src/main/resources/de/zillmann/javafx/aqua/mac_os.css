@@ -1300,22 +1300,22 @@
  * Separator                                                                   *
  *                                                                             *
  ******************************************************************************/
-
+/*
 .separator > .line {
     -fx-border-width: 0.083333em;
 }
 
 .separator:horizontal > .line {
     -fx-background-color: null;
-    -fx-padding: 0.0em 0.0em 0.026666em 0.0em;
+    -fx-padding: 0.133333em 0.0em 0.133333em 0.0em;
     -fx-border-color: rgb(229.0, 229.0, 229.0) transparent transparent transparent;
 }
 
 .separator:vertical > .line {
     -fx-background-color: null;
-    -fx-padding: 0.0em 0.026666em 0.0em 0.0em;
+    -fx-padding: 0.0em 0.133333em 0.0em 0.133333;
     -fx-border-color:  transparent rgb(229.0, 229.0, 229.0) transparent transparent;
-}
+}*/
 
 /*******************************************************************************
  *                                                                             *
@@ -1900,12 +1900,12 @@
 
 .tool-bar:vertical > .container > .separator {
     -fx-orientation: horizontal;    
-    -fx-padding: 0.0em 0.0em 0.0em 0.0em;
+    -fx-padding: 0.083333em 0.0em 0.083333em 0.0em;
 }
 
 .tool-bar:horizontal > .container > .separator {
     -fx-orientation: vertical;
-    -fx-padding: 0.0em 0.333333em 0.0em 0.333333em; 
+    -fx-padding: 0.0em 0.083333em 0.0em 0.083333em; 
 }
 
 .tool-bar-overflow-button {
@@ -1924,7 +1924,8 @@
   -fx-effect: innershadow(one-pass-box, rgb(28.0, 28.0, 28.0), 2.5, 0.6, -0.5, 1.0);
 }
 
-.tool-bar  .toggle-button, .tool-bar .button {
+.tool-bar .toggle-button,
+.tool-bar .button {
     -fx-background-color: 
         linear-gradient(rgb(245.0, 245.0, 245.0), rgb(185.0, 185.0, 185.0));
     -fx-background-insets:0.0;
@@ -1934,7 +1935,13 @@
         linear-gradient(rgb(116.0, 116.0, 116.0), rgb(105.0, 105.0, 105.0));
 }
 
-.tool-bar  .toggle-button:selected, .tool-bar .toggle-button:armed, .tool-bar .button:armed{
+.tool-bar .toggle-button:selected:armed,
+.tool-bar .toggle-button:selected,
+.tool-bar .toggle-button:armed {
+    -fx-background-color: rgb(97.0, 97.0, 97.0), -toggle-selected-base, -toggle-shadow;
+}
+
+.tool-bar .button:armed{
     -fx-background-color: linear-gradient(rgb(160.0, 160.0, 160.0), rgb(215.0, 215.0, 215.0));
     -fx-background-insets:0.0;
     -fx-border-width: 0.5;
@@ -1943,6 +1950,60 @@
         linear-gradient(rgb(116.0, 116.0, 116.0), rgb(105.0, 105.0, 105.0));
     -fx-text-fill: -fx-text-base-color;
 }
+
+.tool-bar .toggle-button.right-pill,
+.tool-bar .button.right-pill {
+    -fx-border-width: 0.5 0.5 0.5 0.5;
+    -fx-border-style: solid solid solid segments(15.0, 2.25) phase 14.5 centered, 
+        solid solid solid segments(15.0, 2.25) phase 15.0 centered;
+}
+
+.tool-bar .toggle-button.center-pill,
+.tool-bar .button.center-pill {
+    -fx-border-width: 0.5 0.0 0.5 0.5;
+    -fx-border-style: solid solid solid segments(15.0, 2.25) phase 14.5 centered, 
+        solid solid solid segments(15.0, 2.25) phase 15.0 centered;
+}
+
+.tool-bar .toggle-button.center-pill,
+.tool-bar .toggle-button.left-pill,
+.tool-bar .button.center-pill,
+.tool-bar .button.left-pill {
+    -fx-border-width: 0.5 0.0 0.5 0.5;
+}
+
+.tool-bar .toggle-button.center-pill:selected,
+.tool-bar .toggle-button.center-pill:selected:armed,
+.tool-bar .button.center-pill:armed {
+    -fx-border-width:0.5 0.5 0.5 0.5;
+    -fx-border-style: solid solid solid solid centered;
+}
+
+.tool-bar .toggle-button.right-pill:selected,
+.tool-bar .toggle-button.right-pill:selected:armed,
+.tool-bar .button.right-pill:armed  {
+    -fx-border-width:0.5 0.5 0.5 0.5;
+    -fx-border-color: linear-gradient(rgb(147.0, 147.0, 147.0), rgb(131.0, 131.0, 131.0)),
+        linear-gradient(rgb(116.0, 116.0, 116.0), rgb(105.0, 105.0, 105.0));
+    -fx-border-style: solid solid solid solid centered;
+}
+
+.tool-bar .toggle-button.right-pill.neighbor,
+.tool-bar .button.right-pill.neighbor {
+    -fx-border-style: solid solid solid solid centered;
+    -fx-border-insets:-0.5, 0.0 ;
+    -fx-border-color: linear-gradient(rgb(147.0, 147.0, 147.0), rgb(131.0, 131.0, 131.0)),
+        linear-gradient(rgb(116.0, 116.0, 116.0), rgb(105.0, 105.0, 105.0));
+}
+
+.tool-bar .toggle-button.center-pill.neighbor,
+.tool-bar .button.center-pill.neighbor {
+    -fx-border-style: solid solid solid solid centered;
+    -fx-border-insets:-0.5, 0.0 ;
+    -fx-border-color: linear-gradient(rgb(147.0, 147.0, 147.0), rgb(131.0, 131.0, 131.0)),
+        linear-gradient(rgb(116.0, 116.0, 116.0), rgb(105.0, 105.0, 105.0));
+}
+
 
 
 .tool-bar  .button:disabled, .tool-bar  .toggle-button:disabled {
@@ -3340,7 +3401,6 @@ all inherit from Menu Control's popup-menu. --- */
 
 /* the currently selected color */
 .color-palette > .color-picker-grid > .color-square:selected {
-/*    -fx-background-color: derive(-fx-base, -27%)  #989898 , white, derive(-fx-base, -59%)  #555555 ;*/
     -fx-background-color: black;
 } 
 
@@ -3348,7 +3408,7 @@ all inherit from Menu Control's popup-menu. --- */
     -fx-background-color: -fx-pressed-base;
 /*    -fx-background-color: white;*/
     -fx-padding: 6.0 0.0 0.0 0.0;
-    -fx-background-insets: 4.0 -10.0 0.0 -10.0,5.0 -10.0 0.0 -10.0;
+    -fx-background-insets: 4.0 -10.0 0.0 -10.0, 5.0 -10.0 0.0 -10.0;
     -fx-border-style: none;
     -fx-border-color: null;
 }
@@ -3774,12 +3834,12 @@ all inherit from Menu Control's popup-menu. --- */
 .html-editor-foreground .label, .html-editor-background .label{
     -fx-padding: 1.5 0.0 1.0 8.0;
 }
-
+/*
 .html-editor > * > * > .separator:vertical > .line{
     -fx-border-style: solid;
     -fx-background-color: null;
     -fx-border-color: transparent rgb(129.0, 129.0, 129.0) transparent transparent;
-}
+}*/
 
 .html-editor > * > .bottom-toolbar:horizontal {
     -fx-padding: 0.417em;

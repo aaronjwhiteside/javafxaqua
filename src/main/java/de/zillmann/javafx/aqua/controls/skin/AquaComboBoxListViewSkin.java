@@ -33,7 +33,6 @@ public class AquaComboBoxListViewSkin<T> extends ComboBoxListViewSkin {
         @Override public void changed(ObservableValue observable, Object oldValue, Object newValue) {
             if ((Boolean) newValue) {
                 setFocusBorder();
-                System.out.println("focused");
             } else {
                 getSkinnable().setEffect(null);
             }

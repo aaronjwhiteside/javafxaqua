@@ -9,6 +9,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBuilder;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
@@ -64,11 +65,19 @@ public class ButtonDemo extends Application {
         tbBox.getChildren().addAll(sampleButton, sampleButton1, sampleButton2, sampleButton3);
         Separator seperateIt = new Separator();
         ToggleGroup toolbarGroup = new ToggleGroup();
-        ToggleButton sampleButton4 = ToggleButtonBuilder.create().text("TG1").toggleGroup(toolbarGroup).selected(true).styleClass("left-pill").build();
-        ToggleButton sampleButton5 = ToggleButtonBuilder.create().text("TG2").toggleGroup(toolbarGroup).selected(true).styleClass("center-pill").build();
-        ToggleButton sampleButton6 = ToggleButtonBuilder.create().text("TG3").toggleGroup(toolbarGroup).selected(true).styleClass("right-pill").build();
-        toolBar.getItems().addAll(tbBox, seperateIt, sampleButton4, sampleButton5, sampleButton6);
+        ToggleButton sampleButton4 = ToggleButtonBuilder.create().text("TG1").toggleGroup(toolbarGroup).selected(true).styleClass(
+                "left-pill").build();
+        ToggleButton sampleButton5 = ToggleButtonBuilder.create().text("TG2").toggleGroup(toolbarGroup).selected(true).styleClass(
+                "center-pill").build();
+        ToggleButton sampleButton6 = ToggleButtonBuilder.create().text("TG3").toggleGroup(toolbarGroup).selected(true).styleClass(
+                "right-pill").build();
+        Separator seperateIt2 = new Separator();
         
+        Button menuPillButton1 = ButtonBuilder.create().text("PB 1").styleClass("left-pill").build();
+        Button menuPillButton2 = ButtonBuilder.create().text("PB 2").styleClass("center-pill").build();
+        Button menuPillButton3 = ButtonBuilder.create().text("PB 3").styleClass("right-pill").build();
+        toolBar.getItems().addAll(tbBox, seperateIt, sampleButton4, sampleButton5, sampleButton6, seperateIt2, menuPillButton1, menuPillButton2, menuPillButton3);
+
         pane.setTop(toolBar);
 
         /**
@@ -154,7 +163,7 @@ public class ButtonDemo extends Application {
         checkBoxBox.getChildren().add(box6);
         tabF.setContent(checkBoxBox);
         buttonTabPane.getTabs().add(tabF);
-       
+
         Tab tabG = new Tab();
         tabG.setText("Toggles & Pills");
         VBox togglesBox = VBoxBuilder.create().spacing(10).padding(new Insets(10)).build();
@@ -230,13 +239,10 @@ public class ButtonDemo extends Application {
         centerPane.getChildren().add(buttonTabPane);
         pane.setCenter(centerPane);
 
-       
-        
-        
         VBox bottomPane = VBoxBuilder.create().spacing(10).padding(new Insets(10)).build();
         TabPane tabPane = new TabPane();
-//         tabPane.setSide(Side.RIGHT);
-        
+        // tabPane.setSide(Side.RIGHT);
+
         Tab tabTextfield = new Tab();
         tabTextfield.setText("Textfield");
         VBox txts = new VBox();
@@ -346,7 +352,7 @@ public class ButtonDemo extends Application {
         colorPickerBox.getChildren().add(color3);
         tabColorPickerBox.setContent(colorPickerBox);
         tabPane.getTabs().add(tabColorPickerBox);
-        
+
         Tab tabHTMLBox = new Tab();
         tabHTMLBox.setText("HTML");
         VBox htmlbox = VBoxBuilder.create().padding(new Insets(5)).build();

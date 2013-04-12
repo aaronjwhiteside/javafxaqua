@@ -31,9 +31,9 @@ public class AquaButtonSkin extends ButtonSkin {
 
     private BindableTransition defaultButtonTransition;
 
-    private String usualButtonStyle = "-fx-background-color: rgb(255, 255, 255)," + "linear-gradient(#ffffff 20%, #ececec 60%, #ececec 80%, #eeeeee 100%);" + "-fx-background-insets:  0, 1;" + "-fx-background-radius: 4, 4;" + "-fx-border-radius: 4;" + "-fx-border-width: 0.5;" + "-fx-border-color: rgb(129, 129, 129);";
+    private String usualButtonStyle = "-fx-background-color: rgb(255, 255, 255), linear-gradient(#ffffff 20%, #ececec 60%, #ececec 80%, #eeeeee 100%); -fx-background-insets:  0, 1; -fx-background-radius: 4, 4; -fx-border-radius: 4; -fx-border-width: 0.5; -fx-border-color: rgb(129, 129, 129);";
 
-    private String armedButtonStyle = "	-fx-background-color:" + "linear-gradient(rgb(190, 214, 237) 0%, rgb(178, 213, 237) 100% )," + "linear-gradient(rgb(165, 193, 238) 0%, rgb(108, 161, 231) 50%," + "rgb(74, 138, 217) 50%, rgb(105, 167, 236) 75%, rgb(152, 201, 238) 100%)," + "radial-gradient(focus-angle 180deg, focus-distance 95%, center 1% 50%," + "radius 50%, #78b0ee, transparent)," + "radial-gradient(focus-angle 0deg, focus-distance 95%, center 100% 50%," + "radius 50%, #78b0ee, transparent);" + "-fx-background-insets: 0, 0, 1 1 1 2, 1 2 1 1;" + "-fx-background-radius: 4, 4, 4, 4;" + "-fx-border-color: rgb(100, 103, 124);";
+    private String armedButtonStyle = "	-fx-background-color: linear-gradient(rgb(190, 214, 237) 0%, rgb(178, 213, 237) 100% ), linear-gradient(rgb(165, 193, 238) 0%, rgb(108, 161, 231) 50%, rgb(74, 138, 217) 50%, rgb(105, 167, 236) 75%, rgb(152, 201, 238) 100%), radial-gradient(focus-angle 180deg, focus-distance 95%, center 1% 50%, radius 50%, #78b0ee, transparent), radial-gradient(focus-angle 0deg, focus-distance 95%, center 100% 50%, radius 50%, #78b0ee, transparent); -fx-background-insets: 0, 0, 1 1 1 2, 1 2 1 1; -fx-background-radius: 4, 4, 4, 4; -fx-border-color: rgb(100, 103, 124);";
 
     public AquaButtonSkin(Button button) {
         super(button);
@@ -131,14 +131,18 @@ public class AquaButtonSkin extends ButtonSkin {
     }
 
     private void setDropShadow() {
-        DropShadow dropShadow = new DropShadow();
-        dropShadow.setColor(Color.rgb(172, 172, 184));
-        dropShadow.setBlurType(BlurType.ONE_PASS_BOX);
-        dropShadow.setRadius(2.0);
-        dropShadow.setSpread(0.1);
-        dropShadow.setOffsetX(0.0);
-        dropShadow.setOffsetY(0.8);
-        getSkinnable().setEffect(dropShadow);
+        if (!getSkinnable().getStyleClass().contains("left-pill") && !getSkinnable().getStyleClass().contains("center-pill") && !getSkinnable().getStyleClass().contains("right-pill")) {
+            DropShadow dropShadow = new DropShadow();
+            dropShadow.setColor(Color.rgb(172, 172, 184));
+            dropShadow.setBlurType(BlurType.ONE_PASS_BOX);
+            dropShadow.setRadius(2.0);
+            dropShadow.setSpread(0.1);
+            dropShadow.setOffsetX(0.0);
+            dropShadow.setOffsetY(0.8);
+            getSkinnable().setEffect(dropShadow);
+        } else {
+            getSkinnable().setEffect(null);
+        }
     }
 
     @Override protected void handleControlPropertyChanged(String p) {
