@@ -56,13 +56,8 @@ public class ButtonDemo extends Application {
         BorderPane pane = new BorderPane();
 
         ToolBar toolBar = new ToolBar();
-        HBox tbBox = HBoxBuilder.create().spacing(5).build();
-        Button sampleButton = new Button("Button");
-        ToggleButton sampleButton1 = new ToggleButton("Toggle");
-        sampleButton1.setDisable(true);
-        ToggleButton sampleButton2 = new ToggleButton("Toggle");
-        ToggleButton sampleButton3 = ToggleButtonBuilder.create().text("Toggle2").selected(true).build();
-        tbBox.getChildren().addAll(sampleButton, sampleButton1, sampleButton2, sampleButton3);
+        ColorPicker colorTB = new ColorPicker(Color.rgb(194, 222, 254));
+        
         Separator seperateIt = new Separator();
         ToggleGroup toolbarGroup = new ToggleGroup();
         ToggleButton sampleButton4 = ToggleButtonBuilder.create().text("TG1").toggleGroup(toolbarGroup).selected(true).styleClass(
@@ -76,8 +71,18 @@ public class ButtonDemo extends Application {
         Button menuPillButton1 = ButtonBuilder.create().text("PB 1").styleClass("left-pill").build();
         Button menuPillButton2 = ButtonBuilder.create().text("PB 2").styleClass("center-pill").build();
         Button menuPillButton3 = ButtonBuilder.create().text("PB 3").styleClass("right-pill").build();
-        toolBar.getItems().addAll(tbBox, seperateIt, sampleButton4, sampleButton5, sampleButton6, seperateIt2, menuPillButton1, menuPillButton2, menuPillButton3);
 
+//        HBox tbBox = HBoxBuilder.create().spacing(5).build();
+        Button sampleButton = new Button("Button");
+        ToggleButton sampleButton1 = new ToggleButton("Toggle");
+        sampleButton1.setDisable(true);
+        ToggleButton sampleButton2 = new ToggleButton("Toggle");
+        ToggleButton sampleButton3 = ToggleButtonBuilder.create().text("Toggle2").selected(true).build();
+//        tbBox.getChildren().addAll(sampleButton, sampleButton1, sampleButton2, sampleButton3);
+//        toolBar.getItems().addAll(colorTB, seperateIt, sampleButton4, sampleButton5, sampleButton6, seperateIt2, tbBox, menuPillButton1, menuPillButton2, menuPillButton3);
+        toolBar.getItems().addAll(colorTB, sampleButton, sampleButton1, sampleButton2, sampleButton3, seperateIt, sampleButton4, sampleButton5, sampleButton6, seperateIt2, menuPillButton1, menuPillButton2, menuPillButton3);
+
+        
         pane.setTop(toolBar);
 
         /**
@@ -118,6 +123,14 @@ public class ButtonDemo extends Application {
         b4.setText("Normal");
         b4.setDisable(true);
         buttonBox.getChildren().add(b4);
+        
+        Hyperlink link = new Hyperlink("Hyperlink");
+        Hyperlink link2 = HyperlinkBuilder.create().text("disabled Hyperlink").disable(true).build();
+        buttonBox.getChildren().add(link);
+        buttonBox.getChildren().add(link2);
+        ScrollBar scBar = new ScrollBar();
+        buttonBox.getChildren().add(scBar);
+        
         tabD.setContent(buttonBox);
         buttonTabPane.getTabs().add(tabD);
 
@@ -243,8 +256,8 @@ public class ButtonDemo extends Application {
         TabPane tabPane = new TabPane();
         // tabPane.setSide(Side.RIGHT);
 
-        Tab tabTextfield = new Tab();
-        tabTextfield.setText("Textfield");
+        Tab tabTexts = new Tab();
+        tabTexts.setText("Textfield/ -area");
         VBox txts = new VBox();
         HBox textfieldBox1 = HBoxBuilder.create().spacing(10).padding(new Insets(10)).build();
         Menu item1 = new Menu("test submenu");
@@ -274,11 +287,6 @@ public class ButtonDemo extends Application {
         pw1.setText("password");
         textfieldBox3.getChildren().add(pw1);
         txts.getChildren().add(textfieldBox3);
-        tabTextfield.setContent(txts);
-        tabPane.getTabs().add(tabTextfield);
-
-        Tab tabB = new Tab();
-        tabB.setText("Textarea");
         VBox textareaBox = VBoxBuilder.create().spacing(10).padding(new Insets(10)).build();
         TextArea area = new TextArea();
         area.setPromptText("TextArea with promptText");
@@ -292,23 +300,13 @@ public class ButtonDemo extends Application {
         area2.setPrefWidth(290);
         area2.setPrefHeight(50);
         textareaBox.getChildren().add(area2);
-        tabB.setContent(textareaBox);
-        tabPane.getTabs().add(tabB);
-
-        Tab tabC = new Tab();
-        tabC.setText("Hyperlinks");
-        VBox hyperlinks = new VBox();
-        Hyperlink link = new Hyperlink("Hyperlink");
-        Hyperlink link2 = HyperlinkBuilder.create().text("disabled Hyperlink").disable(true).build();
-        hyperlinks.getChildren().add(link);
-        hyperlinks.getChildren().add(link2);
-        ScrollBar scBar = new ScrollBar();
-        hyperlinks.getChildren().add(scBar);
-        tabC.setContent(hyperlinks);
-        tabPane.getTabs().add(tabC);
+        txts.getChildren().add(textareaBox);
+        tabTexts.setContent(txts);
+        tabPane.getTabs().add(tabTexts);
 
         Tab tabChoiceBox = new Tab();
-        tabChoiceBox.setText("ChoiceBox");
+        tabChoiceBox.setText("Choice-/ Combo-/ Color");
+        VBox collectorVBox = new VBox();
         HBox choiceBoxBox = HBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
         ChoiceBox<String> choices = new ChoiceBox<String>(FXCollections.observableArrayList("4", "10", "12"));
         choices.getSelectionModel().selectFirst();
@@ -317,30 +315,22 @@ public class ButtonDemo extends Application {
         choices2.getSelectionModel().selectFirst();
         choices2.setDisable(true);
         choiceBoxBox.getChildren().add(choices2);
-        tabChoiceBox.setContent(choiceBoxBox);
-        tabPane.getTabs().add(tabChoiceBox);
-
-        Tab tabComboBox = new Tab();
-        tabComboBox.setText("ComboBox");
-        VBox comboVBox = VBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
+        collectorVBox.getChildren().add(choiceBoxBox);
+        
         ObservableList items = FXCollections.observableArrayList("A", "B", "C");
         HBox editableComboBoxBox = HBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
         ComboBox combo1 = ComboBoxBuilder.create().editable(true).items(items).promptText("test").build();
         editableComboBoxBox.getChildren().add(combo1);
         ComboBox combo2 = ComboBoxBuilder.create().editable(true).items(items).promptText("test").disable(true).build();
         editableComboBoxBox.getChildren().add(combo2);
-        comboVBox.getChildren().add(editableComboBoxBox);
+        collectorVBox.getChildren().add(editableComboBoxBox);
         HBox comboBoxBox = HBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
         ComboBox combo3 = ComboBoxBuilder.create().editable(false).items(items).promptText("test").build();
         comboBoxBox.getChildren().add(combo3);
         ComboBox combo4 = ComboBoxBuilder.create().editable(false).items(items).promptText("test").disable(true).build();
         comboBoxBox.getChildren().add(combo4);
-        comboVBox.getChildren().add(comboBoxBox);
-        tabComboBox.setContent(comboVBox);
-        tabPane.getTabs().add(tabComboBox);
-
-        Tab tabColorPickerBox = new Tab();
-        tabColorPickerBox.setText("ColorPicker");
+        collectorVBox.getChildren().add(comboBoxBox);
+        
         HBox colorPickerBox = HBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
         ColorPicker color = new ColorPicker(Color.rgb(194, 222, 254));
         colorPickerBox.getChildren().add(color);
@@ -350,8 +340,10 @@ public class ButtonDemo extends Application {
         ColorPicker color3 = new ColorPicker(Color.rgb(194, 222, 254));
         color3.getStyleClass().add("split-button");
         colorPickerBox.getChildren().add(color3);
-        tabColorPickerBox.setContent(colorPickerBox);
-        tabPane.getTabs().add(tabColorPickerBox);
+        collectorVBox.getChildren().add(colorPickerBox);
+        tabChoiceBox.setContent(collectorVBox);
+        tabPane.getTabs().add(tabChoiceBox);
+
 
         Tab tabHTMLBox = new Tab();
         tabHTMLBox.setText("HTML");
