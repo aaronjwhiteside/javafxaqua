@@ -20,6 +20,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.HyperlinkBuilder;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressBar;
@@ -39,7 +40,6 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.HBoxBuilder;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.VBoxBuilder;
 import javafx.scene.paint.Color;
@@ -344,7 +344,6 @@ public class ButtonDemo extends Application {
         tabChoiceBox.setContent(collectorVBox);
         tabPane.getTabs().add(tabChoiceBox);
 
-
         Tab tabHTMLBox = new Tab();
         tabHTMLBox.setText("HTML");
         VBox htmlbox = VBoxBuilder.create().padding(new Insets(5)).build();
@@ -357,7 +356,18 @@ public class ButtonDemo extends Application {
         bottomPane.getChildren().add(tabPane);
         pane.setBottom(bottomPane);
 
-        Scene myScene = new Scene(pane, 650, 500);
+        Scene myScene = new Scene(pane, 700, 500);
+        
+        MenuBar menuBar = new MenuBar();
+        Menu menuFile = new Menu("File");
+        menuFile.getItems().addAll(new MenuItem("New"),new MenuItem("Open File..."));
+        Menu menuEdit = new Menu("Edit");
+        menuEdit.getItems().addAll(new MenuItem("Undo"),new MenuItem("Redo"));
+        Menu menuView = new Menu("View");
+        menuView.getItems().addAll(new MenuItem("Zoom In"),new MenuItem("Zoom Out"));
+        menuBar.getMenus().addAll(menuFile, menuEdit, menuView);
+        pane.getChildren().add(menuBar);
+        
         AquaFx.style();
         stage.setTitle("AquaFX");
         stage.setScene(myScene);

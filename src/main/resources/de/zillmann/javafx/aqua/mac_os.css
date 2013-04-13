@@ -873,11 +873,6 @@
  *                                                                             *
  ******************************************************************************/
 
-/* Corresponding hex values for the color derivations used below are: *
- * derive(-fx-base,-30%); #929292                                     *
- * derive(-fx-base,-50%); #686868                                     *
- * derive(-fx-base,-70%); #3e3e3e                                     */
-
 .menu-bar {
     -fx-padding: 0.0em 0.666667em 0.0em 0.666667em; /* 0 8 0 8 */
     -fx-spacing: 0.166667em; /* 2 */
@@ -885,37 +880,34 @@
     -fx-background-color: linear-gradient(to bottom, derive(-fx-color,50.0%), derive(-fx-color,-30.0%)), -fx-body-color;
     -fx-background-insets: 0.0, 1.0 0.0 1.0 0.0;
     -fx-background-radius: 0.0, 0.0 ;
+    
+    /* Nothing more needed for Mac OS X than the following property!
+     * All other definitions kept from caspian, to ensure, that MenuBar
+     * is shown properly on non-mac systems.
+     */
+    -fx-use-system-menu-bar: true;
 }
 
 
-/* Show nothing for background of normal menu button in a menu bar */
 .menu-bar > .container > .menu-button {
     -fx-background-radius: 0.0;
     -fx-background-color: transparent;
     -fx-background-insets: 0.0; 
 }
-/* Change padding of menu buttons when in menu bar */
 .menu-bar > .container > .menu-button > .label {
-    -fx-padding: 0.333em 0.5em 0.333em 0.5em; /* 4 6 4 6*/
+    -fx-padding: 0.333em 0.5em 0.333em 0.5em;
 }
 
 .menu-bar > .container > .menu-button:hover, .menu-bar > .container > .menu-button:focused, .menu-bar > .container > .menu-button:showing {
-    -fx-background: -fx-accent;
-    -fx-background-color: -fx-selection-bar;
-    -fx-text-fill: -fx-selection-bar-text;
+    -fx-background: #0093ff;
+    -fx-background-color: linear-gradient(to right, rgb(233.0, 233.0, 233.0), rgb(173.0, 173.0, 173.0) 99.0%, rgb(233.0, 233.0, 233.0));
+    -fx-text-fill: -fx-text-fill;
 }
 
-/*.menu-bar .menu:focused:showing, .menu-bar .menu:showing, .menu-bar .menu:focused, .menu:focused:showing, .menu:showing, .menu:focused {*/
-/*.menu-bar .menu-button:showing, .menu-button:showing {
-    -fx-background: -fx-accent;
-    -fx-background-color: -fx-selection-bar;
-    -fx-text-fill: -fx-selection-bar-text;
-}*/
-
 .menu-bar > .container > .menu-button:hover {
-    -fx-background: -fx-accent;
-    -fx-background-color: -fx-selection-bar;
-    -fx-text-fill: -fx-selection-bar-text;
+    -fx-background: #0093ff;
+    -fx-background-color: linear-gradient(to right, rgb(233.0, 233.0, 233.0), rgb(173.0, 173.0, 173.0) 99.0%, rgb(233.0, 233.0, 233.0));
+    -fx-text-fill: -fx-text-fill;
 }
 
 .menu-bar:show-mnemonics > .mnemonic-underline {
