@@ -6,6 +6,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.NodeOrientation;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -28,6 +30,7 @@ import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.Separator;
+import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
@@ -57,7 +60,7 @@ public class ButtonDemo extends Application {
 
         ToolBar toolBar = new ToolBar();
         ColorPicker colorTB = new ColorPicker(Color.rgb(194, 222, 254));
-        
+
         Separator seperateIt = new Separator();
         ToggleGroup toolbarGroup = new ToggleGroup();
         ToggleButton sampleButton4 = ToggleButtonBuilder.create().text("TG1").toggleGroup(toolbarGroup).selected(true).styleClass(
@@ -67,22 +70,23 @@ public class ButtonDemo extends Application {
         ToggleButton sampleButton6 = ToggleButtonBuilder.create().text("TG3").toggleGroup(toolbarGroup).selected(true).styleClass(
                 "right-pill").build();
         Separator seperateIt2 = new Separator();
-        
+
         Button menuPillButton1 = ButtonBuilder.create().text("PB 1").styleClass("left-pill").build();
         Button menuPillButton2 = ButtonBuilder.create().text("PB 2").styleClass("center-pill").build();
         Button menuPillButton3 = ButtonBuilder.create().text("PB 3").styleClass("right-pill").build();
 
-//        HBox tbBox = HBoxBuilder.create().spacing(5).build();
+        // HBox tbBox = HBoxBuilder.create().spacing(5).build();
         Button sampleButton = new Button("Button");
         ToggleButton sampleButton1 = new ToggleButton("Toggle");
         sampleButton1.setDisable(true);
         ToggleButton sampleButton2 = new ToggleButton("Toggle");
         ToggleButton sampleButton3 = ToggleButtonBuilder.create().text("Toggle2").selected(true).build();
-//        tbBox.getChildren().addAll(sampleButton, sampleButton1, sampleButton2, sampleButton3);
-//        toolBar.getItems().addAll(colorTB, seperateIt, sampleButton4, sampleButton5, sampleButton6, seperateIt2, tbBox, menuPillButton1, menuPillButton2, menuPillButton3);
-        toolBar.getItems().addAll(colorTB, sampleButton, sampleButton1, sampleButton2, sampleButton3, seperateIt, sampleButton4, sampleButton5, sampleButton6, seperateIt2, menuPillButton1, menuPillButton2, menuPillButton3);
+        // tbBox.getChildren().addAll(sampleButton, sampleButton1, sampleButton2, sampleButton3);
+        // toolBar.getItems().addAll(colorTB, seperateIt, sampleButton4, sampleButton5,
+        // sampleButton6, seperateIt2, tbBox, menuPillButton1, menuPillButton2, menuPillButton3);
+        toolBar.getItems().addAll(colorTB, sampleButton, sampleButton1, sampleButton2, sampleButton3, seperateIt, sampleButton4,
+                sampleButton5, sampleButton6, seperateIt2, menuPillButton1, menuPillButton2, menuPillButton3);
 
-        
         pane.setTop(toolBar);
 
         /**
@@ -123,14 +127,14 @@ public class ButtonDemo extends Application {
         b4.setText("Normal");
         b4.setDisable(true);
         buttonBox.getChildren().add(b4);
-        
+
         Hyperlink link = new Hyperlink("Hyperlink");
         Hyperlink link2 = HyperlinkBuilder.create().text("disabled Hyperlink").disable(true).build();
         buttonBox.getChildren().add(link);
         buttonBox.getChildren().add(link2);
         ScrollBar scBar = new ScrollBar();
         buttonBox.getChildren().add(scBar);
-        
+
         tabD.setContent(buttonBox);
         buttonTabPane.getTabs().add(tabD);
 
@@ -316,7 +320,7 @@ public class ButtonDemo extends Application {
         choices2.setDisable(true);
         choiceBoxBox.getChildren().add(choices2);
         collectorVBox.getChildren().add(choiceBoxBox);
-        
+
         ObservableList items = FXCollections.observableArrayList("A", "B", "C");
         HBox editableComboBoxBox = HBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
         ComboBox combo1 = ComboBoxBuilder.create().editable(true).items(items).promptText("test").build();
@@ -330,7 +334,7 @@ public class ButtonDemo extends Application {
         ComboBox combo4 = ComboBoxBuilder.create().editable(false).items(items).promptText("test").disable(true).build();
         comboBoxBox.getChildren().add(combo4);
         collectorVBox.getChildren().add(comboBoxBox);
-        
+
         HBox colorPickerBox = HBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
         ColorPicker color = new ColorPicker(Color.rgb(194, 222, 254));
         colorPickerBox.getChildren().add(color);
@@ -352,22 +356,66 @@ public class ButtonDemo extends Application {
         tabHTMLBox.setContent(htmlbox);
         tabPane.getTabs().add(tabHTMLBox);
 
-        tabPane.getSelectionModel().select(tabHTMLBox);
+        Tab tabSliderBox = new Tab();
+        tabSliderBox.setText("Sliders");
+        HBox slidersBox = HBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
+        Slider vSlider = new Slider();
+        vSlider.setOrientation(Orientation.VERTICAL);
+        slidersBox.getChildren().add(vSlider);
+        Slider vTickSlider = new Slider();
+        vTickSlider.setMin(0);
+        vTickSlider.setMax(100);
+        vTickSlider.setValue(40);
+        vTickSlider.setShowTickLabels(true);
+        vTickSlider.setShowTickMarks(true);
+        vTickSlider.setMajorTickUnit(50);
+        vTickSlider.setBlockIncrement(10);
+        vTickSlider.setOrientation(Orientation.VERTICAL);
+        slidersBox.getChildren().add(vTickSlider);
+        VBox horizontalSliderBox = VBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
+        Slider simpleSlider = new Slider();
+        horizontalSliderBox.getChildren().add(simpleSlider);
+        Slider slider = new Slider();
+        slider.setMin(0);
+        slider.setMax(100);
+        slider.setValue(40);
+        slider.setShowTickLabels(true);
+        slider.setShowTickMarks(true);
+        slider.setMajorTickUnit(50);
+        slider.setBlockIncrement(10);
+        horizontalSliderBox.getChildren().add(slider);
+        Slider simpleDisabledSlider = new Slider();
+        simpleDisabledSlider.setDisable(true);
+        horizontalSliderBox.getChildren().add(simpleDisabledSlider);
+        Slider disabledSlider = new Slider();
+        disabledSlider.setMin(0);
+        disabledSlider.setMax(100);
+        disabledSlider.setValue(40);
+        disabledSlider.setShowTickLabels(true);
+        disabledSlider.setShowTickMarks(true);
+        disabledSlider.setMajorTickUnit(50);
+        disabledSlider.setBlockIncrement(10);
+        disabledSlider.setDisable(true);
+        horizontalSliderBox.getChildren().add(disabledSlider);
+        slidersBox.getChildren().add(horizontalSliderBox);
+        tabSliderBox.setContent(slidersBox);
+        tabPane.getTabs().add(tabSliderBox);
+
+        tabPane.getSelectionModel().select(tabSliderBox);
         bottomPane.getChildren().add(tabPane);
         pane.setBottom(bottomPane);
+        Scene myScene = new Scene(pane, 700, 600);
 
-        Scene myScene = new Scene(pane, 700, 500);
-        
         MenuBar menuBar = new MenuBar();
         Menu menuFile = new Menu("File");
-        menuFile.getItems().addAll(new MenuItem("New"),new MenuItem("Open File..."));
+        menuFile.getItems().addAll(new MenuItem("New"), new MenuItem("Open File..."));
         Menu menuEdit = new Menu("Edit");
-        menuEdit.getItems().addAll(new MenuItem("Undo"),new MenuItem("Redo"));
+        menuEdit.getItems().addAll(new MenuItem("Undo"), new MenuItem("Redo"));
         Menu menuView = new Menu("View");
-        menuView.getItems().addAll(new MenuItem("Zoom In"),new MenuItem("Zoom Out"));
+        menuView.getItems().addAll(new MenuItem("Zoom In"), new MenuItem("Zoom Out"));
         menuBar.getMenus().addAll(menuFile, menuEdit, menuView);
         pane.getChildren().add(menuBar);
-        
+
         AquaFx.style();
         stage.setTitle("AquaFX");
         stage.setScene(myScene);

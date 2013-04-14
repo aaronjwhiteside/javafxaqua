@@ -1079,61 +1079,117 @@
  * Slider                                                                      *
  *                                                                             *
  ******************************************************************************/
+.slider{
+    -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaSliderSkin";
+}
 
 .slider > .thumb {
-    -fx-background-color:
-        derive(-fx-color,-36.0%),
-        derive(-fx-color,73.0%),
-        linear-gradient(to bottom, derive(-fx-color,-19.0%),derive(-fx-color,61.0%));
-    -fx-background-insets: 0.0, 1.0, 2.0;
-    -fx-background-radius: 1.0em; /* makes sure this remains circular */
-    -fx-padding: 0.583333em; /* 7 */
-    
+    -fx-border-width: 0.5;
+    -fx-border-color: rgb(87.0, 87.0, 87.0, 0.8);
+    -fx-border-radius: 1.0em;
+    -fx-background-color: rgb(250.0, 250.0, 250.0),
+        linear-gradient(
+            rgb(255.0, 255.0, 255.0) 0.0%, rgb(253.0,253.0,253.0) 25.0%,  
+            rgb(244.0, 244.0, 244.0) 50.0%, rgb(236.0, 236.0, 236.0) 51.0%,
+            rgb(243.0, 243.0, 243.0) 100.0% );
+    -fx-background-insets: 0.0, 1.0;
+    -fx-background-radius: 1.0em, 1.0em;
+    -fx-padding: 0.566667em;
+    -fx-effect: dropshadow(one-pass-box, rgb(192.0, 192.0, 198.0), 2.0, 0.1 , 0.0, 0.0);
 }
 
-.slider:focused > .thumb {
-    -fx-color: -fx-focused-base;
-    -fx-background-color:
-        -fx-focus-color,
-        derive(-fx-color,-36.0%),
-        derive(-fx-color,73.0%),
-        linear-gradient(to bottom, derive(-fx-color,-19.0%),derive(-fx-color,61.0%));
-    -fx-background-insets: -1.4, 0.0, 1.0, 2.0;
-    -fx-background-radius: 1.0em; /* makes sure this remains circular */
+.slider.alternative-thumb > .thumb {
+    -fx-shape: "M 9.1891716,18.913113 C 14.774865,12.498835 16.85604,11.01737 16.85604,9.11662 l 0,-6.093377 C 16.761936,1.8707681 16.193692,0.7655617 14.833202,0.54472254 13.971391,0.50911 2.5515364,0.50911 2.5515364,0.50911 1.0462919,0.75839775 0.54832274,1.9760737 0.5127102,3.023243 l 0,6.093377 c 0,1.975806 2.313591,3.725456 7.8990521,9.829757 0.055726,0.0609 0.6485114,0.11986 0.7774093,-0.03326 z";
+    -fx-background-insets: 4.0 3.0 -2.5 -2.0;
+    -fx-border-insets: 4.0 3.0 -2.5 -2.0;
+    -fx-scale-shape: false;
+    -fx-background-color: rgb(250.0, 250.0, 250.0),
+        linear-gradient(
+            rgb(255.0, 255.0, 255.0) 0.0%, rgb(253.0,253.0,253.0) 15.0%,  
+            rgb(244.0, 244.0, 244.0) 34.0%, rgb(236.0, 236.0, 236.0) 35.0%,
+            rgb(243.0, 243.0, 243.0) 100.0% );
 }
 
-.slider > .thumb:hover {
-    -fx-color: -fx-hover-base;
+.slider.alternative-thumb:vertical > .thumb {
+    -fx-rotate: 270;
+    -fx-background-insets: 4.0 6.0 -2.5 -5.0;
+    -fx-border-insets: 4.0 6.0 -2.5 -5.0;
+    -fx-background-color: rgb(250.0, 250.0, 250.0),
+        linear-gradient(to left,
+            rgb(255.0, 255.0, 255.0) 0.0%, rgb(253.0,253.0,253.0) 25.0%,  
+            rgb(244.0, 244.0, 244.0) 50.0%, rgb(236.0, 236.0, 236.0) 51.0%,
+            rgb(243.0, 243.0, 243.0) 100.0% );
 }
 
-/* Uncomment when RT-10521 is fixed.
+.slider.alternative-thumb .thumb:pressed {
+     -fx-background-color: linear-gradient(
+            rgb(224.0, 224.0, 224.0) 0.0%, rgb(214.0, 214.0, 214.0) 50.0%,  
+            rgb(207.0, 207.0, 207.0) 51.0%, rgb(208.0, 208.0, 208.0) 95.0%, 
+            rgb(220.0, 220.0, 220.0) 97.5%, rgb(208.0, 208.0, 208.0) 100.0%);
+}
+
+/*.slider:focused > .thumb {
+TODO: effect-chaining!!!
+} */
+
 .slider .thumb:pressed {
-    -fx-color: -fx-pressed-base;
+     -fx-background-color: linear-gradient(
+            rgb(224.0, 224.0, 224.0) 0.0%, rgb(214.0, 214.0, 214.0) 50.0%,  
+            rgb(207.0, 207.0, 207.0) 51.0%, rgb(208.0, 208.0, 208.0) 95.0%, 
+            rgb(220.0, 220.0, 220.0) 97.5%, rgb(208.0, 208.0, 208.0) 100.0%);
+    -fx-background-insets: 0.0;
+    -fx-background-radius: 1.0em;
 }
-*/
 
 .slider > .track {
     -fx-background-color:
-        -fx-shadow-highlight-color,
-        derive(-fx-color,-22.0%),
-        linear-gradient(to bottom, derive(-fx-color,-15.5%), derive(-fx-color,34.0%) 30.0%, derive(-fx-color,68.0%));
-    -fx-background-insets: 1.0 0.0 -1.0 0.0, 0.0, 1.0;
-    -fx-background-radius: 2.5, 2.5, 1.5;
-    -fx-padding: 0.208333em; /* 2.5 */
+       linear-gradient(to bottom, rgb(147.0, 147.0, 147.0), rgb(217.0, 217.0, 217.0));
+    -fx-background-radius: 2.5;
+    -fx-padding: 0.15em; 
+    
+    -fx-border-color: linear-gradient(to bottom, rgb(111.0, 111.0, 111.0), rgb(171.0, 171.0, 171.0));
+    -fx-border-width: 0.5;
+    -fx-border-radius: 2.5;
 }
 
 .slider:vertical > .track {
-    -fx-background-color:
-        -fx-shadow-highlight-color,
-        derive(-fx-color,-22.0%),
-        linear-gradient(to right, derive(-fx-color,-15.5%), derive(-fx-color,34.0%) 30.0%, derive(-fx-color,68.0%));
-    -fx-background-insets: 0.0 -1.0 0.0 1.0, 0.0, 1.0;
+     -fx-background-color:
+        linear-gradient(to right, rgb(147.0, 147.0, 147.0), rgb(217.0, 217.0, 217.0));
+    -fx-border-color: linear-gradient(to right, rgb(111.0, 111.0, 111.0), rgb(171.0, 171.0, 171.0));
 }
 
 .slider > .axis {
-    -fx-tick-mark-stroke: ladder(-fx-background, derive(-fx-background,30.0%) 40.0%, derive(-fx-background,-30.0%) 41.0%);
+   /* -fx-tick-mark-stroke: ladder(-fx-background, derive(-fx-background,30.0%) 40.0%, derive(-fx-background,-30.0%) 41.0%);
     -fx-tick-label-font: 0.833333em System; 
-    -fx-tick-label-fill: -fx-text-background-color;
+    -fx-tick-label-fill: -fx-text-background-color; */
+    
+    -fx-tick-label-gap: 4.0px;
+    -fx-tick-label-fill: -fx-text-base-color;
+    -fx-tick-length: 4.0px;
+    -fx-minor-tick-length: 5.0px;
+    -fx-border-color: null;
+}
+
+.slider > .axis {
+     -fx-translate-y: 7.0px;
+}
+
+.slider:vertical > .axis {
+    -fx-translate-x: 7.0px;
+    -fx-translate-y: 0.0px;
+}
+
+.slider > .axis > .axis-tick-mark  {
+    -fx-translate-y: 1.0px;    
+}
+
+.slider:vertical > .axis > .axis-tick-mark  {
+    -fx-translate-y: 0.0px;    
+}
+
+.slider > .axis > .axis-minor-tick-mark,
+.slider > .axis > .axis-tick-mark {
+    -fx-stroke : rgb(146.0, 146.0, 146.0);
 }
 
 .slider:disabled {
