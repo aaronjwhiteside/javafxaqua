@@ -37,8 +37,7 @@ public class AquaTextAreaSkin extends TextAreaSkin {
         getSkinnable().setEffect(outerFocus);
     }
 
-    @Override
-    protected void handleControlPropertyChanged(String p) {
+    @Override protected void handleControlPropertyChanged(String p) {
         super.handleControlPropertyChanged(p);
 
         if (p == "FOCUSED") {

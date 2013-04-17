@@ -16,10 +16,8 @@ public class AquaComboBoxListViewSkin<T> extends ComboBoxListViewSkin {
     public AquaComboBoxListViewSkin(ComboBox comboBox) {
         super(comboBox);
 
-        for (int i = 0; i < getChildren().size(); i++) {
-
-            Node child = (Node) getChildren().get(i);
-            child.focusedProperty().addListener(focusListener);
+        for (Object child : getChildren()) {
+            ((Node) child).focusedProperty().addListener(focusListener);
         }
         if (comboBox.isEditable()) {
             getDisplayNode().focusedProperty().addListener(focusListener);

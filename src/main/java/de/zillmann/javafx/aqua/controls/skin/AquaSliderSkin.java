@@ -28,8 +28,7 @@ public class AquaSliderSkin extends SliderSkin {
             if (getSkinnable().isFocused()) {
                 setFocusBorder();
             } else {
-                for (int i = 0; i < getChildren().size(); i++) {
-                    Node child = getChildren().get(i);
+                for (Node child : getChildren()) {
                     if (child.getStyleClass().get(0).equals("thumb")) {
                         child.setEffect(null);
                     }
@@ -56,10 +55,10 @@ public class AquaSliderSkin extends SliderSkin {
         outerFocus.setOffsetY(0.0);
         outerFocus.setInput(innerFocus);
 
-        for (int i = 0; i < getChildren().size(); i++) {
-            Node child = getChildren().get(i);
+        for (Node child : getChildren()) {
             if (child.getStyleClass().get(0).equals("thumb")) {
                 child.setEffect(outerFocus);
+                getSkinnable().impl_reapplyCSS();
             }
         }
     }

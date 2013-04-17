@@ -17,7 +17,7 @@ public class AquaTabPaneSkin extends TabPaneSkin {
 
         definePillPosition();
         adjustBorders();
-        
+
         /**
          * Tabs are not closeable in Aqua
          */
@@ -56,7 +56,7 @@ public class AquaTabPaneSkin extends TabPaneSkin {
         Tab selectedTab = getSkinnable().getSelectionModel().getSelectedItem();
         for (Tab tab : tabs) {
             tab.getStyleClass().remove("neighbor");
-            if(foundSelected){
+            if (foundSelected) {
                 tab.getStyleClass().add("neighbor");
                 foundSelected = false;
             }

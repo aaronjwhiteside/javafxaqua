@@ -27,16 +27,14 @@ public class AquaRadioButtonSkin extends RadioButtonSkin {
                 if (newValue != null) {
                     if (!newValue.booleanValue()) {
                         if (getSkinnable().isSelected()) {
-                            for (int i = 0; i < getChildren().size(); i++) {
-                                Node child = getChildren().get(i);
+                            for (Node child : getChildren()) {
                                 if (child.getStyleClass().get(0).equals("radio")) {
                                     child.getStyleClass().add("unfocused");
                                 }
                             }
                         }
                     } else {
-                        for (int i = 0; i < getChildren().size(); i++) {
-                            Node child = getChildren().get(i);
+                        for (Node child : getChildren()) {
                             if (child.getStyleClass().get(0).equals("radio")) {
                                 child.getStyleClass().remove("unfocused");
                             }
@@ -81,8 +79,7 @@ public class AquaRadioButtonSkin extends RadioButtonSkin {
         outerFocus.setOffsetY(0.0);
         outerFocus.setInput(innerFocus);
 
-        for (int i = 0; i < getChildren().size(); i++) {
-            Node child = getChildren().get(i);
+        for (Node child : getChildren()) {
             if (child instanceof StackPane) {
                 child.setEffect(outerFocus);
             }
@@ -98,8 +95,7 @@ public class AquaRadioButtonSkin extends RadioButtonSkin {
         dropShadow.setOffsetX(0.0);
         dropShadow.setOffsetY(0.0);
 
-        for (int i = 0; i < getChildren().size(); i++) {
-            Node child = getChildren().get(i);
+        for (Node child : getChildren()) {
             if (child.getStyleClass().get(0).equals("radio")) {
                 child.setEffect(dropShadow);
             }

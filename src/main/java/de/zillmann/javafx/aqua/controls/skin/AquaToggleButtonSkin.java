@@ -53,9 +53,8 @@ public class AquaToggleButtonSkin extends ToggleButtonSkin {
         dropShadow.setRadius(2.0);
         dropShadow.setSpread(0.2);
 
-        if (getSkinnable().getStyleClass().contains("left-pill")
-                || getSkinnable().getStyleClass().contains("center-pill")
-                || getSkinnable().getStyleClass().contains("right-pill")) {
+        if (getSkinnable().getStyleClass().contains("left-pill") || getSkinnable().getStyleClass().contains("center-pill") || getSkinnable().getStyleClass().contains(
+                "right-pill")) {
             dropShadow.setOffsetX(1.0);
             dropShadow.setOffsetY(0.5);
             dropShadow.setWidth(1.0);
@@ -63,14 +62,12 @@ public class AquaToggleButtonSkin extends ToggleButtonSkin {
         getSkinnable().setEffect(dropShadow);
     }
 
-    @Override
-    protected void handleControlPropertyChanged(String p) {
+    @Override protected void handleControlPropertyChanged(String p) {
         super.handleControlPropertyChanged(p);
         if (p == "FOCUSED") {
             if (getSkinnable().isFocused()) {
                 setFocusBorder();
-            } else if (!getSkinnable().isFocused()
-                    || getSkinnable().isDisable()) {
+            } else if (!getSkinnable().isFocused() || getSkinnable().isDisable()) {
                 setDropShadow();
             }
         }
@@ -80,28 +77,23 @@ public class AquaToggleButtonSkin extends ToggleButtonSkin {
     }
 
     private void adjustToggleGroupBorders() {
-        if (getSkinnable().isSelected()
-                && getSkinnable().getToggleGroup() != null) {
+        if (getSkinnable().isSelected() && getSkinnable().getToggleGroup() != null) {
             List<Toggle> toggles = getSkinnable().getToggleGroup().getToggles();
-            int i = toggles.indexOf(getSkinnable().getToggleGroup()
-                    .getSelectedToggle());
+            int i = toggles.indexOf(getSkinnable().getToggleGroup().getSelectedToggle());
             if (toggles.size() > i + 1) {
                 ToggleButton toggle = (ToggleButton) toggles.get(i + 1);
                 toggle.getStyleClass().add("neighbor");
                 for (int j = 0; toggles.size() > j; j++) {
                     if (j != i + 1) {
-                        ((ToggleButton) toggles.get(j)).getStyleClass().remove(
-                                "neighbor");
+                        ((ToggleButton) toggles.get(j)).getStyleClass().remove("neighbor");
                     }
                 }
             }
-        } else if (!getSkinnable().isSelected()
-                && getSkinnable().getToggleGroup() != null) {
+        } else if (!getSkinnable().isSelected() && getSkinnable().getToggleGroup() != null) {
             List<Toggle> toggles = getSkinnable().getToggleGroup().getToggles();
             int i = toggles.indexOf(getSkinnable());
             if (toggles.size() > i + 1) {
                 ToggleButton toggle = (ToggleButton) toggles.get(i + 1);
-                
                 toggle.getStyleClass().remove("neighbor");
             }
         }

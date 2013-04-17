@@ -24,25 +24,19 @@ public class AquaCheckBoxSkin extends CheckBoxSkin {
 
         final ChangeListener<Boolean> windowFocusChangedListener = new ChangeListener<Boolean>() {
 
-            @Override
-            public void changed(
-                    ObservableValue<? extends Boolean> observableValue,
-                    Boolean oldValue, Boolean newValue) {
+            @Override public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
                 if (newValue != null) {
                     if (!newValue.booleanValue()) {
-                        if (getSkinnable().isSelected()
-                                | getSkinnable().isIndeterminate()) {
+                        if (getSkinnable().isSelected() | getSkinnable().isIndeterminate()) {
 
-                            for (int i = 0; i < getChildren().size(); i++) {
-                                Node child = getChildren().get(i);
+                            for (Node child : getChildren()) {
                                 if (child.getStyleClass().get(0).equals("box")) {
                                     child.getStyleClass().add("unfocused");
                                 }
                             }
                         }
                     } else {
-                        for (int i = 0; i < getChildren().size(); i++) {
-                            Node child = getChildren().get(i);
+                        for (Node child : getChildren()) {
                             if (child.getStyleClass().get(0).equals("box")) {
                                 child.getStyleClass().remove("unfocused");
                             }
@@ -55,26 +49,19 @@ public class AquaCheckBoxSkin extends CheckBoxSkin {
 
         getSkinnable().sceneProperty().addListener(new ChangeListener<Scene>() {
 
-            @Override
-            public void changed(
-                    ObservableValue<? extends Scene> observableValue,
-                    Scene oldScene, Scene newScene) {
+            @Override public void changed(ObservableValue<? extends Scene> observableValue, Scene oldScene, Scene newScene) {
                 if (oldScene != null && oldScene.getWindow() != null) {
-                    oldScene.getWindow().focusedProperty()
-                            .removeListener(windowFocusChangedListener);
+                    oldScene.getWindow().focusedProperty().removeListener(windowFocusChangedListener);
                 }
                 if (newScene != null && newScene.getWindow() != null) {
-                    newScene.getWindow().focusedProperty()
-                            .addListener(windowFocusChangedListener);
+                    newScene.getWindow().focusedProperty().addListener(windowFocusChangedListener);
                 }
 
             }
         });
 
-        if (getSkinnable().getScene() != null
-                && getSkinnable().getScene().getWindow() != null) {
-            getSkinnable().getScene().getWindow().focusedProperty()
-                    .addListener(windowFocusChangedListener);
+        if (getSkinnable().getScene() != null && getSkinnable().getScene().getWindow() != null) {
+            getSkinnable().getScene().getWindow().focusedProperty().addListener(windowFocusChangedListener);
         }
 
     }
@@ -88,8 +75,7 @@ public class AquaCheckBoxSkin extends CheckBoxSkin {
         shadow.setOffsetX(0.0);
         shadow.setOffsetY(0.8);
 
-        for (int i = 0; i < getChildren().size(); i++) {
-            Node child = getChildren().get(i);
+        for (Node child : getChildren()) {
             if (child.getStyleClass().get(0).equals("box")) {
                 child.setEffect(shadow);
             }
@@ -114,8 +100,7 @@ public class AquaCheckBoxSkin extends CheckBoxSkin {
         outerFocus.setOffsetY(0.0);
         outerFocus.setInput(innerFocus);
 
-        for (int i = 0; i < getChildren().size(); i++) {
-            Node child = getChildren().get(i);
+        for (Node child : getChildren()) {
             if (child instanceof StackPane) {
                 child.setEffect(outerFocus);
             }
@@ -140,16 +125,14 @@ public class AquaCheckBoxSkin extends CheckBoxSkin {
         outerFocus.setOffsetY(0.0);
         outerFocus.setInput(innerFocus);
 
-        for (int i = 0; i < getChildren().size(); i++) {
-            Node child = getChildren().get(i);
+        for (Node child : getChildren()) {
             if (child instanceof StackPane) {
                 child.setEffect(outerFocus);
             }
         }
     }
 
-    @Override
-    protected void handleControlPropertyChanged(String p) {
+    @Override protected void handleControlPropertyChanged(String p) {
         super.handleControlPropertyChanged(p);
         if (p == "SELECTED") {
             if (getSkinnable().isFocused()) {

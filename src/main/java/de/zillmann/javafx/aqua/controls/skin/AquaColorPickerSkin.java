@@ -13,14 +13,13 @@ public class AquaColorPickerSkin extends ColorPickerSkin {
 
     public AquaColorPickerSkin(ColorPicker colorPicker) {
         super(colorPicker);
-        
+
         registerChangeListener(colorPicker.focusedProperty(), "FOCUSED");
         if (getSkinnable().isFocused()) {
             setFocusBorder();
         }
     }
 
-    
     private void setFocusBorder() {
         InnerShadow innerFocus = new InnerShadow();
         innerFocus.setColor(Color.rgb(104, 155, 201));
@@ -41,7 +40,7 @@ public class AquaColorPickerSkin extends ColorPickerSkin {
 
         getSkinnable().setEffect(outerFocus);
     }
-    
+
     @Override protected void handleControlPropertyChanged(String p) {
         super.handleControlPropertyChanged(p);
 

@@ -49,6 +49,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.HTMLEditorBuilder;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import de.zillmann.javafx.aqua.AquaFx;
 
 public class ButtonDemo extends Application {
@@ -56,6 +57,7 @@ public class ButtonDemo extends Application {
     final Tab tabI = new Tab();
 
     @Override public void start(Stage stage) throws Exception {
+        stage.initStyle(StageStyle.UNIFIED);
         BorderPane pane = new BorderPane();
 
         ToolBar toolBar = new ToolBar();
