@@ -131,7 +131,8 @@ public class AquaButtonSkin extends ButtonSkin {
     }
 
     private void setDropShadow() {
-        if (!getSkinnable().getStyleClass().contains("left-pill") && !getSkinnable().getStyleClass().contains("center-pill") && !getSkinnable().getStyleClass().contains("right-pill")) {
+        if (!getSkinnable().getStyleClass().contains("left-pill") && !getSkinnable().getStyleClass().contains("center-pill") && !getSkinnable().getStyleClass().contains(
+                "right-pill")) {
             DropShadow dropShadow = new DropShadow();
             dropShadow.setColor(Color.rgb(172, 172, 184));
             dropShadow.setBlurType(BlurType.ONE_PASS_BOX);
