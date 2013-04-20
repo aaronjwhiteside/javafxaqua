@@ -303,8 +303,7 @@
     -fx-background-insets: inherit;
     -fx-padding: inherit;
     
-    /* The color to use in ListView/TreeView/TableView to indicate hover. */
-    -fx-cell-hover-color: #cce3f4;
+   
     
     -fx-cell-focus-inner-border: #85b9de;
     
@@ -328,7 +327,8 @@
     -fx-text-background-color: -fx-text-base-color;
     -fx-disabled-opacity: 0.4; 
     
-    
+     /* The color to use in ListView/TreeView/TableView to indicate hover. */
+    -fx-cell-hover-color: rgb(182.0, 214.0, 253.0);
     
     -toggle-selected-base:linear-gradient(rgb(94.0, 94.0, 94.0) 0.0%, rgb(120.0, 120.0, 120.0) 10.0%, 
         rgb(150.0, 150.0, 150.0) 85.0%, rgb(177.0, 177.0, 177.0) 98.0%, rgb(97.0, 97.0, 97.0) 100.0%); 
@@ -1111,7 +1111,7 @@
 }
 
 .slider.alternative-thumb:vertical > .thumb {
-    -fx-rotate: 270;
+    -fx-rotate: 270.0;
     -fx-background-insets: 4.0 6.0 -2.5 -5.0;
     -fx-border-insets: 4.0 6.0 -2.5 -5.0;
     -fx-background-color: rgb(250.0, 250.0, 250.0),
@@ -1922,7 +1922,7 @@ TODO: effect-chaining!!!
 
 .tool-bar:vertical {
     -fx-background-color:
-        linear-gradient(to right, rgb(233.0, 233.0, 233.0), rgb(173.0, 173.0, 173.0) 99.0%, rgb(233.0, 233.0, 233.0));
+        linear-gradient(to right, rgb(222.0, 222.0, 222.0), rgb(173.0, 173.0, 173.0) 99.0%, rgb(233.0, 233.0, 233.0));
     -fx-padding: 0.833em 0.416667em 0.833em 0.416667em;
     -fx-spacing: 0.333em;
     -fx-alignment: TOP_LEFT;
@@ -2212,31 +2212,19 @@ TODO: effect-chaining!!!
  ******************************************************************************/
 
 .table-view {
-    -fx-background-color: -fx-box-border, -fx-control-inner-background;
-    -fx-background-insets: 0.0,1.0;
-
-    /* There is some oddness if padding is in em values rather than pixels,
-       in particular, the left border of the control doesn't show. */
-    -fx-padding: 1.0; /* 0.083333em; */
-
-    /* Constants used throughout the tableview.
-     * TODO: Should these be derived from the palette in .scene?
-     */
-    -fx-table-header-border-color: #959595;
-/*    -fx-table-header-background-color: linear (0%,0%) to (0%,100%) stops (80%, #bbbbbb) (10%, #f6f6f6);*/
-    -fx-table-cell-border-color: #bbbbbb;
+    -fx-background-color: white;
+    -fx-background-insets: 0.5;
+    -fx-border-color: rgb(156.0, 156.0, 156.0) rgb(190.0, 190.0, 190.0) rgb(190.0, 190.0, 190.0) rgb(190.0, 190.0, 190.0);
+    -fx-border-width: 1.0;
+    -fx-border-insets: 0.0 ;
+    -fx-table-cell-border-color: transparent;
+    -fx-padding: -1.0 0.0 0.0 0.0 ;
 }
 
 /** Draws focus border around tableview */
 .table-view:focused,
 .tree-table-view:focused {
-    -fx-background-color: -fx-focus-color,-fx-box-border,-fx-control-inner-background;
-    -fx-background-insets: -1.4, 0.0, 1.0;
-    -fx-background-radius: 1.4, 0.0, 0.0;
-
-    /* There is some oddness if padding is in em values rather than pixels,
-       in particular, the left border of the control doesn't show. */
-    -fx-padding: 1.0; /* 0.083333em; */
+    -fx-effect: dropshadow(one-pass-box , rgb(120.0,171.0,217.0), 8.0, 0.8 , 0.0, 0.0);
 }
 
 .table-view:disabled,
@@ -2244,76 +2232,31 @@ TODO: effect-chaining!!!
     -fx-opacity: -fx-disabled-opacity;
 }
 
-.table-view > .virtual-flow > .scroll-bar:vertical,
-.tree-table-view > .virtual-flow > .scroll-bar:vertical {
-    -fx-background-insets: 0.0, 0.0 0.0 0.0 1.0;
-    -fx-padding: -1.0 -1.0 -1.0 0.0;
-}
-
-.table-view > .virtual-flow > .scroll-bar:horizontal,
-.tree-table-view > .virtual-flow > .scroll-bar:horizontal {
-    -fx-background-insets: 0.0, 1.0 0.0 0.0 0.0;
-    -fx-padding: 0.0 -1.0 -1.0 -1.0;
-}
-
-.table-view > .virtual-flow > .corner,
-.tree-table-view > .virtual-flow > .corner {
-    -fx-background-color: -fx-box-border, -fx-base;
-    -fx-background-insets: 0.0, 1.0 0.0 0.0 1.0;
-}
 
 /* Each row in the table is a table-row-cell. Inside a table-row-cell is any
    number of table-cell. */
 .table-row-cell {
-    -fx-background-color: -fx-table-cell-border-color, -fx-control-inner-background;
-    -fx-background-insets: 0.0, 0.0 0.0 1.0 0.0;
-    -fx-padding: 0.0em; /* 0 */
-    -fx-text-fill: -fx-text-inner-color;
+    -fx-background-color: white;
+    -fx-background-insets: 0.0;
+    -fx-text-fill: -fx-text-base-color;
 }
 
 .table-row-cell:odd {
-    -fx-background-color: -fx-table-cell-border-color, derive(-fx-control-inner-background,-5.0%);
-    -fx-background-insets: 0.0, 0.0 0.0 1.0 0.0;
-}
-
-.table-row-cell:focused,
-.tree-table-row-cell:focused {
-    -fx-background-color: -fx-focus-color, -fx-cell-focus-inner-border, -fx-control-inner-background;
-    -fx-background-insets: 0.0, 1.0, 2.0;
-}
-
-.table-row-cell:focused:odd {
-    -fx-background-color: -fx-focus-color, -fx-cell-focus-inner-border, derive(-fx-control-inner-background,-5.0%);
-    -fx-background-insets: 0.0, 1.0, 2.0;
-}
-
-/* When the table-row-cell is selected and focused */
-.table-view:focused > .virtual-flow > .clipped-container > .sheet > .table-row-cell:filled:focused:selected,
-.tree-table-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell:filled:focused:selected {
-    -fx-background-color: -fx-focus-color, -fx-cell-focus-inner-border, -fx-selection-bar;
-    -fx-background-insets: 0.0, 1.0, 2.0;
-    -fx-background: -fx-accent;
-    -fx-text-fill: -fx-selection-bar-text;
+    -fx-background-color: rgb(243.0, 246.0, 250.0);
+    -fx-background-insets: 0.0;
 }
 
 .table-view:focused > .virtual-flow > .clipped-container > .sheet > .table-row-cell:filled:selected > .table-cell,
 .tree-table-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell:filled:selected > .tree-table-cell {
-    -fx-text-fill: -fx-selection-bar-text;
+    -fx-text-fill: white;
 }
 
 .table-view:focused > .virtual-flow > .clipped-container > .sheet > .table-row-cell:filled:selected, 
-.tree-table-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell:filled:selected {
-    -fx-background: -fx-accent;
-    -fx-background-color: -fx-selection-bar;
-    -fx-text-fill: -fx-selection-bar-text;
-}
-
+.tree-table-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell:filled:selected,
 .table-view:row-selection:focused > .virtual-flow > .clipped-container > .sheet > .table-row-cell:filled:focused:selected:hover,
-.tree-table-view:row-selection:focused > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell:filled:focused:selected:hover{
-    -fx-background: -fx-accent;
-    -fx-background-color: -fx-focus-color, -fx-cell-focus-inner-border, -fx-selection-bar;
-    -fx-background-insets: 0.0, 1.0, 2.0;
-    -fx-text-fill: -fx-selection-bar-text;
+.tree-table-view:row-selection:focused > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell:filled:focused:selected:hover {
+    -fx-background-color: rgb(60, 119, 212);
+    -fx-background-insets: 0.0 0.0 1.0 0.0;
 }
 
 /* When the TableView is _not_ focused, we show alternate selection colors */
@@ -2322,7 +2265,7 @@ TODO: effect-chaining!!!
 .tree-table-row-cell:filled:selected:focused, 
 .tree-table-row-cell:filled:selected {
     -fx-background-color: lightgray;
-    -fx-text-fill: -fx-selection-bar-text;
+    -fx-text-fill: white;
 }
 
 .table-row-cell:selected:disabled,
@@ -2345,18 +2288,15 @@ TODO: effect-chaining!!!
 
 .table-view:row-selection > .virtual-flow > .clipped-container > .sheet > .table-row-cell:filled:focused:hover,
 .tree-table-view:row-selection > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell:filled:focused:hover { 
-    -fx-background-color: -fx-table-cell-border-color, -fx-focus-color, -fx-cell-focus-inner-border, -fx-cell-hover-color;
-    -fx-background-insets: 0.0, 0.0 0.0 1.0 0.0, 1.0 1.0 2.0 1.0, 2.0 2.0 3.0 2.0, 3.0 3.0 4.0 3.0;
+    -fx-background-color: -fx-table-cell-border-color, -fx-cell-hover-color;
+    -fx-background-insets: 0.0, 0.0 0.0 1.0 0.0, 2.0 2.0 3.0 2.0;
     -fx-text-fill: -fx-text-inner-color;
 }
 
 .table-cell {
-    -fx-padding: 0.166667em; /* 2px, plus border adds 1px */
-
     -fx-background-color: transparent;
-    -fx-border-color: transparent -fx-table-cell-border-color transparent transparent;
-    -fx-border-width: 0.083333em; /* 1 */
-    -fx-cell-size: 2.0em; /* 24 */
+    -fx-border-color: transparent;
+    -fx-border-width: 0.0em 0.083333em 0.0em 0.083333em;
     -fx-text-fill: -fx-text-inner-color;
 }
 
@@ -2373,13 +2313,7 @@ TODO: effect-chaining!!!
 }
 .table-view:constrained-resize .filler,
 .tree-table-view:constrained-resize .filler {
-    -fx-border-color: 
-        derive(-fx-base, 80.0%) 
-        linear-gradient(to bottom, derive(-fx-base,80.0%) 20.0%, derive(-fx-base,-10.0%) 90.0%)
-        derive(-fx-base, 10.0%) 
-        linear-gradient(to bottom, derive(-fx-base,80.0%) 20.0%, derive(-fx-base,-10.0%) 90.0%),
-        /* Outer border: */
-        transparent -fx-table-header-border-color -fx-table-header-border-color -fx-table-header-border-color;
+    -fx-border-color: blue, purple;
     -fx-border-insets: 0.0 1.0 1.0 1.0, 0.0 0.0 0.0 0.0;
 }
 
@@ -2421,18 +2355,13 @@ TODO: effect-chaining!!!
  .tree-table-row-cell:filled > .tree-table-cell:selected:focused, 
  .tree-table-row-cell:filled > .tree-table-cell:selected {
     -fx-background-color: lightgray;
-    -fx-text-fill: -fx-selection-bar-text;
+    -fx-text-fill: -fx-text-base;
 }
 
 .table-cell:selected:disabled,
 .tree-table-cell:selected:disabled {
     -fx-opacity: -fx-disabled-opacity;
 }
-
-/*.table-cell:focused {
-    -fx-background-color: -fx-focus-color, -fx-control-inner-background;
-    -fx-background-insets: 0, 1.4;
-}*/
 
 .table-view:cell-selection > .virtual-flow > .clipped-container > .sheet > .table-row-cell:filled > .table-cell:hover,
 .tree-table-view:cell-selection > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell:filled > .tree-table-cell:hover {
@@ -2453,14 +2382,19 @@ TODO: effect-chaining!!!
 .tree-table-view .column-resize-line {
     -fx-background: -fx-accent;
     -fx-background-color: -fx-selection-bar;
-    -fx-padding: 0.0em 0.0416667em 0.0em 0.0416667em; /* 0 0.571429 0 0.571429 */
+    -fx-padding: 0.0em 0.0416667em 0.0em 0.0416667em; 
 }
 
 /* This is the area behind the column headers. An ideal place to specify background
    and border colors for the whole area (not individual column-header's). */
 .table-view .column-header-background,
 .tree-table-view .column-header-background {
-    -fx-background-color: -fx-body-color;
+     -fx-background-color:
+        linear-gradient(rgb(255.0, 255.0, 255.0) 25.0%, rgb(243.0, 243.0, 243.0) 50.0%, rgb(236.0, 236.0, 236.0) 50.0%, rgb(243.0, 243.0, 243.0) 98.0% , rgb(250.0, 250.0, 250.0) 100.0% );
+    -fx-background-insets:  0.0;
+    -fx-border-color: rgb(156.0, 156.0, 156.0);
+    -fx-border-insets: 0.0;
+    -fx-border-width: 0.5 0.0 0.5 0.0;
     -fx-padding: 0.0;
 }
 
@@ -2469,44 +2403,32 @@ TODO: effect-chaining!!!
    to the edge of the tableview, or up to the 'column control' button. */
 .table-view .column-header,
 .tree-table-view .column-header {
-    -fx-text-fill: -fx-selection-bar-text;
-
-    /* TODO: for some reason, this doesn't scale. */
-    -fx-font-size: 1.083333em; /* 13pt - 1 more than the default font */
-    -fx-size: 25.0;
-    -fx-border-style: solid;
-    -fx-border-color: 
-        /* 
-          Inner border: we have different colours along the top, right, bottom and left.
-          Refer to RT-12298 for the spec.
-        */
-        derive(-fx-base, 80.0%) 
-        linear-gradient(to bottom, derive(-fx-base,80.0%) 20.0%, derive(-fx-base,-10.0%) 90.0%)
-        derive(-fx-base, 10.0%) 
-        linear-gradient(to bottom, derive(-fx-base,80.0%) 20.0%, derive(-fx-base,-10.0%) 90.0%),
-        /* Outer border: */
-        transparent -fx-table-header-border-color -fx-table-header-border-color transparent;
-    -fx-border-insets: 0.0 1.0 1.0 0.0, 0.0 0.0 0.0 0.0;
-    -fx-border-width: 0.083333em, 0.083333em;
+    /* since there could appear nested column-headers in a header, the border-color is defined by a gradient */
+    -fx-right-border: linear-gradient(transparent, transparent 15%, rgb(190.0, 190.0, 190.0, 0.8) 15%, rgb(190.0, 190.0, 190.0, 0.8) 85%, transparent 85%, transparent);
+    -fx-border-color: rgb(212.0, 212.0, 212.0, 0.8) -fx-right-border rgb(212.0, 212.0, 212.0, 0.8) transparent;
+    -fx-border-width: 0.5 1.0 0.5 0.0;
+    -fx-border-insets: 0.0;
 }
 
+/* filler is the area, which is next to column-header, but has no column..*/
 .table-view .filler,
 .tree-table-view .filler {
-    -fx-size: 25.0;
-    -fx-border-style: solid;
-    -fx-border-color: 
-        /* 
-          Inner border: we have different colours along the top, right, bottom and left.
-          Refer to RT-12298 for the spec.
-        */
-        derive(-fx-base, 80.0%) 
-        linear-gradient(to bottom, derive(-fx-base,80.0%) 20.0%, derive(-fx-base,-10.0%) 90.0%)
-        derive(-fx-base, 10.0%) 
-        linear-gradient(to bottom, derive(-fx-base,80.0%) 20.0%, derive(-fx-base,-10.0%) 90.0%),
-        /* Outer border: */
-        transparent transparent -fx-table-header-border-color transparent;
-    -fx-border-insets: 0.0 0.0 1.0 0.0, 0.0 0.0 0.0 0.0;
-    -fx-border-width: 0.083333em, 0.083333em 0.0 0.083333em 0.083333em;
+    -fx-border-color: rgb(212.0, 212.0, 212.0, 0.8);
+    -fx-border-width: 0.5 0.0 0.5 0.0;
+    -fx-border-insets: 0.0;
+}
+
+.table-view .column-header:pressed,
+.tree-table-view .column-header:pressed,
+.table-view .filler:pressed,
+.tree-table-view .filler:pressed {
+     -fx-background-color:
+        linear-gradient(rgb(224.0, 224.0, 224.0) 25.0%, rgb(214.0, 214.0, 214.0) 50.0%, rgb(207.0, 207.0, 207.0) 50.0%, 
+                rgb(209.0, 209.0, 209.0) 98.0% , rgb(218.0, 218.0, 218.0) 100.0%
+        );
+    -fx-border-color: rgb(156.0, 156.0, 156.0);
+    -fx-border-width: 0.5 1.0 0.5 1.0 ;
+    -fx-border-insets: -0.5 0.0 -0.5 -1.0;
 }
 
 .table-view .column-header .sort-order-dots-container,
@@ -2516,18 +2438,22 @@ TODO: effect-chaining!!!
 
 .table-view .column-header .sort-order,
 .tree-table-view .column-header .sort-order{
-    -fx-font-size: 0.916667em; /* 11pt - 1 less than the default font */
+    -fx-font-size: 0.916667em;
+    -fx-background-color: green , green , greenyellow ; /*TODO: bei sortierung ändert sich die farbe des headers! */
 }
 
 .table-view .column-header .sort-order-dot,
 .tree-table-view .column-header .sort-order-dot {
-    -fx-background-color: derive(-fx-mark-highlight-color, 40.0%), -fx-mark-color;
+    -fx-background-color: red;
     -fx-padding: 0.0625em 0.104em 0.0625em 0.104em;
 }
 
+
+/* dots beneath/ above the sort order-arrows */
 .table-view .column-header .sort-order-dot.ascending,
 .tree-table-view .column-header .sort-order-dot.ascending {
     -fx-background-insets: -1.0 0.0 1.0 0.0, 0.0; 
+    -fx-background-color: green;
 }
 
 .table-view .column-header .sort-order-dot.descending,
@@ -2540,13 +2466,7 @@ TODO: effect-chaining!!!
     -fx-background-color: -fx-body-color;
 
     -fx-border-color:
-        /* inner border: A copy of the inner border used above in the general column header area. */
-        derive(-fx-base, 80.0%) 
-        linear-gradient(to bottom, derive(-fx-base,80.0%) 20.0%, derive(-fx-base,-10.0%) 90.0%),
-        derive(-fx-base, 10.0%) 
-        linear-gradient(to bottom, derive(-fx-base,80.0%) 20.0%, derive(-fx-base,-10.0%) 90.0%),
-        /* outer border: Slightly different to the above*/
-        transparent transparent -fx-table-header-border-color -fx-table-header-border-color;
+     blue, yellow;
     -fx-border-insets: 0.0 0.0 0.0 1.0, 0.0 0.0 0.0 0.0;
 }
 
@@ -2559,18 +2479,10 @@ TODO: effect-chaining!!!
     -fx-shape: "M398.902,298.045c0.667,0,1.333,0,2,0c0,0.667,0,1.333,0,2c0.667,0,1.333,0,2,0c0,0.667,0,1.333,0,2c-0.667,0-1.333,0-2,0c0,0.666,0,1.332,0,1.999c-0.667,0-1.333,0-2,0c0-0.667,0-1.333,0-1.999c-0.666,0-1.333,0-1.999,0c0-0.667,0-1.334,0-2c0.666,0,1.333,0,1.999,0C398.902,299.378,398.902,298.711,398.902,298.045z"; 
 }
 
-/*.nested-column-header .column-header {
-    -fx-background-color: transparent;
-}*/
-
-/* When a column is being 'dragged' to be placed in a different position, there
-   is a region that follows along the column header area to indicate where the
-   column will be dropped. This region can be styled using the .column-drag-header
-   name. */
 .table-view .column-drag-header,
 .tree-table-view .column-drag-header {
-    -fx-background: -fx-accent;
-    -fx-background-color: -fx-selection-bar;
+    -fx-background-color:  linear-gradient(rgb(224.0, 224.0, 224.0) 25.0%, rgb(214.0, 214.0, 214.0) 50.0%, rgb(207.0, 207.0, 207.0) 50.0%, 
+                rgb(209.0, 209.0, 209.0) 98.0% , rgb(218.0, 218.0, 218.0) 100.0%);
     -fx-border-color: transparent;
     -fx-opacity: 0.6;
 }
@@ -2578,13 +2490,14 @@ TODO: effect-chaining!!!
 /* Semi-transparent overlay to indicate the column that is currently being moved */
 .table-view .column-overlay,
 .tree-table-view .column-overlay {
-    -fx-background-color: darkgray;
-    -fx-opacity: 0.3;
+    -fx-background-color: lightgray;
+    -fx-opacity: 0.4;
 }
 
+/*Farbe des Sortier-Pfeils... */
 .table-view /*> column-header-background > nested-column-header >*/ .arrow,
 .tree-table-view /*> column-header-background > nested-column-header >*/ .arrow {
-    -fx-background-color: -fx-mark-highlight-color, -fx-mark-color;
+    -fx-background-color: RED;
     -fx-background-insets: 1.0 0.0 -1.0 0.0, 0.0;
     -fx-padding: 0.25em 0.3125em 0.25em 0.3125em; /* 3 3.75 3 3.75 */
     -fx-shape: "M 0 0 h 7 l -3.5 4 z";
@@ -2594,7 +2507,10 @@ TODO: effect-chaining!!!
 .table-view .empty-table,
 .tree-table-view .empty-table {
     -fx-background-color: white;
-    -fx-font-size: 1.166667em; /* 14pt - 2 more than the default font */
+}
+
+.check-box-table-cell {
+    -fx-alignment: center;
 }
 
 /*******************************************************************************
@@ -2856,12 +2772,12 @@ TODO: effect-chaining!!!
 
 .tab-pane:top > .tab-header-area,
 .tab-pane:bottom > .tab-header-area{
-    -fx-padding: 0.0em 1.5em 0.0em 2.5em;
+    -fx-padding: 0.0em 0.5em 0.0em 0.5em;
 }
 
 .tab-pane:right > .tab-header-area,
 .tab-pane:left > .tab-header-area{
-        -fx-padding: 0.5em 0.0em 1.5em 0.0em;
+        -fx-padding: 0.5em 0.0em 0.5em 0.0em;
 }
 
 .tab-pane:left > .tab-header-area > .tab-header-background,
@@ -3753,15 +3669,12 @@ all inherit from Menu Control's popup-menu. --- */
     -fx-background-color: -fx-box-border, -fx-control-inner-background;
     -fx-background-insets: 0.0,1.0;
 
-    /* There is some oddness if padding is in em values rather than pixels,
-       in particular, the left border of the control doesn't show. */
     -fx-padding: 1.0; /* 0.083333em; */
 
     /* Constants used throughout the tableview.
      * TODO: Should these be derived from the palette in .scene?
      */
     -fx-table-header-border-color: #959595;
-/*    -fx-table-header-background-color: linear (0%,0%) to (0%,100%) stops (80%, #bbbbbb) (10%, #f6f6f6);*/
     -fx-table-cell-border-color: #bbbbbb;
 }
 

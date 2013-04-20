@@ -6,7 +6,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.NodeOrientation;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -33,6 +32,10 @@ import javafx.scene.control.Separator;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
@@ -40,6 +43,9 @@ import javafx.scene.control.ToggleButtonBuilder;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.ToolBar;
 import javafx.scene.control.Tooltip;
+import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.HBoxBuilder;
@@ -50,11 +56,20 @@ import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.HTMLEditorBuilder;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Callback;
 import de.zillmann.javafx.aqua.AquaFx;
 
 public class ButtonDemo extends Application {
     final Tab tabH = new Tab();
     final Tab tabI = new Tab();
+    
+    final ObservableList<Person> data = FXCollections.observableArrayList(
+            new Person("Jacob", "Smith", "jacob.smith@example.com", "jacob.smith@example.com", true),
+            new Person("Isabella", "Johnson", "isabella.johnson@example.com", "isabella.johnson@example.com", true),
+            new Person("Ethan", "Williams-Williams", "ethan.williams@example.com", null, false),
+            new Person("Emma", "Jones", "emma.jones@example.com", "emma.jones@example.com", true),
+            new Person("Michael", "Brown", "michael.brown@example.com", "", false)
+        );
 
     @Override public void start(Stage stage) throws Exception {
         stage.initStyle(StageStyle.UNIFIED);
@@ -260,7 +275,6 @@ public class ButtonDemo extends Application {
 
         VBox bottomPane = VBoxBuilder.create().spacing(10).padding(new Insets(10)).build();
         TabPane tabPane = new TabPane();
-        // tabPane.setSide(Side.RIGHT);
 
         Tab tabTexts = new Tab();
         tabTexts.setText("Textfield/ -area");
@@ -402,8 +416,71 @@ public class ButtonDemo extends Application {
         slidersBox.getChildren().add(horizontalSliderBox);
         tabSliderBox.setContent(slidersBox);
         tabPane.getTabs().add(tabSliderBox);
+        
+        Tab tabTableBox = new Tab();
+        tabTableBox.setText("Table");
+        //Create a table..
+        HBox tableContainer = HBoxBuilder.create().padding(new Insets(10)).build();
+        TableView<Person> table = new TableView<Person>();
+        table.setPrefHeight(250);
+        table.setPrefWidth(650);
+        table.setEditable(true);
+//        table.getSelectionModel().setCellSelectionEnabled(true) ;
+       
+        TableColumn<Person, String> firstNameCol = new TableColumn<Person, String>("First Name");
+//        firstNameCol.setMinWidth(100);
+        firstNameCol.setCellValueFactory(
+                new PropertyValueFactory<Person, String>("firstName"));
+        TableColumn lastNameCol = new TableColumn("Last Name");
+        lastNameCol.setEditable(true);
+        lastNameCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        lastNameCol.setOnEditCommit(
+            new EventHandler<CellEditEvent<Person, String>>() {
+                @Override
+                public void handle(CellEditEvent<Person, String> t) {
+                    ((Person) t.getTableView().getItems().get(
+                        t.getTablePosition().getRow())
+                        ).setLastName(t.getNewValue());
+                }
+            }
+        );
 
-        tabPane.getSelectionModel().select(tabSliderBox);
+        lastNameCol.setCellValueFactory(
+                new PropertyValueFactory<Person, String>("lastName"));
+//        TableColumn emailCol = new TableColumn("Email");
+        TableColumn<Person, String> firstEmailCol = new TableColumn<Person, String>("Primary");
+//        firstEmailCol.setMinWidth(200);
+        firstEmailCol.setCellValueFactory(
+                new PropertyValueFactory<Person, String>("primaryEmail"));
+        TableColumn<Person, String> secondEmailCol = new TableColumn<Person, String>("Secondary");
+//        secondEmailCol.setMinWidth(200);
+        secondEmailCol.setCellValueFactory(
+                new PropertyValueFactory<Person, String>("secondaryEmail"));
+//        emailCol.getColumns().addAll(firstEmailCol, secondEmailCol);
+        TableColumn<Person, Boolean> vipCol = new TableColumn<Person, Boolean>("VIP");
+        vipCol.setEditable(true);
+        vipCol.setCellValueFactory(
+                new PropertyValueFactory<Person, Boolean>("vip"));
+        vipCol.setCellFactory(CheckBoxTableCell.forTableColumn(vipCol));
+        vipCol.setOnEditCommit(
+            new EventHandler<CellEditEvent<Person, Boolean>>() {
+                @Override
+                public void handle(CellEditEvent<Person, Boolean> t) {
+                    ((Person) t.getTableView().getItems().get(
+                        t.getTablePosition().getRow())
+                        ).setVip(t.getNewValue());
+                }
+            }
+        );
+        
+        table.getColumns().addAll(firstNameCol, lastNameCol, firstEmailCol, secondEmailCol, vipCol);
+        table.setItems(data);
+
+        tableContainer.getChildren().add(table);
+        tabTableBox.setContent(tableContainer);
+        tabPane.getTabs().add(tabTableBox);
+
+        tabPane.getSelectionModel().select(tabTableBox);
         bottomPane.getChildren().add(tabPane);
         pane.setBottom(bottomPane);
         Scene myScene = new Scene(pane, 700, 600);
