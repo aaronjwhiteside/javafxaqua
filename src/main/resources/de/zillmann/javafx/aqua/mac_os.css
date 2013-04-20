@@ -2313,7 +2313,6 @@ TODO: effect-chaining!!!
 }
 .table-view:constrained-resize .filler,
 .tree-table-view:constrained-resize .filler {
-    -fx-border-color: blue, purple;
     -fx-border-insets: 0.0 1.0 1.0 1.0, 0.0 0.0 0.0 0.0;
 }
 
@@ -2439,12 +2438,11 @@ TODO: effect-chaining!!!
 .table-view .column-header .sort-order,
 .tree-table-view .column-header .sort-order{
     -fx-font-size: 0.916667em;
-    -fx-background-color: green , green , greenyellow ; /*TODO: bei sortierung ändert sich die farbe des headers! */
 }
 
 .table-view .column-header .sort-order-dot,
 .tree-table-view .column-header .sort-order-dot {
-    -fx-background-color: red;
+    -fx-background-color: rgb(255.0, 255.0, 255.0, 0.4), rgb(0,0,0, 0.4);
     -fx-padding: 0.0625em 0.104em 0.0625em 0.104em;
 }
 
@@ -2453,7 +2451,6 @@ TODO: effect-chaining!!!
 .table-view .column-header .sort-order-dot.ascending,
 .tree-table-view .column-header .sort-order-dot.ascending {
     -fx-background-insets: -1.0 0.0 1.0 0.0, 0.0; 
-    -fx-background-color: green;
 }
 
 .table-view .column-header .sort-order-dot.descending,
@@ -2464,7 +2461,6 @@ TODO: effect-chaining!!!
 .table-view > .column-header-background > .show-hide-columns-button,
 .tree-table-view > .column-header-background > .show-hide-columns-button{
     -fx-background-color: -fx-body-color;
-
     -fx-border-color:
      blue, yellow;
     -fx-border-insets: 0.0 0.0 0.0 1.0, 0.0 0.0 0.0 0.0;
@@ -2474,8 +2470,7 @@ TODO: effect-chaining!!!
 .tree-table-view .show-hide-column-image {
     -fx-background-color: -fx-mark-highlight-color, -fx-mark-color;
     -fx-background-insets: 1.0 0.0 -1.0 0.0, 0.0;
-
-    -fx-padding: 0.25em; /* 3px */
+    -fx-padding: 0.25em;
     -fx-shape: "M398.902,298.045c0.667,0,1.333,0,2,0c0,0.667,0,1.333,0,2c0.667,0,1.333,0,2,0c0,0.667,0,1.333,0,2c-0.667,0-1.333,0-2,0c0,0.666,0,1.332,0,1.999c-0.667,0-1.333,0-2,0c0-0.667,0-1.333,0-1.999c-0.666,0-1.333,0-1.999,0c0-0.667,0-1.334,0-2c0.666,0,1.333,0,1.999,0C398.902,299.378,398.902,298.711,398.902,298.045z"; 
 }
 
@@ -2494,12 +2489,11 @@ TODO: effect-chaining!!!
     -fx-opacity: 0.4;
 }
 
-/*Farbe des Sortier-Pfeils... */
 .table-view /*> column-header-background > nested-column-header >*/ .arrow,
 .tree-table-view /*> column-header-background > nested-column-header >*/ .arrow {
-    -fx-background-color: RED;
-    -fx-background-insets: 1.0 0.0 -1.0 0.0, 0.0;
-    -fx-padding: 0.25em 0.3125em 0.25em 0.3125em; /* 3 3.75 3 3.75 */
+    -fx-background-color: rgb(255.0, 255.0, 255.0, 0.4), rgb(0,0,0, 0.4);
+    -fx-background-insets: 1.5 0.5 -1.0 0.5, 0.0, 0.0 0.5 0.0 0.5;
+    -fx-padding: 0.25em; 
     -fx-shape: "M 0 0 h 7 l -3.5 4 z";
 }
 
