@@ -32,7 +32,6 @@ import javafx.scene.control.Separator;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
@@ -43,6 +42,8 @@ import javafx.scene.control.ToggleButtonBuilder;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.ToolBar;
 import javafx.scene.control.Tooltip;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -56,7 +57,6 @@ import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.HTMLEditorBuilder;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Callback;
 import de.zillmann.javafx.aqua.AquaFx;
 
 public class ButtonDemo extends Application {
@@ -444,7 +444,6 @@ public class ButtonDemo extends Application {
                 }
             }
         );
-
         lastNameCol.setCellValueFactory(
                 new PropertyValueFactory<Person, String>("lastName"));
 //        TableColumn emailCol = new TableColumn("Email");
@@ -472,15 +471,42 @@ public class ButtonDemo extends Application {
                 }
             }
         );
-        
         table.getColumns().addAll(firstNameCol, lastNameCol, firstEmailCol, secondEmailCol, vipCol);
         table.setItems(data);
-
         tableContainer.getChildren().add(table);
         tabTableBox.setContent(tableContainer);
         tabPane.getTabs().add(tabTableBox);
-
-        tabPane.getSelectionModel().select(tabTableBox);
+        
+        Tab tabTreeBox = new Tab();
+        tabTreeBox.setText("Tree");
+        HBox treeContainer = HBoxBuilder.create().padding(new Insets(10)).build();
+        TreeItem<String> rootItem = new TreeItem<String> ("People");
+        rootItem.setExpanded(true);
+        for (Person person : data){
+            TreeItem<String> personLeaf = new TreeItem<String>(person.getFirstName());
+            boolean found = false;
+            for (TreeItem<String> statusNode : rootItem.getChildren()) {
+                if(statusNode.getValue().equals((!person.getVip()? "no ": "")+"VIP")){
+                    statusNode.getChildren().add(personLeaf);
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                TreeItem<String> statusNode = new TreeItem<String>((!person.getVip()? "no ": "")+"VIP");
+                    rootItem.getChildren().add(statusNode);
+                    statusNode.getChildren().add(personLeaf);
+             }
+        }
+        TreeView<String> tree = new TreeView<String> (rootItem); 
+        tree.setPrefHeight(250);
+        tree.setPrefWidth(400);
+        treeContainer.getChildren().add(tree);
+        tabTreeBox.setContent(treeContainer);
+        tabPane.getTabs().add(tabTreeBox);
+        tabPane.getSelectionModel().select(tabTreeBox);
+        
+        
         bottomPane.getChildren().add(tabPane);
         pane.setBottom(bottomPane);
         Scene myScene = new Scene(pane, 700, 600);
