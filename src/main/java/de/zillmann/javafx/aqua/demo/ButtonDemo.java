@@ -1,6 +1,9 @@
 package de.zillmann.javafx.aqua.demo;
 
 import javafx.application.Application;
+import javafx.beans.property.ReadOnlyBooleanWrapper;
+import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -34,6 +37,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.TreeTableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -43,8 +47,11 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.ToolBar;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableView;
 import javafx.scene.control.TreeView;
 import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.scene.control.cell.CheckBoxTreeTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.BorderPane;
@@ -57,19 +64,19 @@ import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.HTMLEditorBuilder;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Callback;
 import de.zillmann.javafx.aqua.AquaFx;
 
 public class ButtonDemo extends Application {
     final Tab tabH = new Tab();
     final Tab tabI = new Tab();
-    
+
     final ObservableList<Person> data = FXCollections.observableArrayList(
             new Person("Jacob", "Smith", "jacob.smith@example.com", "jacob.smith@example.com", true),
             new Person("Isabella", "Johnson", "isabella.johnson@example.com", "isabella.johnson@example.com", true),
             new Person("Ethan", "Williams-Williams", "ethan.williams@example.com", null, false),
             new Person("Emma", "Jones", "emma.jones@example.com", "emma.jones@example.com", true),
-            new Person("Michael", "Brown", "michael.brown@example.com", "", false)
-        );
+            new Person("Michael", "Brown", "michael.brown@example.com", "", false));
 
     @Override public void start(Stage stage) throws Exception {
         stage.initStyle(StageStyle.UNIFIED);
@@ -416,97 +423,147 @@ public class ButtonDemo extends Application {
         slidersBox.getChildren().add(horizontalSliderBox);
         tabSliderBox.setContent(slidersBox);
         tabPane.getTabs().add(tabSliderBox);
-        
+
         Tab tabTableBox = new Tab();
         tabTableBox.setText("Table");
-        //Create a table..
+        // Create a table..
         HBox tableContainer = HBoxBuilder.create().padding(new Insets(10)).build();
         TableView<Person> table = new TableView<Person>();
         table.setPrefHeight(250);
         table.setPrefWidth(650);
         table.setEditable(true);
-//        table.getSelectionModel().setCellSelectionEnabled(true) ;
-       
+        // table.getSelectionModel().setCellSelectionEnabled(true) ;
+
         TableColumn<Person, String> firstNameCol = new TableColumn<Person, String>("First Name");
-//        firstNameCol.setMinWidth(100);
-        firstNameCol.setCellValueFactory(
-                new PropertyValueFactory<Person, String>("firstName"));
+        // firstNameCol.setMinWidth(100);
+        firstNameCol.setCellValueFactory(new PropertyValueFactory<Person, String>("firstName"));
         TableColumn lastNameCol = new TableColumn("Last Name");
         lastNameCol.setEditable(true);
         lastNameCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        lastNameCol.setOnEditCommit(
-            new EventHandler<CellEditEvent<Person, String>>() {
-                @Override
-                public void handle(CellEditEvent<Person, String> t) {
-                    ((Person) t.getTableView().getItems().get(
-                        t.getTablePosition().getRow())
-                        ).setLastName(t.getNewValue());
-                }
+        lastNameCol.setOnEditCommit(new EventHandler<CellEditEvent<Person, String>>() {
+            @Override public void handle(CellEditEvent<Person, String> t) {
+                ((Person) t.getTableView().getItems().get(t.getTablePosition().getRow())).setLastName(t.getNewValue());
             }
-        );
-        lastNameCol.setCellValueFactory(
-                new PropertyValueFactory<Person, String>("lastName"));
-//        TableColumn emailCol = new TableColumn("Email");
+        });
+        lastNameCol.setCellValueFactory(new PropertyValueFactory<Person, String>("lastName"));
+        // TableColumn emailCol = new TableColumn("Email");
         TableColumn<Person, String> firstEmailCol = new TableColumn<Person, String>("Primary");
-//        firstEmailCol.setMinWidth(200);
-        firstEmailCol.setCellValueFactory(
-                new PropertyValueFactory<Person, String>("primaryEmail"));
+        // firstEmailCol.setMinWidth(200);
+        firstEmailCol.setCellValueFactory(new PropertyValueFactory<Person, String>("primaryEmail"));
         TableColumn<Person, String> secondEmailCol = new TableColumn<Person, String>("Secondary");
-//        secondEmailCol.setMinWidth(200);
-        secondEmailCol.setCellValueFactory(
-                new PropertyValueFactory<Person, String>("secondaryEmail"));
-//        emailCol.getColumns().addAll(firstEmailCol, secondEmailCol);
+        // secondEmailCol.setMinWidth(200);
+        secondEmailCol.setCellValueFactory(new PropertyValueFactory<Person, String>("secondaryEmail"));
+        // emailCol.getColumns().addAll(firstEmailCol, secondEmailCol);
         TableColumn<Person, Boolean> vipCol = new TableColumn<Person, Boolean>("VIP");
         vipCol.setEditable(true);
-        vipCol.setCellValueFactory(
-                new PropertyValueFactory<Person, Boolean>("vip"));
-        vipCol.setCellFactory(CheckBoxTableCell.forTableColumn(vipCol));
-        vipCol.setOnEditCommit(
-            new EventHandler<CellEditEvent<Person, Boolean>>() {
-                @Override
-                public void handle(CellEditEvent<Person, Boolean> t) {
-                    ((Person) t.getTableView().getItems().get(
-                        t.getTablePosition().getRow())
-                        ).setVip(t.getNewValue());
-                }
+        vipCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Person,Boolean>, ObservableValue<Boolean>>() {
+
+            @Override public ObservableValue<Boolean> call(
+                    javafx.scene.control.TableColumn.CellDataFeatures<Person, Boolean> param) {
+                return new ReadOnlyBooleanWrapper(param.getValue().getVip());
             }
-        );
+        });
+        vipCol.setCellFactory(CheckBoxTableCell.forTableColumn(vipCol));
+        vipCol.setOnEditCommit(new EventHandler<CellEditEvent<Person, Boolean>>() {
+            @Override public void handle(CellEditEvent<Person, Boolean> t) {
+                ((Person) t.getTableView().getItems().get(t.getTablePosition().getRow())).setVip(t.getNewValue());
+            }
+        });
         table.getColumns().addAll(firstNameCol, lastNameCol, firstEmailCol, secondEmailCol, vipCol);
         table.setItems(data);
         tableContainer.getChildren().add(table);
         tabTableBox.setContent(tableContainer);
         tabPane.getTabs().add(tabTableBox);
-        
+
         Tab tabTreeBox = new Tab();
         tabTreeBox.setText("Tree");
         HBox treeContainer = HBoxBuilder.create().padding(new Insets(10)).build();
-        TreeItem<String> rootItem = new TreeItem<String> ("People");
+        TreeItem<String> rootItem = new TreeItem<String>("People");
         rootItem.setExpanded(true);
-        for (Person person : data){
+        for (Person person : data) {
             TreeItem<String> personLeaf = new TreeItem<String>(person.getFirstName());
             boolean found = false;
             for (TreeItem<String> statusNode : rootItem.getChildren()) {
-                if(statusNode.getValue().equals((!person.getVip()? "no ": "")+"VIP")){
+                if (statusNode.getValue().equals((!person.getVip() ? "no " : "") + "VIP")) {
                     statusNode.getChildren().add(personLeaf);
                     found = true;
                     break;
                 }
             }
             if (!found) {
-                TreeItem<String> statusNode = new TreeItem<String>((!person.getVip()? "no ": "")+"VIP");
-                    rootItem.getChildren().add(statusNode);
-                    statusNode.getChildren().add(personLeaf);
-             }
+                TreeItem<String> statusNode = new TreeItem<String>((!person.getVip() ? "no " : "") + "VIP");
+                rootItem.getChildren().add(statusNode);
+                statusNode.getChildren().add(personLeaf);
+            }
         }
-        TreeView<String> tree = new TreeView<String> (rootItem); 
+        TreeView<String> tree = new TreeView<String>(rootItem);
         tree.setPrefHeight(250);
         tree.setPrefWidth(400);
         treeContainer.getChildren().add(tree);
         tabTreeBox.setContent(treeContainer);
         tabPane.getTabs().add(tabTreeBox);
-        tabPane.getSelectionModel().select(tabTreeBox);
+
+        Tab tabTreeTableBox = new Tab();
+        tabTreeTableBox.setText("TreeTable");
+        HBox treeTableContainer = HBoxBuilder.create().padding(new Insets(10)).build();
+        TreeItem<Person> rootTreeTableItem = new TreeItem<Person>(new Person("Chef", "Chef", "chef@business.de", "chef@business.de", true));
+        rootTreeTableItem.setExpanded(true);
+        for (Person person : data) {
+            TreeItem<Person> personLeaf = new TreeItem<Person>(person);
+            boolean found = false;
+            for (TreeItem<Person> statusNode : rootTreeTableItem.getChildren()) {
+                if (statusNode.getValue().getVip() == person.getVip()) {
+                    statusNode.getChildren().add(personLeaf);
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                TreeItem<Person> statusNode = new TreeItem<Person>(person);
+                rootTreeTableItem.getChildren().add(statusNode);
+                statusNode.getChildren().add(personLeaf);
+            }
+        }
+        TreeTableView<Person> treeTable = new TreeTableView<Person>(rootTreeTableItem);
+        TreeTableColumn<Person, String> firstNameTreeCol = new TreeTableColumn<Person, String>("First Name");
+        firstNameTreeCol.setPrefWidth(100);
+        firstNameTreeCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Person,String>, ObservableValue<String>>() {
+            
+            @Override public ObservableValue<String> call(CellDataFeatures<Person, String> param) {
+                return new ReadOnlyStringWrapper(param.getValue().getValue().getFirstName());
+            }
+        });
         
-        
+        TreeTableColumn<Person, String> lastNameTreeCol = new TreeTableColumn<Person, String>("Last Name");
+        lastNameTreeCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Person,String>, ObservableValue<String>>() {
+
+            @Override public ObservableValue<String> call(CellDataFeatures<Person, String> param) {
+                return new ReadOnlyStringWrapper(param.getValue().getValue().getLastName());
+            }
+        });
+        TreeTableColumn<Person, String> primaryMailCol = new TreeTableColumn<Person, String>("primary Mail");
+        primaryMailCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Person,String>, ObservableValue<String>>() {
+
+            @Override public ObservableValue<String> call(CellDataFeatures<Person, String> param) {
+                return new ReadOnlyStringWrapper(param.getValue().getValue().getPrimaryEmail());
+            }
+        });
+        TreeTableColumn<Person, Boolean> vipTreeTableCol = new TreeTableColumn<Person, Boolean>("VIP");
+        vipTreeTableCol.setCellFactory(CheckBoxTreeTableCell.forTreeTableColumn(vipTreeTableCol));
+        vipTreeTableCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Person,Boolean>, ObservableValue<Boolean>>() {
+
+            @Override public ObservableValue<Boolean> call(CellDataFeatures<Person, Boolean> param) {
+                return new ReadOnlyBooleanWrapper(param.getValue().getValue().getVip());
+            }
+        });
+        treeTable.getColumns().setAll(firstNameTreeCol, lastNameTreeCol, primaryMailCol, vipTreeTableCol);
+        treeTable.setPrefHeight(250);
+        treeTable.setPrefWidth(600);
+        treeTableContainer.getChildren().add(treeTable);
+        tabTreeTableBox.setContent(treeTableContainer);
+        tabPane.getTabs().add(tabTreeTableBox);
+        tabPane.getSelectionModel().select(tabTreeTableBox);
+
         bottomPane.getChildren().add(tabPane);
         pane.setBottom(bottomPane);
         Scene myScene = new Scene(pane, 700, 600);
