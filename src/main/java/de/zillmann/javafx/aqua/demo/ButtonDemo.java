@@ -23,6 +23,7 @@ import javafx.scene.control.ContextMenuBuilder;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.HyperlinkBuilder;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -37,8 +38,8 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
-import javafx.scene.control.TreeTableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableView.ResizeFeatures;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
@@ -48,6 +49,7 @@ import javafx.scene.control.ToolBar;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableColumn.CellDataFeatures;
 import javafx.scene.control.TreeTableView;
 import javafx.scene.control.TreeView;
 import javafx.scene.control.cell.CheckBoxTableCell;
@@ -272,19 +274,16 @@ public class ButtonDemo extends Application {
         tabI.setText("Disabled Tab");
         tabI.setDisable(true);
         TabPane innerTabPane = new TabPane();
+        Label label = new Label("Lipsum");
         Tab onlyTab = new Tab("single tab");
+        onlyTab.setContent(label);
         innerTabPane.getTabs().add(onlyTab);
         tabI.setContent(innerTabPane);
         buttonTabPane.getTabs().add(tabI);
-
-        centerPane.getChildren().add(buttonTabPane);
-        pane.setCenter(centerPane);
-
-        VBox bottomPane = VBoxBuilder.create().spacing(10).padding(new Insets(10)).build();
-        TabPane tabPane = new TabPane();
-
+        
+        
         Tab tabTexts = new Tab();
-        tabTexts.setText("Textfield/ -area");
+        tabTexts.setText("Texts");
         VBox txts = new VBox();
         HBox textfieldBox1 = HBoxBuilder.create().spacing(10).padding(new Insets(10)).build();
         Menu item1 = new Menu("test submenu");
@@ -329,10 +328,16 @@ public class ButtonDemo extends Application {
         textareaBox.getChildren().add(area2);
         txts.getChildren().add(textareaBox);
         tabTexts.setContent(txts);
-        tabPane.getTabs().add(tabTexts);
+        buttonTabPane.getTabs().add(tabTexts);
+
+        centerPane.getChildren().add(buttonTabPane);
+        pane.setCenter(centerPane);
+
+        VBox bottomPane = VBoxBuilder.create().spacing(10).padding(new Insets(10)).build();
+        TabPane tabPane = new TabPane();
 
         Tab tabChoiceBox = new Tab();
-        tabChoiceBox.setText("Choice-/ Combo-/ Color");
+        tabChoiceBox.setText("Combo- etc");
         VBox collectorVBox = new VBox();
         HBox choiceBoxBox = HBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
         ChoiceBox<String> choices = new ChoiceBox<String>(FXCollections.observableArrayList("4", "10", "12"));
@@ -343,12 +348,11 @@ public class ButtonDemo extends Application {
         choices2.setDisable(true);
         choiceBoxBox.getChildren().add(choices2);
         collectorVBox.getChildren().add(choiceBoxBox);
-
         ObservableList items = FXCollections.observableArrayList("A", "B", "C");
         HBox editableComboBoxBox = HBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
-        ComboBox combo1 = ComboBoxBuilder.create().editable(true).items(items).promptText("test").build();
+        ComboBox combo1 = ComboBoxBuilder.create().items(items).build();
         editableComboBoxBox.getChildren().add(combo1);
-        ComboBox combo2 = ComboBoxBuilder.create().editable(true).items(items).promptText("test").disable(true).build();
+        ComboBox combo2 = ComboBoxBuilder.create().items(items).disable(true).build();
         editableComboBoxBox.getChildren().add(combo2);
         collectorVBox.getChildren().add(editableComboBoxBox);
         HBox comboBoxBox = HBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
@@ -471,6 +475,7 @@ public class ButtonDemo extends Application {
         });
         table.getColumns().addAll(firstNameCol, lastNameCol, firstEmailCol, secondEmailCol, vipCol);
         table.setItems(data);
+        table.setTableMenuButtonVisible(true);
         tableContainer.getChildren().add(table);
         tabTableBox.setContent(tableContainer);
         tabPane.getTabs().add(tabTableBox);
@@ -562,7 +567,33 @@ public class ButtonDemo extends Application {
         treeTableContainer.getChildren().add(treeTable);
         tabTreeTableBox.setContent(treeTableContainer);
         tabPane.getTabs().add(tabTreeTableBox);
-        tabPane.getSelectionModel().select(tabTreeTableBox);
+        
+        
+        Tab tabListBox = new Tab();
+        tabListBox.setText("List");
+        HBox listContainer = HBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
+        ListView<String> list = new ListView<String>();
+        ObservableList<String> listItems =FXCollections.observableArrayList (
+            "Single", "Double", "Suite", "Family App");
+        list.setItems(listItems);
+        list.setPrefWidth(150);
+        list.setPrefHeight(70);
+        listContainer.getChildren().add(list);
+        TableView<Person> listTable = new TableView<Person>();
+        listTable.getStyleClass().add("hide-header");
+        listTable.setPrefHeight(250);
+        listTable.setPrefWidth(150);
+        TableColumn<Person, String> firstNameListCol = new TableColumn<Person, String>("First Name");
+        firstNameListCol.setMinWidth(100);
+        firstNameListCol.setCellValueFactory(new PropertyValueFactory<Person, String>("firstName"));
+        listTable.getColumns().addAll(firstNameListCol);
+        listTable.setItems(data);
+        listTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        listContainer.getChildren().add(listTable);
+
+        tabListBox.setContent(listContainer);
+        tabPane.getTabs().add(tabListBox);
+        tabPane.getSelectionModel().select(tabListBox);
 
         bottomPane.getChildren().add(tabPane);
         pane.setBottom(bottomPane);

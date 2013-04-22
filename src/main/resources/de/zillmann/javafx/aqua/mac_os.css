@@ -324,7 +324,7 @@
     -fx-background-color: rgb(237.0, 237.0, 237.0);
     /*     default font */
     -fx-font-family: 'lucida-grande';
-    -fx-font-size: 13;
+    -fx-font-size: 13.0;
     -fx-text-background-color: -fx-text-base-color;
     -fx-disabled-opacity: 0.4; 
     
@@ -785,7 +785,7 @@
 }
 
 .context-menu:show-mnemonics > .mnemonic-underline {
-    -fx-stroke: -fx-text-fill;
+    -fx-stroke: -fx-text-base-color;
 } 
 
 
@@ -1410,7 +1410,7 @@ TODO: effect-chaining!!!
 
 .password-field {
     -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaPasswordFieldSkin";
-    -fx-text-fill: black;
+    -fx-text-fill: -fx-text-base-color;
 }
 
 /*******************************************************************************
@@ -1488,48 +1488,17 @@ TODO: effect-chaining!!!
  ******************************************************************************/
 
 .list-view {
-    -fx-background-color: -fx-box-border, -fx-control-inner-background;
-    -fx-background-insets: 0.0, 1.0;
-
-     /* There is some oddness if padding is in em values rather than pixels,
-        in particular, the left border of the control doesn't show. */
-    -fx-padding: 1.0; /* 0.083333em; */
-}
-
-.list-view:focused {
-    -fx-background-color: -fx-focus-color,-fx-box-border,-fx-control-inner-background;
-    -fx-background-insets: -1.4, 0.0, 1.0;
-    -fx-background-radius: 1.4, 0.0, 0.0;
-
-    /* There is some oddness if padding is in em values rather than pixels,
-       in particular, the left border of the control doesn't show. */
-    -fx-padding: 1.0; /* 0.083333em; */
-}
-
-.list-view > .virtual-flow > .scroll-bar:vertical{
-    -fx-background-insets: 0.0, 0.0 0.0 0.0 1.0;
-    -fx-padding: -1.0 -1.0 -1.0 0.0;
-}
-
-.list-view > .virtual-flow > .scroll-bar:horizontal{
-    -fx-background-insets: 0.0, 1.0 0.0 0.0 0.0;
-    -fx-padding: 0.0 -1.0 -1.0 -1.0;
-}
-
-.list-view:disabled {
-    -fx-opacity: -fx-disabled-opacity;
-}
-
-.list-view > .virtual-flow > .corner {
-    -fx-background-color: -fx-box-border, -fx-base;
-    -fx-background-insets: 0.0, 1.0 0.0 0.0 1.0;
+    -fx-background-color: white;
+    -fx-background-insets: 0.5;
+    -fx-border-color: rgb(156.0, 156.0, 156.0) rgb(190.0, 190.0, 190.0) rgb(190.0, 190.0, 190.0) rgb(190.0, 190.0, 190.0);
+    -fx-border-width: 1.0;
+    -fx-border-insets: 0.0;
 }
 
 .list-cell {
-    -fx-background-color: -fx-control-inner-background;
-    -fx-padding: 0.25em; /* 3 */
-    -fx-text-fill: -fx-text-inner-color;
-    -fx-opacity: 1.0;
+    -fx-background-color: white;
+    -fx-padding: 0.25em;
+    -fx-text-fill: -fx-text-base-color;
 }
 
 .list-cell:odd {
@@ -2066,13 +2035,15 @@ TODO: effect-chaining!!!
 /* Draws focus border around tableview */
 .table-view:focused,
 .tree-table-view:focused,
-.tree-view:focused  {
+.tree-view:focused,
+.list-view:focused  {
     -fx-effect: dropshadow(one-pass-box , rgb(120.0,171.0,217.0), 8.0, 0.8 , 0.0, 0.0);
 }
 
 .table-view:disabled,
 .tree-view:disabled,
-.tree-table-view:disabled {
+.tree-table-view:disabled,
+.list-view:disabled {
     -fx-opacity: -fx-disabled-opacity;
 }
 
@@ -2224,9 +2195,9 @@ TODO: effect-chaining!!!
 
 /* This is especially for AquaFX. Apple uses tables with one column for simple Lists. This is just, to make it possible for users. The ListView Class  */
 .table-view.hide-header .column-header{
-    -fx-min-height: 0;
-    -fx-max-height: 0;
-    -fx-pref-height: 0;
+    -fx-min-height: 0.0;
+    -fx-max-height: 0.0;
+    -fx-pref-height: 0.0;
 }
 
 /* filler is the area, which is next to column-header, but has no column..*/
@@ -3046,16 +3017,13 @@ TODO: effect-chaining!!!
 
 /* -------------- CODE  FOR THE NON-EDITABLE COMBO-BOX -------------- */
 
-/* ------- MAIN BUTTON ------- */
-
-/* ------- OPEN BUTTON ------- */
 .combo-box-base > .arrow-button {
     -fx-background-color: 
         linear-gradient(rgb(155.0, 155.0, 155.0) 0.0%, rgb(172.0, 172.0, 172.0)  100.0%),
         rgb(255.0, 255.0, 255.0),
         linear-gradient(rgb(255.0, 255.0, 255.0) 25.0%, rgb(243.0, 243.0, 243.0) 50.0%, rgb(236.0, 236.0, 236.0) 50.0%, rgb(243.0, 243.0, 243.0) 100.0% );
     -fx-background-insets: 0.5 0.5 0.5 0.0, 1.0 1.5 1.0 0.5, 1.0 2.0 1.0 0.5;
-    -fx-background-radius: 0.0 4.0 4.0 0.0, 0.0 3.0 3.0 0.0;
+    -fx-background-radius: 0.0 4.0 4.0 0.0, 0.0 3.0 3.0 0.0, 0.0 3.0 3.0 0.0;
     -fx-border-width: 0.5 0.5 0.5 0.0;
     -fx-border-color: rgb(169.0, 169.0, 169.0) rgb(205.0, 205.0, 205.0) rgb(205.0, 205.0, 205.0) rgb(205.0, 205.0, 205.0);
     -fx-border-radius: 0.0 4.0 4.0 0.0;
@@ -3086,11 +3054,6 @@ TODO: effect-chaining!!!
     -fx-background-insets: 2.0 2.0 1.0 2.0, 2.0, 3.0, 4.0;
 }
 
-/* ------- POPUP MENU ------- */
-/* --- .combo-box .popup-menu, .combo-box .menu-item, .combo-box .popup-menu .menu-item-radio
-all inherit from Menu Control's popup-menu. --- */
-
-
 /* -------------- CODE  FOR THE EDITABLE COMBO-BOX -------------- */
 
 /* ------- TEXTBOX SEGMENT OF COMBO BOX ------- */
@@ -3100,15 +3063,15 @@ all inherit from Menu Control's popup-menu. --- */
     -fx-border-width: 0.5 0.0 0.5 0.5;
     -fx-background-color: linear-gradient(rgb(155.0, 155.0, 155.0) 0.0%, rgb(172.0, 172.0, 172.0)  100.0%),
                         linear-gradient(rgb(224.0, 224.0, 224.0) 0.0%, rgb(255.0, 255.0, 255.0)  10.0%),
-                        linear-gradient(to right, rgb(224.0, 224.0, 224.0) 0.0%, transparent 1.0%);
-    -fx-background-insets: 0.5 0.0 0.5 0.5, 1.0 0.5 1.0 1.0, 1.5 1.0 1.0 1.0;
+                        linear-gradient(to left, rgb(224.0, 224.0, 224.0) 0.0%, transparent 1.0%);
+    -fx-background-insets: 0.5 0.0 0.5 0.5, 1.0 0.5 1.0 1.0, 1.5 1.0 1.0 1.0; 
 }
 
 
 /* -------------- STYLES FOR THE DEFAULT LISTVIEW-BASED COMBOBOX ------------- */
 
-.combo-box{
-            -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaComboBoxListViewSkin";
+.combo-box {
+    -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaComboBoxListViewSkin";
 }
 
 /* Customize the ListCell that appears in the ComboBox button itself */
@@ -3130,15 +3093,13 @@ all inherit from Menu Control's popup-menu. --- */
     -fx-background-color: white;
     -fx-background-insets: 0.0;
     -fx-background-radius: 0.0;
-    -fx-border-color: rgba(0.0,0.0,0.0,0.4);
+    -fx-border-color: rgb(0.0,0.0,0.0,0.4);
     -fx-border-insets: 0.0;
     -fx-border-width: 0.5;
-    -fx-effect: dropshadow( three-pass-box , rgba(0.0,0.0,0.0,0.4) , 7.0, 0.0 , 0.0 , 4.0 ); 
 }
 
 .combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell {
     -fx-padding: 4.0 0.0 4.0 5.0;
-    /* No alternate highlighting */
     -fx-background-color: transparent;
 }
 
