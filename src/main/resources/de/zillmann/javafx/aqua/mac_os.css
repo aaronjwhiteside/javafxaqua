@@ -2083,6 +2083,7 @@ TODO: effect-chaining!!!
     -fx-background-color: white;
     -fx-background-insets: 0.0;
     -fx-text-fill: -fx-text-base-color;
+    -fx-cell-size: 1.461538em;
 }
 
 .table-row-cell:odd,
@@ -2220,6 +2221,14 @@ TODO: effect-chaining!!!
     -fx-border-insets: 0.0;
 }
 
+
+/* This is especially for AquaFX. Apple uses tables with one column for simple Lists. This is just, to make it possible for users. The ListView Class  */
+.table-view.hide-header .column-header{
+    -fx-min-height: 0;
+    -fx-max-height: 0;
+    -fx-pref-height: 0;
+}
+
 /* filler is the area, which is next to column-header, but has no column..*/
 .table-view .filler,
 .tree-table-view .filler {
@@ -2271,16 +2280,13 @@ TODO: effect-chaining!!!
 
 .table-view > .column-header-background > .show-hide-columns-button,
 .tree-table-view > .column-header-background > .show-hide-columns-button{
-    -fx-background-color: -fx-body-color;
-    -fx-border-color:
-     blue, yellow;
-    -fx-border-insets: 0.0 0.0 0.0 1.0, 0.0 0.0 0.0 0.0;
+    -fx-background-color: transparent;
 }
 
 .table-view .show-hide-column-image,
 .tree-table-view .show-hide-column-image {
-    -fx-background-color: -fx-mark-highlight-color, -fx-mark-color;
-    -fx-background-insets: 1.0 0.0 -1.0 0.0, 0.0;
+    -fx-background-color: rgb(255.0, 255.0, 255.0, 0.4), rgb(0.0,0.0,0.0, 0.4);
+    -fx-background-insets: 3.0 2.0 -3.0 -2.0,  2.0 2.0 -2.0 -2.0;
     -fx-padding: 0.25em;
     -fx-shape: "M398.902,298.045c0.667,0,1.333,0,2,0c0,0.667,0,1.333,0,2c0.667,0,1.333,0,2,0c0,0.667,0,1.333,0,2c-0.667,0-1.333,0-2,0c0,0.666,0,1.332,0,1.999c-0.667,0-1.333,0-2,0c0-0.667,0-1.333,0-1.999c-0.666,0-1.333,0-1.999,0c0-0.667,0-1.334,0-2c0.666,0,1.333,0,1.999,0C398.902,299.378,398.902,298.711,398.902,298.045z"; 
 }
@@ -2331,6 +2337,7 @@ TODO: effect-chaining!!!
     -fx-padding: 0.083333em;
     -fx-text-fill: -fx-text-base-color;
     -fx-indent: 13.0;
+    -fx-cell-size: 1.461538em;
 }
 
 .tree-cell .label {
