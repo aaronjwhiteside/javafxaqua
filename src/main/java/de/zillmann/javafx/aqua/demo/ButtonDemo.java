@@ -39,7 +39,6 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TableView.ResizeFeatures;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
@@ -118,7 +117,6 @@ public class ButtonDemo extends Application {
         /**
          * TabPane
          */
-        VBox centerPane = VBoxBuilder.create().spacing(10).padding(new Insets(10)).build();
         TabPane buttonTabPane = new TabPane();
 
         // Create Tabs
@@ -330,10 +328,8 @@ public class ButtonDemo extends Application {
         tabTexts.setContent(txts);
         buttonTabPane.getTabs().add(tabTexts);
 
-        centerPane.getChildren().add(buttonTabPane);
-        pane.setCenter(centerPane);
+        pane.setCenter(buttonTabPane);
 
-        VBox bottomPane = VBoxBuilder.create().spacing(10).padding(new Insets(10)).build();
         TabPane tabPane = new TabPane();
 
         Tab tabChoiceBox = new Tab();
@@ -350,9 +346,9 @@ public class ButtonDemo extends Application {
         collectorVBox.getChildren().add(choiceBoxBox);
         ObservableList items = FXCollections.observableArrayList("A", "B", "C");
         HBox editableComboBoxBox = HBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
-        ComboBox combo1 = ComboBoxBuilder.create().items(items).build();
+        ComboBox combo1 = ComboBoxBuilder.create().editable(true).items(items).build();
         editableComboBoxBox.getChildren().add(combo1);
-        ComboBox combo2 = ComboBoxBuilder.create().items(items).disable(true).build();
+        ComboBox combo2 = ComboBoxBuilder.create().editable(true).items(items).disable(true).build();
         editableComboBoxBox.getChildren().add(combo2);
         collectorVBox.getChildren().add(editableComboBoxBox);
         HBox comboBoxBox = HBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
@@ -574,7 +570,7 @@ public class ButtonDemo extends Application {
         HBox listContainer = HBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
         ListView<String> list = new ListView<String>();
         ObservableList<String> listItems =FXCollections.observableArrayList (
-            "Single", "Double", "Suite", "Family App");
+            "Item 1", "Item 2", "Item 3", "Item 4");
         list.setItems(listItems);
         list.setPrefWidth(150);
         list.setPrefHeight(70);
@@ -590,13 +586,18 @@ public class ButtonDemo extends Application {
         listTable.setItems(data);
         listTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         listContainer.getChildren().add(listTable);
+        ListView<String> horizontalList = new ListView<String>();
+        horizontalList.setItems(listItems);
+        horizontalList.setPrefWidth(150);
+        horizontalList.setPrefHeight(50);
+        horizontalList.setOrientation(Orientation.HORIZONTAL);
+        listContainer.getChildren().add(horizontalList);
 
         tabListBox.setContent(listContainer);
         tabPane.getTabs().add(tabListBox);
         tabPane.getSelectionModel().select(tabListBox);
 
-        bottomPane.getChildren().add(tabPane);
-        pane.setBottom(bottomPane);
+        pane.setBottom(tabPane);
         Scene myScene = new Scene(pane, 700, 600);
 
         MenuBar menuBar = new MenuBar();
