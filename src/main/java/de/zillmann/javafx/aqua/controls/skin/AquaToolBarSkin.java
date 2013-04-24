@@ -19,10 +19,8 @@ public class AquaToolBarSkin extends ToolBarSkin {
                 if (newValue != null) {
                     if (newValue.booleanValue()) {
                         getSkinnable().getStyleClass().remove("inactive");
-                       System.out.println("A");
                     } else {
                         getSkinnable().getStyleClass().add("inactive");
-                       System.out.println("B");
                     }
                 }
             }
