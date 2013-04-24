@@ -69,9 +69,8 @@ public class AquaDateAndTimeDemo extends Application {
         tabClock.setText("Uhr");
 
         /*
-         * The Clock-Content
+         * The ClockSettings-Content
          */
-
         GridPane grid = new GridPane();
         grid.setHgap(5);
         grid.setVgap(5);
