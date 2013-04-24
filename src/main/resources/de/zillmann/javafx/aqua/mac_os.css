@@ -208,6 +208,29 @@
 
 /*******************************************************************************
  *                                                                             *
+ * GroupBox                                                                    *
+ * This is not a Control. The class should be applied to Layouts,              *
+ * to achieve the GroupBox-Effect, which is used in Mac OS X.                  *
+ * (See TabPane)                                                               *
+ *                                                                             *
+ ******************************************************************************/
+.aqua-group-box {
+    -fx-padding: 5.0;
+    -fx-border-width: 0.5;
+    -fx-border-radius: 6.0;
+    -fx-border-insets: 5.0;
+    -fx-background-insets: 5.0;
+    -fx-background-radius: 6.0;    
+    -fx-border-color: rgb(193.0, 193.0, 193.0);
+    -fx-background-color: rgb(227.0, 227.0, 227.0),
+        linear-gradient(to right, rgb(168.0, 168.0, 168.0, 0.5) 0.0%, transparent 0.4%, transparent 99.6%, rgb(168.0, 168.0, 168.0, 0.5));
+    -fx-effect: innershadow(one-pass-box, rgb(168.0, 168.0, 168.0, 0.6), 4.0, 0.6, 0.0, 2.0);
+}
+
+
+
+/*******************************************************************************
+ *                                                                             *
  * Label                                                                       *
  *                                                                             *
  ******************************************************************************/
@@ -1531,22 +1554,39 @@ TODO: effect-chaining!!!
  *                                                                             *
  ******************************************************************************/
 
+.tool-bar {
+    -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaToolBarSkin";
+}
+
 .tool-bar:vertical {
     -fx-background-color:
-        linear-gradient(to right, rgb(222.0, 222.0, 222.0), rgb(173.0, 173.0, 173.0) 99.0%, rgb(233.0, 233.0, 233.0));
+        linear-gradient(to right, rgb(222.0, 222.0, 222.0), rgb(173.0, 173.0, 173.0) 99.0%, rgb(233.0, 233.0, 233.0)), rgb(103.0, 103.0, 103.0);
+    -fx-border-color: rgb(103.0, 103.0, 103.0);
+    -fx-border-width: 0.0 1.0 0.0 0.0;
+    -fx-border-insets: 0.0;
     -fx-padding: 0.833em 0.416667em 0.833em 0.416667em;
     -fx-spacing: 0.333em;
     -fx-alignment: TOP_LEFT;
 }
 
 .tool-bar:horizontal {
-    -fx-background-color:
-        linear-gradient(to bottom, rgb(222.0, 222.0, 222.0), rgb(173.0, 173.0, 173.0) 99.0%, rgb(233.0, 233.0, 233.0));
-    -fx-padding: 0.666667em 0.833em 0.666667em 0.833em;
+    -fx-background-color: linear-gradient(to bottom, rgb(222.0, 222.0, 222.0), rgb(173.0, 173.0, 173.0) 99.0%, rgb(233.0, 233.0, 233.0));
+    -fx-padding: 0.230769em 0.833em 0.666667em 0.833em;
+    -fx-border-color:  rgb(103.0, 103.0, 103.0);
+    -fx-border-width: 0.0 0.0 1.0 0.0;
+    -fx-border-insets: 0.0;
     /*-fx-spacing: 0.333em;*/
     -fx-alignment: CENTER_LEFT;
 }
-
+.tool-bar:horizontal.inactive { 
+    -fx-background-color: linear-gradient(to bottom, rgb(244.0, 244.0, 244.0), rgb(224.0, 224.0, 224.0) 99.0%, rgb(227.0, 227.0, 227.0));
+    -fx-padding: 0.230769em 0.833em 0.666667em 0.833em;
+    -fx-border-color:  rgb(166.0, 166.0, 166.0);
+    -fx-border-width: 0.0 0.0 1.0 0.0;
+    -fx-border-insets: 0.0;
+    /*-fx-spacing: 0.333em;*/
+    -fx-alignment: CENTER_LEFT;
+}
 
 .tool-bar > .container > .separator:vertical > .line {
     -fx-border-style: solid;
