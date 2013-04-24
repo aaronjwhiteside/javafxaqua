@@ -114,6 +114,26 @@ public class ButtonDemo extends Application {
 
         pane.setTop(toolBar);
 
+        
+        VBox rightBox = VBoxBuilder.create().spacing(10).styleClass("aqua-group-box").build();
+        RadioButton ra1 = new RadioButton("Normal");
+        rightBox.getChildren().add(ra1);
+        RadioButton ra2 = new RadioButton("Normal");
+        ra2.setDisable(true);
+        rightBox.getChildren().add(ra2);
+        RadioButton ra3 = new RadioButton("Selected");
+        ra3.setSelected(true);
+        rightBox.getChildren().add(ra3);
+        RadioButton ra4 = new RadioButton("Selected");
+        ra4.setDisable(true);
+        ra4.setSelected(true);
+        rightBox.getChildren().add(ra4);
+        pane.setRight(rightBox);
+        
+        
+        
+        
+        
         /**
          * TabPane
          */
@@ -164,7 +184,7 @@ public class ButtonDemo extends Application {
 
         Tab tabE = new Tab();
         tabE.setText("RadioButtons");
-        VBox radioButtonBox = VBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
+        VBox radioButtonBox = VBoxBuilder.create().spacing(10).styleClass("group-box").build();
         RadioButton raBu1 = new RadioButton("Normal");
         radioButtonBox.getChildren().add(raBu1);
         RadioButton raBu2 = new RadioButton("Normal");
