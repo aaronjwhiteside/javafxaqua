@@ -54,7 +54,7 @@ public class AquaDateAndTimeDemo extends Application {
 
         pane.setTop(toolBar);
 
-        /**
+        /*
          * TabPane for Content
          */
         TabPane contentTabPane = new TabPane();
@@ -128,7 +128,6 @@ public class AquaDateAndTimeDemo extends Application {
         /*
          * Content finished.. add it to Tab
          */
-
         contentTabPane.getTabs().add(tabClock);
         contentTabPane.getSelectionModel().select(tabClock);
         pane.setCenter(contentTabPane);
@@ -152,7 +151,6 @@ public class AquaDateAndTimeDemo extends Application {
         AnchorPane.setLeftAnchor(footerBox, 17.0);
         AnchorPane.setBottomAnchor(helpBtn, 15.0);
         AnchorPane.setRightAnchor(helpBtn, 15.0);
-        
         pane.setBottom(anchorpane);
 
         /*
@@ -160,17 +158,17 @@ public class AquaDateAndTimeDemo extends Application {
          */
         MenuBar menuBar = new MenuBar();
         Menu menuSystemPreferences = new Menu("Systemeinstellungen");
-        Menu miDienste = new Menu("Dienste");
-        MenuItem noService = MenuItemBuilder.create().disable(true).text("Keine Dienste Verfügbar").build();
-        MenuItem servPrfe = MenuItemBuilder.create().text("Dienste Enistellungen ...").build();
-        miDienste.getItems().addAll(noService, servPrfe);
-        MenuItem ausblenden = MenuItemBuilder.create().text("Sytemeinstellungen ausblenden").accelerator(
+        Menu menuServices = new Menu("Dienste");
+        MenuItem menuNoService = MenuItemBuilder.create().disable(true).text("Keine Dienste Verfügbar").build();
+        MenuItem menuServPref = MenuItemBuilder.create().text("Dienste Enistellungen ...").build();
+        menuServices.getItems().addAll(menuNoService, menuServPref);
+        MenuItem menuHide = MenuItemBuilder.create().text("Sytemeinstellungen ausblenden").accelerator(
                 KeyCombination.keyCombination("shortcut+H")).build();
-        MenuItem andereAusblenden = MenuItemBuilder.create().text("Andere ausblenden").accelerator(
+        MenuItem menuHideOthers = MenuItemBuilder.create().text("Andere ausblenden").accelerator(
                 KeyCombination.keyCombination("Alt+shortcut+H")).build();
-        MenuItem einlenden = MenuItemBuilder.create().text("Alle einblenden").disable(true).build();
-        menuSystemPreferences.getItems().addAll(new MenuItem("Über Systemeinstellungen"), new SeparatorMenuItem(), miDienste,
-                new SeparatorMenuItem(), ausblenden, andereAusblenden, einlenden, new MenuItem("Systemeinstellungen beenden"));
+        MenuItem menuShowAll = MenuItemBuilder.create().text("Alle einblenden").disable(true).build();
+        menuSystemPreferences.getItems().addAll(new MenuItem("Über Systemeinstellungen"), new SeparatorMenuItem(), menuServices,
+                new SeparatorMenuItem(), menuHide, menuHideOthers, menuShowAll, new MenuItem("Systemeinstellungen beenden"));
 
         Menu menuEdit = new Menu("Bearbeiten");
         menuEdit.getItems().addAll(new MenuItem("..."));
