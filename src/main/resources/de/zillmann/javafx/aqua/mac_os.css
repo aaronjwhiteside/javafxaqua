@@ -218,8 +218,8 @@
     -fx-padding: 5.0;
     -fx-border-width: 0.5;
     -fx-border-radius: 6.0;
-    -fx-border-insets: 5.0;
-    -fx-background-insets: 5.0;
+    -fx-border-insets: 0.0;
+    -fx-background-insets: 0.0;
     -fx-background-radius: 6.0;    
     -fx-border-color: rgb(193.0, 193.0, 193.0);
     -fx-background-color: rgb(227.0, 227.0, 227.0),
@@ -261,6 +261,19 @@
 
 .toggle-button {
     -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaToggleButtonSkin";
+}
+
+.button.button-type-help {
+    -fx-border-radius: 3.0em;
+    -fx-background-radius: 3.0em, 3.0em;
+    -fx-padding: 0.00em 0.307692em -0.076923em 0.307692em;
+    -fx-font-weight: bold;
+    -fx-font-size: 16;
+}
+
+.button.button-type-help:armed {
+    -fx-background-color: rgb(255.0, 255.0, 255.0),
+        linear-gradient(rgb(224.0, 224.0, 224.0) 25.0%, rgb(213.0, 213.0, 213.0) 50.0%, rgb(207.0, 207.0, 207.0) 50.0%, rgb(210.0, 210.0, 210.0) 100.0% );
 }
 
 .button, .toggle-button{

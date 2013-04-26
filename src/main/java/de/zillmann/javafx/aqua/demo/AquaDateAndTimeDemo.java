@@ -31,10 +31,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.HBoxBuilder;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import de.zillmann.javafx.aqua.AquaFx;
+import de.zillmann.javafx.aqua.controls.skin.styles.ButtonType;
 
 public class AquaDateAndTimeDemo extends Application {
     @Override public void start(Stage stage) throws Exception {
@@ -140,12 +140,13 @@ public class AquaDateAndTimeDemo extends Application {
         ImageView lockView = ImageViewBuilder.create().image(image).preserveRatio(true).fitHeight(36).build();
         footerBox.getChildren().add(lockView);
         Label info = new Label("Zum Schützen auf das Schloss klicken.");
-        info.setFont(new Font(12));
+        info.setStyle("-fx-font-size: 12");
         info.setPadding(new Insets(0, 0, 3, 0));
         footerBox.getChildren().add(info);
         
         AnchorPane anchorpane = new AnchorPane();
         Button helpBtn = new Button("?");
+        AquaFx.skin(helpBtn, ButtonType.HELP);
         anchorpane.getChildren().addAll(footerBox, helpBtn); 
         AnchorPane.setBottomAnchor(footerBox, 15.0);
         AnchorPane.setLeftAnchor(footerBox, 17.0);

@@ -67,6 +67,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import de.zillmann.javafx.aqua.AquaFx;
+import de.zillmann.javafx.aqua.controls.skin.styles.ButtonType;
 
 public class ButtonDemo extends Application {
     final Tab tabH = new Tab();
@@ -171,6 +172,10 @@ public class ButtonDemo extends Application {
         b4.setText("Normal");
         b4.setDisable(true);
         buttonBox.getChildren().add(b4);
+        
+        Button helpButton = new Button("?");
+        AquaFx.skin(helpButton, ButtonType.HELP);
+        buttonBox.getChildren().add(helpButton);
 
         Hyperlink link = new Hyperlink("Hyperlink");
         Hyperlink link2 = HyperlinkBuilder.create().text("disabled Hyperlink").disable(true).build();
@@ -602,7 +607,7 @@ public class ButtonDemo extends Application {
         TableColumn<Person, String> firstNameListCol = new TableColumn<Person, String>("First Name");
         firstNameListCol.setMinWidth(100);
         firstNameListCol.setCellValueFactory(new PropertyValueFactory<Person, String>("firstName"));
-        listTable.getColumns().addAll(firstNameListCol);
+        listTable.getColumns().add(firstNameListCol);
         listTable.setItems(data);
         listTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         listContainer.getChildren().add(listTable);
