@@ -197,6 +197,7 @@
     -choice-base: linear-gradient(rgb(255.0, 255.0, 255.0) 25.0%, rgb(243.0, 243.0, 243.0) 50.0%, rgb(236.0, 236.0, 236.0) 50.0%, rgb(243.0, 243.0, 243.0) 100.0% );
 }
 
+
 .mnemonic-underline {
     -fx-stroke: transparent;
 }
@@ -205,6 +206,60 @@
     -fx-font-smoothing-type: lcd;
 }
 
+/*******************************************************************************
+ *                                                                             *
+ * Mac OS X Icons for AquaFX                                                   *
+ *                                                                             *
+ ******************************************************************************/
+
+.icon-left {
+    -fx-shape: "m 21.476623,22.412699 15.438495,-7.462538 0.01821,16.024043 -15.521311,-7.981785 z";
+    -fx-background-color: rgb(66.0, 66.0, 66.0), linear-gradient(rgb(111.0, 111.0, 111.0), rgb(136.0, 136.0, 136.0));
+    -fx-background-insets: 3.5 0.0 3.5 0.0, 3.5 0.5 3.5 0.0; 
+    -fx-padding: 0.3em;
+    -fx-effect: innershadow( two-pass-box , rgba(0.0,0.0,0.0,0.6) , 4.0, 0.0 , 0.0 , 1.0 );
+}
+
+.icon-right {
+    -fx-shape: "M 36.862955,22.344745 21.42446,14.882207 21.40625,30.90625 36.927561,22.924465 z";
+    -fx-background-color: rgb(66.0, 66.0, 66.0), linear-gradient(rgb(111.0, 111.0, 111.0), rgb(136.0, 136.0, 136.0));
+    -fx-background-insets: 3.5 0.0 3.5 0.0, 3.5 0.0 3.5 0.5; 
+    -fx-padding: 0.3em;
+    -fx-effect: innershadow( two-pass-box , rgba(0.0,0.0,0.0,0.6) , 4.0, 0.0 , 0.0 , 1.0 );
+}
+
+.button:armed > .icon-left,
+.button:armed > .icon-right {
+    -fx-background-color: rgb(66.0, 66.0, 66.0), linear-gradient(rgb(50.0, 50.0, 50.0), rgb(107.0, 107.0, 107.0));
+}
+
+.text-field.icon-search {
+   /* -fx-shape: "m 347.91861,520.56281 c -5.3512,0 -9.63705,4.62082 -9.63705,9.56226 0,4.94143 4.34842,8.93727 9.69963,8.93727 1.90007,0 3.66695,-0.50232 5.1627,-1.37496 l 7.25908,7.31231 2.37797,-2.68743 -6.8836,-7.06232 c 1.10865,-1.45493 1.75219,-3.21068 1.75219,-5.12487 l 0,-0.0937 c -0.0446,-4.91205 -4.41135,-9.46851 -9.73092,-9.46851 z m -0.0626,2.65618 c 3.69218,0 6.69626,2.92114 6.72716,6.53109 l 0,0.0625 c 0,3.63155 -3.01303,6.56234 -6.72716,6.56234 -3.71413,0 -6.72716,-2.93079 -6.72716,-6.56234 0,-3.63154 3.01303,-6.59358 6.72716,-6.59358 z";*/
+    -fx-background-radius: 1.0em, 1.0em, 1.0em, 1.0em, 1.0em; 
+    -fx-border-radius: 1.0em, 1.0em;
+    -fx-padding: 0.166667em 0.166667em  0.166667em 0.66667em;
+      
+}
+
+
+
+.button.button-type-help {
+    -fx-border-radius: 1.0em;
+    -fx-background-radius: 1.0em, 1.0em;
+    -fx-padding: 0.0em 0.307692em -0.076923em 0.307692em;
+    -fx-font-weight: bold;
+    -fx-font-size: 16.0;
+}
+
+.button.button-type-help:armed {
+    -fx-background-color: rgb(255.0, 255.0, 255.0),
+        linear-gradient(rgb(224.0, 224.0, 224.0) 25.0%, rgb(213.0, 213.0, 213.0) 50.0%, rgb(207.0, 207.0, 207.0) 50.0%, rgb(210.0, 210.0, 210.0) 100.0% );
+}
+
+.button.button-type-round-rect {
+    -fx-border-radius: 1.0em;
+    -fx-background-radius: 1.0em, 1.0em;
+}
 
 /*******************************************************************************
  *                                                                             *
@@ -261,19 +316,6 @@
 
 .toggle-button {
     -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaToggleButtonSkin";
-}
-
-.button.button-type-help {
-    -fx-border-radius: 3.0em;
-    -fx-background-radius: 3.0em, 3.0em;
-    -fx-padding: 0.00em 0.307692em -0.076923em 0.307692em;
-    -fx-font-weight: bold;
-    -fx-font-size: 16;
-}
-
-.button.button-type-help:armed {
-    -fx-background-color: rgb(255.0, 255.0, 255.0),
-        linear-gradient(rgb(224.0, 224.0, 224.0) 25.0%, rgb(213.0, 213.0, 213.0) 50.0%, rgb(207.0, 207.0, 207.0) 50.0%, rgb(210.0, 210.0, 210.0) 100.0% );
 }
 
 .button, .toggle-button{
@@ -1373,7 +1415,7 @@ TODO: effect-chaining!!!
 .list-view:focused > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:focused:selected,
 .list-view:focused > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected {
     -fx-background-color: linear-gradient(rgb(95.0, 165.0, 221.0), rgb(54.0, 124.0, 192.0)),
-     linear-gradient(rgb(116.0, 186.0, 232.0), rgb(116.0, 186.0, 232.0) 1%, rgb(109.0, 178.0, 227.0) 1%, rgb(59.0, 136.0, 208.0) 100%);
+     linear-gradient(rgb(116.0, 186.0, 232.0), rgb(116.0, 186.0, 232.0) 1.0%, rgb(109.0, 178.0, 227.0) 1.0%, rgb(59.0, 136.0, 208.0) 100.0%);
     -fx-background-insets:  0.0, 1.0 0.0 1.0 0.0;
     -fx-text-fill: white;
 }
@@ -1387,21 +1429,21 @@ TODO: effect-chaining!!!
 .list-cell:filled:selected:focused,
 .list-cell:filled:selected {
     -fx-background-color: linear-gradient(rgb(187.0, 197.0, 214.0), rgb(147.0, 160.0, 185.0)),
-     linear-gradient(rgb(195.0, 204.0, 223.0), rgb(195.0, 204.0, 223.0) 1%, rgb(189.0, 199.0, 220.0) 1%, rgb(155.0, 169.0, 196.0) 100%);
+     linear-gradient(rgb(195.0, 204.0, 223.0), rgb(195.0, 204.0, 223.0) 1.0%, rgb(189.0, 199.0, 220.0) 1.0%, rgb(155.0, 169.0, 196.0) 100.0%);
     -fx-background-insets:  0.0, 1.0 0.0 1.0 0.0;
     -fx-text-fill: white;
 }
 
 .list-view:horizontal:focused > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected {
     -fx-background-color: linear-gradient(to right, rgb(95.0, 165.0, 221.0), rgb(54.0, 124.0, 192.0)),
-        linear-gradient(to right, rgb(116.0, 186.0, 232.0), rgb(116.0, 186.0, 232.0) 1%, rgb(109.0, 178.0, 227.0) 1%, rgb(59.0, 136.0, 208.0) 100%);
+        linear-gradient(to right, rgb(116.0, 186.0, 232.0), rgb(116.0, 186.0, 232.0) 1.0%, rgb(109.0, 178.0, 227.0) 1.0%, rgb(59.0, 136.0, 208.0) 100.0%);
     -fx-background-insets:  0.0, 0.0 1.0 0.0 1.0;
     -fx-text-fill: white;
 }
 
 .list-view:horizontal > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected {
     -fx-background-color: linear-gradient(to right, rgb(187.0, 197.0, 214.0), rgb(147.0, 160.0, 185.0)),
-     linear-gradient(to right, rgb(195.0, 204.0, 223.0), rgb(195.0, 204.0, 223.0) 1%, rgb(189.0, 199.0, 220.0) 1%, rgb(155.0, 169.0, 196.0) 100%);
+     linear-gradient(to right, rgb(195.0, 204.0, 223.0), rgb(195.0, 204.0, 223.0) 1.0%, rgb(189.0, 199.0, 220.0) 1.0%, rgb(155.0, 169.0, 196.0) 100.0%);
     -fx-background-insets:  0.0, 0.0 1.0 0.0 1.0;
     -fx-text-fill: white;
 }
@@ -2650,7 +2692,7 @@ TODO: effect-chaining!!!
     -fx-background-color: linear-gradient(rgb(155.0, 155.0, 155.0) 0.0%, rgb(172.0, 172.0, 172.0)  100.0%),
                         linear-gradient(rgb(224.0, 224.0, 224.0) 0.0%, rgb(255.0, 255.0, 255.0)  10.0%),
                         linear-gradient(to left, rgb(224.0, 224.0, 224.0) 0.0%, transparent 1.0%);
-    -fx-background-insets: 0.5 0.0 0.5 0.5, 1.0 0.5 1.0 1.0, 1.5 1.0 1.0 1.0; 
+    -fx-background-insets: 0.5 0.0 0.5 0.5, 1.0 0.0 1.0 1.0, 1.5 0.0 1.0 1.0; 
 }
 
 
@@ -2725,11 +2767,11 @@ TODO: effect-chaining!!!
 
 .color-picker.split-button > .arrow-button {
     -fx-background-color: null;
-    -fx-background-insets: 1.0 -1.0 -1.0 0.0;
+    -fx-background-insets: 0.0;
     -fx-border-width: 0.0 0.0 0.0 1.0;
     -fx-border-color: linear-gradient(rgb(155.0, 155.0, 155.0) 0.0%, rgb(172.0, 172.0, 172.0)  100.0%);
     -fx-border-radius: 0.0 3.5 3.5 0.0;
-    -fx-border-insets: 1.0 -1.0 -1.0 0.0;
+    -fx-border-insets: 0.0 -1.0 0.0 0.0;
 }
 
 .color-picker.split-button:showing > .arrow-button {
@@ -2740,7 +2782,7 @@ TODO: effect-chaining!!!
 
 .color-picker.split-button > .arrow-button > .arrow{
     -fx-background-color: rgb(255.0, 255.0, 255.0), rgb(71.0, 71.0, 71.0);
-    -fx-padding: 0.2em 0.266667em 0.166667em 0.266667em;
+    -fx-padding: 0.2em 0.266667em 0.2em 0.266667em;
     -fx-shape: "M 0 0 h 7 l -3.5 4 z";
 }
 
@@ -2756,13 +2798,11 @@ TODO: effect-chaining!!!
 } 
 
 .color-picker > .color-picker-label{
-    -fx-padding: 0.05em 0.3em 0.18em 0.613em; 
+    -fx-padding: 0.11em 0.3em 0.12em 0.613em; 
 }
 
 .color-picker > .color-picker-label > .picker-color{
-   /* This is just needed for debugging...
     -fx-padding: 0.0em 0.15em 0.0em 0.0em;
-    -fx-background-color: blue; */
 }
 
 

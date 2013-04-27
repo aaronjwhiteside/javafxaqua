@@ -20,6 +20,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.ToolBar;
 import javafx.scene.image.Image;
@@ -35,6 +36,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import de.zillmann.javafx.aqua.AquaFx;
 import de.zillmann.javafx.aqua.controls.skin.styles.ButtonType;
+import de.zillmann.javafx.aqua.controls.skin.styles.MacOSDefaultIcons;
 
 public class AquaDateAndTimeDemo extends Application {
     @Override public void start(Stage stage) throws Exception {
@@ -45,12 +47,19 @@ public class AquaDateAndTimeDemo extends Application {
 
         ToolBar toolBar = new ToolBar();
 
-        Button tbBack = ButtonBuilder.create().text("<").styleClass("left-pill").build();
-        Button tbForward = ButtonBuilder.create().text(">").styleClass("right-pill").build();
+        Button tbBack = ButtonBuilder.create().styleClass("left-pill").build();
+        AquaFx.setButtonIcon(tbBack, MacOSDefaultIcons.LEFT);
+        Button tbForward = ButtonBuilder.create().styleClass("right-pill").disable(true).build();
+        AquaFx.setButtonIcon(tbForward, MacOSDefaultIcons.RIGHT);
         HBox separator = new HBox();
         separator.setPrefSize(15, 1);
         Button btnAll = new Button("Alle einblenden");
-        toolBar.getItems().addAll(tbBack, tbForward, separator, btnAll);
+        HBox separator2 = new HBox();
+        separator2.setPrefSize(100, 1);
+        TextField search = new TextField();
+        AquaFx.styleSearchField(search, MacOSDefaultIcons.SEARCH);
+        toolBar.getItems().addAll(tbBack, tbForward, separator, btnAll, separator2, search);
+        
 
         pane.setTop(toolBar);
 

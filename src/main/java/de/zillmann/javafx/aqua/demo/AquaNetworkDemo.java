@@ -40,6 +40,7 @@ import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import de.zillmann.javafx.aqua.AquaFx;
 import de.zillmann.javafx.aqua.controls.skin.styles.ButtonType;
+import de.zillmann.javafx.aqua.controls.skin.styles.MacOSDefaultIcons;
 import de.zillmann.javafx.aqua.nativestuff.NsImageIcon;
 import de.zillmann.javafx.aqua.nativestuff.NsImageIconLoader;
 
@@ -53,8 +54,10 @@ public class AquaNetworkDemo extends Application {
         VBox mainBox = new VBox();
 
         ToolBar toolBar = new ToolBar();
-        Button tbBack = ButtonBuilder.create().text("<").styleClass("left-pill").build();
-        Button tbForward = ButtonBuilder.create().text(">").styleClass("right-pill").build();
+        Button tbBack = ButtonBuilder.create().styleClass("left-pill").build();
+        AquaFx.setButtonIcon(tbBack, MacOSDefaultIcons.LEFT);
+        Button tbForward = ButtonBuilder.create().styleClass("right-pill").disable(true).build();
+        AquaFx.setButtonIcon(tbForward, MacOSDefaultIcons.RIGHT);
         HBox separator = new HBox();
         separator.setPrefSize(15, 1);
         Button btnAll = new Button("Alle einblenden");
@@ -99,7 +102,7 @@ public class AquaNetworkDemo extends Application {
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(18, 10, 8, 15));
-        grid.getStyleClass().add("aqua-group-box");
+        AquaFx.setGroupBox(grid);
 
         Label labelStatus = new Label("Status:");
         GridPane.setHalignment(labelStatus, HPos.RIGHT);
