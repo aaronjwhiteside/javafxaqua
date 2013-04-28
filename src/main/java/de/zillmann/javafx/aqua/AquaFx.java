@@ -2,9 +2,13 @@ package de.zillmann.javafx.aqua;
 
 import javafx.application.Application;
 import javafx.scene.control.Button;
+import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import de.zillmann.javafx.aqua.controls.skin.styles.ButtonType;
 import de.zillmann.javafx.aqua.controls.skin.styles.ControlSizeVariant;
 import de.zillmann.javafx.aqua.controls.skin.styles.MacOSDefaultIcons;
@@ -32,10 +36,29 @@ public class AquaFx {
         styleFactory.addStyles(button, buttonType, controlSizeVariant);
     }
 
+    public static <T extends Control> void resizeControl(T control, ControlSizeVariant controlSizeVariant) {
+        styleFactory.addStyles(control, controlSizeVariant);
+    }
+
     public static void setButtonIcon(Button button, MacOSDefaultIcons icon) {
         Region svgIcon = new Region();
         svgIcon.getStyleClass().add(icon.getStyleName());
         button.setGraphic(svgIcon);
+    }
+
+    public static void setShareButton(Button button) {
+        StackPane stack = new StackPane();
+        String iconBase = MacOSDefaultIcons.SHARE.getStyleName();
+
+        Region svgIcon = new Region();
+        svgIcon.getStyleClass().add(iconBase + "-square");
+        stack.getChildren().add(svgIcon);
+
+        Region svgIcon2 = new Region();
+        svgIcon2.getStyleClass().add(iconBase + "-arrow");
+        stack.getChildren().add(svgIcon2);
+
+        button.setGraphic(stack);
     }
 
     public static void styleSearchField(TextField textField, MacOSDefaultIcons icon) {
@@ -48,7 +71,7 @@ public class AquaFx {
         pane.getStyleClass().add("aqua-group-box");
     }
 
-    /**
-     * TODO: hilfsmethoden, die eine stage bekommen und dann das initStyle durchführen!
-     */
+    public static void styleStage(Stage stage, StageStyle style) {
+        stage.initStyle(style);
+    }
 }

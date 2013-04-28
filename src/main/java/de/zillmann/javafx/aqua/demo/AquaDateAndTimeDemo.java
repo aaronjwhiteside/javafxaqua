@@ -40,7 +40,7 @@ import de.zillmann.javafx.aqua.controls.skin.styles.MacOSDefaultIcons;
 
 public class AquaDateAndTimeDemo extends Application {
     @Override public void start(Stage stage) throws Exception {
-        stage.initStyle(StageStyle.UNIFIED);
+        AquaFx.styleStage(stage, StageStyle.UNIFIED);
         stage.setResizable(false);
 
         BorderPane pane = new BorderPane();
@@ -55,7 +55,7 @@ public class AquaDateAndTimeDemo extends Application {
         separator.setPrefSize(15, 1);
         Button btnAll = new Button("Alle einblenden");
         HBox separator2 = new HBox();
-        separator2.setPrefSize(100, 1);
+        separator2.setPrefSize(295, 1);
         TextField search = new TextField();
         AquaFx.styleSearchField(search, MacOSDefaultIcons.SEARCH);
         toolBar.getItems().addAll(tbBack, tbForward, separator, btnAll, separator2, search);

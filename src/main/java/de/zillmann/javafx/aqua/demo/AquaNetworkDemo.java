@@ -48,7 +48,7 @@ public class AquaNetworkDemo extends Application {
     private int sceneHeight = 588;
 
     @Override public void start(Stage stage) throws Exception {
-        stage.initStyle(StageStyle.UNIFIED);
+        AquaFx.styleStage(stage, StageStyle.UNIFIED);
         stage.setResizable(false);
 
         VBox mainBox = new VBox();

@@ -3,6 +3,7 @@ package de.zillmann.javafx.aqua.controls.skin.styles;
 public enum MacOSDefaultIcons implements StyleDefinition {
     LEFT,
     RIGHT,
+    SHARE,
     SEARCH;
 
     @Override public String getStyleName() {
@@ -12,6 +13,9 @@ public enum MacOSDefaultIcons implements StyleDefinition {
         }
         if (this.equals(RIGHT)) {
             return prefix + "-" + "right";
+        }
+        if (this.equals(SHARE)) {
+            return prefix + "-" + "share";
         }
         if (this.equals(SEARCH)) {
             return prefix + "-" + "search";

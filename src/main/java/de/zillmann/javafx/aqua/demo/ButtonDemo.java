@@ -74,14 +74,14 @@ public class ButtonDemo extends Application {
     final Tab tabI = new Tab();
 
     final ObservableList<Person> data = FXCollections.observableArrayList(
-            new Person("Jacob", "Smith", "jacob.smith@example.com", "jacob.smith@example.com", true),
-            new Person("Isabella", "Johnson", "isabella.johnson@example.com", "isabella.johnson@example.com", true),
-            new Person("Ethan", "Williams-Williams", "ethan.williams@example.com", null, false),
-            new Person("Emma", "Jones", "emma.jones@example.com", "emma.jones@example.com", true),
-            new Person("Michael", "Brown", "michael.brown@example.com", "", false));
+            new Person("John", "Doe", "john.doe@foo.com", "jd@foo.com", true),
+            new Person("Jane", "Doe", "jane.doe@example.com", "jane.d@foo.com", true),
+            new Person("Steve", "Schmidt", "steve.schmidt@example.com", null, false),
+            new Person("Lisa", "Jones", "lisa.jones@foo.com", "lisa.jones@foo.com", true),
+            new Person("Marcel", "Miller", "marcel.miller@foo.com", "", false));
 
     @Override public void start(Stage stage) throws Exception {
-        stage.initStyle(StageStyle.UNIFIED);
+        AquaFx.styleStage(stage, StageStyle.UNIFIED);
         BorderPane pane = new BorderPane();
 
         ToolBar toolBar = new ToolBar();
@@ -115,7 +115,6 @@ public class ButtonDemo extends Application {
 
         pane.setTop(toolBar);
 
-        
         VBox rightBox = VBoxBuilder.create().spacing(10).styleClass("aqua-group-box").build();
         RadioButton ra1 = new RadioButton("Normal");
         rightBox.getChildren().add(ra1);
@@ -130,11 +129,7 @@ public class ButtonDemo extends Application {
         ra4.setSelected(true);
         rightBox.getChildren().add(ra4);
         pane.setRight(rightBox);
-        
-        
-        
-        
-        
+
         /**
          * TabPane
          */
@@ -172,7 +167,7 @@ public class ButtonDemo extends Application {
         b4.setText("Normal");
         b4.setDisable(true);
         buttonBox.getChildren().add(b4);
-        
+
         Button helpButton = new Button("?");
         AquaFx.skin(helpButton, ButtonType.HELP);
         buttonBox.getChildren().add(helpButton);
@@ -303,8 +298,7 @@ public class ButtonDemo extends Application {
         innerTabPane.getTabs().add(onlyTab);
         tabI.setContent(innerTabPane);
         buttonTabPane.getTabs().add(tabI);
-        
-        
+
         Tab tabTexts = new Tab();
         tabTexts.setText("Texts");
         VBox txts = new VBox();
@@ -481,7 +475,7 @@ public class ButtonDemo extends Application {
         // emailCol.getColumns().addAll(firstEmailCol, secondEmailCol);
         TableColumn<Person, Boolean> vipCol = new TableColumn<Person, Boolean>("VIP");
         vipCol.setEditable(true);
-        vipCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Person,Boolean>, ObservableValue<Boolean>>() {
+        vipCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Person, Boolean>, ObservableValue<Boolean>>() {
 
             @Override public ObservableValue<Boolean> call(
                     javafx.scene.control.TableColumn.CellDataFeatures<Person, Boolean> param) {
@@ -553,22 +547,22 @@ public class ButtonDemo extends Application {
         TreeTableView<Person> treeTable = new TreeTableView<Person>(rootTreeTableItem);
         TreeTableColumn<Person, String> firstNameTreeCol = new TreeTableColumn<Person, String>("First Name");
         firstNameTreeCol.setPrefWidth(100);
-        firstNameTreeCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Person,String>, ObservableValue<String>>() {
-            
+        firstNameTreeCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Person, String>, ObservableValue<String>>() {
+
             @Override public ObservableValue<String> call(CellDataFeatures<Person, String> param) {
                 return new ReadOnlyStringWrapper(param.getValue().getValue().getFirstName());
             }
         });
-        
+
         TreeTableColumn<Person, String> lastNameTreeCol = new TreeTableColumn<Person, String>("Last Name");
-        lastNameTreeCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Person,String>, ObservableValue<String>>() {
+        lastNameTreeCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Person, String>, ObservableValue<String>>() {
 
             @Override public ObservableValue<String> call(CellDataFeatures<Person, String> param) {
                 return new ReadOnlyStringWrapper(param.getValue().getValue().getLastName());
             }
         });
         TreeTableColumn<Person, String> primaryMailCol = new TreeTableColumn<Person, String>("primary Mail");
-        primaryMailCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Person,String>, ObservableValue<String>>() {
+        primaryMailCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Person, String>, ObservableValue<String>>() {
 
             @Override public ObservableValue<String> call(CellDataFeatures<Person, String> param) {
                 return new ReadOnlyStringWrapper(param.getValue().getValue().getPrimaryEmail());
@@ -576,7 +570,7 @@ public class ButtonDemo extends Application {
         });
         TreeTableColumn<Person, Boolean> vipTreeTableCol = new TreeTableColumn<Person, Boolean>("VIP");
         vipTreeTableCol.setCellFactory(CheckBoxTreeTableCell.forTreeTableColumn(vipTreeTableCol));
-        vipTreeTableCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Person,Boolean>, ObservableValue<Boolean>>() {
+        vipTreeTableCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Person, Boolean>, ObservableValue<Boolean>>() {
 
             @Override public ObservableValue<Boolean> call(CellDataFeatures<Person, Boolean> param) {
                 return new ReadOnlyBooleanWrapper(param.getValue().getValue().getVip());
@@ -588,14 +582,12 @@ public class ButtonDemo extends Application {
         treeTableContainer.getChildren().add(treeTable);
         tabTreeTableBox.setContent(treeTableContainer);
         tabPane.getTabs().add(tabTreeTableBox);
-        
-        
+
         Tab tabListBox = new Tab();
         tabListBox.setText("List");
         HBox listContainer = HBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
         ListView<String> list = new ListView<String>();
-        ObservableList<String> listItems =FXCollections.observableArrayList (
-            "Item 1", "Item 2", "Item 3", "Item 4");
+        ObservableList<String> listItems = FXCollections.observableArrayList("Item 1", "Item 2", "Item 3", "Item 4");
         list.setItems(listItems);
         list.setPrefWidth(150);
         list.setPrefHeight(70);

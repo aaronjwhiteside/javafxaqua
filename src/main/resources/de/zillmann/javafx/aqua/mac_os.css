@@ -228,6 +228,21 @@
     -fx-effect: innershadow( two-pass-box , rgba(0.0,0.0,0.0,0.6) , 4.0, 0.0 , 0.0 , 1.0 );
 }
 
+.icon-share-square {
+    -fx-shape: "m 69.611802,39.995004 -12.790177,-0.03535 c -0.374468,0.09213 -0.851422,-0.09846 -0.916102,0.84819 l 0.09397,19.084778 c 0.0038,0.294514 0.171796,0.58903 0.751643,0.883545 l 24.922598,0.03535 c 0.60304,0.01989 1.125882,-0.121103 1.233244,-1.095593 l 0,-6.231906 -2.842191,2.615281 -0.07049,2.026307 -21.035173,0.117794 0.04702,-15.326815 5.931191,-0.01181 c 0.676927,-1.728175 3.055251,-2.126767 4.674468,-2.90977 z"; 
+    -fx-padding: 0.05em 0.5em 0.05em 0.5em;
+    -fx-background-color: rgb(141.0, 141.0, 141.0), rgb(141.0, 141.0, 141.0);
+    -fx-background-insets: 2.5 0.0 3.0 -1.0, 3.0 0.5 2.5 -0.5; 
+}
+
+.icon-share-arrow {
+    -fx-shape: "m 77.952815,36.659844 0,5.466211 c -1.042987,-0.15108 -2.227346,-0.16083 -3.770872,0.188486 -7.625243,1.625677 -9.11216,5.851797 -10.275626,11.497892 2.499753,-3.261409 3.94321,-5.366894 10.46417,-6.691396 0.92597,-0.165446 1.527565,-0.493035 3.393784,-0.18849 l 0.188544,5.27772 8.673006,-7.256866 c 0.503982,-0.401547 0.217032,-0.715237 0,-1.036695 z";
+    -fx-padding: 0.03em 0.5em 0.03em 0.3em;
+    -fx-background-color: rgb(114.0, 114.0, 114.0);
+    -fx-background-insets: 0.5 -2.0 5.5 3.0; 
+    -fx-effect: innershadow(one-pass-box, rgba(0.0,0.0,0.0,0.8), 1.5, 0.0, -0.5, 1.0);
+}
+
 .button:armed > .icon-left,
 .button:armed > .icon-right {
     -fx-background-color: rgb(66.0, 66.0, 66.0), linear-gradient(rgb(50.0, 50.0, 50.0), rgb(107.0, 107.0, 107.0));
@@ -240,8 +255,6 @@
     -fx-padding: 0.166667em 0.166667em  0.166667em 0.66667em;
       
 }
-
-
 
 .button.button-type-help {
     -fx-border-radius: 1.0em;
@@ -282,7 +295,70 @@
     -fx-effect: innershadow(one-pass-box, rgb(168.0, 168.0, 168.0, 0.6), 4.0, 0.6, 0.0, 2.0);
 }
 
+/*******************************************************************************
+ *                                                                             *
+ * Size variants of Controls                                                   *
+ *                                                                             *
+ ******************************************************************************/
+.size-variant-small {
+    -fx-font-size: 11.0;
+}
 
+.size-variant-mini {
+    -fx-font-size: 9.0;
+}
+
+.button.size-variant-small,
+.toggle-button.size-variant-small {
+    -fx-border-radius: 3.0;
+    -fx-background-radius: 3.0, 3.0;
+    -fx-padding: 0.12em 0.85em 0.05em 0.85em;
+}
+
+.button.size-variant-mini,
+.toggle-button.size-variant-mini {
+    -fx-border-radius: 2.0;
+    -fx-padding: 0.12em 0.85em 0.05em 0.85em;
+}
+
+.check-box.size-variant-small > .box {
+    -fx-padding: 5.0;
+}
+
+.check-box.size-variant-small > .box > .mark{
+    -fx-background-insets: -3.0 -1.5 3.0 1.5;
+}
+
+.check-box:indeterminate.size-variant-small > .box > .mark {
+    -fx-background-insets: -0.5 1.5 0.5 0.5;
+}
+
+.check-box.size-variant-mini > .box {
+    -fx-padding: 4.0;
+    -fx-border-radius: 2.0;
+    -fx-background-radius: 2.0, 2.0;
+}
+
+.check-box.size-variant-mini > .box > .mark{
+    -fx-background-insets: -1.5 0.0 4.0 2.5;
+}
+
+.check-box:indeterminate.size-variant-mini > .box > .mark {
+    -fx-background-insets: -0.25 2.0 0.75 1.0;
+}
+
+
+.radio-button.size-variant-small > .radio  {
+    -fx-padding: 2.5;
+}
+
+.radio-button.size-variant-mini > .radio  {
+    -fx-padding: 1.5;
+}
+
+.combo-box-popup.size-variant-mini > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell {
+    -fx-font-size: 9.0;
+}
 
 /*******************************************************************************
  *                                                                             *
@@ -327,7 +403,7 @@
     -fx-border-radius: 4.0;
     -fx-border-width: 0.5;
     -fx-border-color: rgb(147.0, 147.0, 147.0) rgb(129.0, 129.0, 129.0) rgb(129.0, 129.0, 129.0) rgb(129.0, 129.0, 129.0);
-    -fx-padding: 0.07em 0.85em 0.1em 0.85em;
+    -fx-padding: 0.08em 0.85em 0.09em 0.85em;
     
     -fx-text-fill: -fx-text-base-color;
     -fx-alignment: CENTER;
@@ -445,7 +521,7 @@
 
 .radio-button {
     -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaRadioButtonSkin";
-    -fx-label-padding: 0.083333em 0.0em 0.0em 0.166667em;
+    -fx-label-padding: 0.01em 0.0em 0.0em 0.384615em;
     -fx-text-fill: -fx-text-base-color;
 }
 
@@ -543,12 +619,12 @@
 
 .check-box {
     -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaCheckBoxSkin";
-    -fx-label-padding: 0.083333em 0.0em 0.0em 0.166667em;
+    -fx-label-padding: 0.01em 0.0em 0.0em 0.384615em;
     -fx-text-fill: -fx-text-base-color;
 }
 
 .check-box > .box {
-   -fx-border-radius: 2.5;
+    -fx-border-radius: 2.5;
     -fx-border-width: 0.5;
     -fx-border-color: rgb(129.0, 129.0, 129.0);
     -fx-background-color: rgb(250.0, 250.0, 250.0),
@@ -628,7 +704,6 @@
 .check-box > .box > .mark, .check-box:disabled > .box > .mark {
     -fx-effect: dropshadow(one-pass-box, rgb(255.0, 255.0, 255.0, 0.8), 0.0, 0.0 , -1.0 , 1.0);
     -fx-background-color: transparent;
-   /* -fx-background-insets: -9.5 -7.8 -2.5 -4.5; */
     -fx-background-insets: -4.0 -2.5 3.0 1.0;
     -fx-shape: "m 18.174523,1027.137 c -0.18077,-0.4575 -0.184364,-0.8913 0.115901,-1.1721 0.300265,-0.2809 0.836622,-0.3601 1.288422,-0.041 0.4518,0.3191 2.020453,2.9316 2.020453,2.9316 l 5.41194,-8.0232 c -4e-6,0 0.516257,-0.6671 1.248682,-0.3099 0.648831,0.3165 0.559153,1.0373 0.559153,1.0373 0,0 -5.940433,9.3556 -6.15501,9.6287 -0.214577,0.273 -1.595078,0.2481 -1.817995,-0.027 -0.222917,-0.2751 -2.490777,-3.567 -2.671546,-4.0244 z";
     -fx-scale-shape: false;
