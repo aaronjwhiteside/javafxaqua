@@ -11,9 +11,9 @@ import javafx.scene.paint.Color;
 
 import com.sun.javafx.scene.control.skin.ComboBoxListViewSkin;
 
-public class AquaComboBoxListViewSkin<T> extends ComboBoxListViewSkin {
+public class AquaComboBoxListViewSkin<T> extends ComboBoxListViewSkin<T> {
 
-    public AquaComboBoxListViewSkin(ComboBox comboBox) {
+    public AquaComboBoxListViewSkin(ComboBox<T> comboBox) {
         super(comboBox);
 
         for (Object child : getChildren()) {
@@ -22,14 +22,13 @@ public class AquaComboBoxListViewSkin<T> extends ComboBoxListViewSkin {
         if (comboBox.isEditable()) {
             getDisplayNode().focusedProperty().addListener(focusListener);
         }
-        getListView().focusedProperty().addListener(focusListener);
         getSkinnable().focusedProperty().addListener(focusListener);
     }
 
-    private ChangeListener focusListener = new ChangeListener() {
+    private ChangeListener<Boolean> focusListener = new ChangeListener<Boolean>() {
 
-        @Override public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-            if ((Boolean) newValue) {
+        @Override public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+            if (newValue) {
                 setFocusBorder();
             } else {
                 getSkinnable().setEffect(null);
@@ -56,6 +55,7 @@ public class AquaComboBoxListViewSkin<T> extends ComboBoxListViewSkin {
         outerFocus.setInput(innerFocus);
 
         getSkinnable().setEffect(outerFocus);
+        getListView().setEffect(null);
     }
 
 }

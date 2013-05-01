@@ -298,7 +298,7 @@
 /*******************************************************************************
  *                                                                             *
  * Size variants of Controls                                                   *
- *                                                                             *
+ * see https://developer.apple.com/library/mac/#technotes/tn2007/tn2196.html   *
  ******************************************************************************/
 .size-variant-small {
     -fx-font-size: 11.0;
@@ -323,6 +323,8 @@
 
 .check-box.size-variant-small > .box {
     -fx-padding: 5.0;
+    -fx-border-radius: 3.0;
+    -fx-background-radius: 3.0, 3.0;
 }
 
 .check-box.size-variant-small > .box > .mark{
@@ -347,7 +349,6 @@
     -fx-background-insets: -0.25 2.0 0.75 1.0;
 }
 
-
 .radio-button.size-variant-small > .radio  {
     -fx-padding: 2.5;
 }
@@ -356,8 +357,42 @@
     -fx-padding: 1.5;
 }
 
-.combo-box-popup.size-variant-mini > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell {
-    -fx-font-size: 9.0;
+.combo-box.size-variant-small > .list-cell {
+    -fx-border-radius: 3.0 0.0 0.0 3.0;
+    -fx-background-radius: 3.0 0.0 0.0 3.0, 3.0 0.0 0.0 3.0;
+}
+
+.combo-box-base.size-variant-small > .arrow-button {
+    -fx-background-radius: 0.0 3.0 3.0 0.0, 0.0 2.5 2.5 0.0, 0.0 2.5 2.5 0.0;
+    -fx-border-radius: 0.0 3.0 3.0 0.0;
+}
+
+.combo-box.size-variant-mini > .list-cell {
+    -fx-border-radius: 2.0 0.0 0.0 2.0;
+    -fx-background-radius: 2.0 0.0 0.0 2.0, 2.0 0.0 0.0 2.0;
+}
+
+.combo-box-base.size-variant-mini > .arrow-button {
+    -fx-background-radius: 0.0 2.0 2.0 0.0, 0.0 1.5 1.5 0.0, 0.0 1.5 1.5 0.0;
+    -fx-border-radius: 0.0 2.0 2.0 0.0;
+}
+
+.choice-box.size-variant-small {
+    -fx-border-radius: 3.0;
+    -fx-background-radius: 3.0, 3.0;
+}
+
+
+.choice-box.size-variant-mini {
+    -fx-border-radius: 2.0;
+    -fx-background-radius: 2.0, 2.0;
+}
+
+.slider.alternative-thumb.size-variant-small > .thumb,
+.slider.alternative-thumb.size-variant-mini > .thumb {
+    -fx-background-insets: 0.5 0.0 -1.5 0.0;
+    -fx-border-insets: 0.5 0.0 -1.5 0.0;
+    -fx-scale-shape: true;
 }
 
 /*******************************************************************************
@@ -1052,8 +1087,6 @@
     -fx-background-radius: 14.0;
 }
 
-#choice-box-menu-item > * > .menu-item-radio {}
-
 
 /*******************************************************************************
  *                                                                             *
@@ -1081,8 +1114,8 @@
 
 .slider.alternative-thumb > .thumb {
     -fx-shape: "M 9.1891716,18.913113 C 14.774865,12.498835 16.85604,11.01737 16.85604,9.11662 l 0,-6.093377 C 16.761936,1.8707681 16.193692,0.7655617 14.833202,0.54472254 13.971391,0.50911 2.5515364,0.50911 2.5515364,0.50911 1.0462919,0.75839775 0.54832274,1.9760737 0.5127102,3.023243 l 0,6.093377 c 0,1.975806 2.313591,3.725456 7.8990521,9.829757 0.055726,0.0609 0.6485114,0.11986 0.7774093,-0.03326 z";
-    -fx-background-insets: 4.0 3.0 -2.5 -2.0;
-    -fx-border-insets: 4.0 3.0 -2.5 -2.0;
+    -fx-background-insets: 4.0 0.0 -2.5 0.0;
+    -fx-border-insets: 4.0 0.0 -2.5 0.0;
     -fx-scale-shape: false;
     -fx-background-color: rgb(250.0, 250.0, 250.0),
         linear-gradient(
@@ -1093,8 +1126,8 @@
 
 .slider.alternative-thumb:vertical > .thumb {
     -fx-rotate: 270.0;
-    -fx-background-insets: 4.0 6.0 -2.5 -5.0;
-    -fx-border-insets: 4.0 6.0 -2.5 -5.0;
+    -fx-background-insets: 4.0 0.0 -2.5 0.0;
+    -fx-border-insets: 4.0 0.0 -2.5 0.0;
     -fx-background-color: rgb(250.0, 250.0, 250.0),
         linear-gradient(to left,
             rgb(255.0, 255.0, 255.0) 0.0%, rgb(253.0,253.0,253.0) 25.0%,  
@@ -1148,20 +1181,24 @@ TODO: effect-chaining!!!
 }
 
 .slider > .axis {
-     -fx-translate-y: 7.0px;
+    -fx-translate-y: 0.461538em;
+    -fx-translate-x: 0.0em;
 }
 
 .slider:vertical > .axis {
-    -fx-translate-x: 7.0px;
-    -fx-translate-y: 0.0px;
+    -fx-translate-x: 0.461538em;
+    -fx-translate-y: 0.0em;
 }
 
 .slider > .axis > .axis-tick-mark  {
-    -fx-translate-y: 1.0px;    
+     /*same gap to track for major- and minor tickmarks */
+    -fx-translate-y: 0.076923em;    
+    -fx-translate-x: 0.0em;
 }
-
 .slider:vertical > .axis > .axis-tick-mark  {
-    -fx-translate-y: 0.0px;    
+     /*same gap to track for major- and minor tickmarks */
+    -fx-translate-x: 0.076923em;    
+    -fx-translate-y: 0.0em;
 }
 
 .slider > .axis > .axis-minor-tick-mark,

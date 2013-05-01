@@ -13,6 +13,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.ColumnConstraints;
@@ -90,6 +91,13 @@ public class AquaSpecialControlsDemo extends Application {
         choice5.getSelectionModel().selectFirst();
         AquaFx.resizeControl(choice5, ControlSizeVariant.REGULAR);
         grid.add(choice5, 8, 2);
+        Slider slider5 = new Slider(0, 50, 20);
+        slider5.setShowTickLabels(true);
+        slider5.setShowTickMarks(true);
+        slider5.setMajorTickUnit(25);
+        slider5.setMinorTickCount(4);
+        grid.add(slider5, 9, 2);
+        
         
         Label labelb6 = new Label("small:");
         AquaFx.resizeControl(labelb6, ControlSizeVariant.SMALL);
@@ -127,6 +135,14 @@ public class AquaSpecialControlsDemo extends Application {
         choice6.getSelectionModel().selectFirst();
         AquaFx.resizeControl(choice6, ControlSizeVariant.SMALL);
         grid.add(choice6, 8, 3);
+        Slider slider6 = new Slider(0, 50, 20);
+        slider6.setShowTickLabels(true);
+        slider6.setShowTickMarks(true);
+        slider6.setMajorTickUnit(25);
+        slider6.setMinorTickCount(4);
+        AquaFx.resizeControl(slider6, ControlSizeVariant.SMALL);
+        grid.add(slider6, 9, 3);
+        
         
         Label labelb7 = new Label("mini:");
         AquaFx.resizeControl(labelb7, ControlSizeVariant.MINI);
@@ -164,6 +180,13 @@ public class AquaSpecialControlsDemo extends Application {
         choice7.getSelectionModel().selectFirst();
         AquaFx.resizeControl(choice7, ControlSizeVariant.MINI);
         grid.add(choice7, 8, 4);
+        Slider slider7 = new Slider(0, 50, 20);
+        slider7.setShowTickLabels(true);
+        slider7.setShowTickMarks(true);
+        slider7.setMajorTickUnit(25);
+        slider7.setMinorTickCount(4);
+        AquaFx.resizeControl(slider7, ControlSizeVariant.MINI);
+        grid.add(slider7, 9, 4);
         
         /*
          * a GroupBox

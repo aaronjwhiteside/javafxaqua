@@ -411,6 +411,7 @@ public class ButtonDemo extends Application {
         vTickSlider.setShowTickLabels(true);
         vTickSlider.setShowTickMarks(true);
         vTickSlider.setMajorTickUnit(50);
+        vTickSlider.setMinorTickCount(4);
         vTickSlider.setBlockIncrement(10);
         vTickSlider.setOrientation(Orientation.VERTICAL);
         slidersBox.getChildren().add(vTickSlider);
@@ -424,6 +425,7 @@ public class ButtonDemo extends Application {
         slider.setShowTickLabels(true);
         slider.setShowTickMarks(true);
         slider.setMajorTickUnit(50);
+        slider.setMinorTickCount(4);
         slider.setBlockIncrement(10);
         horizontalSliderBox.getChildren().add(slider);
         Slider simpleDisabledSlider = new Slider();
@@ -436,6 +438,7 @@ public class ButtonDemo extends Application {
         disabledSlider.setShowTickLabels(true);
         disabledSlider.setShowTickMarks(true);
         disabledSlider.setMajorTickUnit(50);
+        disabledSlider.setMinorTickCount(4);
         disabledSlider.setBlockIncrement(10);
         disabledSlider.setDisable(true);
         horizontalSliderBox.getChildren().add(disabledSlider);
