@@ -43,12 +43,15 @@ public class AquaFx {
     public static void setButtonIcon(Button button, MacOSDefaultIcons icon) {
         Region svgIcon = new Region();
         svgIcon.getStyleClass().add(icon.getStyleName());
+        svgIcon.getStyleClass().add("aquaicon");
         button.setGraphic(svgIcon);
+        button.getStyleClass().add("button-"+icon.getStyleName());
     }
 
     public static void setShareButton(Button button) {
         StackPane stack = new StackPane();
         String iconBase = MacOSDefaultIcons.SHARE.getStyleName();
+        stack.getStyleClass().add("aquaicon");
 
         Region svgIcon = new Region();
         svgIcon.getStyleClass().add(iconBase + "-square");
@@ -62,8 +65,6 @@ public class AquaFx {
     }
 
     public static void styleSearchField(TextField textField, MacOSDefaultIcons icon) {
-        // Region svgIcon = new Region();
-        // svgIcon.getStyleClass().add(icon.getStyleName());
         textField.getStyleClass().add(icon.getStyleName());
     }
 

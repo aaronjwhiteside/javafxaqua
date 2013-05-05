@@ -121,7 +121,7 @@ public class AquaDateAndTimeDemo extends Application {
         CheckBox box7 = new CheckBox("Datum anzeigen");
         grid.add(box7, 1, 9, 2, 1);
 
-        HBox hbox = HBoxBuilder.create().spacing(5).build();
+        HBox hbox = HBoxBuilder.create().spacing(5).alignment(Pos.CENTER_LEFT).build();
         CheckBox box8 = new CheckBox("Zeit vorlesen:");
         ChoiceBox<String> choices = new ChoiceBox<String>(FXCollections.observableArrayList("Zur vollen Stunde",
                 "Zur halben Stunde", "Zur Viertelstunde"));

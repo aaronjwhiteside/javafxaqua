@@ -8,6 +8,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBuilder;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
@@ -16,15 +17,20 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToolBar;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.GridPaneBuilder;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.VBoxBuilder;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import de.zillmann.javafx.aqua.AquaFx;
 import de.zillmann.javafx.aqua.controls.skin.styles.ButtonType;
 import de.zillmann.javafx.aqua.controls.skin.styles.ControlSizeVariant;
+import de.zillmann.javafx.aqua.controls.skin.styles.MacOSDefaultIcons;
 
 public class AquaSpecialControlsDemo extends Application {
 
@@ -34,19 +40,38 @@ public class AquaSpecialControlsDemo extends Application {
         Group root = new Group();
         Scene scene = new Scene(root);
         AquaFx.style();
+        AquaFx.styleStage(stage, StageStyle.UNIFIED);
         stage.setScene(scene);
         stage.setTitle("AquaFX Controls");
-
+        BorderPane pane = new BorderPane();
+        
         GridPane grid = GridPaneBuilder.create().padding(new Insets(20)).vgap(10).hgap(10).build();
-//        grid.setGridLinesVisible(true);
         ColumnConstraints column1 = new ColumnConstraints();
         column1.setHalignment(HPos.RIGHT);
         grid.getColumnConstraints().add(column1); 
-
+        
         ColumnConstraints column2 = new ColumnConstraints();
         column2.setHalignment(HPos.LEFT);
         grid.getColumnConstraints().add(column2); 
-        
+
+        /*
+         * Toolbar section
+         */
+        ToolBar toolBar = new ToolBar();
+        Button tbBack = ButtonBuilder.create().styleClass("left-pill").build();
+        AquaFx.setButtonIcon(tbBack, MacOSDefaultIcons.LEFT);
+        Button tbForward = ButtonBuilder.create().styleClass("right-pill").disable(true).build();
+        AquaFx.setButtonIcon(tbForward, MacOSDefaultIcons.RIGHT);
+        HBox separator = new HBox();
+        separator.setPrefSize(15, 1);
+        Button btnAll = new Button("Alle einblenden");
+        HBox separator2 = new HBox();
+        separator2.setPrefSize(15, 1);
+        Button share = new Button();
+        share.setDisable(true);
+        AquaFx.setShareButton(share);
+        toolBar.getItems().addAll(tbBack, tbForward, separator, btnAll, separator2, share);
+        pane.setTop(toolBar);
         
         Label info = new Label("Those Controls are styled by AquaFX:");
         grid.add(info, 0, 0, 5, 1);
@@ -221,7 +246,8 @@ public class AquaSpecialControlsDemo extends Application {
         AquaFx.setShareButton(b4);
         grid.add(b4, 7, 7);
 
-        scene.setRoot(grid);
+        pane.setCenter(grid);
+        scene.setRoot(pane);
         stage.show();
     }
 
