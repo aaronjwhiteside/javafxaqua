@@ -13,8 +13,10 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToolBar;
@@ -116,12 +118,6 @@ public class AquaSpecialControlsDemo extends Application {
         choice5.getSelectionModel().selectFirst();
         AquaFx.resizeControl(choice5, ControlSizeVariant.REGULAR);
         grid.add(choice5, 8, 2);
-        Slider slider5 = new Slider(0, 50, 20);
-        slider5.setShowTickLabels(true);
-        slider5.setShowTickMarks(true);
-        slider5.setMajorTickUnit(25);
-        slider5.setMinorTickCount(4);
-        grid.add(slider5, 9, 2);
         
         
         Label labelb6 = new Label("small:");
@@ -160,13 +156,6 @@ public class AquaSpecialControlsDemo extends Application {
         choice6.getSelectionModel().selectFirst();
         AquaFx.resizeControl(choice6, ControlSizeVariant.SMALL);
         grid.add(choice6, 8, 3);
-        Slider slider6 = new Slider(0, 50, 20);
-        slider6.setShowTickLabels(true);
-        slider6.setShowTickMarks(true);
-        slider6.setMajorTickUnit(25);
-        slider6.setMinorTickCount(4);
-        AquaFx.resizeControl(slider6, ControlSizeVariant.SMALL);
-        grid.add(slider6, 9, 3);
         
         
         Label labelb7 = new Label("mini:");
@@ -205,13 +194,88 @@ public class AquaSpecialControlsDemo extends Application {
         choice7.getSelectionModel().selectFirst();
         AquaFx.resizeControl(choice7, ControlSizeVariant.MINI);
         grid.add(choice7, 8, 4);
+        
+        
+        Label labelb8 = new Label("regular:");
+        grid.add(labelb8, 0, 6);
+        Slider slider5 = new Slider(0, 50, 20);
+        slider5.setShowTickLabels(true);
+        slider5.setShowTickMarks(true);
+        slider5.setMajorTickUnit(25);
+        slider5.setMinorTickCount(4);
+        grid.add(slider5, 1, 6, 2, 1);
+        Slider slider11 = new Slider(0, 50, 20);
+        slider11.setShowTickLabels(false);
+        slider11.setShowTickMarks(false);
+        grid.add(slider11, 3, 6, 2, 1);
+        ProgressIndicator indicator1 = new ProgressIndicator();
+        grid.add(indicator1, 5, 6);
+        ProgressIndicator indicator2 = new ProgressIndicator(0.5);
+        grid.add(indicator2, 6, 6);
+        TextArea area1 = new TextArea();
+        area1.setPromptText("TextArea with promptText");
+        area1.setPrefRowCount(2);
+        area1.setPrefColumnCount(15);
+        grid.add(area1, 7, 6, 2, 1);
+
+        
+        Label labelb9 = new Label("small:");
+        AquaFx.resizeControl(labelb9, ControlSizeVariant.SMALL);
+        grid.add(labelb9, 0, 7);
+        Slider slider6 = new Slider(0, 50, 20);
+        slider6.setShowTickLabels(true);
+        slider6.setShowTickMarks(true);
+        slider6.setMajorTickUnit(25);
+        slider6.setMinorTickCount(4);
+        AquaFx.resizeControl(slider6, ControlSizeVariant.SMALL);
+        grid.add(slider6, 1, 7, 2, 1);
+        Slider slider12 = new Slider(0, 50, 20);
+        slider12.setShowTickLabels(false);
+        slider12.setShowTickMarks(false);
+        AquaFx.resizeControl(slider12, ControlSizeVariant.SMALL);
+        grid.add(slider12, 3, 7, 2, 1);
+        ProgressIndicator indicator3 = new ProgressIndicator();
+        AquaFx.resizeControl(indicator3, ControlSizeVariant.SMALL);
+        grid.add(indicator3, 5, 7);
+        ProgressIndicator indicator4 = new ProgressIndicator(0.5);
+        AquaFx.resizeControl(indicator4, ControlSizeVariant.SMALL);
+        grid.add(indicator4, 6, 7);
+        TextArea area2 = new TextArea();
+        area2.setPromptText("TextArea with promptText");
+        area2.setPrefRowCount(2);
+        area2.setPrefColumnCount(15);
+        AquaFx.resizeControl(area2, ControlSizeVariant.SMALL);
+        grid.add(area2, 7, 7, 2, 1);
+        
+        
+        Label labelb10 = new Label("mini:");
+        AquaFx.resizeControl(labelb10, ControlSizeVariant.MINI);
+        grid.add(labelb10, 0, 8);
         Slider slider7 = new Slider(0, 50, 20);
         slider7.setShowTickLabels(true);
         slider7.setShowTickMarks(true);
         slider7.setMajorTickUnit(25);
         slider7.setMinorTickCount(4);
         AquaFx.resizeControl(slider7, ControlSizeVariant.MINI);
-        grid.add(slider7, 9, 4);
+        grid.add(slider7, 1, 8, 2, 1);
+        Slider slider13 = new Slider(0, 50, 20);
+        slider13.setShowTickLabels(false);
+        slider13.setShowTickMarks(false);
+        AquaFx.resizeControl(slider13, ControlSizeVariant.MINI);
+        grid.add(slider13, 3, 8, 2, 1);
+        ProgressIndicator indicator5 = new ProgressIndicator();
+        AquaFx.resizeControl(indicator5, ControlSizeVariant.MINI);
+        grid.add(indicator5, 5, 8);
+        ProgressIndicator indicator6 = new ProgressIndicator(0.5);
+        AquaFx.resizeControl(indicator6, ControlSizeVariant.MINI);
+        grid.add(indicator6, 6, 8);
+        TextArea area3 = new TextArea();
+        area3.setPromptText("TextArea with promptText");
+        area3.setPrefRowCount(2);
+        area3.setPrefColumnCount(15);
+        AquaFx.resizeControl(area3, ControlSizeVariant.MINI);
+        grid.add(area3, 7, 8, 2, 1);
+        
         
         /*
          * a GroupBox
@@ -220,31 +284,31 @@ public class AquaSpecialControlsDemo extends Application {
         AquaFx.setGroupBox(box);
         Label groupInfo = new Label("This is a GroupBox, which is applicable for all Panes\nvia AquaFX");
         box.getChildren().add(groupInfo);
-        grid.add(box, 0, 5, 6, 3);
+        grid.add(box, 0, 10, 6, 3);
         
         /*
          * Special Controls
          */
         Label labelb2 = new Label("Help Button:");
         GridPane.setHalignment(labelb2, HPos.RIGHT);
-        grid.add(labelb2, 6, 5);
+        grid.add(labelb2, 6, 10);
         Button b2 = new Button("?");
         AquaFx.skin(b2, ButtonType.HELP);
-        grid.add(b2, 7, 5);
+        grid.add(b2, 7, 10);
 
         Label labelb3 = new Label("Rounded Button:");
         GridPane.setHalignment(labelb3, HPos.RIGHT);
-        grid.add(labelb3, 6, 6);
+        grid.add(labelb3, 6, 11);
         Button b3 = new Button("round rect");
         AquaFx.skin(b3, ButtonType.ROUND_RECT);
-        grid.add(b3, 7, 6);
+        grid.add(b3, 7, 11);
 
         Label labelb4 = new Label("Share Button:");
         GridPane.setHalignment(labelb4, HPos.RIGHT);
-        grid.add(labelb4, 6, 7);
+        grid.add(labelb4, 6, 12);
         Button b4 = new Button();
         AquaFx.setShareButton(b4);
-        grid.add(b4, 7, 7);
+        grid.add(b4, 7, 12);
 
         pane.setCenter(grid);
         scene.setRoot(pane);
