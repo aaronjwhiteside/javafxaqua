@@ -1870,6 +1870,7 @@ TODO: effect-chaining!!!
  ******************************************************************************/
 
 .progress-bar {
+    -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaProgressBarSkin";
     -fx-border-color: rgb(146.0, 146.0, 146.0);
     -fx-border-width: 0.5;
     -fx-border-radius: 2.5;
@@ -1879,10 +1880,19 @@ TODO: effect-chaining!!!
         linear-gradient(to left, rgb(196.0, 196.0, 196.0, 0.5) 0.0%, rgb(220.0, 220.0, 220.0, 0.2) 2.0% , transparent);
     -fx-background-insets: 0.5, 1.0, 1.0;
     -fx-background-radius: 2.0, 2.0, 2.0;
-    -fx-indeterminate-bar-length: 60.0;
-    -fx-indeterminate-bar-escape: true;
-    -fx-indeterminate-bar-flip: true;
-    -fx-indeterminate-bar-animation-time: 2.0;
+    -fx-indeterminate-bar-length:-1;
+    -fx-indeterminate-bar-escape: false;
+    -fx-indeterminate-bar-flip: false;
+    -fx-indeterminate-bar-animation-time: 0.0;
+}
+
+.progress-bar:indeterminate  {
+    -fx-background-color: 
+        linear-gradient(rgb(176.0, 176.0, 176.0), rgb(207.0, 207.0, 207.0)),
+        linear-gradient(from 5% 45% to 10% 0%, reflect, rgb(84, 169, 239) 50%, rgb(236.0, 236.0, 236.0) 47%),
+        linear-gradient(rgb(255.0, 255.0, 255.0, 0.7) 5%, rgb(255.0, 255.0, 255.0, 0.5) 5%,
+            rgb(255.0, 255.0, 255.0, 0.1) 50%, rgb(255.0, 255.0, 255.0, 0.0) 50%, rgb(255.0, 255.0, 255.0, 0.0) 60%,
+            rgb(255.0, 255.0, 255.0, 0.4) 85%, rgb(245.0, 245.0, 245.0, 0.7) 100%);
 }
 
 .progress-bar > .bar {
@@ -1891,16 +1901,7 @@ TODO: effect-chaining!!!
     -fx-background-color:
       radial-gradient(center 50.0% 50.0%, radius 50.0%, rgb(84.0, 170.0, 240.0), rgb(90.0, 192.0, 246.0));
     -fx-background-insets: 0.0;
-    -fx-padding: 0.416667em; /* 5 */
-}
-
-.progress-bar:indeterminate > .bar {
-    -fx-background-color: linear-gradient(to left, transparent, -fx-accent);
-}
-
-.progress-bar > .track {
-   /*-fx-background-color:red;
-    -fx-background-insets:  0.0; */  
+    -fx-padding: 0.416667em;
 }
 
 .progress-bar:disabled {
