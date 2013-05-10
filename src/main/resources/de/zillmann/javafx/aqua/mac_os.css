@@ -1391,7 +1391,7 @@ TODO: effect-chaining!!!
 
 .cell:focused:selected > .choice-box > .label {
     -fx-text-fill: white;
-}/*??????????!!! */
+}
 
 
 /*******************************************************************************
@@ -2700,20 +2700,6 @@ TODO: effect-chaining!!!
 
 
 /* -------------- CODE  FOR THE NON-EDITABLE COMBO-BOX -------------- */
-
-/*.combo-box-base > .arrow-button {
-    -fx-background-color: 
-        linear-gradient(rgb(155.0, 155.0, 155.0) 0.0%, rgb(172.0, 172.0, 172.0)  100.0%),
-        rgb(255.0, 255.0, 255.0),
-        linear-gradient(rgb(255.0, 255.0, 255.0) 25.0%, rgb(243.0, 243.0, 243.0) 50.0%, rgb(236.0, 236.0, 236.0) 50.0%, rgb(243.0, 243.0, 243.0) 100.0% );
-    -fx-background-insets: 1.0 0.5 0.5 0.0, 1.5 1.0 1.0 0.5, 1.5 1.0 1.0 0.5;
-    -fx-background-radius: 0.0 4.0 4.0 0.0, 0.0 3.0 3.0 0.0, 0.0 3.0 3.0 0.0;
-    -fx-border-width: 0.5 0.5 0.5 0.0;
-    -fx-border-color: rgb(169.0, 169.0, 169.0) rgb(205.0, 205.0, 205.0) rgb(205.0, 205.0, 205.0) rgb(205.0, 205.0, 205.0);
-    -fx-border-insets: 0.5 0.0 0.0 0.0;
-    -fx-border-radius: 0.0 4.0 4.0 0.0;
-    -fx-padding: 0.230769em 0.4em 0.230769em 0.433333em; 
-}*/
 .combo-box-base > .arrow-button {
     -fx-background-color: 
         linear-gradient(rgb(155.0, 155.0, 155.0) 0.0%, rgb(172.0, 172.0, 172.0)  100.0%),
@@ -2726,6 +2712,7 @@ TODO: effect-chaining!!!
     -fx-border-radius: 0.0 4.0 4.0 0.0;
     -fx-padding: 0.0em 0.4em 0.0em 0.433333em; 
 }
+
 .combo-box-base:showing > .arrow-button {
     -fx-background-color: 
         linear-gradient(rgb(155.0, 155.0, 155.0) 0.0%, rgb(172.0, 172.0, 172.0)  100.0%),
@@ -2760,15 +2747,7 @@ TODO: effect-chaining!!!
                         linear-gradient(rgb(224.0, 224.0, 224.0) 0.0%, rgb(255.0, 255.0, 255.0)  10.0%),
                         linear-gradient(to left, rgb(224.0, 224.0, 224.0) 0.0%, transparent 1.0%);
 }
-/*.combo-box-base:editable > .text-field {
-    -fx-border-color: rgb(169.0, 169.0, 169.0) rgb(205.0, 205.0, 205.0) rgb(205.0, 205.0, 205.0) rgb(205.0, 205.0, 205.0);
-    -fx-border-width: 0.5 0.0 0.5 0.5;
-    -fx-background-color: linear-gradient(rgb(155.0, 155.0, 155.0) 0.0%, rgb(172.0, 172.0, 172.0)  100.0%),
-                        linear-gradient(rgb(224.0, 224.0, 224.0) 0.0%, rgb(255.0, 255.0, 255.0)  10.0%),
-                        linear-gradient(to left, rgb(224.0, 224.0, 224.0) 0.0%, transparent 1.0%);
-    -fx-background-insets: 0.0 0.0 3.5 0.5, 0.5 0.0 4.0 1.0, 1.0 0.0 4.0 1.0; 
-}
-*/
+
 .combo-box-base:editable > .arrow-button {
     -fx-background-color: 
         linear-gradient(rgb(155.0, 155.0, 155.0) 0.0%, rgb(172.0, 172.0, 172.0)  100.0%),
@@ -2782,13 +2761,6 @@ TODO: effect-chaining!!!
     -fx-border-radius: 0.0 4.0 4.0 0.0;
     -fx-padding: 0.230769em 0.4em 0.230769em 0.433333em; 
 }
-/*
-.combo-box-base:editable:showing > .arrow-button {
-    -fx-background-color: 
-        linear-gradient(rgb(155.0, 155.0, 155.0) 0.0%, rgb(172.0, 172.0, 172.0)  100.0%),
-        linear-gradient(rgb(225.0, 225.0, 225.0) 25.0%, rgb(213.0, 213.0, 213.0) 50.0%, rgb(207.0, 207.0, 207.0) 50.0%, rgb(212.0, 212.0, 212.0) 100.0% );
-    -fx-background-insets: 0.0 0.5 3.5 0.0, 0.5 1.0 4.0 0.5;
-}*/
 
 /* -------------- STYLES FOR THE DEFAULT LISTVIEW-BASED COMBOBOX ------------- */
 
@@ -2797,24 +2769,6 @@ TODO: effect-chaining!!!
 }
 
 /* Customize the ListCell that appears in the ComboBox button itself */
-/*.combo-box > .list-cell {
-    -fx-text-fill: -fx-text-base-color;
-    -fx-padding: 0.12em 0.5em 0.18em 0.583333em;
-    -fx-border-radius: 4.0 0.0 0.0 4.0;
-    -fx-border-width: 0.5 0.0 0.5 0.5;
-    
-    -fx-border-insets: 0.5 0.0 0.0 0.0;
-    
-    -fx-border-color: rgb(169.0, 169.0, 169.0) rgb(205.0, 205.0, 205.0) rgb(205.0, 205.0, 205.0) rgb(205.0, 205.0, 205.0);
-    -fx-background-color: linear-gradient(rgb(155.0, 155.0, 155.0) 0.0%, rgb(172.0, 172.0, 172.0)  100.0%),
-        -choice-base;
-    -fx-background-insets: 1.0 0.0 0.5 0.5, 1.5 0.0 1.0 1.0;
-   
-    -fx-background-radius: 4.0 0.0 0.0 4.0, 4.0 0.0 0.0 4.0;
-    -fx-content-display: LEFT;
-    -fx-opacity: 1.0;
-}
-*/
 .combo-box > .list-cell {
     -fx-text-fill: -fx-text-base-color;
     -fx-padding: 0.12em 0.5em 0.18em 0.583333em;
@@ -2824,24 +2778,23 @@ TODO: effect-chaining!!!
     -fx-background-color: linear-gradient(rgb(155.0, 155.0, 155.0) 0.0%, rgb(172.0, 172.0, 172.0)  100.0%),
         -choice-base;
     -fx-background-insets: 0.5 0.0 0.5 0.5, 1.0 0.0 1.0 1.0;
-    -fx-background-radius: 4.0 0.0 0.0 4.0, 4.0 0.0 0.0 4.0;
     -fx-content-display: LEFT;
     -fx-opacity: 1.0;
 }
 
-
 .combo-box-popup > .list-view {
     -fx-background-color: white;
-    -fx-background-insets: 0.0;
+    -fx-background-insets: -3.0 0.0 0.0 0.0;
     -fx-background-radius: 0.0;
     -fx-border-color: rgb(0.0,0.0,0.0,0.4);
-    -fx-border-insets: 0.0;
-    -fx-border-width: 0.5;
+    -fx-border-insets: -3.0 0.0 0.0 0.0;
+    -fx-border-width: 0.5 0.5 1.5 0.5;
+   -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );
 }
 
 .combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell {
     -fx-padding: 4.0 0.0 4.0 5.0;
-    -fx-background-color: transparent;
+    -fx-background-color: white;
 }
 
 .combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected, 
@@ -2849,7 +2802,6 @@ TODO: effect-chaining!!!
     -fx-background-color:  rgb(60.0, 119.0, 212.0);
     -fx-text-fill: white;
 }
-
 
 
 /* -------------------------- STYLES FOR THE COLOR-PICKER CONTROL ----- */
