@@ -2959,7 +2959,7 @@ TODO: effect-chaining!!!
 
 /* -------------------------- STYLES FOR PAGINATION CONTROL ----- */
 .pagination {
-    -fx-padding: 0.0;        
+    -fx-padding: 0.416667em;        
     -fx-arrows-visible: true;
     -fx-tooltip-visible: true;
     -fx-page-information-visible: true;
@@ -2975,21 +2975,30 @@ TODO: effect-chaining!!!
 }
 
 .pagination > .pagination-control > .control-box {
-    -fx-spacing: 4.0;
+    -fx-spacing: 3.0;
     -fx-alignment: center;
 }
 
-.pagination > .pagination-control > .control-box > .left-arrow-button{
-    -fx-background-radius: 0.0;
-    -fx-padding: 0.166667em 0.416em 0.25em 0.333em;
+.pagination > .pagination-control > .control-box > .number-button {
+    -fx-border-radius: 3.0em;
+    -fx-background-radius: 3.0em, 3.0em;
+    -fx-padding: 0.166667em;
 }
+
+.pagination > .pagination-control > .control-box > .left-arrow-button {
+    -fx-border-radius: 3.0em;
+    -fx-background-radius: 3.0em, 3.0em;
+     -fx-padding: 0.166667em 0.416em 0.25em 0.166667em;
+}
+
 .pagination > .pagination-control > .control-box > .right-arrow-button {
-    -fx-background-radius: 0.0;
-    -fx-padding: 0.166667em 0.333em 0.25em 0.416em;
+    -fx-border-radius: 3.0em;
+    -fx-background-radius: 3.0em, 3.0em;
+    -fx-padding: 0.166667em 0.166667em 0.25em 0.25em;
 }
 
 .pagination > .pagination-control .left-arrow {
-    -fx-background-color: -fx-mark-highlight-color, -fx-mark-color;
+    -fx-background-color: rgb(255.0, 255.0, 255.0, 0.5), rgb(71.0, 71.0, 71.0);
     -fx-background-insets: 1.0 0.0 -1.0 0.0, 0.0;
     -fx-padding: 0.375em 0.291em 0.375em 0.291em;
     -fx-shape: "M 0 0 L -13 7 L 0 13 z";
@@ -2997,39 +3006,40 @@ TODO: effect-chaining!!!
 }
 
 .pagination > .pagination-control .right-arrow {
-    -fx-background-color: -fx-mark-highlight-color, -fx-mark-color;
+    -fx-background-color: rgb(255.0, 255.0, 255.0, 0.5), rgb(71.0, 71.0, 71.0);
     -fx-background-insets: 1.0 0.0 -1.0 0.0, 0.0;
     -fx-padding: 0.375em 0.291em 0.375em 0.291em;
     -fx-shape: "M 0 0 L 13 7 L 0 13 z";
     -fx-scale-shape: true;
 }
 
-.pagination > .pagination-control > .control-box > .bullet-button {   
-   -fx-background-radius: 0.0, 4.0em, 4.0em, 4.0em, 4.0em;
-   -fx-padding: 0.333em;
-   
-   -fx-background-color: transparent, -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
-   -fx-background-insets: 0.0, 4.0 4.0 3.0 4.0,  5.0,  6.0,  7.0;
+.pagination > .pagination-control > .control-box > .bullet-button {
+    -fx-border-width: 0.5;
+    -fx-border-insets: 3.0;
+    -fx-border-color: rgb(129.0, 129.0, 129.0);
+    -fx-border-radius: 3.0em;
+    -fx-background-color: rgb(250.0, 250.0, 250.0),
+        linear-gradient(
+            rgb(255.0, 255.0, 255.0) 0.0%, rgb(253.0,253.0,253.0) 25.0%,  
+            rgb(244.0, 244.0, 244.0) 50.0%, rgb(236.0, 236.0, 236.0) 51.0%,
+            rgb(243.0, 243.0, 243.0) 100.0% );
+    -fx-background-insets: 3.0, 4.0;
+    -fx-background-radius: 3.0em, 3.0em;
+    -fx-padding: 0.0em;
+    -fx-spacing: 14.0;
 }
 
 .pagination > .pagination-control > .control-box > .bullet-button:selected {   
-    -fx-base: -fx-accent;
+    -fx-border-color: linear-gradient(
+        rgb(100.0, 103.0, 124.0) 0.0%, rgb(92.0, 94.0, 116.0) 100.0%);
+    -fx-background-color: 
+        linear-gradient(
+            rgb(228.0, 250.0, 255.0) 0.0%, #91bdee 50.0%, 
+            #78b0ee 51.0%, rgb(228.0, 250.0, 255.0) 100.0% );
+    -fx-background-insets: 3.0;
+    -fx-background-radius: 3.0em;
 }
 
-.pagination.bullet > .pagination-control > .control-box > .left-arrow-button, 
-.pagination.bullet > .pagination-control > .control-box > .right-arrow-button {
-    -fx-background-radius: 4.0em;
-}
-
-.pagination > .pagination-control > .control-box > .number-button {
-    -fx-background-radius: 0.0;
-    -fx-padding: 0.166667em 0.25em 0.25em 0.333em;
-    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
-}
-
-.pagination > .pagination-control > .control-box > .number-button:selected {   
-    -fx-base: -fx-accent;
-}
 .pagination > .pagination-control > .page-information {   
     -fx-padding: 0.416em 0.0 0.0 0.0;
 }
