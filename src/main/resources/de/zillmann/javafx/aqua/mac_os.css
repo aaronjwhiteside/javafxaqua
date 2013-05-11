@@ -2778,6 +2778,7 @@ TODO: effect-chaining!!!
     -fx-background-color: linear-gradient(rgb(155.0, 155.0, 155.0) 0.0%, rgb(172.0, 172.0, 172.0)  100.0%),
         -choice-base;
     -fx-background-insets: 0.5 0.0 0.5 0.5, 1.0 0.0 1.0 1.0;
+    -fx-background-radius: 4.0 0.0 0.0 4.0, 4.0 0.0 0.0 4.0;
     -fx-content-display: LEFT;
     -fx-opacity: 1.0;
 }
