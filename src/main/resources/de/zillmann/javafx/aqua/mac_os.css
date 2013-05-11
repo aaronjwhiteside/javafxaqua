@@ -1627,7 +1627,7 @@ TODO: effect-chaining!!!
 
 .tool-bar:vertical {
     -fx-background-color:
-        linear-gradient(to right, rgb(222.0, 222.0, 222.0), rgb(173.0, 173.0, 173.0) 99.0%, rgb(233.0, 233.0, 233.0)), rgb(103.0, 103.0, 103.0);
+        linear-gradient(to right, rgb(222.0, 222.0, 222.0), rgb(173.0, 173.0, 173.0) 99.0%, rgb(233.0, 233.0, 233.0));
     -fx-border-color: rgb(103.0, 103.0, 103.0);
     -fx-border-width: 0.0 1.0 0.0 0.0;
     -fx-border-insets: 0.0;
