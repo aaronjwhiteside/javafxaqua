@@ -819,12 +819,12 @@
     -fx-use-system-menu-bar: true;
 }
 
-
 .menu-bar > .container > .menu-button {
     -fx-background-radius: 0.0;
     -fx-background-color: transparent;
     -fx-background-insets: 0.0; 
 }
+
 .menu-bar > .container > .menu-button > .label {
     -fx-padding: 0.333em 0.5em 0.333em 0.5em;
 }
@@ -1465,53 +1465,49 @@ TODO: effect-chaining!!!
  * MenuButton                                                                  *
  *                                                                             *
  ******************************************************************************/
-
 .menu-button {
-    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
-    -fx-background-insets: 0.0 0.0 -1.0 0.0, 0.0, 1.0, 2.0;
-    -fx-background-radius: 5.0, 5.0, 4.0, 3.0;
-    -fx-padding: 0.0em; /* 0 */
-    -fx-text-fill: -fx-text-base-color;
+    -fx-background-color: 
+        linear-gradient(rgb(245.0, 245.0, 245.0), rgb(185.0, 185.0, 185.0));
+    -fx-background-insets:0.0;
+    -fx-background-radius: 3.5, 3.5;
+    -fx-border-radius: 4.0;
+    -fx-border-width: 0.5;
+    -fx-border-insets:-0.5, 0.0 ;
+    -fx-border-color: linear-gradient(rgb(147.0, 147.0, 147.0), rgb(131.0, 131.0, 131.0)),
+        linear-gradient(rgb(116.0, 116.0, 116.0), rgb(105.0, 105.0, 105.0));
+    -fx-padding: 0.1em 0.0em 0.153846em 0.0em;
 }
 
 .menu-button > .label { 
-    /* TODO workaround for RT-19062 */
     -fx-text-fill: -fx-text-base-color; 
-    
-    /* The MenuButton skin uses an inner Label part */
-    -fx-padding: 0.166667em 0.667em 0.25em 0.833333em; /* 2 8 3 10 */
-}
-
-.menu-button:focused {
-    -fx-color: -fx-focused-base;
-    -fx-background-color: -fx-focus-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
-    -fx-background-insets: -1.4, 0.0, 1.0, 2.0;
-    -fx-background-radius: 6.4, 4.0, 5.0, 3.0;
-}
-
-.menu-button:hover {
-    -fx-color: -fx-hover-base;
+    -fx-padding: 0.0em 0.667em 0.0em 0.833333em; 
 }
 
 .menu-button:armed {
-    -fx-color: -fx-pressed-base;
+    -fx-background-color: linear-gradient(rgb(160.0, 160.0, 160.0), rgb(215.0, 215.0, 215.0));
+    -fx-border-color: linear-gradient(rgb(147.0, 147.0, 147.0), rgb(131.0, 131.0, 131.0)),
+        linear-gradient(rgb(116.0, 116.0, 116.0), rgb(105.0, 105.0, 105.0));
+}
+.split-menu-button > .arrow-button {
+    -fx-background-insets: 0.0;
+    -fx-background-radius: 0.0;
+    -fx-padding: 0.0em 0.333333em 0.0em 0.2em; 
 }
 
 .menu-button > .arrow-button {
     -fx-background-insets: 0.0;
     -fx-background-radius: 0.0;
-    -fx-padding: 0.5em 0.667em 0.5em 0.0em; /* 6 8 6 0 */
+    -fx-padding: 0.0em 0.333333em 0.0em 0.0em; 
 }
 
 .menu-button > .arrow-button > .arrow {
-    -fx-background-insets: 1.0 0.0 -1.0 0.0, 0.0;
-    -fx-background-color: -fx-mark-highlight-color, -fx-mark-color;
-    -fx-padding: 0.25em; /* 3 */
+    -fx-background-insets: 1.0 0.0 -1.0 0.0, 0.5 0.0 -0.5 0.0;
+    -fx-background-color: rgb(255.0, 255.0, 255.0), rgb(71.0, 71.0, 71.0);
+    -fx-padding: 0.166667em 0.25em 0.166667em 0.25em;
     -fx-shape: "M 0 -3.5 v 7 l 4 -3.5 z";
 }
 
 .menu-button:openvertically > .arrow-button > .arrow {
-    -fx-padding: 0.166667em 0.333333em 0.166667em 0.333333em; /* 2 4 2 4 */
     -fx-shape: "M 0 0 h 7 l -3.5 4 z";
 }
 
@@ -1527,65 +1523,55 @@ TODO: effect-chaining!!!
 
 /*******************************************************************************
  *                                                                             *
- * SplitMenuButton                                                             *
+ *   SplitMenuButton                                                           *
  *                                                                             *
  ******************************************************************************/
 
 .split-menu-button {
-    -fx-background-color: -fx-shadow-highlight-color;
-    -fx-background-insets: 0.0 0.0 -1.0 0.0;
-    -fx-background-radius: 5.0;
-    -fx-padding: 0.0em; /* 0 */
+    -fx-padding: 0.0em;
     -fx-text-fill: -fx-text-base-color;
 }
 
-.split-menu-button:focused {
-    -fx-color: -fx-focused-base;
-    -fx-background-color: -fx-focus-color;
-    -fx-background-insets: -1.4;
-    -fx-background-radius: 6.4;
-}
-
-.split-menu-button > .label:hover {
-    -fx-color: -fx-hover-base;
-}
-
-.split-menu-button:armed > .label {
-    -fx-color: -fx-pressed-base;
-}
-
-/* The SplitMenuButton skin uses an inner Label part */
 .split-menu-button > .label {
-    -fx-background-color:  -fx-outer-border, -fx-inner-border, -fx-body-color;
-    -fx-background-insets: 0.0, 1.0 0.0 1.0 1.0, 2.0 1.0 2.0 2.0;
-    -fx-background-radius: 5.0 0.0 0.0 5.0, 4.0 0.0 0.0 4.0, 3.0 0.0 0.0 3.0;
-    -fx-padding: 0.166667em 0.667em 0.25em 0.833333em; /* 2 8 3 10 */
+    -fx-background-color: 
+        linear-gradient(rgb(245.0, 245.0, 245.0), rgb(185.0, 185.0, 185.0));
+    -fx-background-insets:0.0;
+    -fx-background-radius: 4.0 0.0 0.0 4.0;
+    -fx-border-radius: 3.5 0.0 0.0 3.5, 3.5 0.0 0.0 3.5;
+    -fx-border-width: 0.5, 0.5;
+    -fx-border-insets:-0.5, 0.0 ;
+    -fx-border-color: linear-gradient(rgb(147.0, 147.0, 147.0), rgb(131.0, 131.0, 131.0)),
+        linear-gradient(rgb(116.0, 116.0, 116.0), rgb(105.0, 105.0, 105.0));
+    -fx-padding: 0.1em 0.667em 0.153846em 0.833333em;
 }
 
 .split-menu-button > .arrow-button {
-    -fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color;
-    -fx-background-insets: 0.0, 1.0, 2.0;
-    -fx-background-radius: 0.0 5.0 5.0 0.0, 0.0 4.0 4.0 0.0, 0.0 3.0 3.0 0.0;
-    -fx-padding: 0.5em 0.667em 0.5em 0.667em; /* 6 8 6 8 */
+    -fx-background-color: 
+        linear-gradient(rgb(245.0, 245.0, 245.0), rgb(185.0, 185.0, 185.0));
+    -fx-background-insets:0.0;
+    -fx-background-radius: 0.0 4.0 4.0 0.0;
+    -fx-border-width: 0.5 0.5 0.5 0.5, 0.5 0.5 0.5 0.5;
+    -fx-border-insets:-0.5, 0.0 ;
+    -fx-border-color: linear-gradient(rgb(147.0, 147.0, 147.0), rgb(131.0, 131.0, 131.0)),
+        linear-gradient(rgb(116.0, 116.0, 116.0), rgb(105.0, 105.0, 105.0));
+    -fx-border-radius: 0.0 3.5 3.5 0.0, 0.0 3.5 3.5 0.0;
+    -fx-padding: 0.0em 0.5em 0.0em 0.5em; 
 }
 
-.split-menu-button > .arrow-button:hover {
-    -fx-color: -fx-hover-base;
-}
-
-.split-menu-button > .arrow-button:pressed {
-    -fx-color: -fx-pressed-base;
+.split-menu-button:showing > .arrow-button {
+    -fx-background-color: linear-gradient(rgb(160.0, 160.0, 160.0), rgb(215.0, 215.0, 215.0));
+    -fx-border-color: linear-gradient(rgb(147.0, 147.0, 147.0), rgb(131.0, 131.0, 131.0)),
+        linear-gradient(rgb(116.0, 116.0, 116.0), rgb(105.0, 105.0, 105.0));
 }
 
 .split-menu-button > .arrow-button > .arrow {
-    -fx-background-color: -fx-mark-highlight-color, -fx-mark-color;
-    -fx-background-insets: 1.0 0.0 -1.0 0.0, 0.0;
-    -fx-padding: 0.25em; /* 3 */
+    -fx-background-insets: 1.0 0.0 -1.0 0.0, 0.5 0.0 -0.5 0.0;
+    -fx-background-color: rgb(255.0, 255.0, 255.0), rgb(71.0, 71.0, 71.0);
+    -fx-padding: 0.166667em 0.25em 0.166667em 0.25em;
     -fx-shape: "M 0 -3.5 v 7 l 4 -3.5 z";
 }
 
 .split-menu-button:openvertically > .arrow-button > .arrow {
-    -fx-padding: 0.166667em 0.333333em 0.166667em 0.333333em; /* 2 4 2 4 */
     -fx-shape: "M 0 0 h 7 l -3.5 4 z";
 }
 
@@ -1595,7 +1581,7 @@ TODO: effect-chaining!!!
 
 .split-menu-button:show-mnemonics > .mnemonic-underline {
     -fx-stroke: -fx-text-base-color;
-} 
+}
 
 
 
@@ -1726,6 +1712,9 @@ TODO: effect-chaining!!!
 .tool-bar.inactive .color-picker,
 .tool-bar.inactive .choice-box,
 .tool-bar.inactive .combo-box > .list-cell,
+.tool-bar.inactive .menu-button,
+.tool-bar.inactive .split-menu-button > .label,
+.tool-bar.inactive .split-menu-button > .arrow-button,
 .tool-bar.inactive .combo-box > .arrow-button {
     -fx-background-color: 
         linear-gradient(rgb(241.0, 241.0, 241.0), rgb(229.0, 229.0, 229.0));
@@ -1863,6 +1852,8 @@ TODO: effect-chaining!!!
 .tool-bar .toggle-button:disabled,
 .tool-bar .color-picker:disabled,
 .tool-bar .combo-box:disabled,
+.tool-bar .menu-button:disabled,
+.tool-bar .split-menu-button:disabled,
 .tool-bar .choice-box:disabled {
     -fx-opacity: 1.0;
 }
@@ -1872,6 +1863,8 @@ TODO: effect-chaining!!!
 .tool-bar .color-picker > *:disabled,
 .tool-bar .combo-box > *:disabled,
 .tool-bar .choice-box > *:disabled,
+.tool-bar .menu-button > *:disabled,
+.tool-bar .split-menu-button > *:disabled,
 .tool-bar .combo-box:editable > *:disabled,
 .tool-bar.inactive .aquaicon,
 .tool-bar.inactive .combo-box > .text-field > * > .text,
@@ -1881,6 +1874,10 @@ TODO: effect-chaining!!!
 .tool-bar.inactive .choice-box > .label,
 .tool-bar.inactive .choice-box > .open-button > .arrow,
 .tool-bar.inactive .toggle-button > .text,
+.tool-bar.inactive .menu-button > * > .text,
+.tool-bar.inactive .menu-button > .arrow-button > .arrow,
+.tool-bar.inactive .split-menu-button > *  > .text,
+.tool-bar.inactive .split-menu-button > .arrow-button > .arrow,
 .tool-bar.inactive .combo-box > .list-cell > .text,
 .tool-bar.inactive .combo-box > .arrow-button > .arrow  {
     -fx-opacity: -fx-disabled-opacity;
@@ -1896,6 +1893,10 @@ TODO: effect-chaining!!!
 .tool-bar.inactive .combo-box:disabled > .list-cell > .text,
 .tool-bar.inactive .combo-box:disabled > .arrow-button > .arrow, 
 .tool-bar.inactive .combo-box-base:editable:disabled > .text-field > * > .text,
+.tool-bar.inactive .menu-button:disabled > .label,
+.tool-bar.inactive .menu-button:disabled > .arrow-button > .arrow,
+.tool-bar.inactive .split-menu-button:disabled > .label,
+.tool-bar.inactive .split-menu-button:disabled > .arrow-button,
 .tool-bar.inactive .button.button-icon-left > .icon-left:disabled,
 .tool-bar.inactive .toggle-button.button-icon-left > .icon-left:disabled,
 .tool-bar.inactive .button.button-icon-right > .icon-right:disabled,
