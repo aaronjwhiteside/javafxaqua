@@ -1708,7 +1708,10 @@ TODO: effect-chaining!!!
 
 .tool-bar .toggle-button,
 .tool-bar .button,
-.tool-bar .color-picker {
+.tool-bar .color-picker,
+.tool-bar .choice-box,
+.tool-bar .combo-box > .list-cell,
+.tool-bar .combo-box > .arrow-button {
     -fx-background-color: 
         linear-gradient(rgb(245.0, 245.0, 245.0), rgb(185.0, 185.0, 185.0));
     -fx-background-insets:0.0;
@@ -1716,12 +1719,14 @@ TODO: effect-chaining!!!
     -fx-border-insets:-0.5, 0.0 ;
     -fx-border-color: linear-gradient(rgb(147.0, 147.0, 147.0), rgb(131.0, 131.0, 131.0)),
         linear-gradient(rgb(116.0, 116.0, 116.0), rgb(105.0, 105.0, 105.0));
-    -fx-padding: 0.1em 0.9em 0.153846em 0.9em;
 }
 
 .tool-bar.inactive .toggle-button,
 .tool-bar.inactive .button,
-.tool-bar.inactive .color-picker {
+.tool-bar.inactive .color-picker,
+.tool-bar.inactive .choice-box,
+.tool-bar.inactive .combo-box > .list-cell,
+.tool-bar.inactive .combo-box > .arrow-button {
     -fx-background-color: 
         linear-gradient(rgb(241.0, 241.0, 241.0), rgb(229.0, 229.0, 229.0));
     -fx-border-color: 
@@ -1750,17 +1755,38 @@ TODO: effect-chaining!!!
         -toggle-shadow;
 }
 
+.tool-bar.inactive .combo-box-base:editable > .text-field {
+       -fx-border-color: 
+        linear-gradient(rgb(201.0, 201.0, 201.0), rgb(193.0, 193.0, 193.0));
+}
+
+.tool-bar .combo-box-base:editable > .text-field {
+    -fx-padding: 0.1em 0.0em 0.153846em 0.0em;
+    -fx-background-insets:0.0, 0.5, 0.5;
+    -fx-border-width: 1.0 0.0 1.0 1.0;
+    -fx-border-insets: -0.5;
+    -fx-border-color: linear-gradient(rgb(147.0, 147.0, 147.0), rgb(131.0, 131.0, 131.0));
+}
+
+.tool-bar .toggle-button,
+.tool-bar .button,
+.tool-bar .color-picker{
+    -fx-padding: 0.1em 0.9em 0.153846em 0.9em;
+}
+
+.tool-bar .choice-box {
+    -fx-padding: 0.1em 0.0em 0.153846em 0.0em;
+}
 
 .tool-bar .color-picker {
     -fx-padding:-0.02em 1.2 -0.06em 0.0;
 }
 
 .tool-bar .button:armed,
-.tool-bar .color-picker:showing {
+.tool-bar .color-picker:showing,
+.tool-bar .choice-box:showing,
+.tool-bar .combo-box:showing > .arrow-button {
     -fx-background-color: linear-gradient(rgb(160.0, 160.0, 160.0), rgb(215.0, 215.0, 215.0));
-    -fx-background-insets:0.0;
-    -fx-border-width: 0.5;
-    -fx-border-insets:-0.5, 0.0 ;
     -fx-border-color: linear-gradient(rgb(147.0, 147.0, 147.0), rgb(131.0, 131.0, 131.0)),
         linear-gradient(rgb(116.0, 116.0, 116.0), rgb(105.0, 105.0, 105.0));
     -fx-text-fill: -fx-text-base-color;
@@ -1835,18 +1861,28 @@ TODO: effect-chaining!!!
 
 .tool-bar .button:disabled,
 .tool-bar .toggle-button:disabled,
-.tool-bar .color-picker:disabled {
+.tool-bar .color-picker:disabled,
+.tool-bar .combo-box:disabled,
+.tool-bar .choice-box:disabled {
     -fx-opacity: 1.0;
 }
 
 .tool-bar .button > *:disabled,
 .tool-bar .toggle-button > *:disabled,
 .tool-bar .color-picker > *:disabled,
+.tool-bar .combo-box > *:disabled,
+.tool-bar .choice-box > *:disabled,
+.tool-bar .combo-box:editable > *:disabled,
 .tool-bar.inactive .aquaicon,
+.tool-bar.inactive .combo-box > .text-field > * > .text,
 .tool-bar.inactive .button > .text,
 .tool-bar.inactive .color-picker > .label,
 .tool-bar.inactive .color-picker > .arrow-button > .arrow,
-.tool-bar.inactive .toggle-button > .text {
+.tool-bar.inactive .choice-box > .label,
+.tool-bar.inactive .choice-box > .open-button > .arrow,
+.tool-bar.inactive .toggle-button > .text,
+.tool-bar.inactive .combo-box > .list-cell > .text,
+.tool-bar.inactive .combo-box > .arrow-button > .arrow  {
     -fx-opacity: -fx-disabled-opacity;
 }
 
@@ -1855,6 +1891,11 @@ TODO: effect-chaining!!!
 .tool-bar.inactive .toggle-button:disabled > .text,
 .tool-bar.inactive .color-picker:disabled > .label,
 .tool-bar.inactive .color-picker:disabled > .arrow-button > .arrow,
+.tool-bar.inactive .choice-box:disabled > .label,
+.tool-bar.inactive .choice-box:disabled > .open-button > .arrow,
+.tool-bar.inactive .combo-box:disabled > .list-cell > .text,
+.tool-bar.inactive .combo-box:disabled > .arrow-button > .arrow, 
+.tool-bar.inactive .combo-box-base:editable:disabled > .text-field > * > .text,
 .tool-bar.inactive .button.button-icon-left > .icon-left:disabled,
 .tool-bar.inactive .toggle-button.button-icon-left > .icon-left:disabled,
 .tool-bar.inactive .button.button-icon-right > .icon-right:disabled,
@@ -1880,7 +1921,7 @@ TODO: effect-chaining!!!
         linear-gradient(to left, rgb(196.0, 196.0, 196.0, 0.5) 0.0%, rgb(220.0, 220.0, 220.0, 0.2) 2.0% , transparent);
     -fx-background-insets: 0.5, 1.0, 1.0;
     -fx-background-radius: 2.0, 2.0, 2.0;
-    -fx-indeterminate-bar-length:-1;
+    -fx-indeterminate-bar-length:-1.0;
     -fx-indeterminate-bar-escape: false;
     -fx-indeterminate-bar-flip: false;
     -fx-indeterminate-bar-animation-time: 0.0;
@@ -1889,10 +1930,10 @@ TODO: effect-chaining!!!
 .progress-bar:indeterminate  {
     -fx-background-color: 
         linear-gradient(rgb(176.0, 176.0, 176.0), rgb(207.0, 207.0, 207.0)),
-        linear-gradient(from 5% 45% to 10% 0%, reflect, rgb(84, 169, 239) 50%, rgb(236.0, 236.0, 236.0) 47%),
-        linear-gradient(rgb(255.0, 255.0, 255.0, 0.7) 5%, rgb(255.0, 255.0, 255.0, 0.5) 5%,
-            rgb(255.0, 255.0, 255.0, 0.1) 50%, rgb(255.0, 255.0, 255.0, 0.0) 50%, rgb(255.0, 255.0, 255.0, 0.0) 60%,
-            rgb(255.0, 255.0, 255.0, 0.4) 85%, rgb(245.0, 245.0, 245.0, 0.7) 100%);
+        linear-gradient(from 5.0% 45.0% to 10.0% 0.0%, reflect, rgb(84.0, 169.0, 239.0) 50.0%, rgb(236.0, 236.0, 236.0) 47.0%),
+        linear-gradient(rgb(255.0, 255.0, 255.0, 0.7) 5.0%, rgb(255.0, 255.0, 255.0, 0.5) 5.0%,
+            rgb(255.0, 255.0, 255.0, 0.1) 50.0%, rgb(255.0, 255.0, 255.0, 0.0) 50.0%, rgb(255.0, 255.0, 255.0, 0.0) 60.0%,
+            rgb(255.0, 255.0, 255.0, 0.4) 85.0%, rgb(245.0, 245.0, 245.0, 0.7) 100.0%);
 }
 
 .progress-bar > .bar {
@@ -2480,8 +2521,8 @@ TODO: effect-chaining!!!
 .split-pane > .split-pane-divider > .horizontal-grabber,
 .split-pane > .split-pane-divider > .vertical-grabber {
     -fx-padding: 0.153846em;
-    -fx-background-color: radial-gradient(focus-angle 90deg, focus-distance 15%, center 75% 50%, radius 65%, rgb(203.0, 203.0, 203.0), rgb(167.0, 167.0, 167.0));
-    -fx-background-insets: 0;
+    -fx-background-color: radial-gradient(focus-angle 90.0deg, focus-distance 15.0%, center 75.0% 50.0%, radius 65.0%, rgb(203.0, 203.0, 203.0), rgb(167.0, 167.0, 167.0));
+    -fx-background-insets: 0.0;
     -fx-shape: "m 7.3638763,7.3678179 c 0,1.9327203 -1.7375658,3.4995001 -3.8809619,3.4995001 -2.143396,0 -3.88096185,-1.5667798 -3.88096185,-3.4995001 0,-1.9327204 1.73756585,-3.4994998 3.88096185,-3.4994998 2.1340502,0 3.8677202,1.5536502 3.8808881,3.4779066";
 }
 
@@ -2790,7 +2831,7 @@ TODO: effect-chaining!!!
     -fx-border-color: rgb(0.0,0.0,0.0,0.4);
     -fx-border-insets: -3.0 0.0 0.0 0.0;
     -fx-border-width: 0.5 0.5 1.5 0.5;
-   -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );
+   -fx-effect: dropshadow( three-pass-box , rgba(0.0,0.0,0.0,0.6) , 8.0, 0.0 , 0.0 , 0.0 );
 }
 
 .combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell {
