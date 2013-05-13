@@ -1,106 +1,11 @@
 
 .root {
 
-    -fx-base: #d0d0d0;
-
-    -fx-background: #f4f4f4;
-
-    -fx-control-inner-background: white;
-
-    -fx-accent: #0093ff;
-
-    -fx-focus-color: #0093ff;
-
-    -fx-color: -fx-base;
-
-
-    /***************************************************************************
-     *                                                                         *
-     * Colors that are derived from the main color palette.                    *
-     *                                                                         *
-     **************************************************************************/
-
-
-    -fx-hover-base: ladder(
-        -fx-base,
-        derive(-fx-base,20.0%) 20.0%,
-        derive(-fx-base,30.0%) 35.0%,
-        derive(-fx-base,40.0%) 50.0%
-     );
-
-    -fx-pressed-base: derive(-fx-base,-20.0%);
-    -fx-focused-base: -fx-base;
-
-    -fx-box-border: ladder(
-        -fx-color,
-        black 20.0%,
-        derive(-fx-color,-30.0%) 30.0%
-    );
-
-    -fx-shadow-highlight-color: ladder(
-        -fx-background,
-        transparent 0.0%,
-        derive(-fx-background,40.0%)   5.0%,
-        derive(-fx-background,60.0%)  70.0%,
-        derive(-fx-background,100.0%) 85.0%,
-        derive(-fx-background,100.0%) 97.0%,
-        derive(-fx-background,-10.0%) 97.5%
-      );
-
-    -fx-outer-border: linear-gradient(
-        to bottom,
-        derive(-fx-color,-9.0%) 0.0%, 
-        derive(-fx-color,-33.0%) 100.0%
-    );
-
-    -fx-inner-border: linear-gradient(
-        to bottom,
-        ladder(-fx-color, 
-               derive(-fx-color,80.0%) 60.0%, 
-               white 82.0%) 0.0%,
-        ladder(-fx-color, 
-               derive(-fx-color,20.0%) 10.0%, 
-               derive(-fx-color,-10.0%) 80.0%) 100.0%
-    );
-
-    -fx-inner-border-horizontal: linear-gradient(
-        to right,
-        ladder(-fx-color, 
-               derive(-fx-color,80.0%) 60.0%, 
-               white 82.0%) 0.0%,
-        ladder(-fx-color, 
-               derive(-fx-color,20.0%) 10.0%, 
-               derive(-fx-color,-10.0%) 80.0%) 100.0%
-    );
-
-    -fx-body-color: linear-gradient(
-        to bottom,
-        derive(-fx-color,34.0%) 0.0%,
-        derive(-fx-color,-18.0%) 100.0%
-    );
-        
-    -fx-mark-color: ladder(
-        -fx-color,
-        white 30.0%,
-        derive(-fx-color,-63.0%) 31.0%
-    );
-    -fx-mark-highlight-color: ladder(
-        -fx-color,
-        derive(-fx-color,80.0%) 60.0%,
-        white 70.0%
-    );
-
-
     /* These are needed for Popup */
     -fx-background-color: inherit;
     -fx-background-radius: inherit;
     -fx-background-insets: inherit;
     -fx-padding: inherit;
-    
-    
-    /* The colors to use in Pagination */
-    -fx-page-bullet-border: #acacac;    
-    -fx-page-indicator-hover-border: #accee5;
     
     
     
@@ -781,15 +686,15 @@
 }
 
 .menu-up-arrow {
-    -fx-padding: 0.666667em 0.416667em 0.0em 0.416667em;  /* 8 5 0 5 */
-    -fx-background-color: derive(-fx-color,-2.0%);
+    -fx-padding: 0.666667em 0.416667em 0.0em 0.416667em; 
+    -fx-background-color: rgb(71.0, 71.0, 71.0);
     -fx-shape: "M0 1 L1 1 L.5 0 Z";
     -fx-effect: innershadow( two-pass-box , rgba(0.0,0.0,0.0,0.6) , 4.0, 0.0 , 0.0 , 1.0 );
 }
 
 .menu-down-arrow {
-    -fx-background-color: derive(-fx-color,-2.0%);
-    -fx-padding: 0.666667em 0.416667em 0.0em 0.416667em;  /* 8 5 0 5 */
+    -fx-background-color: rgb(71.0, 71.0, 71.0);
+    -fx-padding: 0.666667em 0.416667em 0.0em 0.416667em;  
     -fx-shape: "M0 0 L1 0 L.5 1 Z";
     -fx-effect: innershadow( two-pass-box , rgba(0.0,0.0,0.0,0.6) , 4.0, 0.0 , 0.0 , 1.0 );
 }
@@ -2922,15 +2827,15 @@ TODO: effect-chaining!!!
 /* PopUp when Custom-Color is pressed */
 .custom-color-dialog > .color-rect-pane {
    -fx-padding: 30.0 15.0 30.0 15.0;
-   -fx-background-color: -fx-background;
+   -fx-background-color: rgb(237.0, 237.0, 237.0);
 }
 
 .custom-color-dialog > .controls-pane {
     -fx-padding: 10.0 15.0 10.0 0.0;
-    -fx-background-color: -fx-background;
+    -fx-background-color: rgb(237.0, 237.0, 237.0);
 }
 .custom-color-dialog  {
-    -fx-background-color: -fx-background;
+    -fx-background-color: rgb(237.0, 237.0, 237.0);
 }
 
 .custom-color-dialog .webcolor-field,
@@ -3083,7 +2988,6 @@ TODO: effect-chaining!!!
     -fx-color-rect-y: 10.0;
     -fx-color-rect-width: 16.0;
     -fx-color-rect-height: 4.0;
-    /*-fx-padding: 0.5 0.0 -1.5 0.0;*/
     -fx-padding: 0.0;
     -fx-background-color: rgb(245.0, 245.0, 245.0),
         linear-gradient(rgb(230.0, 230.0, 230.0), rgb(182.0, 182.0, 182.0));
