@@ -2387,47 +2387,35 @@ TODO: effect-chaining!!!
 
 .titled-pane {
     -fx-text-fill: -fx-text-base-color;
+    -fx-border-color: rgb(146.0, 146.0, 146.0) transparent rgb(146.0, 146.0, 146.0) transparent;
+    -fx-border-width: 0.5 0.0 0.5 0.0;
 }
 
-.titled-pane:focused {
-    -fx-text-fill: white;
+.titled-pane:focused  > .title > .arrow-button > .arrow  {
+    -fx-effect: dropshadow(one-pass-box , rgb(104, 155, 201), 6.5, 0.8 , 0.0, 0.0);
 }
 
 .titled-pane > .title {
-    -fx-background-color: -fx-box-border, -fx-inner-border, -fx-body-color;
-    -fx-background-insets: 0.0, 1.0, 2.0;
-    -fx-background-radius: 5.0 5.0 0.0 0.0, 4.0 4.0 0.0 0.0, 3.0 3.0 0.0 0.0;
     -fx-padding: 0.166667em 0.833333em 0.25em 0.833333em; /* 2 10 3 10 */
 }
 
-.titled-pane:focused > .title {
-    -fx-color: -fx-focus-color;
-}
 
 .titled-pane > .title > .arrow-button {
     -fx-background-color: null;
     -fx-background-insets: 0.0;
     -fx-background-radius: 0.0;
-    -fx-padding: 0.0em 0.25em 0.0em 0.0em; /* 0 3 0 0 */
+    -fx-padding: 0.0em 0.25em 0.0em 0.0em;
 }
 
 .titled-pane > .title > .arrow-button > .arrow {
-    -fx-background-color: -fx-mark-highlight-color, -fx-mark-color;
-    -fx-background-insets: 1.0 0.0 -1.0 0.0, 0.0;
-    -fx-padding: 0.25em 0.3125em 0.25em 0.3125em; /* 3 3.75 3 3.75 */
+    -fx-background-color: rgb(134.0, 134.0, 134.0), rgb(176.0, 176.0, 176.0, 0.3);
+    -fx-background-insets: 0.5 0.0 -0.5 0.0, 0.0;
+    -fx-padding: 0.25em 0.3125em 0.25em 0.3125em;
     -fx-shape: "M 0 0 h 7 l -3.5 4 z";
 }
 
 .titled-pane > *.content {
-    -fx-background-color:
-        -fx-box-border,
-        linear-gradient(to bottom, derive(-fx-color,-2.0%), derive(-fx-color,65.0%) 12.0%, derive(-fx-color,23.0%) 88.0%, derive(-fx-color,50.0%) 99.0%, -fx-box-border);
-    -fx-background-insets: 0.0, 0.0 1.0 1.0 1.0;
     -fx-padding: 0.167em;
-}
-
-.titled-pane:focused > .title > .arrow-button > .arrow {
-    -fx-background-color: white;
 }
 
 
