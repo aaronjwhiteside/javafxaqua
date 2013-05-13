@@ -31,7 +31,7 @@ public class TitledPaneSample extends Application {
  
     @Override public void start(Stage stage) {
         stage.setTitle("TitledPane");
-        Scene scene = new Scene(new Group(), 800, 250);
+        Scene scene = new Scene(new Group(), 400, 250);
         
         // --- GridPane container
         TitledPane gridTitlePane = new TitledPane();
@@ -57,7 +57,8 @@ public class TitledPaneSample extends Application {
             pics[i] = new ImageView(images[i]);
             tps[i] = new TitledPane(imageNames[i],pics[i]); 
         }   
-        accordion.getPanes().addAll(tps);        
+        accordion.getPanes().addAll(tps);
+        accordion.setExpandedPane(tps[0]);
         accordion.expandedPaneProperty().addListener(new 
             ChangeListener<TitledPane>() {
                 public void changed(ObservableValue<? extends TitledPane> ov,
@@ -75,7 +76,7 @@ public class TitledPaneSample extends Application {
  
         Group root = (Group)scene.getRoot();
         root.getChildren().add(hbox);
-       scene.setFill(Color.rgb(237, 237, 237));
+        scene.setFill(Color.rgb(237, 237, 237));
         stage.setScene(scene);
         AquaFx.style();
         stage.show();
