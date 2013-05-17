@@ -55,7 +55,7 @@ public class AquaDateAndTimeDemo extends Application {
         separator.setPrefSize(15, 1);
         Button btnAll = new Button("Alle einblenden");
         HBox separator2 = new HBox();
-        separator2.setPrefSize(295, 1);
+        separator2.setPrefSize(279, 1);
         TextField search = new TextField();
         AquaFx.styleSearchField(search, MacOSDefaultIcons.SEARCH);
         toolBar.getItems().addAll(tbBack, tbForward, separator, btnAll, separator2, search);
