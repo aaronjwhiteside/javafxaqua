@@ -25,6 +25,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.MenuItemBuilder;
 import javafx.scene.control.Separator;
 import javafx.scene.control.SeparatorMenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToolBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -61,7 +62,11 @@ public class AquaNetworkDemo extends Application {
         HBox separator = new HBox();
         separator.setPrefSize(15, 1);
         Button btnAll = new Button("Alle einblenden");
-        toolBar.getItems().addAll(tbBack, tbForward, separator, btnAll);
+        HBox separator2 = new HBox();
+        separator2.setPrefSize(279, 1);
+        TextField search = new TextField();
+        AquaFx.styleSearchField(search, MacOSDefaultIcons.SEARCH);
+        toolBar.getItems().addAll(tbBack, tbForward, separator, btnAll, separator2, search);
 
         mainBox.getChildren().add(toolBar);
         /*
