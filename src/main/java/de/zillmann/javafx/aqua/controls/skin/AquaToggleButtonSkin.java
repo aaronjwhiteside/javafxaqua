@@ -11,7 +11,7 @@ import javafx.scene.paint.Color;
 
 import com.sun.javafx.scene.control.skin.ToggleButtonSkin;
 
-public class AquaToggleButtonSkin extends ToggleButtonSkin {
+public class AquaToggleButtonSkin extends ToggleButtonSkin implements AquaSkin{
 
     public AquaToggleButtonSkin(ToggleButton button) {
         super(button);

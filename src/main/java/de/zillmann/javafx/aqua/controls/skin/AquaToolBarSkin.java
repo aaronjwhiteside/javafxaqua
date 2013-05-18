@@ -7,7 +7,7 @@ import javafx.scene.control.ToolBar;
 
 import com.sun.javafx.scene.control.skin.ToolBarSkin;
 
-public class AquaToolBarSkin extends ToolBarSkin {
+public class AquaToolBarSkin extends ToolBarSkin implements AquaSkin{
 
     public AquaToolBarSkin(ToolBar toolbar) {
         super(toolbar);

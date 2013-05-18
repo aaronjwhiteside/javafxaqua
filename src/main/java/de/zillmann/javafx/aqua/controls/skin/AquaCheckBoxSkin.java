@@ -13,7 +13,7 @@ import javafx.scene.paint.Color;
 
 import com.sun.javafx.scene.control.skin.CheckBoxSkin;
 
-public class AquaCheckBoxSkin extends CheckBoxSkin {
+public class AquaCheckBoxSkin extends CheckBoxSkin implements AquaSkin{
 
     public AquaCheckBoxSkin(CheckBox checkbox) {
         super(checkbox);

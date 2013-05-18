@@ -9,7 +9,7 @@ import javafx.scene.paint.Color;
 
 import com.sun.javafx.scene.control.skin.SliderSkin;
 
-public class AquaSliderSkin extends SliderSkin {
+public class AquaSliderSkin extends SliderSkin implements AquaSkin{
 
     public AquaSliderSkin(Slider slider) {
         super(slider);

@@ -8,7 +8,7 @@ import javafx.scene.paint.Color;
 
 import com.sun.javafx.scene.control.skin.ChoiceBoxSkin;
 
-public class AquaChoiceBoxSkin<T> extends ChoiceBoxSkin<T> {
+public class AquaChoiceBoxSkin<T> extends ChoiceBoxSkin<T> implements AquaSkin{
 
     public AquaChoiceBoxSkin(ChoiceBox<T> choiceBox) {
         super(choiceBox);

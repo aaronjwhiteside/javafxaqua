@@ -8,7 +8,7 @@ import javafx.scene.paint.Color;
 
 import com.sun.javafx.scene.control.skin.PasswordFieldSkin;
 
-public class AquaPasswordFieldSkin extends PasswordFieldSkin {
+public class AquaPasswordFieldSkin extends PasswordFieldSkin implements AquaSkin{
 
     public AquaPasswordFieldSkin(PasswordField passwordfield) {
         super(passwordfield);

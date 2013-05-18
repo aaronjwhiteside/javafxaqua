@@ -27,7 +27,7 @@ import com.sun.javafx.scene.control.skin.ButtonSkin;
 
 import de.zillmann.javafx.aqua.util.BindableTransition;
 
-public class AquaButtonSkin extends ButtonSkin {
+public class AquaButtonSkin extends ButtonSkin implements AquaSkin{
 
     private BindableTransition defaultButtonTransition;
 

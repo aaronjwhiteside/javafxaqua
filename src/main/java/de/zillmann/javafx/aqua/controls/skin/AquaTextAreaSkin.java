@@ -8,7 +8,7 @@ import javafx.scene.paint.Color;
 
 import com.sun.javafx.scene.control.skin.TextAreaSkin;
 
-public class AquaTextAreaSkin extends TextAreaSkin {
+public class AquaTextAreaSkin extends TextAreaSkin implements AquaSkin{
 
     public AquaTextAreaSkin(TextArea textarea) {
         super(textarea);

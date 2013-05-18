@@ -18,7 +18,7 @@ import com.sun.javafx.scene.control.skin.ScrollBarSkin;
 
 import de.zillmann.javafx.aqua.util.BindableTransition;
 
-public class AquaScrollBarSkin extends ScrollBarSkin {
+public class AquaScrollBarSkin extends ScrollBarSkin implements AquaSkin{
 
     private BindableTransition growScrollbarTransition;
     private FadeTransition fadeIn;

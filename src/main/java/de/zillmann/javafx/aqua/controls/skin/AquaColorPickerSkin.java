@@ -9,7 +9,7 @@ import javafx.scene.paint.Color;
 
 import com.sun.javafx.scene.control.skin.ColorPickerSkin;
 
-public class AquaColorPickerSkin extends ColorPickerSkin {
+public class AquaColorPickerSkin extends ColorPickerSkin implements AquaSkin{
 
     public AquaColorPickerSkin(ColorPicker colorPicker) {
         super(colorPicker);

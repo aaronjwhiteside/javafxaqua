@@ -13,7 +13,7 @@ import javafx.scene.paint.Color;
 
 import com.sun.javafx.scene.control.skin.RadioButtonSkin;
 
-public class AquaRadioButtonSkin extends RadioButtonSkin {
+public class AquaRadioButtonSkin extends RadioButtonSkin implements AquaSkin{
 
     public AquaRadioButtonSkin(RadioButton radioButton) {
         super(radioButton);

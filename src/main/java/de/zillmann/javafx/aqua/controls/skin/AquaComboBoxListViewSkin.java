@@ -11,7 +11,7 @@ import javafx.scene.paint.Color;
 
 import com.sun.javafx.scene.control.skin.ComboBoxListViewSkin;
 
-public class AquaComboBoxListViewSkin<T> extends ComboBoxListViewSkin<T> {
+public class AquaComboBoxListViewSkin<T> extends ComboBoxListViewSkin<T> implements AquaSkin{
 
     public AquaComboBoxListViewSkin(ComboBox<T> comboBox) {
         super(comboBox);

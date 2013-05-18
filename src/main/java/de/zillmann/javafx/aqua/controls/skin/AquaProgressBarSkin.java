@@ -28,7 +28,7 @@ import com.sun.javafx.scene.control.skin.ProgressBarSkin;
 import de.zillmann.javafx.aqua.AquaFx;
 import de.zillmann.javafx.aqua.util.BindableTransition;
 
-public class AquaProgressBarSkin extends ProgressBarSkin {
+public class AquaProgressBarSkin extends ProgressBarSkin implements AquaSkin{
 
     private BindableTransition indeterminateProgressTransition;
     private BindableTransition determinateProgressTransition;
