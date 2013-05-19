@@ -2,6 +2,7 @@ package de.zillmann.javafx.aqua.demo;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
+import javafx.geometry.Side;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBuilder;
@@ -34,16 +35,15 @@ public class MenuButtonsDemo extends Application {
         BorderPane pane = new BorderPane();
 
         ToolBar toolBar = new ToolBar();
-        
         Button tbBack = ButtonBuilder.create().styleClass("left-pill").build();
-        AquaFx.setButtonIcon(tbBack, MacOSDefaultIcons.LEFT);
+        AquaFx.createButtonStyler().setIcon(MacOSDefaultIcons.LEFT).style(tbBack);
         Button tbForward = ButtonBuilder.create().styleClass("right-pill").disable(true).build();
-        AquaFx.setButtonIcon(tbForward, MacOSDefaultIcons.RIGHT);
+        AquaFx.createButtonStyler().setIcon(MacOSDefaultIcons.RIGHT).style(tbForward);
         HBox separator = new HBox();
         separator.setPrefSize(15, 1);
         Button share = new Button();
         share.setDisable(true);
-        AquaFx.setShareButton(share);
+        AquaFx.createButtonStyler().setIcon(MacOSDefaultIcons.SHARE).style(share);
         HBox separator2 = new HBox();
         separator2.setPrefSize(15, 1);
         
@@ -53,10 +53,12 @@ public class MenuButtonsDemo extends Application {
         ChoiceBox<String> choice = new ChoiceBox<String>(FXCollections.observableArrayList("Choice A", "Choice B", "Choice C"));
         MenuButton m = new MenuButton("Eats");
         m.getItems().addAll(new MenuItem("Burger"), new MenuItem("Hot Dog"));
+        m.setPopupSide(Side.RIGHT);
         
         SplitMenuButton m2 = new SplitMenuButton();
         m2.setText("Shutdown");
         m2.getItems().addAll(new MenuItem("Logout"), new MenuItem("Sleep"));
+        m2.setPopupSide(Side.RIGHT);
 
         
         ColorPicker colorTB = new ColorPicker(Color.rgb(194, 222, 254));

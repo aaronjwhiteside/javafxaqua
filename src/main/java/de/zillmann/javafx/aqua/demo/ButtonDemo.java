@@ -169,7 +169,7 @@ public class ButtonDemo extends Application {
         buttonBox.getChildren().add(b4);
 
         Button helpButton = new Button("?");
-        AquaFx.skin(helpButton, ButtonType.HELP);
+        AquaFx.createButtonStyler().setType(ButtonType.HELP).style(helpButton);
         buttonBox.getChildren().add(helpButton);
 
         Hyperlink link = new Hyperlink("Hyperlink");

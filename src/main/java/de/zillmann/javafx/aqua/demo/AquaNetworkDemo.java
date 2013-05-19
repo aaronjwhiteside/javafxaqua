@@ -42,6 +42,7 @@ import javafx.util.Callback;
 import de.zillmann.javafx.aqua.AquaFx;
 import de.zillmann.javafx.aqua.controls.skin.styles.ButtonType;
 import de.zillmann.javafx.aqua.controls.skin.styles.MacOSDefaultIcons;
+import de.zillmann.javafx.aqua.controls.skin.styles.TextFieldType;
 import de.zillmann.javafx.aqua.nativestuff.NsImageIcon;
 import de.zillmann.javafx.aqua.nativestuff.NsImageIconLoader;
 
@@ -56,16 +57,16 @@ public class AquaNetworkDemo extends Application {
 
         ToolBar toolBar = new ToolBar();
         Button tbBack = ButtonBuilder.create().styleClass("left-pill").build();
-        AquaFx.setButtonIcon(tbBack, MacOSDefaultIcons.LEFT);
+        AquaFx.createButtonStyler().setIcon(MacOSDefaultIcons.LEFT).style(tbBack);
         Button tbForward = ButtonBuilder.create().styleClass("right-pill").disable(true).build();
-        AquaFx.setButtonIcon(tbForward, MacOSDefaultIcons.RIGHT);
+        AquaFx.createButtonStyler().setIcon(MacOSDefaultIcons.RIGHT).style(tbForward);
         HBox separator = new HBox();
         separator.setPrefSize(15, 1);
         Button btnAll = new Button("Alle einblenden");
         HBox separator2 = new HBox();
         separator2.setPrefSize(279, 1);
         TextField search = new TextField();
-        AquaFx.styleSearchField(search, MacOSDefaultIcons.SEARCH);
+        AquaFx.createTextFieldStyler().setType(TextFieldType.SEARCH).style(search);
         toolBar.getItems().addAll(tbBack, tbForward, separator, btnAll, separator2, search);
 
         mainBox.getChildren().add(toolBar);
@@ -147,7 +148,7 @@ public class AquaNetworkDemo extends Application {
         GridPane.setValignment(btmMore, VPos.BOTTOM);
         grid.add(btmMore, 2, 7, 2, 1);
         Button helpBtn = new Button("?");
-        AquaFx.skin(helpBtn, ButtonType.HELP);
+        AquaFx.createButtonStyler().setType(ButtonType.HELP).style(helpBtn);
         GridPane.setValignment(helpBtn, VPos.BOTTOM);
         grid.add(helpBtn, 4, 7);
 
