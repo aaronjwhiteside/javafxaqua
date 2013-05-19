@@ -1,16 +1,24 @@
 package de.zillmann.javafx.aqua.controls.skin;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javafx.animation.Animation.Status;
 import javafx.animation.Timeline;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.css.CssMetaData;
+import javafx.css.Styleable;
+import javafx.css.StyleableObjectProperty;
+import javafx.css.StyleableProperty;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Control;
+import javafx.scene.control.Skin;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.InnerShadow;
@@ -18,6 +26,8 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundFillBuilder;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.LinearGradientBuilder;
 import javafx.scene.paint.Stop;
@@ -25,27 +35,26 @@ import javafx.util.Duration;
 
 import com.sun.javafx.scene.control.skin.ButtonSkin;
 
+import de.zillmann.javafx.aqua.controls.skin.styles.MacOSDefaultIconConverter;
+import de.zillmann.javafx.aqua.controls.skin.styles.MacOSDefaultIcons;
 import de.zillmann.javafx.aqua.util.BindableTransition;
 
-public class AquaButtonSkin extends ButtonSkin implements AquaSkin{
+public class AquaButtonSkin extends ButtonSkin implements AquaSkin {
 
     private BindableTransition defaultButtonTransition;
 
     private String usualButtonStyle = "-fx-background-color: rgb(255, 255, 255), linear-gradient(#ffffff 20%, #ececec 60%, #ececec 80%, #eeeeee 100%); -fx-background-insets:  0, 1; -fx-background-radius: 4, 4; -fx-border-radius: 4; -fx-border-width: 0.5; -fx-border-color: rgb(129, 129, 129);";
 
-    private String armedButtonStyle = "	-fx-background-color: linear-gradient(rgb(190, 214, 237) 0%, rgb(178, 213, 237) 100% ), linear-gradient(rgb(165, 193, 238) 0%, rgb(108, 161, 231) 50%, rgb(74, 138, 217) 50%, rgb(105, 167, 236) 75%, rgb(152, 201, 238) 100%), radial-gradient(focus-angle 180deg, focus-distance 95%, center 1% 50%, radius 50%, #78b0ee, transparent), radial-gradient(focus-angle 0deg, focus-distance 95%, center 100% 50%, radius 50%, #78b0ee, transparent); -fx-background-insets: 0, 0, 1 1 1 2, 1 2 1 1; -fx-background-radius: 4, 4, 4, 4; -fx-border-color: rgb(100, 103, 124);";
+    private String armedButtonStyle = "-fx-background-color: linear-gradient(rgb(190, 214, 237) 0%, rgb(178, 213, 237) 100% ), linear-gradient(rgb(165, 193, 238) 0%, rgb(108, 161, 231) 50%, rgb(74, 138, 217) 50%, rgb(105, 167, 236) 75%, rgb(152, 201, 238) 100%), radial-gradient(focus-angle 180deg, focus-distance 95%, center 1% 50%, radius 50%, #78b0ee, transparent), radial-gradient(focus-angle 0deg, focus-distance 95%, center 100% 50%, radius 50%, #78b0ee, transparent); -fx-background-insets: 0, 0, 1 1 1 2, 1 2 1 1; -fx-background-radius: 4, 4, 4, 4; -fx-border-color: rgb(100, 103, 124);";
 
     public AquaButtonSkin(Button button) {
         super(button);
         registerChangeListener(button.disabledProperty(), "DISABLED");
         registerChangeListener(button.hoverProperty(), "HOVER");
         if (getSkinnable().isDefaultButton()) {
-            /*
-             * * were we already the defaultButton, before the listener was added?* don't laugh, it
-             * can happen....
-             */
             setDefaultButtonAnimation();
         }
+
         if (getSkinnable().isFocused()) {
             setFocusBorder();
         } else {
@@ -87,8 +96,7 @@ public class AquaButtonSkin extends ButtonSkin implements AquaSkin{
                         }
                     } else if (defaultButtonTransition != null && defaultButtonTransition.getStatus() == Status.RUNNING) {
                         setDefaultButtonAnimation();
-
-                        // button has to look like a usual button
+                        // button has to look like a usual button again
                         getSkinnable().setStyle(usualButtonStyle);
                     }
                 }
@@ -110,6 +118,34 @@ public class AquaButtonSkin extends ButtonSkin implements AquaSkin{
         if (getSkinnable().getScene() != null && getSkinnable().getScene().getWindow() != null) {
             getSkinnable().getScene().getWindow().focusedProperty().addListener(windowFocusChangedListener);
         }
+
+        iconProperty().addListener(new ChangeListener<MacOSDefaultIcons>() {
+
+            @Override public void changed(ObservableValue<? extends MacOSDefaultIcons> observable, MacOSDefaultIcons oldValue,
+                    MacOSDefaultIcons newValue) {
+                if (newValue != null && newValue != oldValue) {
+                    if (newValue == MacOSDefaultIcons.SHARE) {
+                        StackPane stack = new StackPane();
+                        String iconBase = MacOSDefaultIcons.SHARE.getStyleName();
+                        stack.getStyleClass().add("aquaicon");
+                        Region svgIcon = new Region();
+                        svgIcon.getStyleClass().add(iconBase + "-square");
+                        stack.getChildren().add(svgIcon);
+                        Region svgIcon2 = new Region();
+                        svgIcon2.getStyleClass().add(iconBase + "-arrow");
+                        stack.getChildren().add(svgIcon2);
+                        getSkinnable().setGraphic(stack);
+                    } else {
+                        Region svgIcon = new Region();
+                        svgIcon.getStyleClass().add("aqua-"+newValue.getStyleName());
+                        svgIcon.getStyleClass().add("aquaicon");
+                        getSkinnable().setGraphic(svgIcon);
+                        getSkinnable().getStyleClass().add("button-" + newValue.getStyleName());
+                    }
+                    getSkinnable().requestLayout();
+                }
+            }
+        });
     }
 
     private void setFocusBorder() {
@@ -234,5 +270,80 @@ public class AquaButtonSkin extends ButtonSkin implements AquaSkin{
                 defaultButtonTransition.play();
             }
         }
+    }
+
+    /***********************************************************************************
+     *   Adding the possibility to set an Icon to a Button via CSS-Property            *
+     **********************************************************************************/
+
+    @Override public List<CssMetaData<? extends Styleable, ?>> getCssMetaData() {
+        List<CssMetaData<? extends Styleable, ?>> ret = new ArrayList<>(super.getCssMetaData());
+        ret.addAll(getClassCssMetaData());
+        return ret;
+    }
+
+    private ObjectProperty<MacOSDefaultIcons> icon;
+
+    public final ObjectProperty<MacOSDefaultIcons> iconProperty() {
+        if (icon == null) {
+            icon = new StyleableObjectProperty<MacOSDefaultIcons>() {
+
+                @Override public CssMetaData<? extends Styleable, MacOSDefaultIcons> getCssMetaData() {
+                    return StyleableProperties.ICON;
+                }
+
+                @Override public Object getBean() {
+                    return AquaButtonSkin.this;
+                }
+
+                @Override public String getName() {
+                    return "icon";
+                }
+            };
+        }
+        return icon;
+    }
+
+    public void setIcon(MacOSDefaultIcons icon) {
+        iconProperty().setValue(icon);
+    }
+
+    public MacOSDefaultIcons getIcon() {
+        return icon == null ? null : icon.getValue();
+    }
+
+    private static class StyleableProperties {
+        private static final CssMetaData<Button, MacOSDefaultIcons> ICON = new CssMetaData<Button, MacOSDefaultIcons>("-fx-aqua-icon", MacOSDefaultIconConverter.getInstance()) {
+            @Override public boolean isSettable(Button n) {
+                Skin<?> skin = n.getSkin();
+                if (skin != null && skin instanceof AquaButtonSkin) {
+                    return ((AquaButtonSkin) skin).icon == null || !((AquaButtonSkin) skin).icon.isBound();
+                }
+                return false;
+            }
+
+            @SuppressWarnings("unchecked") @Override public StyleableProperty<MacOSDefaultIcons> getStyleableProperty(Button n) {
+                Skin<?> skin = n.getSkin();
+                if (skin != null && skin instanceof AquaButtonSkin) {
+                    return (StyleableProperty<MacOSDefaultIcons>) ((AquaButtonSkin) skin).iconProperty();
+                }
+                return null;
+            }
+        };
+
+        private static final List<CssMetaData<? extends Styleable, ?>> STYLEABLES;
+        static {
+            final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<CssMetaData<? extends Styleable, ?>>(Control.getClassCssMetaData());
+            styleables.add(ICON);
+            STYLEABLES = Collections.unmodifiableList(styleables);
+        }
+    }
+
+    /**
+     * @return The CssMetaData associated with this class, which may include the CssMetaData of its
+     *         super classes.
+     */
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData() {
+        return StyleableProperties.STYLEABLES;
     }
 }

@@ -29,7 +29,10 @@ import com.sun.javafx.scene.control.skin.TextFieldSkin;
 
 public class AquaTextFieldSkin extends TextFieldSkin implements AquaSkin {
 
-    public AquaTextFieldSkin(TextField textfield) {
+    private Region searchIconPath;
+    private Region cancelSearchIconPath;
+
+    public AquaTextFieldSkin(final TextField textfield) {
         super(textfield);
 
         registerChangeListener(textfield.focusedProperty(), "FOCUSED");
@@ -37,17 +40,15 @@ public class AquaTextFieldSkin extends TextFieldSkin implements AquaSkin {
         showSearchIconProperty().addListener(new ChangeListener<Boolean>() {
 
             @Override public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if (newValue != null) {
+                if (newValue != null && newValue != oldValue) {
                     if (newValue.booleanValue()) {
                         if (searchIconPath == null) {
                             searchIconPath = new Region();
                             searchIconPath.getStyleClass().add("search-icon");
                         }
                         getChildren().add(searchIconPath);
-                    } else {
-                        if (searchIconPath != null) {
+                    } else if(oldValue != null && searchIconPath != null){
                             getChildren().remove(searchIconPath);
-                        }
                     }
                     getSkinnable().requestLayout();
                 }
@@ -153,14 +154,15 @@ public class AquaTextFieldSkin extends TextFieldSkin implements AquaSkin {
         List<CssMetaData<? extends Styleable, ?>> ret = new ArrayList<>(super.getCssMetaData());
         ret.addAll(getClassCssMetaData());
         return ret;
-
     }
 
+    /***********************************************************************************
+     *                                                                                 *
+     *   Adding the possibility to make a TextField to a SearchField via CSS-Property  *
+     *                                                                                 *
+     **********************************************************************************/
+    
     private BooleanProperty showSearchIcon;
-
-    private Region searchIconPath;
-
-    private Region cancelSearchIconPath;
 
     public final BooleanProperty showSearchIconProperty() {
         if (showSearchIcon == null) {
