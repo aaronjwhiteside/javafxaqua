@@ -15,9 +15,9 @@ import de.zillmann.javafx.aqua.AquaFx;
 public class ProgressBarDemo extends Application {
 
     @Override public void start(Stage stage) {
-        stage.setTitle("Image Pattern");
+        stage.setTitle("Progress");
         VBox root = VBoxBuilder.create().spacing(10).padding(new Insets(20)).build();
-        Scene scene = new Scene(root, 600, 450);
+        Scene scene = new Scene(root);
 
         final ProgressBar p = new ProgressBar(0.6);
         root.getChildren().add(p);
