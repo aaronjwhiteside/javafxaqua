@@ -20,7 +20,7 @@ import de.zillmann.javafx.aqua.controls.skin.styles.TabPaneType;
 public class TinyTabPaneDemo extends Application {
 
     @Override public void start(Stage stage) {
-        stage.setTitle("Tiny TB");
+        stage.setTitle("Tiny icon-TP");
         AquaFx.styleStage(stage, StageStyle.UTILITY);
         Pane root = PaneBuilder.create().build();
         Scene scene = new Scene(root, 215, 300);

@@ -2461,85 +2461,6 @@ TODO: effect-chaining!!!
         linear-gradient(to bottom, rgb(168.0, 168.0, 168.0, 0.5) 0.0%, transparent 2.0%, transparent 98.0%, rgb(168.0, 168.0, 168.0, 0.5));    
 }
 
-
-
-
-.tab-pane.tabpane-type-small-icon-buttons {
-    -fx-tab-alignment: LEFT;
-}
-
-.tab-pane.tabpane-type-small-icon-buttons > .tab-content-area{
-    -fx-border-width: 0.0;
-    -fx-border-radius: 0.0;
-    -fx-border-insets: 0.0;
-    -fx-background-insets: 0.0;   
-    -fx-background-radius: 0.0 ;
-    -fx-border-color: transparent;
-    -fx-background-color: transparent;    
-}
-
-.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .tab-header-background {
-    -fx-background-color: transparent;
-    -fx-background-insets: 0.0;
-    -fx-background-radius: 0.0;
-    -fx-border-color: rgb(193.0, 193.0, 193.0);
-    -fx-border-width: 0.0 0.0 1.0 0.0;
-    -fx-border-radius: 0.0;
-    -fx-border-insets:0.0;
-}
-
-.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area {
-        -fx-padding: 0.0em;
-}
-
-.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .tab,
-.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .first-tab,
-.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .last-tab,
-.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .tab.neighbor,
-.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .single-tab {
-    -fx-background-color: linear-gradient(rgb(255.0, 255.0, 255.0), rgb(246.0, 246.0, 246.0)),
-        linear-gradient(rgb(255.0, 255.0, 255.0) 25.0%, rgb(243.0, 243.0, 243.0) 50.0%, rgb(236.0, 236.0, 236.0) 50.0%, rgb(243.0, 243.0, 243.0) 100.0% );
-    -fx-padding: 0.24em 0.166667em 0.24em 0.166667em;
-    -fx-content-display: CENTER;
-    -fx-background-radius: 0.0, 0.0;
-    -fx-background-insets: 0.0 0.0 1.0 0.0, 0.5 0.0 1.5 0.0;
-    -fx-border-radius: 0.0;
-    -fx-border-width: 0.0 1.0 0.0 0.0;
-    -fx-border-insets: 0.0 0.0 1.0 0.0;
-    -fx-border-style: solid;
-    -fx-border-color: rgb(193.0, 193.0, 193.0, 0.5);
-}
-
-.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .tab:selected,
-.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .tab:pressed,
-.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .first-tab:selected,
-.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .first-tab:pressed,
-.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .last-tab:selected,
-.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .last-tab:pressed,
-.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .tab.neighbor:selected,
-.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .tab.neighbor:pressed,
-.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .single-tab:selected,
-.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .single-tab:pressed {
-    -fx-background-color: linear-gradient(rgb(224.0, 237.0, 253.0), rgb(204.0, 242.0, 249.0)), 
-        linear-gradient(rgb(207.0, 222.0, 238.0) 0.0%, rgb(163.0, 203.0, 234.0) 50.0%, rgb(111.0, 176.0, 227.0) 50.0%, rgb(189.0, 237.0, 247.0) 100.0% );
-    -fx-border-color: linear-gradient(rgb(175.0, 188.0, 202.0) 0.0%, rgb(138.0, 170.0, 199.0) 50.0%, rgb(92.0, 148.0, 192.0) 50.0%, rgb(159.0, 200.0, 210.0) 100.0% );
-    -fx-border-width: 0.0 1.0 0.0 0.0;
-    -fx-border-insets: 0.0 0.0 1.0 0.0;
-    -fx-border-style: solid;
-    -fx-effect: null;
-}
-
-.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .tab:selected > .tab-container > .tab-label,
-.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {
-    -fx-text-fill: -fx-text-base-color;
-    -fx-effect: null;
-}
-
-
-
-
-
-
 .tab-pane > .tab-header-area > .headers-region > .tab {
     -fx-background-color: rgb(255.0, 255.0, 255.0),
         linear-gradient(rgb(255.0, 255.0, 255.0) 25.0%, rgb(243.0, 243.0, 243.0) 50.0%, rgb(236.0, 236.0, 236.0) 50.0%, rgb(243.0, 243.0, 243.0) 100.0% );
@@ -2695,6 +2616,204 @@ TODO: effect-chaining!!!
     -fx-opacity: -fx-disabled-opacity;
 }
 
+
+
+/**
+ *  TabPane with small Icon-Buttons and no text. Known of some preferences dialogs
+ */
+
+.tab-pane.tabpane-type-small-icon-buttons {
+    -fx-tab-alignment: LEFT;
+}
+
+.tab-pane.tabpane-type-small-icon-buttons > .tab-content-area{
+    -fx-border-width: 0.0;
+    -fx-border-radius: 0.0;
+    -fx-border-insets: 0.0;
+    -fx-background-insets: 0.0;   
+    -fx-background-radius: 0.0 ;
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;    
+}
+
+.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .tab-header-background {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0.0;
+    -fx-background-radius: 0.0;
+    -fx-border-color: rgb(193.0, 193.0, 193.0);
+    -fx-border-width: 0.0 0.0 1.0 0.0;
+    -fx-border-radius: 0.0;
+    -fx-border-insets:0.0;
+}
+
+.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area {
+        -fx-padding: 0.0em;
+}
+
+.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .tab,
+.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .first-tab,
+.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .last-tab,
+.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .tab.neighbor,
+.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .single-tab {
+    -fx-background-color: linear-gradient(rgb(255.0, 255.0, 255.0), rgb(246.0, 246.0, 246.0)),
+        linear-gradient(rgb(255.0, 255.0, 255.0) 25.0%, rgb(243.0, 243.0, 243.0) 50.0%, rgb(236.0, 236.0, 236.0) 50.0%, rgb(243.0, 243.0, 243.0) 100.0% );
+    -fx-padding: 0.24em 0.166667em 0.24em 0.166667em;
+    -fx-content-display: CENTER;
+    -fx-background-radius: 0.0, 0.0;
+    -fx-background-insets: 0.0 0.0 1.0 0.0, 0.5 0.0 1.5 0.0;
+    -fx-border-radius: 0.0;
+    -fx-border-width: 0.0 1.0 0.0 0.0;
+    -fx-border-insets: 0.0 0.0 1.0 0.0;
+    -fx-border-style: solid;
+    -fx-border-color: rgb(193.0, 193.0, 193.0, 0.5);
+}
+
+.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .tab:selected,
+.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .tab:pressed,
+.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .first-tab:selected,
+.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .first-tab:pressed,
+.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .last-tab:selected,
+.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .last-tab:pressed,
+.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .tab.neighbor:selected,
+.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .tab.neighbor:pressed,
+.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .single-tab:selected,
+.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .single-tab:pressed {
+    -fx-background-color: linear-gradient(rgb(224.0, 237.0, 253.0), rgb(204.0, 242.0, 249.0)), 
+        linear-gradient(rgb(207.0, 222.0, 238.0) 0.0%, rgb(163.0, 203.0, 234.0) 50.0%, rgb(111.0, 176.0, 227.0) 50.0%, rgb(189.0, 237.0, 247.0) 100.0% );
+    -fx-border-color: linear-gradient(rgb(175.0, 188.0, 202.0) 0.0%, rgb(138.0, 170.0, 199.0) 50.0%, rgb(92.0, 148.0, 192.0) 50.0%, rgb(159.0, 200.0, 210.0) 100.0% );
+    -fx-border-width: 0.0 1.0 0.0 0.0;
+    -fx-border-insets: 0.0 0.0 1.0 0.0;
+    -fx-border-style: solid;
+    -fx-effect: null;
+}
+
+.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .tab:selected > .tab-container > .tab-label,
+.tab-pane.tabpane-type-small-icon-buttons > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {
+    -fx-text-fill: -fx-text-base-color;
+    -fx-effect: null;
+}
+
+/**
+ *  TabPane with bigger Icon-Buttons and Text underneath it. Known of almost all preferences dialogs
+ */
+
+
+.tab-pane.tabpane-type-icon-buttons {
+    -fx-tab-alignment: LEFT;
+}
+
+.tab-pane.tabpane-type-icon-buttons > .tab-content-area{
+    -fx-border-width: 0.0;
+    -fx-border-radius: 0.0;
+    -fx-border-insets: 0.0;
+    -fx-background-insets: 0.0;   
+    -fx-background-radius: 0.0 ;
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;    
+}
+
+.tab-pane.tabpane-type-icon-buttons > .tab-header-area > .tab-header-background {
+     -fx-background-color:
+        linear-gradient(rgb(222.0, 222.0, 222.0), rgb(173.0, 173.0, 173.0) 99.0%, rgb(233.0, 233.0, 233.0));
+    -fx-background-insets: 0.0;
+    -fx-background-radius: 0.0;
+    -fx-border-width: 0.0 0.0 1.0 0.0;
+    -fx-border-radius: 0.0;
+    -fx-border-color: rgb(103.0, 103.0, 103.0);
+    -fx-border-insets: 0.0;
+    -fx-padding: 0.833em 0.416667em 0.833em 0.416667em;
+    -fx-effect: null;
+}
+
+.tab-pane.tabpane-type-icon-buttons.inactive > .tab-header-area > .tab-header-background { 
+    -fx-background-color: linear-gradient(rgb(244.0, 244.0, 244.0), rgb(224.0, 224.0, 224.0) 99.0%, rgb(227.0, 227.0, 227.0));
+    -fx-border-color:  rgb(166.0, 166.0, 166.0);
+}
+
+.tab-pane.tabpane-type-icon-buttons > .tab-header-area {
+        -fx-padding: 0.0em 0.25em 0.0em 0.25em;
+}
+
+.tab-pane.tabpane-type-icon-buttons > .tab-header-area > .headers-region > .tab,
+.tab-pane.tabpane-type-icon-buttons > .tab-header-area > .headers-region > .first-tab,
+.tab-pane.tabpane-type-icon-buttons > .tab-header-area > .headers-region > .last-tab,
+.tab-pane.tabpane-type-icon-buttons > .tab-header-area > .headers-region > .tab.neighbor,
+.tab-pane.tabpane-type-icon-buttons > .tab-header-area > .headers-region > .single-tab {
+    -fx-background-color:transparent;
+    -fx-padding: 0.24em 0.25em 0.0em 0.25em;
+    -fx-content-display: CENTER;
+    -fx-background-radius: 0.0;
+    -fx-background-insets: 0.0;
+    -fx-border-radius: 0.0;
+    -fx-border-width: 0.0 1.0 0.0 1.0;
+    -fx-border-insets: 0.0;
+    -fx-border-style: solid;
+    -fx-border-color: transparent;
+}
+
+.tab-pane.tabpane-type-icon-buttons > .tab-header-area > .headers-region > .tab:selected,
+.tab-pane.tabpane-type-icon-buttons > .tab-header-area > .headers-region > .tab:pressed,
+.tab-pane.tabpane-type-icon-buttons > .tab-header-area > .headers-region > .first-tab:selected,
+.tab-pane.tabpane-type-icon-buttons > .tab-header-area > .headers-region > .first-tab:pressed,
+.tab-pane.tabpane-type-icon-buttons > .tab-header-area > .headers-region > .last-tab:selected,
+.tab-pane.tabpane-type-icon-buttons > .tab-header-area > .headers-region > .last-tab:pressed,
+.tab-pane.tabpane-type-icon-buttons > .tab-header-area > .headers-region > .tab.neighbor:selected,
+.tab-pane.tabpane-type-icon-buttons > .tab-header-area > .headers-region > .tab.neighbor:pressed,
+.tab-pane.tabpane-type-icon-buttons > .tab-header-area > .headers-region > .single-tab:selected,
+.tab-pane.tabpane-type-icon-buttons > .tab-header-area > .headers-region > .single-tab:pressed {
+    -fx-background-color: linear-gradient(rgb(168.0, 168.0, 168.0, 0.0) 0.0%, rgb(168.0, 168.0, 168.0) 50.0%, rgb(168.0, 168.0, 168.0, 0.0) 100.0% );
+    -fx-border-color: linear-gradient(rgb(105.0, 105.0, 105.0, 0.0) 0.0%, rgb(105.0, 105.0, 105.0) 50.0%, rgb(105.0, 105.0, 105.0, 0.0) 100.0% ),
+        linear-gradient(rgb(147.0, 147.0, 147.0, 0.0) 0.0%, rgb(147.0, 147.0, 147.0) 50.0%, rgb(147.0, 147.0, 147.0, 0.0) 100.0% );
+    -fx-border-width: 0.0 0.5 0.0 0.5, 0.0 0.5 0.0 0.5;
+    -fx-border-insets: 0.0, 0.5;
+    -fx-border-style: solid;
+    -fx-effect: null;
+}
+
+.tab-pane.tabpane-type-icon-buttons.inactive > .tab-header-area > .headers-region > .tab:selected,
+.tab-pane.tabpane-type-icon-buttons.inactive > .tab-header-area > .headers-region > .first-tab:selected,
+.tab-pane.tabpane-type-icon-buttons.inactive > .tab-header-area > .headers-region > .last-tab:selected,
+.tab-pane.tabpane-type-icon-buttons.inactive > .tab-header-area > .headers-region > .tab.neighbor:selected,
+.tab-pane.tabpane-type-icon-buttons.inactive > .tab-header-area > .headers-region > .single-tab:selected {
+    -fx-background-color: linear-gradient(rgb(168.0, 168.0, 168.0, 0.0) 0.0%, rgb(168.0, 168.0, 168.0, 0.5) 50.0%, rgb(168.0, 168.0, 168.0, 0.0) 100.0% );
+    -fx-border-color: linear-gradient(rgb(105.0, 105.0, 105.0, 0.0) 0.0%, rgb(105.0, 105.0, 105.0, 0.5) 50.0%, rgb(105.0, 105.0, 105.0, 0.0) 100.0% );
+    -fx-effect: null;
+}
+
+.tab-pane.tabpane-type-icon-buttons > .tab-header-area > .headers-region > .tab:selected > .tab-container > .tab-label,
+.tab-pane.tabpane-type-icon-buttons > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {
+    -fx-text-fill: -fx-text-base-color;
+    -fx-font-size: 11;
+    -fx-content-display: top;
+}
+
+.tab-pane.tabpane-type-icon-buttons > .tab-header-area > .headers-region > .tab:selected > .tab-container > .tab-label > .text,
+.tab-pane.tabpane-type-icon-buttons > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label > .text {
+    -fx-effect: dropshadow(one-pass-box , rgb(235.0, 235.0, 235.0, 0.9), 1.0, 0.8 , 0.0, 1.0);
+    -fx-translate-y: -7;
+}
+
+.tab-pane.tabpane-type-icon-buttons.inactive > .tab-header-area > .headers-region > .tab:selected > .tab-container > .tab-label,
+.tab-pane.tabpane-type-icon-buttons.inactive > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {
+    -fx-text-fill: derive(-fx-text-base-color, 50% ) ;
+}
+
+.tab-pane.tabpane-type-icon-buttons > .tab-header-area > .headers-region > .tab:focused > .tab-container > .tab-label > .icon {
+    -fx-effect: dropshadow(one-pass-box , rgb(104.0, 155.0, 201.0), 6.5, 0.8 , 0.0, 0.0);
+}
+
+.tab-pane.tabpane-type-icon-buttons > .tab-header-area > .headers-region > .tab:pressed > .tab-container > .tab-label > .icon {
+    -fx-blend-mode: difference;
+}
+
+
+
+
+/*******************************************************************************
+ *                                                                             *
+ * ComboBox                                                                    *
+ *                                                                             *
+ ******************************************************************************/
 
 /* -------------- CODE  FOR THE NON-EDITABLE COMBO-BOX -------------- */
 .combo-box-base > .arrow-button {

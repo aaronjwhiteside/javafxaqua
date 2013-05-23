@@ -12,7 +12,10 @@ public class AquaToolBarSkin extends ToolBarSkin implements AquaSkin{
     public AquaToolBarSkin(ToolBar toolbar) {
         super(toolbar);
        
+        addInactiveState();
+    }
 
+     private void addInactiveState() {
         final ChangeListener<Boolean> windowFocusChangedListener = new ChangeListener<Boolean>() {
 
             @Override public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
@@ -42,5 +45,4 @@ public class AquaToolBarSkin extends ToolBarSkin implements AquaSkin{
             getSkinnable().getScene().getWindow().focusedProperty().addListener(windowFocusChangedListener);
         }
     }
-
 }
