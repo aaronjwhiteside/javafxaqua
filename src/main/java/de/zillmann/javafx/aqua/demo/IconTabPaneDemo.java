@@ -37,7 +37,7 @@ public class IconTabPaneDemo extends Application {
          * Tabpane section
          */
         TabPane tabPane = new TabPane();
-        AquaFx.createTabPaneStyler().setType(TabPaneType.ICON_BUTTONS).style(tabPane);
+        AquaFx.createTabPaneStyler().setType(TabPaneType.BIG_ICON_BUTTONS).style(tabPane);
 
         Tab tab1 = new Tab("Allgemein");
         Image image = new Image(AquaFx.class.getResource("demo/images/preferences/allgemein.png").toExternalForm());
