@@ -98,7 +98,7 @@ public class AquaButtonSkin extends ButtonSkin implements AquaSkin {
                         setDefaultButtonAnimation();
                         // button has to look like a usual button again
                         getSkinnable().setStyle(usualButtonStyle);
-                    }
+                    } 
                 }
             }
         };
@@ -156,10 +156,10 @@ public class AquaButtonSkin extends ButtonSkin implements AquaSkin {
         innerFocus.setChoke(0.8);
         innerFocus.setOffsetX(0.0);
         DropShadow outerFocus = new DropShadow();
-        outerFocus.setColor(Color.rgb(104, 155, 201));
+        outerFocus.setColor(Color.rgb(120, 171, 217));
         outerFocus.setBlurType(BlurType.ONE_PASS_BOX);
         outerFocus.setRadius(6.5);
-        outerFocus.setSpread(0.6);
+        outerFocus.setSpread(0.95);
         outerFocus.setOffsetX(0.0);
         outerFocus.setOffsetY(0.0);
         outerFocus.setInput(innerFocus);
@@ -167,8 +167,6 @@ public class AquaButtonSkin extends ButtonSkin implements AquaSkin {
     }
 
     private void setDropShadow() {
-        if (!getSkinnable().getStyleClass().contains("left-pill") && !getSkinnable().getStyleClass().contains("center-pill") && !getSkinnable().getStyleClass().contains(
-                "right-pill")) {
             DropShadow dropShadow = new DropShadow();
             dropShadow.setColor(Color.rgb(172, 172, 184));
             dropShadow.setBlurType(BlurType.ONE_PASS_BOX);
@@ -176,10 +174,15 @@ public class AquaButtonSkin extends ButtonSkin implements AquaSkin {
             dropShadow.setSpread(0.1);
             dropShadow.setOffsetX(0.0);
             dropShadow.setOffsetY(0.8);
+            
+            if (getSkinnable().getStyleClass().contains("left-pill") || getSkinnable().getStyleClass().contains("center-pill") || getSkinnable().getStyleClass().contains(
+                    "right-pill")) {
+                dropShadow.setOffsetX(1.0);
+                dropShadow.setOffsetY(0.5);
+                dropShadow.setWidth(1.0);
+            }
+            
             getSkinnable().setEffect(dropShadow);
-        } else {
-            getSkinnable().setEffect(null);
-        }
     }
 
     @Override protected void handleControlPropertyChanged(String p) {
@@ -192,9 +195,7 @@ public class AquaButtonSkin extends ButtonSkin implements AquaSkin {
             }
         }
         if (p == "FOCUSED") {
-            if (getSkinnable().isFocused() && getSkinnable().isDefaultButton()) {
-                setFocusBorder();
-            } else if (getSkinnable().isFocused()) {
+            if (getSkinnable().isFocused()) {
                 setFocusBorder();
             } else if (!getSkinnable().isFocused() || getSkinnable().isDisable()) {
                 setDropShadow();

@@ -15,6 +15,7 @@
     *                *
     ****************/
     -fx-text-base-color: black;
+    -fx-text-fill: -fx-text-base-color;
     
     /* background color for dialogs */
     -fx-background-color: rgb(237.0, 237.0, 237.0);
@@ -109,7 +110,7 @@
 }
 
 /**
- * TextField specials
+ * SearchField (TextField) specials
  */
 .text-field.textfield-type-search,
 .text-field.textfield-type-round-rect {
@@ -1389,6 +1390,7 @@ TODO: effect-chaining!!!
  *                                                                             *
  ******************************************************************************/
 .menu-button {
+    -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaMenuButtonSkin";
     -fx-background-color: 
         linear-gradient(rgb(245.0, 245.0, 245.0), rgb(185.0, 185.0, 185.0));
     -fx-background-insets:0.0;
@@ -1451,6 +1453,7 @@ TODO: effect-chaining!!!
  ******************************************************************************/
 
 .split-menu-button {
+        -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaSplitMenuButtonSkin";
     -fx-padding: 0.0em;
     -fx-text-fill: -fx-text-base-color;
 }
@@ -2833,7 +2836,7 @@ TODO: effect-chaining!!!
     -fx-background-color: 
         linear-gradient(rgb(155.0, 155.0, 155.0) 0.0%, rgb(172.0, 172.0, 172.0)  100.0%),
         linear-gradient(rgb(225.0, 225.0, 225.0) 25.0%, rgb(213.0, 213.0, 213.0) 50.0%, rgb(207.0, 207.0, 207.0) 50.0%, rgb(212.0, 212.0, 212.0) 100.0% );
-    -fx-background-insets: 1.0 0.5 0.5 0.0, 1.5 1.0 1.0 0.5;
+    -fx-background-insets: 0.5 0.5 0.5 0.0, 1.0 1.5 1.0 0.5;
 } 
 
 .combo-box-base > .arrow-button > .arrow,
@@ -2845,7 +2848,13 @@ TODO: effect-chaining!!!
 }
 
 .combo-box-base:disabled {
-    -fx-opacity: 0.4;
+    -fx-opacity: 1.0 ;
+}
+
+.combo-box-base > .text-field:disabled,
+.combo-box-base > .arrow-button:disabled,
+.combo-box-base > .list-cell:disabled {
+    -fx-opacity: -fx-disabled-opacity;
 }
 
 .web-view .form-select-button {

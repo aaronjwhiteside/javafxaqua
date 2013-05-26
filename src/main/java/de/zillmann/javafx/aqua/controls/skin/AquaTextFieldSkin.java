@@ -36,6 +36,9 @@ public class AquaTextFieldSkin extends TextFieldSkin implements AquaSkin {
         super(textfield);
 
         registerChangeListener(textfield.focusedProperty(), "FOCUSED");
+        if (getSkinnable().isFocused()) {
+            setFocusBorder();
+        }
 
         showSearchIconProperty().addListener(new ChangeListener<Boolean>() {
 
@@ -125,10 +128,10 @@ public class AquaTextFieldSkin extends TextFieldSkin implements AquaSkin {
         innerFocus.setOffsetY(0.0);
 
         DropShadow outerFocus = new DropShadow();
-        outerFocus.setColor(Color.rgb(96, 156, 209, 0.8));
+        outerFocus.setColor(Color.rgb(120, 171, 217));
         outerFocus.setBlurType(BlurType.ONE_PASS_BOX);
-        outerFocus.setRadius(7.0);
-        outerFocus.setSpread(1.0);
+        outerFocus.setRadius(6.5);
+        outerFocus.setSpread(0.95);
         outerFocus.setOffsetX(0.0);
         outerFocus.setOffsetY(0.0);
         outerFocus.setInput(innerFocus);

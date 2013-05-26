@@ -1,9 +1,6 @@
 package de.zillmann.javafx.aqua.controls.skin;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.RadioButton;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
@@ -17,48 +14,13 @@ public class AquaRadioButtonSkin extends RadioButtonSkin implements AquaSkin{
 
     public AquaRadioButtonSkin(RadioButton radioButton) {
         super(radioButton);
-        setDropShadow();
-
+        if (getSkinnable().isFocused()) {
+            setFocusBorder();
+        } else {
+            setDropShadow();
+        }
         registerChangeListener(radioButton.focusedProperty(), "FOCUSED");
 
-        final ChangeListener<Boolean> windowFocusChangedListener = new ChangeListener<Boolean>() {
-
-            @Override public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
-                if (newValue != null) {
-                    if (!newValue.booleanValue()) {
-                        if (getSkinnable().isSelected()) {
-                            for (Node child : getChildren()) {
-                                if (child.getStyleClass().get(0).equals("radio")) {
-                                    child.getStyleClass().add("unfocused");
-                                }
-                            }
-                        }
-                    } else {
-                        for (Node child : getChildren()) {
-                            if (child.getStyleClass().get(0).equals("radio")) {
-                                child.getStyleClass().remove("unfocused");
-                            }
-                        }
-                    }
-                }
-            }
-        };
-
-        getSkinnable().sceneProperty().addListener(new ChangeListener<Scene>() {
-
-            @Override public void changed(ObservableValue<? extends Scene> observableValue, Scene oldScene, Scene newScene) {
-                if (oldScene != null && oldScene.getWindow() != null) {
-                    oldScene.getWindow().focusedProperty().removeListener(windowFocusChangedListener);
-                }
-                if (newScene != null && newScene.getWindow() != null) {
-                    newScene.getWindow().focusedProperty().addListener(windowFocusChangedListener);
-                }
-            }
-        });
-
-        if (getSkinnable().getScene() != null && getSkinnable().getScene().getWindow() != null) {
-            getSkinnable().getScene().getWindow().focusedProperty().addListener(windowFocusChangedListener);
-        }
     }
 
     private void setFocusBorder() {

@@ -14,6 +14,10 @@ public class AquaSliderSkin extends SliderSkin implements AquaSkin{
     public AquaSliderSkin(Slider slider) {
         super(slider);
 
+        if (getSkinnable().isFocused()) {
+            setFocusBorder();
+        }
+        
         registerChangeListener(slider.focusedProperty(), "FOCUSED");
 
         if (slider.isShowTickMarks()) {

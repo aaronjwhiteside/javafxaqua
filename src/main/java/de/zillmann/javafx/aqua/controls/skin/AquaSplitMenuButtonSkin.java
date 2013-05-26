@@ -1,28 +1,29 @@
 package de.zillmann.javafx.aqua.controls.skin;
 
-import javafx.scene.control.TextArea;
+import javafx.scene.control.SplitMenuButton;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.paint.Color;
 
-import com.sun.javafx.scene.control.skin.TextAreaSkin;
+import com.sun.javafx.scene.control.skin.SplitMenuButtonSkin;
 
-public class AquaTextAreaSkin extends TextAreaSkin implements AquaSkin{
+public class AquaSplitMenuButtonSkin extends SplitMenuButtonSkin implements AquaSkin{
 
-    public AquaTextAreaSkin(TextArea textarea) {
-        super(textarea);
+    public AquaSplitMenuButtonSkin(SplitMenuButton menuButton) {
+        super(menuButton);
 
+        registerChangeListener(menuButton.focusedProperty(), "FOCUSED");
         if (getSkinnable().isFocused()) {
             setFocusBorder();
+        } else {
+            setDropShadow();
         }
-        
-        registerChangeListener(textarea.focusedProperty(), "FOCUSED");
     }
 
     private void setFocusBorder() {
         InnerShadow innerFocus = new InnerShadow();
-        innerFocus.setColor(Color.rgb(104, 155, 201, 0.8));
+        innerFocus.setColor(Color.rgb(104, 155, 201));
         innerFocus.setBlurType(BlurType.ONE_PASS_BOX);
         innerFocus.setRadius(5.5);
         innerFocus.setChoke(0.6);
@@ -32,13 +33,24 @@ public class AquaTextAreaSkin extends TextAreaSkin implements AquaSkin{
         DropShadow outerFocus = new DropShadow();
         outerFocus.setColor(Color.rgb(120, 171, 217));
         outerFocus.setBlurType(BlurType.ONE_PASS_BOX);
-        outerFocus.setRadius(6.5);
+        outerFocus.setRadius(5.5);
         outerFocus.setSpread(0.95);
         outerFocus.setOffsetX(0.0);
         outerFocus.setOffsetY(0.0);
         outerFocus.setInput(innerFocus);
 
         getSkinnable().setEffect(outerFocus);
+    }
+    
+    private void setDropShadow() {
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setColor(Color.rgb(172, 172, 184));
+        dropShadow.setBlurType(BlurType.ONE_PASS_BOX);
+        dropShadow.setRadius(2.0);
+        dropShadow.setSpread(0.1);
+        dropShadow.setOffsetX(0.0);
+        dropShadow.setOffsetY(0.8);
+        getSkinnable().setEffect(dropShadow);
     }
 
     @Override protected void handleControlPropertyChanged(String p) {
@@ -48,7 +60,7 @@ public class AquaTextAreaSkin extends TextAreaSkin implements AquaSkin{
             if (getSkinnable().isFocused()) {
                 setFocusBorder();
             } else {
-                getSkinnable().setEffect(null);
+                setDropShadow();
             }
         }
     }

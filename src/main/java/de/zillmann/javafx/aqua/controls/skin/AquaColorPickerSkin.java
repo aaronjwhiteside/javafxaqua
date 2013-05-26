@@ -17,6 +17,8 @@ public class AquaColorPickerSkin extends ColorPickerSkin implements AquaSkin{
         registerChangeListener(colorPicker.focusedProperty(), "FOCUSED");
         if (getSkinnable().isFocused()) {
             setFocusBorder();
+        } else {
+            setDropShadow();
         }
     }
 
@@ -30,15 +32,26 @@ public class AquaColorPickerSkin extends ColorPickerSkin implements AquaSkin{
         innerFocus.setOffsetY(0.0);
 
         DropShadow outerFocus = new DropShadow();
-        outerFocus.setColor(Color.rgb(96, 156, 209, 0.8));
+        outerFocus.setColor(Color.rgb(120, 171, 217));
         outerFocus.setBlurType(BlurType.ONE_PASS_BOX);
-        outerFocus.setRadius(10.0);
-        outerFocus.setSpread(0.5);
+        outerFocus.setRadius(5.5);
+        outerFocus.setSpread(0.95);
         outerFocus.setOffsetX(0.0);
         outerFocus.setOffsetY(0.0);
         outerFocus.setInput(innerFocus);
 
         getSkinnable().setEffect(outerFocus);
+    }
+    
+    private void setDropShadow() {
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setColor(Color.rgb(172, 172, 184));
+        dropShadow.setBlurType(BlurType.ONE_PASS_BOX);
+        dropShadow.setRadius(2.0);
+        dropShadow.setSpread(0.1);
+        dropShadow.setOffsetX(0.0);
+        dropShadow.setOffsetY(0.8);
+        getSkinnable().setEffect(dropShadow);
     }
 
     @Override protected void handleControlPropertyChanged(String p) {
@@ -49,7 +62,7 @@ public class AquaColorPickerSkin extends ColorPickerSkin implements AquaSkin{
                 if (getSkinnable().isFocused()) {
                     setFocusBorder();
                 } else {
-                    getSkinnable().setEffect(null);
+                    setDropShadow();
                 }
             }
         }

@@ -17,11 +17,16 @@ public class AquaCheckBoxSkin extends CheckBoxSkin implements AquaSkin{
 
     public AquaCheckBoxSkin(CheckBox checkbox) {
         super(checkbox);
-        setBoxShadow();
-
+        
         registerChangeListener(checkbox.focusedProperty(), "FOCUSED");
         registerChangeListener(checkbox.selectedProperty(), "SELECTED");
 
+        if (getSkinnable().isFocused()) {
+            setFocusBorder();
+        } else {
+            setDropShadow();
+        }
+        
         final ChangeListener<Boolean> windowFocusChangedListener = new ChangeListener<Boolean>() {
 
             @Override public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
@@ -66,7 +71,7 @@ public class AquaCheckBoxSkin extends CheckBoxSkin implements AquaSkin{
 
     }
 
-    private void setBoxShadow() {
+    private void setDropShadow() {
         DropShadow shadow = new DropShadow();
         shadow.setColor(Color.rgb(172, 172, 184));
         shadow.setBlurType(BlurType.ONE_PASS_BOX);
@@ -151,7 +156,7 @@ public class AquaCheckBoxSkin extends CheckBoxSkin implements AquaSkin{
                     setFocusBorder();
                 }
             } else if (!getSkinnable().isFocused()) {
-                setBoxShadow();
+                setDropShadow();
             }
         }
     }

@@ -12,6 +12,10 @@ public class AquaPasswordFieldSkin extends PasswordFieldSkin implements AquaSkin
 
     public AquaPasswordFieldSkin(PasswordField passwordfield) {
         super(passwordfield);
+        
+        if (getSkinnable().isFocused()) {
+            setFocusBorder();
+        }
 
         registerChangeListener(passwordfield.focusedProperty(), "FOCUSED");
     }
