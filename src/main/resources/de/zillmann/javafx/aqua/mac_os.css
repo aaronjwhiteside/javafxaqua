@@ -2772,7 +2772,7 @@ TODO: effect-chaining!!!
     -fx-border-color: linear-gradient(rgb(105.0, 105.0, 105.0, 0.0) 0.0%, rgb(105.0, 105.0, 105.0) 50.0%, rgb(105.0, 105.0, 105.0, 0.0) 100.0% ),
         linear-gradient(rgb(147.0, 147.0, 147.0, 0.0) 0.0%, rgb(147.0, 147.0, 147.0) 50.0%, rgb(147.0, 147.0, 147.0, 0.0) 100.0% );
     -fx-border-width: 0.0 0.5 0.0 0.5, 0.0 0.5 0.0 0.5;
-    -fx-border-insets: 0.0, 0.5;
+    -fx-border-insets: 0.0, 0.0 0.5 0.0 0.5;
     -fx-border-style: solid;
     -fx-effect: null;
 }
@@ -2783,7 +2783,8 @@ TODO: effect-chaining!!!
 .tab-pane.tabpane-type-icon-buttons.inactive > .tab-header-area > .headers-region > .tab.neighbor:selected,
 .tab-pane.tabpane-type-icon-buttons.inactive > .tab-header-area > .headers-region > .single-tab:selected {
     -fx-background-color: linear-gradient(rgb(168.0, 168.0, 168.0, 0.0) 0.0%, rgb(168.0, 168.0, 168.0, 0.5) 50.0%, rgb(168.0, 168.0, 168.0, 0.0) 100.0% );
-    -fx-border-color: linear-gradient(rgb(105.0, 105.0, 105.0, 0.0) 0.0%, rgb(105.0, 105.0, 105.0, 0.5) 50.0%, rgb(105.0, 105.0, 105.0, 0.0) 100.0% );
+    -fx-border-color: linear-gradient(rgb(105.0, 105.0, 105.0, 0.0) 0.0%, rgb(105.0, 105.0, 105.0, 0.5) 50.0%, rgb(105.0, 105.0, 105.0, 0.0) 100.0%),
+        linear-gradient(rgb(147.0, 147.0, 147.0, 0.0) 0.0%, rgb(147.0, 147.0, 147.0, 0.5) 50.0%, rgb(147.0, 147.0, 147.0, 0.0) 100.0% );
     -fx-effect: null;
 }
 
