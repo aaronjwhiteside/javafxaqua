@@ -43,31 +43,6 @@ public class AquaFx {
         styleFactory.addStyles(control, controlSizeVariant);
     }
 
-    // public static void skin(Button button, ControlSizeVariant controlSizeVariant) {
-    // skin(button, ButtonType.DEFAULT, controlSizeVariant);
-    // }
-    //
-    // public static void skin(Button button, ButtonType buttonType) {
-    // skin(button, buttonType, ControlSizeVariant.REGULAR);
-    // }
-    //
-    // public static void skin(Button button, ButtonType buttonType, ControlSizeVariant
-    // controlSizeVariant) {
-    // ButtonStyler.create().setSizeVariant(controlSizeVariant).setType(buttonType).style(button);
-    // }
-    //
-    // public static void setButtonIcon(Button button, MacOSDefaultIcons icon) {
-    // ButtonStyler.create().setIcon(icon).style(button);
-    // }
-    //
-    // public static void setShareButton(Button button) {
-    // ButtonStyler.create().setIcon(MacOSDefaultIcons.SHARE).style(button);
-    // }
-    //
-    // public static void styleSearchField(TextField textField) {
-    // textField.getStyleClass().add(MacOSDefaultIcons.SEARCH.getStyleName());
-    // }
-
     public static void setGroupBox(Pane pane) {
         pane.getStyleClass().add("aqua-group-box");
     }

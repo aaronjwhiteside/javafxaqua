@@ -45,7 +45,7 @@ public class TabPaneStyler extends Styler<TabPane> {
 
     @Override public void style(final TabPane tabPane) {
         super.style(tabPane);
-        if (type != null && type == TabPaneType.BIG_ICON_BUTTONS) {
+        if (type != null && type == TabPaneType.ICON_BUTTONS) {
             Platform.runLater(new Runnable() {
                 
                 @Override public void run() {
