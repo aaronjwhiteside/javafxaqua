@@ -118,7 +118,11 @@
     -fx-background-radius: 0.8em, 0.8em, 0.8em, 0.8em, 0.8em; 
     -fx-border-radius: 0.8em, 0.8em;
     -fx-padding: 0.166667em 1.5em 0.166667em 1.5em;
-    -fx-background-insets: 0.0 0.5 4.0 0.5, 0.5 1.0 4.5 1.0, 0.5 1.0 4.5 1.0, 0.5 1.0 4.5 1.0;
+    -fx-background-insets: 0.0 0.5 3.5 0.5, 0.5 1.0 4.0 1.0, 0.5 1.0 4.5 1.0, 0.5 1.0 4.0 1.0;
+}
+
+.text-field.textfield-type-round-rect { 
+    -fx-padding: 0.166667em 0.5em 0.166667em 0.5em;
 }
 
 .search-icon{
