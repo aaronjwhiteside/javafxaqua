@@ -57,13 +57,9 @@ public class ToggleButtonStyler extends Styler<ToggleButton> {
     @Override public void style(final ToggleButton button) {
         super.style(button);
         button.setSkin(new AquaToggleButtonSkin(button));
-        // Platform.runLater(new Runnable() {
-        // @Override public void run() {
         Skin<?> skin = button.getSkin();
         if (skin != null && skin instanceof AquaButtonSkin) {
             ((AquaButtonSkin) skin).iconProperty().setValue(icon);
         }
-        // }
-        // });
     }
 }

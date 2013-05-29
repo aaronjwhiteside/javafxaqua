@@ -14,11 +14,13 @@ public class AquaChoiceBoxSkin<T> extends ChoiceBoxSkin<T> implements AquaSkin{
         super(choiceBox);
 
         registerChangeListener(choiceBox.focusedProperty(), "FOCUSED");
+        registerChangeListener(choiceBox.disabledProperty(), "DISABLED");
+
         if (getSkinnable().isFocused()) {
             setFocusBorder();
-        } else {
+        } else if(!getSkinnable().isFocused() && !getSkinnable().isDisabled()) {
             setDropShadow();
-        }
+        } 
     }
 
     private void setFocusBorder() {
@@ -59,6 +61,13 @@ public class AquaChoiceBoxSkin<T> extends ChoiceBoxSkin<T> implements AquaSkin{
         if (p == "FOCUSED") {
             if (getSkinnable().isFocused()) {
                 setFocusBorder();
+            } else {
+                setDropShadow();
+            }
+        }
+        if (p == "DISABLED") {
+            if (getSkinnable().isDisabled()) {
+                getSkinnable().setEffect(null);
             } else {
                 setDropShadow();
             }

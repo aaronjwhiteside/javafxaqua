@@ -15,12 +15,13 @@ public class AquaComboBoxListViewSkin<T> extends ComboBoxListViewSkin<T> impleme
 
     public AquaComboBoxListViewSkin(ComboBox<T> comboBox) {
         super(comboBox);
+        registerChangeListener(comboBox.disabledProperty(), "DISABLED");
 
         if (getSkinnable().isFocused()) {
             setFocusBorder();
-        } else {
+        } else if(!getSkinnable().isFocused() && !getSkinnable().isDisabled()) {
             setDropShadow();
-        }
+        } 
         
         for (Object child : getChildren()) {
             ((Node) child).focusedProperty().addListener(focusListener);
@@ -73,5 +74,16 @@ public class AquaComboBoxListViewSkin<T> extends ComboBoxListViewSkin<T> impleme
         dropShadow.setOffsetX(0.0);
         dropShadow.setOffsetY(0.8);
         getSkinnable().setEffect(dropShadow);
+    }
+    
+    @Override protected void handleControlPropertyChanged(String p) {
+        super.handleControlPropertyChanged(p);
+        if (p == "DISABLED") {
+            if (getSkinnable().isDisabled()) {
+                getSkinnable().setEffect(null);
+            } else {
+                setDropShadow();
+            }
+        }
     }
 }
