@@ -89,17 +89,21 @@ public class ButtonDemo extends Application {
 
         Separator seperateIt = new Separator();
         ToggleGroup toolbarGroup = new ToggleGroup();
-        ToggleButton sampleButton4 = ToggleButtonBuilder.create().text("TG1").toggleGroup(toolbarGroup).selected(true).styleClass(
-                "left-pill").build();
-        ToggleButton sampleButton5 = ToggleButtonBuilder.create().text("TG2").toggleGroup(toolbarGroup).selected(true).styleClass(
-                "center-pill").build();
-        ToggleButton sampleButton6 = ToggleButtonBuilder.create().text("TG3").toggleGroup(toolbarGroup).selected(true).styleClass(
-                "right-pill").build();
+        ToggleButton sampleButton4 = ToggleButtonBuilder.create().text("TG1").toggleGroup(toolbarGroup).selected(true).build();
+        AquaFx.createToggleButtonStyler().setType(ButtonType.LEFT_PILL).style(sampleButton4);
+        ToggleButton sampleButton5 = ToggleButtonBuilder.create().text("TG2").toggleGroup(toolbarGroup).selected(true).build();
+        AquaFx.createToggleButtonStyler().setType(ButtonType.CENTER_PILL).style(sampleButton5);
+        ToggleButton sampleButton6 = ToggleButtonBuilder.create().text("TG3").toggleGroup(toolbarGroup).selected(true).build();
+        AquaFx.createToggleButtonStyler().setType(ButtonType.RIGHT_PILL).style(sampleButton6);
+
         Separator seperateIt2 = new Separator();
 
-        Button menuPillButton1 = ButtonBuilder.create().text("PB 1").styleClass("left-pill").build();
-        Button menuPillButton2 = ButtonBuilder.create().text("PB 2").styleClass("center-pill").build();
-        Button menuPillButton3 = ButtonBuilder.create().text("PB 3").styleClass("right-pill").build();
+        Button menuPillButton1 = ButtonBuilder.create().text("PB 1").build();
+        AquaFx.createButtonStyler().setType(ButtonType.LEFT_PILL).style(menuPillButton1);
+        Button menuPillButton2 = ButtonBuilder.create().text("PB 2").build();
+        AquaFx.createButtonStyler().setType(ButtonType.CENTER_PILL).style(menuPillButton2);
+        Button menuPillButton3 = ButtonBuilder.create().text("PB 3").build();
+        AquaFx.createButtonStyler().setType(ButtonType.RIGHT_PILL).style(menuPillButton3);
 
         // HBox tbBox = HBoxBuilder.create().spacing(5).build();
         Button sampleButton = new Button("Button");
@@ -230,11 +234,14 @@ public class ButtonDemo extends Application {
         VBox togglesBox = VBoxBuilder.create().spacing(10).padding(new Insets(10)).build();
         HBox toggleGroupBox = HBoxBuilder.create().build();
         ToggleGroup group = new ToggleGroup();
-        ToggleButton tb1 = ToggleButtonBuilder.create().text("First").toggleGroup(group).selected(true).styleClass("left-pill").build();
+        ToggleButton tb1 = ToggleButtonBuilder.create().text("First").toggleGroup(group).selected(true).build();
+        AquaFx.createToggleButtonStyler().setType(ButtonType.LEFT_PILL).style(tb1);
         toggleGroupBox.getChildren().add(tb1);
-        ToggleButton tb2 = ToggleButtonBuilder.create().text("Second").toggleGroup(group).styleClass("center-pill").build();
+        ToggleButton tb2 = ToggleButtonBuilder.create().text("Second").toggleGroup(group).build();
+        AquaFx.createToggleButtonStyler().setType(ButtonType.CENTER_PILL).style(tb2);
         toggleGroupBox.getChildren().add(tb2);
-        ToggleButton tb3 = ToggleButtonBuilder.create().text("Third").toggleGroup(group).styleClass("right-pill").build();
+        ToggleButton tb3 = ToggleButtonBuilder.create().text("Third").toggleGroup(group).build();
+        AquaFx.createToggleButtonStyler().setType(ButtonType.RIGHT_PILL).style(tb3);
         toggleGroupBox.getChildren().add(tb3);
         togglesBox.getChildren().add(toggleGroupBox);
         ToggleButton tb4 = ToggleButtonBuilder.create().text("Alone").selected(true).build();
@@ -243,19 +250,20 @@ public class ButtonDemo extends Application {
         Button pb1 = new Button();
         pb1.setText("Button 1");
         pb1.setTooltip(new Tooltip("This is a ToolTip"));
-        pb1.getStyleClass().add("left-pill");
+        AquaFx.createButtonStyler().setType(ButtonType.LEFT_PILL).style(pb1);
         pillButtonBox.getChildren().add(pb1);
         Button pb2 = new Button();
         pb2.setText("Button 2");
-        pb2.getStyleClass().add("center-pill");
+        pb2.setDisable(true);
+        AquaFx.createButtonStyler().setType(ButtonType.CENTER_PILL).style(pb2);
         pillButtonBox.getChildren().add(pb2);
         Button pb3 = new Button();
         pb3.setText("Button 3");
-        pb3.getStyleClass().add("center-pill");
+        AquaFx.createButtonStyler().setType(ButtonType.CENTER_PILL).style(pb3);
         pillButtonBox.getChildren().add(pb3);
         Button pb4 = new Button();
         pb4.setText("Button 4");
-        pb4.getStyleClass().add("right-pill");
+        AquaFx.createButtonStyler().setType(ButtonType.RIGHT_PILL).style(pb4);
         pillButtonBox.getChildren().add(pb4);
         togglesBox.getChildren().add(pillButtonBox);
         tabG.setContent(togglesBox);

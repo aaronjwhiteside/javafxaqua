@@ -35,6 +35,7 @@ import javafx.util.Duration;
 
 import com.sun.javafx.scene.control.skin.ButtonSkin;
 
+import de.zillmann.javafx.aqua.controls.skin.styles.ButtonType;
 import de.zillmann.javafx.aqua.controls.skin.styles.MacOSDefaultIconConverter;
 import de.zillmann.javafx.aqua.controls.skin.styles.MacOSDefaultIcons;
 import de.zillmann.javafx.aqua.util.BindableTransition;
@@ -98,7 +99,7 @@ public class AquaButtonSkin extends ButtonSkin implements AquaSkin {
                         setDefaultButtonAnimation();
                         // button has to look like a usual button again
                         getSkinnable().setStyle(usualButtonStyle);
-                    } 
+                    }
                 }
             }
         };
@@ -137,7 +138,7 @@ public class AquaButtonSkin extends ButtonSkin implements AquaSkin {
                         getSkinnable().setGraphic(stack);
                     } else {
                         Region svgIcon = new Region();
-                        svgIcon.getStyleClass().add("aqua-"+newValue.getStyleName());
+                        svgIcon.getStyleClass().add("aqua-" + newValue.getStyleName());
                         svgIcon.getStyleClass().add("aquaicon");
                         getSkinnable().setGraphic(svgIcon);
                         getSkinnable().getStyleClass().add("button-" + newValue.getStyleName());
@@ -167,22 +168,23 @@ public class AquaButtonSkin extends ButtonSkin implements AquaSkin {
     }
 
     private void setDropShadow() {
-            DropShadow dropShadow = new DropShadow();
-            dropShadow.setColor(Color.rgb(172, 172, 184));
-            dropShadow.setBlurType(BlurType.ONE_PASS_BOX);
-            dropShadow.setRadius(2.0);
-            dropShadow.setSpread(0.1);
-            dropShadow.setOffsetX(0.0);
-            dropShadow.setOffsetY(0.8);
-            
-            if (getSkinnable().getStyleClass().contains("left-pill") || getSkinnable().getStyleClass().contains("center-pill") || getSkinnable().getStyleClass().contains(
-                    "right-pill")) {
-                dropShadow.setOffsetX(1.0);
-                dropShadow.setOffsetY(0.5);
-                dropShadow.setWidth(1.0);
-            }
-            
-            getSkinnable().setEffect(dropShadow);
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setColor(Color.rgb(172, 172, 184));
+        dropShadow.setBlurType(BlurType.ONE_PASS_BOX);
+        dropShadow.setRadius(2.0);
+        dropShadow.setSpread(0.1);
+        dropShadow.setOffsetX(0.0);
+        dropShadow.setOffsetY(0.8);
+
+        if (getSkinnable().getStyleClass().contains(ButtonType.LEFT_PILL.getStyleName()) || getSkinnable().getStyleClass().contains(
+                ButtonType.CENTER_PILL.getStyleName()) || getSkinnable().getStyleClass().contains(
+                ButtonType.RIGHT_PILL.getStyleName())) {
+            dropShadow.setOffsetX(1.0);
+            dropShadow.setOffsetY(0.5);
+            dropShadow.setWidth(1.0);
+        }
+
+        getSkinnable().setEffect(dropShadow);
     }
 
     @Override protected void handleControlPropertyChanged(String p) {
@@ -274,7 +276,7 @@ public class AquaButtonSkin extends ButtonSkin implements AquaSkin {
     }
 
     /***********************************************************************************
-     *   Adding the possibility to set an Icon to a Button via CSS-Property            *
+     * Adding the possibility to set an Icon to a Button via CSS-Property *
      **********************************************************************************/
 
     @Override public List<CssMetaData<? extends Styleable, ?>> getCssMetaData() {

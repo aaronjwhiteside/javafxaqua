@@ -60,11 +60,11 @@ public class AquaSpecialControlsDemo extends Application {
          * Toolbar section
          */
         ToolBar toolBar = new ToolBar();
-        Button tbBack = ButtonBuilder.create().styleClass("left-pill").build();
-        AquaFx.createButtonStyler().setIcon(MacOSDefaultIcons.LEFT).style(tbBack);
-        Button tbForward = ButtonBuilder.create().styleClass("right-pill").disable(true).build();
-        AquaFx.createButtonStyler().setIcon(MacOSDefaultIcons.RIGHT).style(tbForward);
-
+        Button tbBack = ButtonBuilder.create().build();
+        AquaFx.createButtonStyler().setIcon(MacOSDefaultIcons.LEFT).setType(ButtonType.LEFT_PILL).style(tbBack);
+        Button tbForward = ButtonBuilder.create().disable(true).build();
+        AquaFx.createButtonStyler().setIcon(MacOSDefaultIcons.RIGHT).setType(ButtonType.RIGHT_PILL).style(tbForward);
+        
         HBox separator = new HBox();
         separator.setPrefSize(15, 1);
         Button btnAll = new Button("Alle einblenden");

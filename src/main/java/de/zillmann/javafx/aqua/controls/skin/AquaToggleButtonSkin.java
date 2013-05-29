@@ -11,6 +11,8 @@ import javafx.scene.paint.Color;
 
 import com.sun.javafx.scene.control.skin.ToggleButtonSkin;
 
+import de.zillmann.javafx.aqua.controls.skin.styles.ButtonType;
+
 public class AquaToggleButtonSkin extends ToggleButtonSkin implements AquaSkin{
 
     public AquaToggleButtonSkin(ToggleButton button) {
@@ -53,8 +55,9 @@ public class AquaToggleButtonSkin extends ToggleButtonSkin implements AquaSkin{
         dropShadow.setRadius(2.0);
         dropShadow.setSpread(0.2);
 
-        if (getSkinnable().getStyleClass().contains("left-pill") || getSkinnable().getStyleClass().contains("center-pill") || getSkinnable().getStyleClass().contains(
-                "right-pill")) {
+        if (getSkinnable().getStyleClass().contains(ButtonType.LEFT_PILL.getStyleName()) || getSkinnable().getStyleClass().contains(
+                ButtonType.CENTER_PILL.getStyleName()) || getSkinnable().getStyleClass().contains(
+                ButtonType.RIGHT_PILL.getStyleName())) {
             dropShadow.setOffsetX(1.0);
             dropShadow.setOffsetY(0.5);
             dropShadow.setWidth(1.0);

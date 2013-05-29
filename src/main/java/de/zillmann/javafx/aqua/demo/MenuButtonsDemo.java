@@ -26,6 +26,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import de.zillmann.javafx.aqua.AquaFx;
+import de.zillmann.javafx.aqua.controls.skin.styles.ButtonType;
 import de.zillmann.javafx.aqua.controls.skin.styles.MacOSDefaultIcons;
 
 public class MenuButtonsDemo extends Application {
@@ -35,10 +36,10 @@ public class MenuButtonsDemo extends Application {
         BorderPane pane = new BorderPane();
 
         ToolBar toolBar = new ToolBar();
-        Button tbBack = ButtonBuilder.create().styleClass("left-pill").build();
-        AquaFx.createButtonStyler().setIcon(MacOSDefaultIcons.LEFT).style(tbBack);
-        Button tbForward = ButtonBuilder.create().styleClass("right-pill").disable(true).build();
-        AquaFx.createButtonStyler().setIcon(MacOSDefaultIcons.RIGHT).style(tbForward);
+        Button tbBack = ButtonBuilder.create().build();
+        AquaFx.createButtonStyler().setIcon(MacOSDefaultIcons.LEFT).setType(ButtonType.LEFT_PILL).style(tbBack);
+        Button tbForward = ButtonBuilder.create().disable(true).build();
+        AquaFx.createButtonStyler().setIcon(MacOSDefaultIcons.RIGHT).setType(ButtonType.RIGHT_PILL).style(tbForward);
         HBox separator = new HBox();
         separator.setPrefSize(15, 1);
         Button share = new Button();
