@@ -2,15 +2,18 @@ package de.zillmann.javafx.aqua.controls.skin;
 
 import java.util.List;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.geometry.Side;
+import javafx.scene.Scene;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TabPane.TabClosingPolicy;
 
 import com.sun.javafx.scene.control.skin.TabPaneSkin;
 
-public class AquaTabPaneSkin extends TabPaneSkin {
+public class AquaTabPaneSkin extends TabPaneSkin implements AquaSkin{
 
     public AquaTabPaneSkin(TabPane tabPane) {
         super(tabPane);
@@ -22,7 +25,8 @@ public class AquaTabPaneSkin extends TabPaneSkin {
          * Tabs are not closeable in Aqua
          */
         tabPane.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
-
+        
+        addInactiveState();
     }
 
     @Override protected void handleControlPropertyChanged(String property) {
@@ -37,6 +41,9 @@ public class AquaTabPaneSkin extends TabPaneSkin {
 
     private void definePillPosition() {
         ObservableList<Tab> list = getSkinnable().getTabs();
+        for (Tab tab : list) {
+            tab.getStyleClass().removeAll("first-tab", "last-tab", "single-tab");
+        }
         if (list.size() > 1) {
             if (getSkinnable().getSide() == Side.TOP || getSkinnable().getSide() == Side.RIGHT) {
                 list.get(0).getStyleClass().add("first-tab");
@@ -45,7 +52,7 @@ public class AquaTabPaneSkin extends TabPaneSkin {
                 list.get(0).getStyleClass().add("last-tab");
                 list.get(list.size() - 1).getStyleClass().add("first-tab");
             }
-        } else {
+        } else if(list.size() == 1){
             list.get(0).getStyleClass().add("single-tab");
         }
     }
@@ -63,6 +70,38 @@ public class AquaTabPaneSkin extends TabPaneSkin {
             if (tab.equals(selectedTab)) {
                 foundSelected = true;
             }
+        }
+    }
+    
+    private void addInactiveState() {
+
+        final ChangeListener<Boolean> windowFocusChangedListener = new ChangeListener<Boolean>() {
+
+            @Override public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
+                if (newValue != null) {
+                    if (newValue.booleanValue()) {
+                        getSkinnable().getStyleClass().remove("inactive");
+                    } else {
+                        getSkinnable().getStyleClass().add("inactive");
+                    }
+                }
+            }
+        };
+
+        getSkinnable().sceneProperty().addListener(new ChangeListener<Scene>() {
+
+            @Override public void changed(ObservableValue<? extends Scene> observableValue, Scene oldScene, Scene newScene) {
+                if (oldScene != null && oldScene.getWindow() != null) {
+                    oldScene.getWindow().focusedProperty().removeListener(windowFocusChangedListener);
+                }
+                if (newScene != null && newScene.getWindow() != null) {
+                    newScene.getWindow().focusedProperty().addListener(windowFocusChangedListener);
+                }
+            }
+        });
+
+        if (getSkinnable().getScene() != null && getSkinnable().getScene().getWindow() != null) {
+            getSkinnable().getScene().getWindow().focusedProperty().addListener(windowFocusChangedListener);
         }
     }
 }
