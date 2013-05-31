@@ -46,6 +46,7 @@ public class AquaSpecialControlsDemo extends Application {
         stage.setScene(scene);
         stage.setTitle("AquaFX Controls");
         BorderPane pane = new BorderPane();
+        pane.setStyle("-fx-background-color: white;");
 
         GridPane grid = GridPaneBuilder.create().padding(new Insets(20)).vgap(10).hgap(10).build();
         ColumnConstraints column1 = new ColumnConstraints();
@@ -285,7 +286,7 @@ public class AquaSpecialControlsDemo extends Application {
          */
         VBox box = VBoxBuilder.create().spacing(15).padding(new Insets(15)).build();
         AquaFx.setGroupBox(box);
-        Label groupInfo = new Label("This is a GroupBox, which is applicable for all Panes\nvia AquaFX");
+        Label groupInfo = new Label("This is a GroupBox,\nwhich is applicable for all Panes\nvia AquaFX");
         box.getChildren().add(groupInfo);
         grid.add(box, 0, 10, 6, 3);
 

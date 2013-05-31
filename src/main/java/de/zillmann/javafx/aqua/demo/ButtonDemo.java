@@ -105,34 +105,15 @@ public class ButtonDemo extends Application {
         Button menuPillButton3 = ButtonBuilder.create().text("PB 3").build();
         AquaFx.createButtonStyler().setType(ButtonType.RIGHT_PILL).style(menuPillButton3);
 
-        // HBox tbBox = HBoxBuilder.create().spacing(5).build();
         Button sampleButton = new Button("Button");
         ToggleButton sampleButton1 = new ToggleButton("Toggle");
         sampleButton1.setDisable(true);
         ToggleButton sampleButton2 = new ToggleButton("Toggle");
         ToggleButton sampleButton3 = ToggleButtonBuilder.create().text("Toggle2").selected(true).build();
-        // tbBox.getChildren().addAll(sampleButton, sampleButton1, sampleButton2, sampleButton3);
-        // toolBar.getItems().addAll(colorTB, seperateIt, sampleButton4, sampleButton5,
-        // sampleButton6, seperateIt2, tbBox, menuPillButton1, menuPillButton2, menuPillButton3);
         toolBar.getItems().addAll(colorTB, sampleButton, sampleButton1, sampleButton2, sampleButton3, seperateIt, sampleButton4,
                 sampleButton5, sampleButton6, seperateIt2, menuPillButton1, menuPillButton2, menuPillButton3);
 
         pane.setTop(toolBar);
-
-        VBox rightBox = VBoxBuilder.create().spacing(10).styleClass("aqua-group-box").build();
-        RadioButton ra1 = new RadioButton("Normal");
-        rightBox.getChildren().add(ra1);
-        RadioButton ra2 = new RadioButton("Normal");
-        ra2.setDisable(true);
-        rightBox.getChildren().add(ra2);
-        RadioButton ra3 = new RadioButton("Selected");
-        ra3.setSelected(true);
-        rightBox.getChildren().add(ra3);
-        RadioButton ra4 = new RadioButton("Selected");
-        ra4.setDisable(true);
-        ra4.setSelected(true);
-        rightBox.getChildren().add(ra4);
-        pane.setRight(rightBox);
 
         /**
          * TabPane
@@ -188,7 +169,7 @@ public class ButtonDemo extends Application {
 
         Tab tabE = new Tab();
         tabE.setText("RadioButtons");
-        VBox radioButtonBox = VBoxBuilder.create().spacing(10).styleClass("group-box").build();
+        VBox radioButtonBox = VBoxBuilder.create().spacing(10).build();
         RadioButton raBu1 = new RadioButton("Normal");
         radioButtonBox.getChildren().add(raBu1);
         RadioButton raBu2 = new RadioButton("Normal");
