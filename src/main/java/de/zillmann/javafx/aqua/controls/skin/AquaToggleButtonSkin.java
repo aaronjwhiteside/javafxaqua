@@ -11,6 +11,8 @@ import javafx.scene.paint.Color;
 
 import com.sun.javafx.scene.control.skin.ToggleButtonSkin;
 
+import de.zillmann.javafx.aqua.controls.skin.effects.FocusBorder;
+import de.zillmann.javafx.aqua.controls.skin.effects.Shadow;
 import de.zillmann.javafx.aqua.controls.skin.styles.ButtonType;
 
 public class AquaToggleButtonSkin extends ToggleButtonSkin implements AquaSkin{
@@ -34,35 +36,17 @@ public class AquaToggleButtonSkin extends ToggleButtonSkin implements AquaSkin{
     }
 
     private void setFocusBorder() {
-        InnerShadow innerFocus = new InnerShadow();
-        innerFocus.setColor(Color.rgb(104, 155, 201, 0.8));
-        innerFocus.setBlurType(BlurType.ONE_PASS_BOX);
-        innerFocus.setRadius(5.0);
-        innerFocus.setChoke(0.8);
-        DropShadow outerFocus = new DropShadow();
-        outerFocus.setColor(Color.rgb(104, 155, 201, 0.8));
-        outerFocus.setBlurType(BlurType.ONE_PASS_BOX);
-        outerFocus.setRadius(6.5);
-        outerFocus.setSpread(0.6);
-        outerFocus.setInput(innerFocus);
-        getSkinnable().setEffect(outerFocus);
+        getSkinnable().setEffect(new FocusBorder());
     }
 
     private void setDropShadow() {
-        DropShadow dropShadow = new DropShadow();
-        dropShadow.setColor(Color.rgb(192, 192, 198));
-        dropShadow.setBlurType(BlurType.ONE_PASS_BOX);
-        dropShadow.setRadius(2.0);
-        dropShadow.setSpread(0.2);
-
+        boolean isPill = false;
         if (getSkinnable().getStyleClass().contains(ButtonType.LEFT_PILL.getStyleName()) || getSkinnable().getStyleClass().contains(
                 ButtonType.CENTER_PILL.getStyleName()) || getSkinnable().getStyleClass().contains(
                 ButtonType.RIGHT_PILL.getStyleName())) {
-            dropShadow.setOffsetX(1.0);
-            dropShadow.setOffsetY(0.5);
-            dropShadow.setWidth(1.0);
+            isPill = true;
         }
-        getSkinnable().setEffect(dropShadow);
+        getSkinnable().setEffect(new Shadow(isPill));
     }
 
     @Override protected void handleControlPropertyChanged(String p) {

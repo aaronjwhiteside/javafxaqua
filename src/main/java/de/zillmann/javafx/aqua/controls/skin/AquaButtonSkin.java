@@ -19,9 +19,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.control.Skin;
-import javafx.scene.effect.BlurType;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.InnerShadow;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundFillBuilder;
@@ -35,6 +32,8 @@ import javafx.util.Duration;
 
 import com.sun.javafx.scene.control.skin.ButtonSkin;
 
+import de.zillmann.javafx.aqua.controls.skin.effects.FocusBorder;
+import de.zillmann.javafx.aqua.controls.skin.effects.Shadow;
 import de.zillmann.javafx.aqua.controls.skin.styles.ButtonType;
 import de.zillmann.javafx.aqua.controls.skin.styles.MacOSDefaultIconConverter;
 import de.zillmann.javafx.aqua.controls.skin.styles.MacOSDefaultIcons;
@@ -150,41 +149,17 @@ public class AquaButtonSkin extends ButtonSkin implements AquaSkin {
     }
 
     private void setFocusBorder() {
-        InnerShadow innerFocus = new InnerShadow();
-        innerFocus.setColor(Color.rgb(104, 155, 201, 0.8));
-        innerFocus.setBlurType(BlurType.ONE_PASS_BOX);
-        innerFocus.setRadius(5.0);
-        innerFocus.setChoke(0.8);
-        innerFocus.setOffsetX(0.0);
-        DropShadow outerFocus = new DropShadow();
-        outerFocus.setColor(Color.rgb(120, 171, 217));
-        outerFocus.setBlurType(BlurType.ONE_PASS_BOX);
-        outerFocus.setRadius(6.5);
-        outerFocus.setSpread(0.95);
-        outerFocus.setOffsetX(0.0);
-        outerFocus.setOffsetY(0.0);
-        outerFocus.setInput(innerFocus);
-        getSkinnable().setEffect(outerFocus);
+        getSkinnable().setEffect(new FocusBorder());
     }
 
     private void setDropShadow() {
-        DropShadow dropShadow = new DropShadow();
-        dropShadow.setColor(Color.rgb(172, 172, 184));
-        dropShadow.setBlurType(BlurType.ONE_PASS_BOX);
-        dropShadow.setRadius(2.0);
-        dropShadow.setSpread(0.1);
-        dropShadow.setOffsetX(0.0);
-        dropShadow.setOffsetY(0.8);
-
+        boolean isPill = false;
         if (getSkinnable().getStyleClass().contains(ButtonType.LEFT_PILL.getStyleName()) || getSkinnable().getStyleClass().contains(
                 ButtonType.CENTER_PILL.getStyleName()) || getSkinnable().getStyleClass().contains(
                 ButtonType.RIGHT_PILL.getStyleName())) {
-            dropShadow.setOffsetX(1.0);
-            dropShadow.setOffsetY(0.5);
-            dropShadow.setWidth(1.0);
+            isPill = true;
         }
-
-        getSkinnable().setEffect(dropShadow);
+        getSkinnable().setEffect(new Shadow(isPill));
     }
 
     @Override protected void handleControlPropertyChanged(String p) {

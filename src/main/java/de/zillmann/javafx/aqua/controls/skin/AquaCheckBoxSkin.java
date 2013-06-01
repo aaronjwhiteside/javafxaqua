@@ -13,6 +13,8 @@ import javafx.scene.paint.Color;
 
 import com.sun.javafx.scene.control.skin.CheckBoxSkin;
 
+import de.zillmann.javafx.aqua.controls.skin.effects.Shadow;
+
 public class AquaCheckBoxSkin extends CheckBoxSkin implements AquaSkin{
 
     public AquaCheckBoxSkin(CheckBox checkbox) {
@@ -72,17 +74,9 @@ public class AquaCheckBoxSkin extends CheckBoxSkin implements AquaSkin{
     }
 
     private void setDropShadow() {
-        DropShadow shadow = new DropShadow();
-        shadow.setColor(Color.rgb(172, 172, 184));
-        shadow.setBlurType(BlurType.ONE_PASS_BOX);
-        shadow.setRadius(2.0);
-        shadow.setSpread(0.1);
-        shadow.setOffsetX(0.0);
-        shadow.setOffsetY(0.8);
-
         for (Node child : getChildren()) {
             if (child.getStyleClass().get(0).equals("box")) {
-                child.setEffect(shadow);
+                child.setEffect(new Shadow(false));
             }
         }
     }
