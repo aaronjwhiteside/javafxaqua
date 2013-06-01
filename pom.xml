@@ -5,6 +5,40 @@
     <artifactId>aquafx</artifactId>
     <version>0.1-SNAPSHOT</version>
     <groupId>com.aquafx-project</groupId>
+    <packaging>jar</packaging>
+    <name>AquaFX</name>
+    <description>A JavaFX Skin for native Mac OS X Look and Feel</description>
+    <url>http://aquafx-project.com</url>
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>zillmann</id>
+            <name>Claudine Zillmann</name>
+            <email>claudine.zillmann@gmail.com</email>
+        </developer>
+        <developer>
+            <id>ebbers</id>
+            <name>Hendrik Ebbers</name>
+            <email>hendrik.ebbers@web.de</email>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:hg:http://bitbucket.org/czillmann/javafxaqua</connection>
+        <developerConnection>scm:hg:https://bitbucket.org/czillmann/javafxaqua</developerConnection>
+        <url>http://bitbucket.org/czillmann/javafxaqua</url>
+    </scm>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -19,6 +53,19 @@
                     <source>1.7</source>
                     <target>1.7</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
