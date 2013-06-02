@@ -15,17 +15,19 @@ import javafx.css.StyleableObjectProperty;
 import javafx.css.StyleableProperty;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.control.Skin;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BackgroundFillBuilder;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.LinearGradientBuilder;
 import javafx.scene.paint.Stop;
 import javafx.util.Duration;
@@ -37,7 +39,6 @@ import com.aquafx_project.controls.skin.styles.MacOSDefaultIconConverter;
 import com.aquafx_project.controls.skin.styles.MacOSDefaultIcons;
 import com.aquafx_project.util.BindableTransition;
 import com.sun.javafx.scene.control.skin.ButtonSkin;
-
 
 public class AquaButtonSkin extends ButtonSkin implements AquaSkin {
 
@@ -220,25 +221,27 @@ public class AquaButtonSkin extends ButtonSkin implements AquaSkin {
                         List<BackgroundFill> list = new ArrayList<>();
 
                         // the animated fill
-                        list.add(BackgroundFillBuilder.create().fill(
-                                LinearGradientBuilder.create().startX(1.0).stops(
-                                        new Stop(0f, Color.color(
-                                                (endColor1.getRed() - startColor1.getRed()) * newValue.doubleValue() + startColor1.getRed(),
-                                                (endColor1.getGreen() - startColor1.getGreen()) * newValue.doubleValue() + startColor1.getGreen(),
-                                                (endColor1.getBlue() - startColor1.getBlue()) * newValue.doubleValue() + startColor1.getBlue())),
-                                        new Stop(0.5f, Color.color(
-                                                (endColor2.getRed() - startColor2.getRed()) * newValue.doubleValue() + startColor2.getRed(),
-                                                (endColor2.getGreen() - startColor2.getGreen()) * newValue.doubleValue() + startColor2.getGreen(),
-                                                (endColor2.getBlue() - startColor2.getBlue()) * newValue.doubleValue() + startColor2.getBlue())),
-                                        new Stop(0.51f, Color.color(
-                                                (endColor3.getRed() - startColor3.getRed()) * newValue.doubleValue() + startColor3.getRed(),
-                                                (endColor3.getGreen() - startColor3.getGreen()) * newValue.doubleValue() + startColor3.getGreen(),
-                                                (endColor3.getBlue() - startColor3.getBlue()) * newValue.doubleValue() + startColor3.getBlue())),
-                                        new Stop(1f, Color.color(
-                                                (endColor4.getRed() - startColor4.getRed()) * newValue.doubleValue() + startColor4.getRed(),
-                                                (endColor4.getGreen() - startColor4.getGreen()) * newValue.doubleValue() + startColor4.getGreen(),
-                                                (endColor4.getBlue() - startColor4.getBlue()) * newValue.doubleValue() + startColor4.getBlue()))).build()).radii(
-                                new CornerRadii(4.0)).build());
+                        
+                        Stop[] stops = new Stop[] { new Stop(0f, Color.color(
+                                (endColor1.getRed() - startColor1.getRed()) * newValue.doubleValue() + startColor1.getRed(),
+                                (endColor1.getGreen() - startColor1.getGreen()) * newValue.doubleValue() + startColor1.getGreen(),
+                                (endColor1.getBlue() - startColor1.getBlue()) * newValue.doubleValue() + startColor1.getBlue())),
+                        new Stop(0.5f, Color.color(
+                                (endColor2.getRed() - startColor2.getRed()) * newValue.doubleValue() + startColor2.getRed(),
+                                (endColor2.getGreen() - startColor2.getGreen()) * newValue.doubleValue() + startColor2.getGreen(),
+                                (endColor2.getBlue() - startColor2.getBlue()) * newValue.doubleValue() + startColor2.getBlue())),
+                        new Stop(0.51f, Color.color(
+                                (endColor3.getRed() - startColor3.getRed()) * newValue.doubleValue() + startColor3.getRed(),
+                                (endColor3.getGreen() - startColor3.getGreen()) * newValue.doubleValue() + startColor3.getGreen(),
+                                (endColor3.getBlue() - startColor3.getBlue()) * newValue.doubleValue() + startColor3.getBlue())),
+                        new Stop(1f, Color.color(
+                                (endColor4.getRed() - startColor4.getRed()) * newValue.doubleValue() + startColor4.getRed(),
+                                (endColor4.getGreen() - startColor4.getGreen()) * newValue.doubleValue() + startColor4.getGreen(),
+                                (endColor4.getBlue() - startColor4.getBlue()) * newValue.doubleValue() + startColor4.getBlue()))};
+                        
+                        LinearGradient gradient = new LinearGradient(0.0, 0.0, 0.0, 1.0, true, CycleMethod.NO_CYCLE, stops);
+                        BackgroundFill backkgroudFill = new BackgroundFill(gradient, new CornerRadii(4.0), new Insets(0));
+                        list.add(backkgroudFill);
 
                         getSkinnable().setBackground(new Background(list.get(0)));
                     }

@@ -1,9 +1,6 @@
 package com.aquafx_project.demo;
 
 
-import com.aquafx_project.AquaFx;
-import com.aquafx_project.controls.skin.styles.ButtonType;
-
 import javafx.application.Application;
 import javafx.beans.property.ReadOnlyBooleanWrapper;
 import javafx.beans.property.ReadOnlyStringWrapper;
@@ -17,15 +14,12 @@ import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBuilder;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ComboBoxBuilder;
-import javafx.scene.control.ContextMenuBuilder;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Hyperlink;
-import javafx.scene.control.HyperlinkBuilder;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
@@ -46,7 +40,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleButtonBuilder;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.ToolBar;
 import javafx.scene.control.Tooltip;
@@ -61,15 +54,15 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.HBoxBuilder;
 import javafx.scene.layout.VBox;
-import javafx.scene.layout.VBoxBuilder;
 import javafx.scene.paint.Color;
 import javafx.scene.web.HTMLEditor;
-import javafx.scene.web.HTMLEditorBuilder;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
+
+import com.aquafx_project.AquaFx;
+import com.aquafx_project.controls.skin.styles.ButtonType;
 
 public class ButtonDemo extends Application {
     final Tab tabH = new Tab();
@@ -91,27 +84,34 @@ public class ButtonDemo extends Application {
 
         Separator seperateIt = new Separator();
         ToggleGroup toolbarGroup = new ToggleGroup();
-        ToggleButton sampleButton4 = ToggleButtonBuilder.create().text("TG1").toggleGroup(toolbarGroup).selected(true).build();
+        ToggleButton sampleButton4 = new ToggleButton("TG1");
+        sampleButton4.setToggleGroup(toolbarGroup);
+        sampleButton4.setSelected(true);
         AquaFx.createToggleButtonStyler().setType(ButtonType.LEFT_PILL).style(sampleButton4);
-        ToggleButton sampleButton5 = ToggleButtonBuilder.create().text("TG2").toggleGroup(toolbarGroup).selected(true).build();
+        ToggleButton sampleButton5 = new ToggleButton("TG2");
+        sampleButton5.setToggleGroup(toolbarGroup);
+        sampleButton5.setSelected(true);
         AquaFx.createToggleButtonStyler().setType(ButtonType.CENTER_PILL).style(sampleButton5);
-        ToggleButton sampleButton6 = ToggleButtonBuilder.create().text("TG3").toggleGroup(toolbarGroup).selected(true).build();
+        ToggleButton sampleButton6 = new ToggleButton("TG3");
+        sampleButton6.setToggleGroup(toolbarGroup);
+        sampleButton6.setSelected(true);
         AquaFx.createToggleButtonStyler().setType(ButtonType.RIGHT_PILL).style(sampleButton6);
 
         Separator seperateIt2 = new Separator();
 
-        Button menuPillButton1 = ButtonBuilder.create().text("PB 1").build();
+        Button menuPillButton1 = new Button("PB 1");
         AquaFx.createButtonStyler().setType(ButtonType.LEFT_PILL).style(menuPillButton1);
-        Button menuPillButton2 = ButtonBuilder.create().text("PB 2").build();
+        Button menuPillButton2 = new Button("PB 2");
         AquaFx.createButtonStyler().setType(ButtonType.CENTER_PILL).style(menuPillButton2);
-        Button menuPillButton3 = ButtonBuilder.create().text("PB 3").build();
+        Button menuPillButton3 = new Button("PB 3");
         AquaFx.createButtonStyler().setType(ButtonType.RIGHT_PILL).style(menuPillButton3);
 
         Button sampleButton = new Button("Button");
         ToggleButton sampleButton1 = new ToggleButton("Toggle");
         sampleButton1.setDisable(true);
         ToggleButton sampleButton2 = new ToggleButton("Toggle");
-        ToggleButton sampleButton3 = ToggleButtonBuilder.create().text("Toggle2").selected(true).build();
+        ToggleButton sampleButton3 = new ToggleButton("Toggle2");
+        sampleButton3.setSelected(true);
         toolBar.getItems().addAll(colorTB, sampleButton, sampleButton1, sampleButton2, sampleButton3, seperateIt, sampleButton4,
                 sampleButton5, sampleButton6, seperateIt2, menuPillButton1, menuPillButton2, menuPillButton3);
 
@@ -125,7 +125,9 @@ public class ButtonDemo extends Application {
         // Create Tabs
         Tab tabD = new Tab();
         tabD.setText("Buttons");
-        VBox buttonBox = VBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
+        VBox buttonBox = new VBox();
+        buttonBox.setSpacing(10);
+        buttonBox.setPadding(new Insets(10));
         Button b1 = new Button();
         b1.setText("Default (push to enable Tab 'Progress')");
         b1.setDefaultButton(true);
@@ -160,7 +162,8 @@ public class ButtonDemo extends Application {
         buttonBox.getChildren().add(helpButton);
 
         Hyperlink link = new Hyperlink("Hyperlink");
-        Hyperlink link2 = HyperlinkBuilder.create().text("disabled Hyperlink").disable(true).build();
+        Hyperlink link2 = new Hyperlink("disabled Hyperlink");
+        link2.setDisable(true);
         buttonBox.getChildren().add(link);
         buttonBox.getChildren().add(link2);
         ScrollBar scBar = new ScrollBar();
@@ -171,7 +174,9 @@ public class ButtonDemo extends Application {
 
         Tab tabE = new Tab();
         tabE.setText("RadioButtons");
-        VBox radioButtonBox = VBoxBuilder.create().spacing(10).build();
+        VBox radioButtonBox = new VBox();
+        radioButtonBox.setSpacing(10);
+        radioButtonBox.setPadding(new Insets(10));
         RadioButton raBu1 = new RadioButton("Normal");
         radioButtonBox.getChildren().add(raBu1);
         RadioButton raBu2 = new RadioButton("Normal");
@@ -189,7 +194,9 @@ public class ButtonDemo extends Application {
 
         Tab tabF = new Tab();
         tabF.setText("CheckBoxes");
-        VBox checkBoxBox = VBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
+        VBox checkBoxBox = new VBox();
+        checkBoxBox.setSpacing(10);
+        checkBoxBox.setPadding(new Insets(10));
         CheckBox box1 = new CheckBox("Normal");
         checkBoxBox.getChildren().add(box1);
         CheckBox box2 = new CheckBox("Normal");
@@ -214,22 +221,29 @@ public class ButtonDemo extends Application {
 
         Tab tabG = new Tab();
         tabG.setText("Toggles & Pills");
-        VBox togglesBox = VBoxBuilder.create().spacing(10).padding(new Insets(10)).build();
-        HBox toggleGroupBox = HBoxBuilder.create().build();
+        VBox togglesBox = new VBox();
+        togglesBox.setSpacing(10);
+        togglesBox.setPadding(new Insets(10));
+        HBox toggleGroupBox = new HBox();
         ToggleGroup group = new ToggleGroup();
-        ToggleButton tb1 = ToggleButtonBuilder.create().text("First").toggleGroup(group).selected(true).build();
+        ToggleButton tb1 = new ToggleButton("First");
+        tb1.setToggleGroup(group);
+        tb1.setSelected(true);
         AquaFx.createToggleButtonStyler().setType(ButtonType.LEFT_PILL).style(tb1);
         toggleGroupBox.getChildren().add(tb1);
-        ToggleButton tb2 = ToggleButtonBuilder.create().text("Second").toggleGroup(group).build();
+        ToggleButton tb2 = new ToggleButton("Second");
+        tb2.setToggleGroup(group);
         AquaFx.createToggleButtonStyler().setType(ButtonType.CENTER_PILL).style(tb2);
         toggleGroupBox.getChildren().add(tb2);
-        ToggleButton tb3 = ToggleButtonBuilder.create().text("Third").toggleGroup(group).build();
+        ToggleButton tb3 =  new ToggleButton("Third");
+        tb3.setToggleGroup(group);
         AquaFx.createToggleButtonStyler().setType(ButtonType.RIGHT_PILL).style(tb3);
         toggleGroupBox.getChildren().add(tb3);
         togglesBox.getChildren().add(toggleGroupBox);
-        ToggleButton tb4 = ToggleButtonBuilder.create().text("Alone").selected(true).build();
+        ToggleButton tb4 = new ToggleButton("Alone");
+        tb4.setSelected(true);
         togglesBox.getChildren().add(tb4);
-        HBox pillButtonBox = HBoxBuilder.create().build();
+        HBox pillButtonBox = new HBox();
         Button pb1 = new Button();
         pb1.setText("Button 1");
         pb1.setTooltip(new Tooltip("This is a ToolTip"));
@@ -293,18 +307,23 @@ public class ButtonDemo extends Application {
         Tab tabTexts = new Tab();
         tabTexts.setText("Texts");
         VBox txts = new VBox();
-        HBox textfieldBox1 = HBoxBuilder.create().spacing(10).padding(new Insets(10)).build();
+        HBox textfieldBox1 = new HBox();
+        textfieldBox1.setSpacing(10);
+        textfieldBox1.setPadding(new Insets(10));
         Menu item1 = new Menu("test submenu");
         MenuItem subMenuItem1 = new MenuItem("Sub Menu Item 1");
         MenuItem subMenuItem2 = new MenuItem("Sub Menu Item 2");
         MenuItem subMenuItem3 = new MenuItem("Sub Menu Item 3");
         item1.getItems().addAll(subMenuItem1, subMenuItem2, subMenuItem3);
         TextField tf1 = new TextField("Textfield");
-        tf1.setContextMenu(ContextMenuBuilder.create().items(new MenuItem("test"), item1, new MenuItem("test")).build());
+        ContextMenu cm = new ContextMenu(new MenuItem("test"), item1, new MenuItem("test"));
+        tf1.setContextMenu(cm);
         textfieldBox1.getChildren().add(tf1);
         TextField tf2 = new TextField();
         textfieldBox1.getChildren().add(tf2);
-        HBox textfieldBox2 = HBoxBuilder.create().spacing(10).padding(new Insets(10)).build();
+        HBox textfieldBox2 = new HBox();
+        textfieldBox2.setSpacing(10);
+        textfieldBox2.setPadding(new Insets(10));
         TextField tf3 = new TextField("disabled Textfield");
         tf3.setDisable(true);
         tf3.setEditable(false);
@@ -313,7 +332,9 @@ public class ButtonDemo extends Application {
         tf4.setPromptText("prompt text");
         textfieldBox2.getChildren().add(tf4);
         txts.getChildren().add(textfieldBox2);
-        HBox textfieldBox3 = HBoxBuilder.create().spacing(10).padding(new Insets(10)).build();
+        HBox textfieldBox3 = new HBox();
+        textfieldBox3.setSpacing(10);
+        textfieldBox3.setPadding(new Insets(10));
         TextField tf5 = new TextField("non-editable textfield");
         tf5.setEditable(false);
         textfieldBox3.getChildren().add(tf5);
@@ -321,7 +342,9 @@ public class ButtonDemo extends Application {
         pw1.setText("password");
         textfieldBox3.getChildren().add(pw1);
         txts.getChildren().add(textfieldBox3);
-        VBox textareaBox = VBoxBuilder.create().spacing(10).padding(new Insets(10)).build();
+        VBox textareaBox = new VBox();
+        textareaBox.setSpacing(10);
+        textareaBox.setPadding(new Insets(10));
         TextArea area = new TextArea();
         area.setPromptText("TextArea with promptText");
         area.setPrefWidth(290);
@@ -345,7 +368,9 @@ public class ButtonDemo extends Application {
         Tab tabChoiceBox = new Tab();
         tabChoiceBox.setText("Combo- etc");
         VBox collectorVBox = new VBox();
-        HBox choiceBoxBox = HBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
+        HBox choiceBoxBox = new HBox();
+        choiceBoxBox.setSpacing(10);
+        choiceBoxBox.setPadding(new Insets(10));
         ChoiceBox<String> choices = new ChoiceBox<String>(FXCollections.observableArrayList("4", "10", "12"));
         choices.getSelectionModel().selectFirst();
         choiceBoxBox.getChildren().add(choices);
@@ -354,21 +379,35 @@ public class ButtonDemo extends Application {
         choices2.setDisable(true);
         choiceBoxBox.getChildren().add(choices2);
         collectorVBox.getChildren().add(choiceBoxBox);
-        ObservableList items = FXCollections.observableArrayList("A", "B", "C");
-        HBox editableComboBoxBox = HBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
-        ComboBox combo1 = ComboBoxBuilder.create().editable(true).items(items).build();
+        ObservableList<String> items = FXCollections.observableArrayList("A", "B", "C");
+        HBox editableComboBoxBox =new HBox();
+        editableComboBoxBox.setSpacing(10);
+        editableComboBoxBox.setPadding(new Insets(10));
+        ComboBox<String> combo1 = new ComboBox<String>(items);
+        combo1.setEditable(true);
         editableComboBoxBox.getChildren().add(combo1);
-        ComboBox combo2 = ComboBoxBuilder.create().editable(true).items(items).disable(true).build();
+        ComboBox<String> combo2 =  new ComboBox<String>(items);
+        combo2.setDisable(true);
+        combo2.setEditable(true);
         editableComboBoxBox.getChildren().add(combo2);
         collectorVBox.getChildren().add(editableComboBoxBox);
-        HBox comboBoxBox = HBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
-        ComboBox combo3 = ComboBoxBuilder.create().editable(false).items(items).promptText("test").build();
+        HBox comboBoxBox = new HBox();
+        comboBoxBox.setSpacing(10);
+        comboBoxBox.setPadding(new Insets(10));
+        ComboBox<String> combo3 =  new ComboBox<String>(items);
+        combo3.setPromptText("test");
+        combo3.setEditable(false);
         comboBoxBox.getChildren().add(combo3);
-        ComboBox combo4 = ComboBoxBuilder.create().editable(false).items(items).promptText("test").disable(true).build();
+        ComboBox<String> combo4 = new ComboBox<String>(items);
+        combo4.setPromptText("test");
+        combo4.setEditable(false);
+        combo4.setDisable(true);
         comboBoxBox.getChildren().add(combo4);
         collectorVBox.getChildren().add(comboBoxBox);
 
-        HBox colorPickerBox = HBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
+        HBox colorPickerBox = new HBox();
+        colorPickerBox.setSpacing(10);
+        colorPickerBox.setPadding(new Insets(10));
         ColorPicker color = new ColorPicker(Color.rgb(194, 222, 254));
         colorPickerBox.getChildren().add(color);
         ColorPicker color2 = new ColorPicker(Color.rgb(194, 222, 254));
@@ -383,15 +422,21 @@ public class ButtonDemo extends Application {
 
         Tab tabHTMLBox = new Tab();
         tabHTMLBox.setText("HTML");
-        VBox htmlbox = VBoxBuilder.create().padding(new Insets(5)).build();
-        HTMLEditor htmlEditor = HTMLEditorBuilder.create().prefHeight(200).prefWidth(300).build();
+        VBox htmlbox = new VBox();
+        htmlbox.setPadding(new Insets(5));
+        HTMLEditor htmlEditor = new HTMLEditor();
+        htmlEditor.setPrefHeight(200);
+        htmlEditor.setPrefWidth(300);
+        
         htmlbox.getChildren().add(htmlEditor);
         tabHTMLBox.setContent(htmlbox);
         tabPane.getTabs().add(tabHTMLBox);
 
         Tab tabSliderBox = new Tab();
         tabSliderBox.setText("Sliders");
-        HBox slidersBox = HBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
+        HBox slidersBox = new HBox();
+        slidersBox.setSpacing(10);
+        slidersBox.setPadding(new Insets(10));
         Slider vSlider = new Slider();
         vSlider.setOrientation(Orientation.VERTICAL);
         slidersBox.getChildren().add(vSlider);
@@ -406,7 +451,9 @@ public class ButtonDemo extends Application {
         vTickSlider.setBlockIncrement(10);
         vTickSlider.setOrientation(Orientation.VERTICAL);
         slidersBox.getChildren().add(vTickSlider);
-        VBox horizontalSliderBox = VBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
+        VBox horizontalSliderBox = new VBox();
+        horizontalSliderBox.setSpacing(10);
+        horizontalSliderBox.setPadding(new Insets(10));
         Slider simpleSlider = new Slider();
         horizontalSliderBox.getChildren().add(simpleSlider);
         Slider slider = new Slider();
@@ -440,7 +487,8 @@ public class ButtonDemo extends Application {
         Tab tabTableBox = new Tab();
         tabTableBox.setText("Table");
         // Create a table..
-        HBox tableContainer = HBoxBuilder.create().padding(new Insets(10)).build();
+        HBox tableContainer = new HBox();
+        tableContainer.setPadding(new Insets(10));
         TableView<Person> table = new TableView<Person>();
         table.setPrefHeight(250);
         table.setPrefWidth(650);
@@ -491,7 +539,8 @@ public class ButtonDemo extends Application {
 
         Tab tabTreeBox = new Tab();
         tabTreeBox.setText("Tree");
-        HBox treeContainer = HBoxBuilder.create().padding(new Insets(10)).build();
+        HBox treeContainer = new HBox();
+        treeContainer.setPadding(new Insets(10));
         TreeItem<String> rootItem = new TreeItem<String>("People");
         rootItem.setExpanded(true);
         for (Person person : data) {
@@ -519,7 +568,8 @@ public class ButtonDemo extends Application {
 
         Tab tabTreeTableBox = new Tab();
         tabTreeTableBox.setText("TreeTable");
-        HBox treeTableContainer = HBoxBuilder.create().padding(new Insets(10)).build();
+        HBox treeTableContainer =  new HBox();
+        treeTableContainer.setPadding(new Insets(10));
         TreeItem<Person> rootTreeTableItem = new TreeItem<Person>(new Person("Chef", "Chef", "chef@business.de", "chef@business.de", true));
         rootTreeTableItem.setExpanded(true);
         for (Person person : data) {
@@ -579,7 +629,9 @@ public class ButtonDemo extends Application {
 
         Tab tabListBox = new Tab();
         tabListBox.setText("List");
-        HBox listContainer = HBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
+        HBox listContainer =  new HBox();
+        listContainer.setSpacing(10);
+        listContainer.setPadding(new Insets(10));
         ListView<String> list = new ListView<String>();
         ObservableList<String> listItems = FXCollections.observableArrayList("Item 1", "Item 2", "Item 3", "Item 4");
         list.setItems(listItems);

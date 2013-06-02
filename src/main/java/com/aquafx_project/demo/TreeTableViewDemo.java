@@ -1,7 +1,5 @@
 package com.aquafx_project.demo;
 
-import com.aquafx_project.AquaFx;
-
 import javafx.application.Application;
 import javafx.beans.property.ReadOnlyBooleanWrapper;
 import javafx.beans.property.ReadOnlyStringWrapper;
@@ -17,9 +15,10 @@ import javafx.scene.control.TreeTableView;
 import javafx.scene.control.cell.CheckBoxTreeTableCell;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.HBoxBuilder;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+
+import com.aquafx_project.AquaFx;
 
 public class TreeTableViewDemo extends Application {
 
@@ -34,7 +33,8 @@ public class TreeTableViewDemo extends Application {
     @Override public void start(Stage primaryStage) throws Exception {
         BorderPane pane = new BorderPane();
 
-        HBox treeTableContainer = HBoxBuilder.create().padding(new Insets(10)).build();
+        HBox treeTableContainer = new HBox();
+        treeTableContainer.setPadding(new Insets(10));
         TreeItem<Person> rootTreeTableItem = new TreeItem<Person>(new Person("Chef", "Chef", "chef@business.de", "chef@business.de", true));
         rootTreeTableItem.setExpanded(true);
         for (Person person : data) {

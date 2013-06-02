@@ -1,9 +1,6 @@
 package com.aquafx_project.demo;
 
 
-import com.aquafx_project.AquaFx;
-import com.aquafx_project.controls.skin.styles.ButtonType;
-
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Side;
@@ -13,8 +10,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.layout.VBoxBuilder;
 import javafx.stage.Stage;
+
+import com.aquafx_project.AquaFx;
+import com.aquafx_project.controls.skin.styles.ButtonType;
 
 public class TabPaneDemo extends Application {
 
@@ -23,6 +22,7 @@ public class TabPaneDemo extends Application {
         Scene scene = new Scene(root, 300, 210);
         AquaFx.style();
         stage.setScene(scene);
+        stage.setTitle("TabPaneDemo");
 
         TabPane tabPane = new TabPane();
         tabPane.setSide(Side.TOP);
@@ -32,7 +32,9 @@ public class TabPaneDemo extends Application {
         Tab tabD = new Tab();
         tabD.setText("tab 1");
 
-        VBox box = VBoxBuilder.create().spacing(15).padding(new Insets(15)).build();
+        VBox box = new VBox();
+        box.setSpacing(15);
+        box.setPadding(new Insets(15));
         Button b1 = new Button("regular");
         box.getChildren().add(b1);
         Button b3 = new Button("round rect");

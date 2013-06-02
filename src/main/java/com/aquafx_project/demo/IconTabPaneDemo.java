@@ -1,38 +1,32 @@
 package com.aquafx_project.demo;
 
 
-import com.aquafx_project.AquaFx;
-import com.aquafx_project.controls.skin.styles.TabPaneType;
-
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.CheckBoxBuilder;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ChoiceBoxBuilder;
 import javafx.scene.control.Label;
-import javafx.scene.control.LabelBuilder;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.ImageViewBuilder;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.PaneBuilder;
 import javafx.scene.layout.VBox;
-import javafx.scene.layout.VBoxBuilder;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
+import com.aquafx_project.AquaFx;
+import com.aquafx_project.controls.skin.styles.TabPaneType;
 
 public class IconTabPaneDemo extends Application {
 
     @Override public void start(Stage stage) {
         stage.setTitle("icon-TP");
         AquaFx.styleStage(stage, StageStyle.UNIFIED);
-        Pane root = PaneBuilder.create().build();
+        Pane root = new Pane();
         Scene scene = new Scene(root);
 
         /*
@@ -43,51 +37,68 @@ public class IconTabPaneDemo extends Application {
 
         Tab tab1 = new Tab("Allgemein");
         Image image = new Image(AquaFx.class.getResource("demo/images/preferences/allgemein.png").toExternalForm());
-        ImageView pages = ImageViewBuilder.create().image(image).preserveRatio(true).fitHeight(36).build();
+        ImageView pages = new ImageView(image);
+        pages.setPreserveRatio(true);
+        pages.setFitHeight(36);
         tab1.setGraphic(pages);
-        Label label = LabelBuilder.create().text("Allgemein...").padding(new Insets(15)).build();
+        Label label =new Label("Allgemein...");
+        label.setPadding(new Insets(15));
         tab1.setContent(label);
         tabPane.getTabs().add(tab1);
 
         Tab tab2 = new Tab("Etiketten");
         Image image2 = new Image(AquaFx.class.getResource("demo/images/preferences/labels.png").toExternalForm());
-        ImageView layout = ImageViewBuilder.create().image(image2).preserveRatio(true).fitHeight(36).build();
+        ImageView layout =  new ImageView(image2);
+        layout.setPreserveRatio(true);
+        layout.setFitHeight(36);
         tab2.setGraphic(layout);
-        Label label2 = LabelBuilder.create().text("Etiketten").padding(new Insets(15)).build();
+        Label label2 = new Label("Etiketten");
+        label2.setPadding(new Insets(15));
         tab2.setContent(label2);
         tabPane.getTabs().add(tab2);
 
         Tab tab3 = new Tab("Seitenleiste");
         Image image3 = new Image(AquaFx.class.getResource("demo/images/preferences/seitenleiste.png").toExternalForm());
-        ImageView umbruch = ImageViewBuilder.create().image(image3).preserveRatio(true).fitHeight(36).build();
+        ImageView umbruch = new ImageView(image3);
+        umbruch.setPreserveRatio(true);
+        umbruch.setFitHeight(36);
         tab3.setGraphic(umbruch);
-        Label label3 = LabelBuilder.create().text("seitenleiste...").padding(new Insets(15)).build();
+        Label label3 = new Label("seitenleiste...");
+        label3.setPadding(new Insets(15));
         tab3.setContent(label3);
         tabPane.getTabs().add(tab3);
 
         Tab tab4 = new Tab("Erweitert");
         Image image4 = new Image(AquaFx.class.getResource("demo/images/preferences/einstellungen.png").toExternalForm());
-        ImageView text = ImageViewBuilder.create().image(image4).preserveRatio(true).fitHeight(36).build();
+        ImageView text = new ImageView(image4);
+        text.setPreserveRatio(true);
+        text.setFitHeight(36);
         tab4.setGraphic(text);
 
-        VBox vbox = VBoxBuilder.create().padding(new Insets(20, 20, 18, 20)).spacing(8).build();
+        VBox vbox = new VBox();
+        vbox.setPadding(new Insets(20, 20, 18, 20));
+        vbox.setSpacing(8);
 
-        CheckBox box1 = CheckBoxBuilder.create().text("Alle Dateinamensuffixe einblenden").build();
-        CheckBox box2 = CheckBoxBuilder.create().text("Vor dem Ändern eines Suffixes nachfragen").selected(true).build();
-        CheckBox box3 = CheckBoxBuilder.create().text("Vor dem Entleeren des Papierkorbs nachfragen").selected(true).build();
-        CheckBox box4 = CheckBoxBuilder.create().text("Papierkorb sicher entleeren").build();
+        CheckBox box1 = new CheckBox("Alle Dateinamensuffixe einblenden");
+        CheckBox box2 = new CheckBox("Vor dem Ändern eines Suffixes nachfragen");
+        box2.setSelected(true);
+        CheckBox box3 = new CheckBox("Vor dem Entleeren des Papierkorbs nachfragen");
+        box3.setSelected(true);
+        CheckBox box4 = new CheckBox("Papierkorb sicher entleeren");
 
-        Label info = LabelBuilder.create().text("Bei Suchvorgängen:").padding(new Insets(9, 0, 0, 0)).build();
+        Label info = new Label("Bei Suchvorgängen:");
+        info.setPadding(new Insets(9, 0, 0, 0));
 
         ObservableList<String> items = FXCollections.observableArrayList("Diesen Mac durchsuchen", "Aktuellen Ordner durchsuchen",
                 "Letzten Suchbereich verwenden");
-        ChoiceBox<String> choice = ChoiceBoxBuilder.create(String.class).items(items).translateX(20).build();
+        ChoiceBox<String> choice = new ChoiceBox<String>(items);
+        
         choice.getSelectionModel().selectFirst();
         vbox.getChildren().addAll(box1, box2, box3, box4, info, choice);
 
         tab4.setContent(vbox);
         tabPane.getTabs().add(tab4);
-
+        tabPane.getSelectionModel().selectLast();
         root.getChildren().add(tabPane);
 
         AquaFx.style();

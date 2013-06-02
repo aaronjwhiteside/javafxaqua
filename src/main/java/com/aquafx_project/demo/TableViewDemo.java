@@ -1,15 +1,12 @@
 package com.aquafx_project.demo;
 
-import com.aquafx_project.AquaFx;
-
 import javafx.application.Application;
-import javafx.beans.property.ReadOnlyBooleanWrapper;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
@@ -18,27 +15,29 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.HBoxBuilder;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+
+import com.aquafx_project.AquaFx;
 
 public class TableViewDemo extends Application {
 
     public static void main(String[] args) {
         launch(args);
     }
-    
+
     final ObservableList<Person> data = FXCollections.observableArrayList(
             new Person("John", "Doe", "john.doe@foo.com", "jd@foo.com", true),
             new Person("Jane", "Doe", "jane.doe@example.com", "jane.d@foo.com", false));
 
     @Override public void start(Stage primaryStage) throws Exception {
         BorderPane pane = new BorderPane();
-        
-        HBox tableContainer = HBoxBuilder.create().padding(new Insets(20)).build();
+
+        HBox tableContainer = new HBox();
+        tableContainer.setPadding(new Insets(20));
         TableView<Person> table = new TableView<Person>();
-//        table.setPrefHeight(100);
-//        table.setPrefWidth(250);
+        // table.setPrefHeight(100);
+        // table.setPrefWidth(250);
         table.setEditable(true);
         // table.getSelectionModel().setCellSelectionEnabled(true) ;
 
@@ -56,22 +55,23 @@ public class TableViewDemo extends Application {
         lastNameCol.setCellValueFactory(new PropertyValueFactory<Person, String>("lastName"));
         // TableColumn emailCol = new TableColumn("Email");
         TableColumn<Person, String> firstEmailCol = new TableColumn<Person, String>("Primary");
-         firstEmailCol.setMinWidth(200);
+        firstEmailCol.setMinWidth(200);
         firstEmailCol.setCellValueFactory(new PropertyValueFactory<Person, String>("primaryEmail"));
         TableColumn<Person, String> secondEmailCol = new TableColumn<Person, String>("Secondary");
-         secondEmailCol.setMinWidth(200);
+        secondEmailCol.setMinWidth(200);
         secondEmailCol.setCellValueFactory(new PropertyValueFactory<Person, String>("secondaryEmail"));
         // emailCol.getColumns().addAll(firstEmailCol, secondEmailCol);
         TableColumn<Person, Boolean> vipCol = new TableColumn<Person, Boolean>("VIP");
         vipCol.setEditable(true);
-        vipCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Person, Boolean>, ObservableValue<Boolean>>() {
+        vipCol.setCellFactory(CheckBoxTableCell.forTableColumn(vipCol));
+        final Callback<TableColumn<Person, Boolean>, TableCell<Person, Boolean>> cellFactory = CheckBoxTableCell.forTableColumn(vipCol);
 
-            @Override public ObservableValue<Boolean> call(
-                    javafx.scene.control.TableColumn.CellDataFeatures<Person, Boolean> param) {
-                return new ReadOnlyBooleanWrapper(param.getValue().getVip());
+        vipCol.setCellFactory(new Callback<TableColumn<Person, Boolean>, TableCell<Person, Boolean>>() {
+            @Override public TableCell<Person, Boolean> call(TableColumn<Person, Boolean> column) {
+                TableCell<Person, Boolean> cell = cellFactory.call(column);
+                return cell;
             }
         });
-        vipCol.setCellFactory(CheckBoxTableCell.forTableColumn(vipCol));
         vipCol.setOnEditCommit(new EventHandler<CellEditEvent<Person, Boolean>>() {
             @Override public void handle(CellEditEvent<Person, Boolean> t) {
                 ((Person) t.getTableView().getItems().get(t.getTablePosition().getRow())).setVip(t.getNewValue());
@@ -81,7 +81,7 @@ public class TableViewDemo extends Application {
         table.setItems(data);
         table.setTableMenuButtonVisible(false);
         tableContainer.getChildren().add(table);
-        
+
         pane.setCenter(tableContainer);
         pane.setStyle("-fx-background-color: white;");
         Scene scene = new Scene(pane);

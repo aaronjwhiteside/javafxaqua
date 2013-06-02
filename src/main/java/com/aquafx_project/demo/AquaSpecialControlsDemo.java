@@ -1,11 +1,6 @@
 package com.aquafx_project.demo;
 
 
-import com.aquafx_project.AquaFx;
-import com.aquafx_project.controls.skin.styles.ButtonType;
-import com.aquafx_project.controls.skin.styles.ControlSizeVariant;
-import com.aquafx_project.controls.skin.styles.MacOSDefaultIcons;
-
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,7 +9,6 @@ import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBuilder;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
@@ -29,12 +23,15 @@ import javafx.scene.control.ToolBar;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.GridPaneBuilder;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.layout.VBoxBuilder;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
+import com.aquafx_project.AquaFx;
+import com.aquafx_project.controls.skin.styles.ButtonType;
+import com.aquafx_project.controls.skin.styles.ControlSizeVariant;
+import com.aquafx_project.controls.skin.styles.MacOSDefaultIcons;
 
 public class AquaSpecialControlsDemo extends Application {
 
@@ -48,9 +45,12 @@ public class AquaSpecialControlsDemo extends Application {
         stage.setScene(scene);
         stage.setTitle("AquaFX Controls");
         BorderPane pane = new BorderPane();
-        pane.setStyle("-fx-background-color: white;");
+//        pane.setStyle("-fx-background-color: white;");
 
-        GridPane grid = GridPaneBuilder.create().padding(new Insets(20)).vgap(10).hgap(10).build();
+        GridPane grid = new GridPane();
+        grid.setPadding(new Insets(20));
+        grid.setVgap(10);
+        grid.setHgap(10);
         ColumnConstraints column1 = new ColumnConstraints();
         column1.setHalignment(HPos.RIGHT);
         grid.getColumnConstraints().add(column1);
@@ -63,9 +63,10 @@ public class AquaSpecialControlsDemo extends Application {
          * Toolbar section
          */
         ToolBar toolBar = new ToolBar();
-        Button tbBack = ButtonBuilder.create().build();
+        Button tbBack = new Button();
         AquaFx.createButtonStyler().setIcon(MacOSDefaultIcons.LEFT).setType(ButtonType.LEFT_PILL).style(tbBack);
-        Button tbForward = ButtonBuilder.create().disable(true).build();
+        Button tbForward = new Button();
+        tbForward.setDisable(true);
         AquaFx.createButtonStyler().setIcon(MacOSDefaultIcons.RIGHT).setType(ButtonType.RIGHT_PILL).style(tbForward);
         
         HBox separator = new HBox();
@@ -286,7 +287,9 @@ public class AquaSpecialControlsDemo extends Application {
         /*
          * a GroupBox
          */
-        VBox box = VBoxBuilder.create().spacing(15).padding(new Insets(15)).build();
+        VBox box = new VBox();
+        box.setSpacing(15);
+        box.setPadding(new Insets(15));
         AquaFx.setGroupBox(box);
         Label groupInfo = new Label("This is a GroupBox,\nwhich is applicable for all Panes\nvia AquaFX");
         box.getChildren().add(groupInfo);

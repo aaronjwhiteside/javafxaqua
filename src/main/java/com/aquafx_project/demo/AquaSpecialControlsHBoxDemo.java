@@ -1,9 +1,6 @@
 package com.aquafx_project.demo;
 
 
-import com.aquafx_project.AquaFx;
-import com.aquafx_project.controls.skin.styles.ControlSizeVariant;
-
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,9 +19,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.HBoxBuilder;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
+import com.aquafx_project.AquaFx;
+import com.aquafx_project.controls.skin.styles.ControlSizeVariant;
 
 public class AquaSpecialControlsHBoxDemo extends Application {
 
@@ -39,7 +38,10 @@ public class AquaSpecialControlsHBoxDemo extends Application {
         stage.setTitle("AquaFX Controls");
         BorderPane pane = new BorderPane();
         
-      HBox hbox = HBoxBuilder.create().spacing(5).padding(new Insets(15)).alignment(Pos.CENTER).build();
+      HBox hbox = new HBox();
+      hbox.setSpacing(5);
+      hbox.setPadding(new Insets(15));
+      hbox.setAlignment(Pos.CENTER);
         /*
          * Different Control-sizes
          */

@@ -1,13 +1,5 @@
 package com.aquafx_project.demo;
 
-
-import com.aquafx_project.AquaFx;
-import com.aquafx_project.controls.skin.styles.ButtonType;
-import com.aquafx_project.controls.skin.styles.MacOSDefaultIcons;
-import com.aquafx_project.controls.skin.styles.TextFieldType;
-import com.aquafx_project.nativestuff.NsImageIcon;
-import com.aquafx_project.nativestuff.NsImageIconLoader;
-
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -19,34 +11,35 @@ import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBuilder;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.LabelBuilder;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.MenuItemBuilder;
 import javafx.scene.control.Separator;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToolBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.ImageViewBuilder;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.HBoxBuilder;
 import javafx.scene.layout.VBox;
-import javafx.scene.layout.VBoxBuilder;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
+
+import com.aquafx_project.AquaFx;
+import com.aquafx_project.controls.skin.styles.ButtonType;
+import com.aquafx_project.controls.skin.styles.MacOSDefaultIcons;
+import com.aquafx_project.controls.skin.styles.TextFieldType;
+import com.aquafx_project.nativestuff.NsImageIcon;
+import com.aquafx_project.nativestuff.NsImageIconLoader;
 
 public class AquaNetworkDemo extends Application {
     private int sceneHeight = 588;
@@ -58,15 +51,16 @@ public class AquaNetworkDemo extends Application {
         VBox mainBox = new VBox();
 
         ToolBar toolBar = new ToolBar();
-        Button tbBack = ButtonBuilder.create().build();
+        Button tbBack = new Button();
         AquaFx.createButtonStyler().setIcon(MacOSDefaultIcons.LEFT).setType(ButtonType.LEFT_PILL).style(tbBack);
-        Button tbForward = ButtonBuilder.create().disable(true).build();
+        Button tbForward = new Button();
+        tbForward.setDisable(true);
         AquaFx.createButtonStyler().setIcon(MacOSDefaultIcons.RIGHT).setType(ButtonType.RIGHT_PILL).style(tbForward);
         HBox separator = new HBox();
         separator.setPrefSize(15, 1);
         Button btnAll = new Button("Alle einblenden");
         HBox separator2 = new HBox();
-        separator2.setPrefSize(279, 1);
+        separator2.setPrefSize(250, 1);
         TextField search = new TextField();
         AquaFx.createTextFieldStyler().setType(TextFieldType.SEARCH).style(search);
         toolBar.getItems().addAll(tbBack, tbForward, separator, btnAll, separator2, search);
@@ -75,7 +69,10 @@ public class AquaNetworkDemo extends Application {
         /*
          * The top content
          */
-        HBox header = HBoxBuilder.create().spacing(5).padding(new Insets(20, 0, 5, 0)).alignment(Pos.CENTER).build();
+        HBox header = new HBox();
+        header.setSpacing(5);
+        header.setPadding(new Insets(20, 0, 5, 0));
+        header.setAlignment(Pos.CENTER);
         Label labelSurrounding = new Label("Umgebung:");
         ChoiceBox<Object> choices = new ChoiceBox<Object>();
         choices.setItems(FXCollections.observableArrayList("Automatisch", new Separator(), "Umgebungen bearbeiten ..."));
@@ -86,12 +83,14 @@ public class AquaNetworkDemo extends Application {
         /*
          * The left-side content
          */
-        HBox content = HBoxBuilder.create().padding(new Insets(10, 10, 10, 20)).spacing(10).build();
+        HBox content = new HBox();
+        content.setPadding(new Insets(10, 15, 10, 20));
+        content.setSpacing(10);
 
         ListView<String> list = new ListView<String>();
         ObservableList<String> listItems = FXCollections.observableArrayList("WLAN", "Bluetooth-PAN");
         list.setItems(listItems);
-        list.setPrefWidth(170);
+        list.setPrefWidth(200);
 
         // Create a CellFactory for ListCells
         list.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
@@ -109,7 +108,7 @@ public class AquaNetworkDemo extends Application {
         // grid.setGridLinesVisible(true);
         grid.setHgap(10);
         grid.setVgap(10);
-        grid.setPadding(new Insets(18, 10, 8, 15));
+        grid.setPadding(new Insets(18, 5, 8, 15));
         AquaFx.setGroupBox(grid);
 
         Label labelStatus = new Label("Status:");
@@ -130,8 +129,9 @@ public class AquaNetworkDemo extends Application {
         ChoiceBox<Object> choicesNetwork = new ChoiceBox<Object>();
         choicesNetwork.setItems(FXCollections.observableArrayList("PrettyFlyForAWiFi", new Separator(),
                 "Mit anderem Netzwerk verbinden ...", "Netzwerk anlegen"));
-        choicesNetwork.getSelectionModel().selectFirst();
+        choicesNetwork.getSelectionModel().select(2);
         GridPane.setHalignment(choicesNetwork, HPos.RIGHT);
+        GridPane.getHgrow(choicesNetwork);
         grid.add(choicesNetwork, 1, 3, 3, 1);
         CheckBox checkShowNew = new CheckBox("Auf neue Netzwerke hinweisen");
         checkShowNew.setSelected(true);
@@ -139,8 +139,10 @@ public class AquaNetworkDemo extends Application {
         Label labelExplanation = new Label("Bekannte Netzwerke wewrden automatisch verbunden. \n" + "Falls kein bekanntes Netzwerk vorhanden ist, werden \n" + "Sie vor dem Verbinden mit einem neuen Netzwerk \n" + "gefragt.");
         labelExplanation.setStyle("-fx-font-size: 10");
         grid.add(labelExplanation, 1, 5, 3, 1);
-        VBox spacer = VBoxBuilder.create().prefHeight(140).build();
-        grid.add(spacer, 0, 6);
+        VBox spacer = new VBox();
+        spacer.setPrefHeight(140);
+        spacer.setPrefWidth(200);
+        grid.add(spacer, 3, 6);
         CheckBox chekShowState = new CheckBox("WLAN-Status in der \n" + "Menüleiste anzeigen");
         chekShowState.setSelected(true);
         GridPane.setValignment(chekShowState, VPos.TOP);
@@ -152,6 +154,7 @@ public class AquaNetworkDemo extends Application {
         Button helpBtn = new Button("?");
         AquaFx.createButtonStyler().setType(ButtonType.HELP).style(helpBtn);
         GridPane.setValignment(helpBtn, VPos.BOTTOM);
+        GridPane.setHalignment(helpBtn, HPos.RIGHT);
         grid.add(helpBtn, 4, 7);
 
         content.getChildren().add(grid);
@@ -160,9 +163,14 @@ public class AquaNetworkDemo extends Application {
         /*
          * Footer
          */
-        HBox footerBox = HBoxBuilder.create().spacing(5).alignment(Pos.BOTTOM_LEFT).padding(new Insets(0, 0, 5, 15)).build();
+        HBox footerBox = new HBox();
+        footerBox.setSpacing(5);
+        footerBox.setAlignment(Pos.BOTTOM_LEFT);
+        footerBox.setPadding(new Insets(0, 0, 5, 15));
         Image image = new Image(AquaFx.class.getResource("demo/images/lock_open.png").toExternalForm());
-        ImageView lockView = ImageViewBuilder.create().image(image).preserveRatio(true).fitHeight(36).build();
+        ImageView lockView = new ImageView(image);
+        lockView.setPreserveRatio(true);
+        lockView.setFitHeight(36);
         footerBox.getChildren().add(lockView);
         Label info = new Label("Zum Schützen auf das Schloss klicken.");
         info.setStyle("-fx-font-size: 12");
@@ -170,7 +178,10 @@ public class AquaNetworkDemo extends Application {
         footerBox.getChildren().add(info);
         mainBox.getChildren().add(footerBox);
 
-        HBox anchorButtons = HBoxBuilder.create().spacing(15).alignment(Pos.BOTTOM_RIGHT).padding(new Insets(0, 15, 0, 0)).build();
+        HBox anchorButtons = new HBox();
+        anchorButtons.setPadding(new Insets(0, 15, 0, 0));
+        anchorButtons.setSpacing(15);
+        anchorButtons.setAlignment(Pos.BOTTOM_RIGHT);
         Button btnAssis = new Button("Assistent ...");
         anchorButtons.getChildren().add(btnAssis);
         Button btnRev = new Button("Zurücksetzen");
@@ -187,14 +198,16 @@ public class AquaNetworkDemo extends Application {
         MenuBar menuBar = new MenuBar();
         Menu menuSystemPreferences = new Menu("Systemeinstellungen");
         Menu menuServices = new Menu("Dienste");
-        MenuItem menuNoService = MenuItemBuilder.create().disable(true).text("Keine Dienste Verfügbar").build();
-        MenuItem menuServPref = MenuItemBuilder.create().text("Dienste Enistellungen ...").build();
+        MenuItem menuNoService = new MenuItem("Keine Dienste Verfügbar");
+        menuNoService.setDisable(true);
+        MenuItem menuServPref = new MenuItem("Dienste Enistellungen ...");
         menuServices.getItems().addAll(menuNoService, menuServPref);
-        MenuItem menuHide = MenuItemBuilder.create().text("Sytemeinstellungen ausblenden").accelerator(
-                KeyCombination.keyCombination("shortcut+H")).build();
-        MenuItem menuHideOthers = MenuItemBuilder.create().text("Andere ausblenden").accelerator(
-                KeyCombination.keyCombination("Alt+shortcut+H")).build();
-        MenuItem menuShowAll = MenuItemBuilder.create().text("Alle einblenden").disable(true).build();
+        MenuItem menuHide = new MenuItem("Sytemeinstellungen ausblenden");
+        menuHide.setAccelerator(KeyCombination.keyCombination("shortcut+H"));
+        MenuItem menuHideOthers = new MenuItem("Andere ausblenden");
+        menuHideOthers.setAccelerator(KeyCombination.keyCombination("Alt+shortcut+H"));
+        MenuItem menuShowAll = new MenuItem("Alle einblenden");
+        menuShowAll.setDisable(true);
         menuSystemPreferences.getItems().addAll(new MenuItem("Über Systemeinstellungen"), new SeparatorMenuItem(), menuServices,
                 new SeparatorMenuItem(), menuHide, menuHideOthers, menuShowAll, new MenuItem("Systemeinstellungen beenden"));
 
@@ -205,16 +218,17 @@ public class AquaNetworkDemo extends Application {
         menuPreferences.getItems().addAll(new MenuItem("..."));
 
         Menu menuWindow = new Menu("Fenster");
-        MenuItem windowClose = MenuItemBuilder.create().text("Schließen").accelerator(KeyCombination.keyCombination("shortcut+W")).build();
-        MenuItem windowDock = MenuItemBuilder.create().text("Im Dock ablegen").accelerator(
-                KeyCombination.keyCombination("shortcut+M")).build();
+        MenuItem windowClose = new MenuItem("Schließen");
+        windowClose.setAccelerator(KeyCombination.keyCombination("shortcut+W"));
+        MenuItem windowDock = new MenuItem("Im Dock ablegen");
+        windowDock.setAccelerator(KeyCombination.keyCombination("shortcut+M"));
         CheckMenuItem actual = new CheckMenuItem("Datum & Uhrzeit");
         actual.setSelected(true);
         menuWindow.getItems().addAll(windowClose, windowDock, new SeparatorMenuItem(), actual);
 
         Menu menuHelp = new Menu("Hilfe");
-        MenuItem help = MenuItemBuilder.create().text("Systemeinstellungen-Hilfe").accelerator(
-                KeyCombination.keyCombination("shortcut+?")).build();
+        MenuItem help = new MenuItem("Systemeinstellungen-Hilfe");
+        help.setAccelerator(KeyCombination.keyCombination("shortcut+?"));
         menuHelp.getItems().addAll(new MenuItem("Schließen"), help);
 
         menuBar.getMenus().addAll(menuSystemPreferences, menuEdit, menuPreferences, menuWindow, menuHelp);
@@ -237,27 +251,33 @@ public class AquaNetworkDemo extends Application {
             super.updateItem(item, empty);
             if (item != null) {
 
-                HBox cellBox = HBoxBuilder.create().alignment(Pos.CENTER_LEFT).spacing(5).padding(new Insets(2, 5, 3, 2)).build();
+                HBox cellBox = new HBox();
+                cellBox.setAlignment(Pos.CENTER_LEFT);
+                cellBox.setSpacing(5);
+                cellBox.setPadding(new Insets(2, 5, 3, 2));
                 ImageView dotImage;
-                VBox texts = VBoxBuilder.create().alignment(Pos.CENTER_LEFT).prefWidth(95).build();
-                final Label type = LabelBuilder.create().text(item).build();
-                final Label legend = LabelBuilder.create().text(item).style("-fx-font-size: 11; -fx-text-fill: gray;").build();
+                VBox texts = new VBox();
+                texts.setPrefWidth(95);
+                texts.setAlignment(Pos.CENTER_LEFT);
+                final Label type = new Label(item);
+                final Label legend = new Label(item);
+                legend.setStyle("-fx-font-size: 11; -fx-text-fill: gray;");
                 ImageView typeImage;
 
                 if (item.equals("WLAN")) {
-                    // Image image =
-                    // Image(AquaFx.class.getResource("demo/images/dot_green.png").toExternalForm());
-                    // dotImage =
-                    // ImageViewBuilder.create().image(image).preserveRatio(true).fitHeight(36).build();
                     dotImage = new ImageView(NsImageIconLoader.load(NsImageIcon.STATUS_AVAILABLE));
                     legend.setText("Verbunden");
                     Image img = new Image(AquaFx.class.getResource("demo/images/wifi.png").toExternalForm());
-                    typeImage = ImageViewBuilder.create().image(img).preserveRatio(true).fitHeight(32).build();
+                    typeImage = new ImageView(img);
+                    typeImage.setPreserveRatio(true);
+                    typeImage.setFitHeight(32);
                 } else {
                     dotImage = new ImageView(NsImageIconLoader.load(NsImageIcon.STATUS_PARTIALLY_AVAILABLE));
                     legend.setText("Keine IP-Adresse");
                     Image img = new Image(AquaFx.class.getResource("demo/images/bluetooth.png").toExternalForm());
-                    typeImage = ImageViewBuilder.create().image(img).preserveRatio(true).fitHeight(32).build();
+                    typeImage = new ImageView(img);
+                    typeImage.setPreserveRatio(true);
+                    typeImage.setFitHeight(32);
                 }
 
                 cellBox.getChildren().add(dotImage);

@@ -1,7 +1,5 @@
 package com.aquafx_project.demo;
 
-import com.aquafx_project.AquaFx;
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,14 +8,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.VBox;
-import javafx.scene.layout.VBoxBuilder;
 import javafx.stage.Stage;
+
+import com.aquafx_project.AquaFx;
 
 public class ProgressBarDemo extends Application {
 
     @Override public void start(Stage stage) {
         stage.setTitle("Progress");
-        VBox root = VBoxBuilder.create().spacing(10).padding(new Insets(20)).build();
+        VBox root = new VBox();
+        root.setSpacing(10);
+        root.setPadding(new Insets(20));
         Scene scene = new Scene(root);
 
         final ProgressBar p = new ProgressBar(0.6);
@@ -47,7 +48,7 @@ public class ProgressBarDemo extends Application {
                 }
             }
         });
-        
+
         root.getChildren().add(bI);
 
         AquaFx.style();

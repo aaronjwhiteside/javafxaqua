@@ -2226,6 +2226,11 @@ TODO: effect-chaining!!!
 .tree-table-view .empty-table {
     -fx-background-color: white;
 }
+ .tree-table-row-cell:empty  .check-box-tree-table-cell,
+ .table-row-cell:empty  .check-box-table-cell,
+ .list-cell:empty {
+     -fx-opacity:0.0;
+ }
 
 .check-box-tree-table-cell,
 .check-box-table-cell {

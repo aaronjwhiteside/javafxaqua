@@ -48,23 +48,15 @@ public class TextFieldStyler extends Styler<TextField> {
         super.style(textField);
         textField.setSkin(new AquaTextFieldSkin(textField));
         if (type != null && type == TextFieldType.SEARCH) {
-            // Platform.runLater(new Runnable() {
-            // @Override public void run() {
             Skin<?> skin = textField.getSkin();
             if (skin != null && skin instanceof AquaTextFieldSkin) {
                 ((AquaTextFieldSkin) skin).showSearchIconProperty().setValue(true);
             }
-            // }
-            // });
         } else if (type != null && type != TextFieldType.SEARCH) {
-            // Platform.runLater(new Runnable() {
-            // @Override public void run() {
             Skin<?> skin = textField.getSkin();
             if (skin != null && skin instanceof AquaTextFieldSkin) {
                 ((AquaTextFieldSkin) skin).showSearchIconProperty().setValue(false);
             }
-            // }
-            // });
         }
     }
 }

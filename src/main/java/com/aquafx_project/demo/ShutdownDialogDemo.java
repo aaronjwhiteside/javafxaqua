@@ -1,25 +1,20 @@
 package com.aquafx_project.demo;
 
-import com.aquafx_project.AquaFx;
-
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.CheckBoxBuilder;
 import javafx.scene.control.Label;
-import javafx.scene.control.LabelBuilder;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.ImageViewBuilder;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.HBoxBuilder;
 import javafx.scene.layout.VBox;
-import javafx.scene.layout.VBoxBuilder;
 import javafx.stage.Stage;
+
+import com.aquafx_project.AquaFx;
 
 public class ShutdownDialogDemo extends Application {
 
@@ -27,40 +22,38 @@ public class ShutdownDialogDemo extends Application {
         ShutdownDialogDemo.launch();
     }
 
-    @Override
-    public void start(Stage stage) throws Exception {
+    @Override public void start(Stage stage) throws Exception {
         BorderPane borderPane = new BorderPane();
 
-        Image image = new Image(AquaFx.class
-                .getResource("demo/images/bild.png").toExternalForm());
+        Image image = new Image(AquaFx.class.getResource("demo/images/bild.png").toExternalForm());
+        ImageView iv = new ImageView(image);
 
-        ImageView iv = ImageViewBuilder.create().image(image).build();
-        BorderPane.setMargin(iv, new Insets(18));
+        BorderPane.setMargin(iv, new Insets(18, 0, 0, 18));
         borderPane.setLeft(iv);
 
-        VBox vbox = VBoxBuilder.create().padding(new Insets(20, 20, 0, 40))
-                .spacing(10).build();
-        Label title = LabelBuilder.create()
-                .text("Möchten Sie den Computer jetzt ausschalten?")
-                .style("-fx-font-weight: bold").build();
+        VBox vbox = new VBox();
+        vbox.setPadding(new Insets(20, 20, 0, 20));
+        vbox.setSpacing(10);
+        Label title = new Label("Möchten Sie den Computer jetzt ausschalten?");
+        title.setStyle("-fx-font-weight: bold");
         vbox.getChildren().add(title);
 
-        Label info = LabelBuilder
-                .create()
-                .text("Wenn Sie keine Auswahl treffen, wird der Computer in 43 Sekunden automatisch ausgeschaltet.")
-                .style("-fx-font-size : 0.8em").wrapText(true).build();
+        Label info = new Label("Wenn Sie keine Auswahl treffen, wird der Computer in 43 Sekunden automatisch ausgeschaltet.");
+        info.setStyle("-fx-font-size : 0.8em");
+        info.setWrapText(true);
         VBox.setMargin(info, new Insets(14, 0, 0, 0));
         vbox.getChildren().add(info);
 
-        CheckBox checkBox = CheckBoxBuilder.create()
-                .text("Beim nächsten Anmelden alle Fenster wieder öffnen")
-                .allowIndeterminate(false).build();
+        CheckBox checkBox = new CheckBox("Beim nächsten Anmelden alle Fenster wieder öffnen");
+        checkBox.setAllowIndeterminate(false);
         vbox.getChildren().add(checkBox);
 
         borderPane.setCenter(vbox);
 
-        HBox hbox = HBoxBuilder.create().alignment(Pos.CENTER_RIGHT)
-                .padding(new Insets(19)).spacing(12).build();
+        HBox hbox = new HBox();
+        hbox.setAlignment(Pos.CENTER_RIGHT);
+        hbox.setPadding(new Insets(19));
+        hbox.setSpacing(12);
 
         Button cancel = new Button();
         cancel.setText("Abbrechen");

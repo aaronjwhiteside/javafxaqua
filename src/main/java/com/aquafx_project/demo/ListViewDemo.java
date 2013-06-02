@@ -1,7 +1,5 @@
 package com.aquafx_project.demo;
 
-import com.aquafx_project.AquaFx;
-
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,8 +12,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.HBoxBuilder;
 import javafx.stage.Stage;
+
+import com.aquafx_project.AquaFx;
 
 public class ListViewDemo extends Application {
 
@@ -30,7 +29,9 @@ public class ListViewDemo extends Application {
     @Override public void start(Stage primaryStage) throws Exception {
         BorderPane pane = new BorderPane();
         
-        HBox listContainer = HBoxBuilder.create().padding(new Insets(10)).spacing(10).build();
+        HBox listContainer = new HBox();
+        listContainer.setSpacing(10);
+        listContainer.setPadding(new Insets(10));
         ListView<String> list = new ListView<String>();
         ObservableList<String> listItems = FXCollections.observableArrayList("Item 1", "Item 2", "Item 3", "Item 4");
         list.setItems(listItems);

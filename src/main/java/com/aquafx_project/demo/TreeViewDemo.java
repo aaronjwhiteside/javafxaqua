@@ -1,7 +1,5 @@
 package com.aquafx_project.demo;
 
-import com.aquafx_project.AquaFx;
-
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,15 +9,16 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.HBoxBuilder;
 import javafx.stage.Stage;
+
+import com.aquafx_project.AquaFx;
 
 public class TreeViewDemo extends Application {
 
     public static void main(String[] args) {
         launch(args);
     }
-    
+
     final ObservableList<Person> data = FXCollections.observableArrayList(
             new Person("John", "Doe", "john.doe@foo.com", "jd@foo.com", true),
             new Person("Jane", "Doe", "jane.doe@example.com", "jane.d@foo.com", false));
@@ -27,7 +26,8 @@ public class TreeViewDemo extends Application {
     @Override public void start(Stage primaryStage) throws Exception {
         BorderPane pane = new BorderPane();
 
-        HBox treeContainer = HBoxBuilder.create().padding(new Insets(10)).build();
+        HBox treeContainer = new HBox();
+        treeContainer.setPadding(new Insets(10));
         TreeItem<String> rootItem = new TreeItem<String>("People");
         rootItem.setExpanded(true);
         for (Person person : data) {
@@ -50,7 +50,7 @@ public class TreeViewDemo extends Application {
         tree.setPrefHeight(150);
         tree.setPrefWidth(150);
         treeContainer.getChildren().add(tree);
-        
+
         pane.setCenter(treeContainer);
         pane.setStyle("-fx-background-color: white;");
         Scene scene = new Scene(pane);
