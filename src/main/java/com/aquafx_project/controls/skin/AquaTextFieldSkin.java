@@ -24,7 +24,6 @@ import com.aquafx_project.controls.skin.effects.FocusBorder;
 import com.sun.javafx.css.converters.BooleanConverter;
 import com.sun.javafx.scene.control.skin.TextFieldSkin;
 
-
 public class AquaTextFieldSkin extends TextFieldSkin implements AquaSkin {
 
     private Region searchIconPath;
@@ -41,21 +40,16 @@ public class AquaTextFieldSkin extends TextFieldSkin implements AquaSkin {
         showSearchIconProperty().addListener(new ChangeListener<Boolean>() {
 
             @Override public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                System.out.println("Listener horcht auf");
                 if (newValue != null && newValue != oldValue) {
                     if (newValue.booleanValue()) {
                         if (searchIconPath == null) {
                             searchIconPath = new Region();
                             searchIconPath.getStyleClass().add("search-icon");
-                            System.out.println("search-icon hinzugefügt");
                         }
                         getChildren().add(searchIconPath);
-                    } else if(oldValue != null && searchIconPath != null){
-                            getChildren().remove(searchIconPath);
-                            System.out.println("search-icon entfernt");
-
+                    } else if (oldValue != null && searchIconPath != null) {
+                        getChildren().remove(searchIconPath);
                     }
-                    System.out.println("requestLayout anfordern");
                     getSkinnable().requestLayout();
                 }
             }
@@ -64,17 +58,14 @@ public class AquaTextFieldSkin extends TextFieldSkin implements AquaSkin {
         showSearchIconProperty().addListener(new ChangeListener<Boolean>() {
 
             @Override public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                System.out.println("listener2 horcht auf!");
 
                 if (newValue != null) {
                     if (newValue.booleanValue()) {
                         if (cancelSearchIconPath == null) {
                             cancelSearchIconPath = new Region();
                             cancelSearchIconPath.getStyleClass().add("cancel-search-icon");
-                            System.out.println("cancel-search-icon hinzugefügt");
 
                             cancelSearchIconPath.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
                                 @Override public void handle(MouseEvent event) {
                                     getSkinnable().setText("");
                                 }
@@ -97,14 +88,11 @@ public class AquaTextFieldSkin extends TextFieldSkin implements AquaSkin {
                         }
                         getChildren().add(cancelSearchIconPath);
                     } else {
-                        if (cancelSearchIconPath != null) {           
-                        System.out.println("cancel-search-icon entfernt");
+                        if (cancelSearchIconPath != null) {
                             getChildren().remove(cancelSearchIconPath);
                         }
                     }
                     getSkinnable().requestLayout();
-                    System.out.println("cancel-search-icon requestLayout");
-
                 }
             }
         });
@@ -153,11 +141,9 @@ public class AquaTextFieldSkin extends TextFieldSkin implements AquaSkin {
     }
 
     /***********************************************************************************
-     *                                                                                 *
-     *   Adding the possibility to make a TextField to a SearchField via CSS-Property  *
-     *                                                                                 *
+     * * Adding the possibility to make a TextField to a SearchField via CSS-Property * *
      **********************************************************************************/
-    
+
     private BooleanProperty showSearchIcon;
 
     public final BooleanProperty showSearchIconProperty() {
