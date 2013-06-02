@@ -41,16 +41,21 @@ public class AquaTextFieldSkin extends TextFieldSkin implements AquaSkin {
         showSearchIconProperty().addListener(new ChangeListener<Boolean>() {
 
             @Override public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                System.out.println("Listener horcht auf");
                 if (newValue != null && newValue != oldValue) {
                     if (newValue.booleanValue()) {
                         if (searchIconPath == null) {
                             searchIconPath = new Region();
                             searchIconPath.getStyleClass().add("search-icon");
+                            System.out.println("search-icon hinzugefügt");
                         }
                         getChildren().add(searchIconPath);
                     } else if(oldValue != null && searchIconPath != null){
                             getChildren().remove(searchIconPath);
+                            System.out.println("search-icon entfernt");
+
                     }
+                    System.out.println("requestLayout anfordern");
                     getSkinnable().requestLayout();
                 }
             }
@@ -59,11 +64,15 @@ public class AquaTextFieldSkin extends TextFieldSkin implements AquaSkin {
         showSearchIconProperty().addListener(new ChangeListener<Boolean>() {
 
             @Override public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                System.out.println("listener2 horcht auf!");
+
                 if (newValue != null) {
                     if (newValue.booleanValue()) {
                         if (cancelSearchIconPath == null) {
                             cancelSearchIconPath = new Region();
                             cancelSearchIconPath.getStyleClass().add("cancel-search-icon");
+                            System.out.println("cancel-search-icon hinzugefügt");
+
                             cancelSearchIconPath.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
                                 @Override public void handle(MouseEvent event) {
@@ -88,11 +97,14 @@ public class AquaTextFieldSkin extends TextFieldSkin implements AquaSkin {
                         }
                         getChildren().add(cancelSearchIconPath);
                     } else {
-                        if (cancelSearchIconPath != null) {
+                        if (cancelSearchIconPath != null) {           
+                        System.out.println("cancel-search-icon entfernt");
                             getChildren().remove(cancelSearchIconPath);
                         }
                     }
                     getSkinnable().requestLayout();
+                    System.out.println("cancel-search-icon requestLayout");
+
                 }
             }
         });
@@ -110,7 +122,7 @@ public class AquaTextFieldSkin extends TextFieldSkin implements AquaSkin {
         if (cancelSearchIconPath != null) {
             cancelSearchIconPath.toFront();
             double height = getSkinnable().getHeight();
-            cancelSearchIconPath.setLayoutX(getSkinnable().getWidth() - height * 0.7);
+            cancelSearchIconPath.setTranslateX(getSkinnable().getWidth() - height * 1.5);
             cancelSearchIconPath.setLayoutY(height * 0.15);
             cancelSearchIconPath.resize(height * 0.55, height * 0.55);
         }
