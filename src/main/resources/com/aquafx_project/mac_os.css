@@ -288,11 +288,11 @@
  ******************************************************************************/
 
 .button{
-    -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaButtonSkin";
+    -fx-skin: "com.aquafx_project.controls.skin.AquaButtonSkin";
 }
 
 .toggle-button {
-    -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaToggleButtonSkin";
+    -fx-skin: "com.aquafx_project.controls.skin.AquaToggleButtonSkin";
 }
 
 .button, .toggle-button{
@@ -421,7 +421,7 @@
  ******************************************************************************/
 
 .radio-button {
-    -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaRadioButtonSkin";
+    -fx-skin: "com.aquafx_project.controls.skin.AquaRadioButtonSkin";
     -fx-label-padding: 0.0em 0.0em 0.0em 0.384615em;
     -fx-text-fill: -fx-text-base-color;
 }
@@ -506,7 +506,7 @@
  ******************************************************************************/
 
 .check-box {
-    -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaCheckBoxSkin";
+    -fx-skin: "com.aquafx_project.controls.skin.AquaCheckBoxSkin";
     -fx-label-padding: 0.0em 0.0em 0.0em 0.384615em;
     -fx-text-fill: -fx-text-base-color;
 }
@@ -634,7 +634,7 @@
  ******************************************************************************/
 
 .context-menu {
-    -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaContextMenuSkin";
+    -fx-skin: "com.aquafx_project.controls.skin.AquaContextMenuSkin";
     -fx-border-color: rgb(209.0, 209.0, 209.0, 0.4);
     -fx-border-width: 0.5;
     -fx-border-radius: 6.0;
@@ -870,7 +870,7 @@
  ******************************************************************************/
 
 .choice-box {
-    -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaChoiceBoxSkin";
+    -fx-skin: "com.aquafx_project.controls.skin.AquaChoiceBoxSkin";
     -fx-border-radius: 4.0;
     -fx-border-width: 0.5;
     -fx-border-insets: 0.5;
@@ -916,7 +916,7 @@
  *                                                                             *
  ******************************************************************************/
 .slider{
-    -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaSliderSkin";
+    -fx-skin: "com.aquafx_project.controls.skin.AquaSliderSkin";
 }
 
 .slider > .thumb {
@@ -1038,7 +1038,7 @@ TODO: effect-chaining!!!
  *                                                                             *
  ******************************************************************************/
 .scroll-bar {
-    -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaScrollBarSkin";
+    -fx-skin: "com.aquafx_project.controls.skin.AquaScrollBarSkin";
 }
 
 .scroll-bar:horizontal, .scroll-bar:horizontal:focused, 
@@ -1160,7 +1160,7 @@ TODO: effect-chaining!!!
  ******************************************************************************/
 
 .scroll-pane {
-    -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaScrollPaneSkin";
+    -fx-skin: "com.aquafx_project.controls.skin.AquaScrollPaneSkin";
 }
 
 .scroll-pane > * > .scroll-bar:horizontal {
@@ -1211,7 +1211,7 @@ TODO: effect-chaining!!!
  ******************************************************************************/
 
 .text-field {
-    -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaTextFieldSkin";
+    -fx-skin: "com.aquafx_project.controls.skin.AquaTextFieldSkin";
     -fx-border-color: linear-gradient(rgb(184.0, 184.0, 184.0) 0.0%, rgb(205.0, 205.0, 205.0) 100.0%);
     -fx-border-width: 0.5;
     -fx-border-insets: -0.5 0.0 3.0 0.0;
@@ -1253,7 +1253,7 @@ TODO: effect-chaining!!!
  ******************************************************************************/
 
 .password-field {
-    -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaPasswordFieldSkin";
+    -fx-skin: "com.aquafx_project.controls.skin.AquaPasswordFieldSkin";
     -fx-text-fill: -fx-text-base-color;
 }
 
@@ -1265,7 +1265,7 @@ TODO: effect-chaining!!!
 
 .text-area {
     -fx-padding: 1.0;
-    -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaTextAreaSkin";
+    -fx-skin: "com.aquafx_project.controls.skin.AquaTextAreaSkin";
        -fx-border-color: rgb(142.0, 142.0, 142.0) rgb(190.0, 190.0, 190.0) rgb(190.0, 190.0, 190.0) rgb(190.0, 190.0, 190.0);
      -fx-border-width: 1.0;
     -fx-background-color: white;
@@ -1394,7 +1394,7 @@ TODO: effect-chaining!!!
  *                                                                             *
  ******************************************************************************/
 .menu-button {
-    -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaMenuButtonSkin";
+    -fx-skin: "com.aquafx_project.controls.skin.AquaMenuButtonSkin";
     -fx-background-color: 
         linear-gradient(rgb(245.0, 245.0, 245.0), rgb(185.0, 185.0, 185.0));
     -fx-background-insets:0.0;
@@ -1457,7 +1457,7 @@ TODO: effect-chaining!!!
  ******************************************************************************/
 
 .split-menu-button {
-        -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaSplitMenuButtonSkin";
+        -fx-skin: "com.aquafx_project.controls.skin.AquaSplitMenuButtonSkin";
     -fx-padding: 0.0em;
     -fx-text-fill: -fx-text-base-color;
 }
@@ -1538,7 +1538,7 @@ TODO: effect-chaining!!!
  ******************************************************************************/
 
 .tool-bar {
-    -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaToolBarSkin";
+    -fx-skin: "com.aquafx_project.controls.skin.AquaToolBarSkin";
 }
 
 .tool-bar:vertical {
@@ -1842,7 +1842,7 @@ TODO: effect-chaining!!!
  ******************************************************************************/
 
 .progress-bar {
-    -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaProgressBarSkin";
+    -fx-skin: "com.aquafx_project.controls.skin.AquaProgressBarSkin";
     -fx-border-color: rgb(146.0, 146.0, 146.0);
     -fx-border-width: 0.5;
     -fx-border-radius: 2.5;
@@ -2420,7 +2420,7 @@ TODO: effect-chaining!!!
  ******************************************************************************/
 
 .tab-pane {
-    -fx-skin: 'de.zillmann.javafx.aqua.controls.skin.AquaTabPaneSkin';
+    -fx-skin: 'com.aquafx_project.controls.skin.AquaTabPaneSkin';
     -fx-tab-alignment: CENTER;
 }
 
@@ -2895,7 +2895,7 @@ TODO: effect-chaining!!!
 /* -------------- STYLES FOR THE DEFAULT LISTVIEW-BASED COMBOBOX ------------- */
 
 .combo-box {
-    -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaComboBoxListViewSkin";
+    -fx-skin: "com.aquafx_project.controls.skin.AquaComboBoxListViewSkin";
 }
 
 /* Customize the ListCell that appears in the ComboBox button itself */
@@ -2938,7 +2938,7 @@ TODO: effect-chaining!!!
 /* -------------------------- STYLES FOR THE COLOR-PICKER CONTROL ----- */
 
 .color-picker {
-    -fx-skin: "de.zillmann.javafx.aqua.controls.skin.AquaColorPickerSkin";
+    -fx-skin: "com.aquafx_project.controls.skin.AquaColorPickerSkin";
     
     -fx-color-rect-width: 1.7em; 
     -fx-color-rect-height: 0.8em;  
