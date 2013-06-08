@@ -8,7 +8,7 @@ import javafx.util.Duration;
 
 /**
  * A simple Transition thats fraction property can be bound to any other
- * properties. See {@link BindableTransitionTrial}
+ * properties.
  * 
  * @author hendrikebbers
  * 
