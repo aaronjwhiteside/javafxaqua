@@ -1,15 +1,47 @@
 package com.aquafx_project.controls.skin.styles;
 
+/**
+ * ButtonType values are used to define different looks (types) of Buttons by setting those values
+ * as StyleClassDefinition to the Button for CSS styling.
+ * <p>
+ * There are different types of Buttons available on Mac OS X, which have a more rounded border, are
+ * completely rounded or a set of pills.
+ * 
+ * @author claudinezillmann
+ * 
+ */
 public enum ButtonType implements StyleDefinition {
-    DEFAULT,
+    /**
+     * REGULAR indicates a regular Button.
+     */
+    REGULAR,
+    /**
+     * HELP indicates a round Button (which is usually labeled with the String "?".
+     */
     HELP,
+    /**
+     * ROUND_RECT indicates a Button with more rounded (higher radius) borders than a regular
+     * Button.
+     */
     ROUND_RECT,
+    /**
+     * LEFT_PILL indicates a Button, that is the most left Button of a set of Buttons (pills)
+     */
     LEFT_PILL,
+    /**
+     * CENTER_PILL indicates a Button, that is an inner Button of a set of Buttons (pills)
+     */
     CENTER_PILL,
+    /**
+     * RIGHT_PILL indicates a Button, that is the most right Button of a set of Buttons (pills)
+     */
     RIGHT_PILL;
 
-    //TODO: Alle übernehmen aus https://developer.apple.com/library/mac/#technotes/tn2007/tn2196.html
-    
+    /**
+     * Constructs a String as name for the StyleClass.
+     * 
+     * @return the name for the ButtonType
+     */
     @Override public String getStyleName() {
         String prefix = "button-type";
         if (this.equals(HELP)) {

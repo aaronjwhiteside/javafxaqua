@@ -6,6 +6,14 @@ import javafx.scene.text.Font;
 
 import com.sun.javafx.css.StyleConverterImpl;
 
+/**
+ * 
+ * Converts the CSS for -fx-aqua-icon items into a MacOSDefaultIcons. Used by
+ * {@link com.aquafx_project.controls.skin.AquaButtonSkin AquaButtonSkin}.
+ * 
+ * @author claudinezillmann
+ * 
+ */
 public final class MacOSDefaultIconConverter extends StyleConverterImpl<String, MacOSDefaultIcons> {
 
     private static class Holder {

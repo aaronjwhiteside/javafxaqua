@@ -4,6 +4,14 @@ import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.paint.Color;
 
+/**
+ * Defines the Mac OS X specific very light shadow for some controls. 
+ * This Effect is a dropshadow.
+ * 
+ * @author claudinezillmann
+ *
+ */
+
 public class Shadow extends DropShadow {
 
     public Shadow(boolean pillShadow) {

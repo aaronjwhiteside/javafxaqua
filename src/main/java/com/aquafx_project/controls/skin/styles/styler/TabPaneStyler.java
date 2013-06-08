@@ -3,20 +3,34 @@ package com.aquafx_project.controls.skin.styles.styler;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.aquafx_project.controls.skin.styles.ControlSizeVariant;
-import com.aquafx_project.controls.skin.styles.IllegalStyleCombinationException;
-import com.aquafx_project.controls.skin.styles.StyleDefinition;
-import com.aquafx_project.controls.skin.styles.Styler;
-import com.aquafx_project.controls.skin.styles.TabPaneType;
-
 import javafx.application.Platform;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 
+import com.aquafx_project.controls.skin.styles.ControlSizeVariant;
+import com.aquafx_project.controls.skin.styles.IllegalStyleCombinationException;
+import com.aquafx_project.controls.skin.styles.StyleDefinition;
+import com.aquafx_project.controls.skin.styles.TabPaneType;
+
+/**
+ * The TabPaneStyler with fluent API to change the default style of a TabPane.
+ * 
+ * @author claudinezillmann
+ * 
+ */
 public class TabPaneStyler extends Styler<TabPane> {
 
+    /**
+     * TabPaneType of a TabPane.
+     */
     private TabPaneType type;
 
+    /**
+     * Creates a new Instance of TabPaneStyler. This has to be the first invocation on
+     * TabPaneStyler.
+     * 
+     * @return The TabPaneStyler.
+     */
     public static TabPaneStyler create() {
         return new TabPaneStyler();
     }
@@ -25,6 +39,13 @@ public class TabPaneStyler extends Styler<TabPane> {
         return (TabPaneStyler) super.setSizeVariant(sizeVariant);
     }
 
+    /**
+     * Adds a TabPaneType to the TabPane
+     * 
+     * @param type
+     *            The TabPaneType for the TabPane.
+     * @return the TabPaneStyler with the added TabPaneType.
+     */
     public TabPaneStyler setType(TabPaneType type) {
         this.type = type;
         check();
@@ -48,7 +69,7 @@ public class TabPaneStyler extends Styler<TabPane> {
         super.style(tabPane);
         if (type != null && type == TabPaneType.ICON_BUTTONS) {
             Platform.runLater(new Runnable() {
-                
+
                 @Override public void run() {
                     for (Tab tab : tabPane.getTabs()) {
                         if (tab.getGraphic() != null) {
@@ -57,7 +78,6 @@ public class TabPaneStyler extends Styler<TabPane> {
                     }
                 }
             });
-            
         }
     }
 }

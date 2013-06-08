@@ -5,6 +5,14 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.paint.Color;
 
+/**
+ * Defines the Mac OS X specific focus style for all controls. (Blue inner- and outer glowing)
+ * It is a chained effect with an InnerShadow and a DropShadow.
+ * 
+ * @author claudinezillmann
+ *
+ */
+
 public class FocusBorder extends DropShadow {
 
     public FocusBorder() {
