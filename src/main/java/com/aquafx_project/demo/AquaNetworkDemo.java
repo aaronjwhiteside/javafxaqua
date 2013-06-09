@@ -143,7 +143,7 @@ public class AquaNetworkDemo extends Application {
         spacer.setPrefHeight(140);
         spacer.setPrefWidth(200);
         grid.add(spacer, 3, 6);
-        CheckBox chekShowState = new CheckBox("WLAN-Status in der \n" + "Menüleiste anzeigen");
+        CheckBox chekShowState = new CheckBox("WLAN-Status in der \n" + "Men\u00FCleiste anzeigen");
         chekShowState.setSelected(true);
         GridPane.setValignment(chekShowState, VPos.TOP);
         grid.add(chekShowState, 0, 7, 2, 1);
@@ -172,7 +172,7 @@ public class AquaNetworkDemo extends Application {
         lockView.setPreserveRatio(true);
         lockView.setFitHeight(36);
         footerBox.getChildren().add(lockView);
-        Label info = new Label("Zum Schützen auf das Schloss klicken.");
+        Label info = new Label("Zum Sch\u00FCtzen auf das Schloss klicken.");
         info.setStyle("-fx-font-size: 12");
         info.setPadding(new Insets(0, 0, 3, 0));
         footerBox.getChildren().add(info);
@@ -184,7 +184,7 @@ public class AquaNetworkDemo extends Application {
         anchorButtons.setAlignment(Pos.BOTTOM_RIGHT);
         Button btnAssis = new Button("Assistent ...");
         anchorButtons.getChildren().add(btnAssis);
-        Button btnRev = new Button("Zurücksetzen");
+        Button btnRev = new Button("Zur\u00FCcksetzen");
         btnRev.setDisable(true);
         anchorButtons.getChildren().add(btnRev);
         Button btnUse = new Button("Anwenden");
@@ -198,7 +198,7 @@ public class AquaNetworkDemo extends Application {
         MenuBar menuBar = new MenuBar();
         Menu menuSystemPreferences = new Menu("Systemeinstellungen");
         Menu menuServices = new Menu("Dienste");
-        MenuItem menuNoService = new MenuItem("Keine Dienste Verfügbar");
+        MenuItem menuNoService = new MenuItem("Keine Dienste Verf\u00FCgbar");
         menuNoService.setDisable(true);
         MenuItem menuServPref = new MenuItem("Dienste Enistellungen ...");
         menuServices.getItems().addAll(menuNoService, menuServPref);
@@ -208,7 +208,7 @@ public class AquaNetworkDemo extends Application {
         menuHideOthers.setAccelerator(KeyCombination.keyCombination("Alt+shortcut+H"));
         MenuItem menuShowAll = new MenuItem("Alle einblenden");
         menuShowAll.setDisable(true);
-        menuSystemPreferences.getItems().addAll(new MenuItem("Über Systemeinstellungen"), new SeparatorMenuItem(), menuServices,
+        menuSystemPreferences.getItems().addAll(new MenuItem("\u00DCber Systemeinstellungen"), new SeparatorMenuItem(), menuServices,
                 new SeparatorMenuItem(), menuHide, menuHideOthers, menuShowAll, new MenuItem("Systemeinstellungen beenden"));
 
         Menu menuEdit = new Menu("Bearbeiten");
@@ -218,7 +218,7 @@ public class AquaNetworkDemo extends Application {
         menuPreferences.getItems().addAll(new MenuItem("..."));
 
         Menu menuWindow = new Menu("Fenster");
-        MenuItem windowClose = new MenuItem("Schließen");
+        MenuItem windowClose = new MenuItem("Schlie\u00dfen");
         windowClose.setAccelerator(KeyCombination.keyCombination("shortcut+W"));
         MenuItem windowDock = new MenuItem("Im Dock ablegen");
         windowDock.setAccelerator(KeyCombination.keyCombination("shortcut+M"));
@@ -229,7 +229,7 @@ public class AquaNetworkDemo extends Application {
         Menu menuHelp = new Menu("Hilfe");
         MenuItem help = new MenuItem("Systemeinstellungen-Hilfe");
         help.setAccelerator(KeyCombination.keyCombination("shortcut+?"));
-        menuHelp.getItems().addAll(new MenuItem("Schließen"), help);
+        menuHelp.getItems().addAll(new MenuItem("Schlie\u00dfen"), help);
 
         menuBar.getMenus().addAll(menuSystemPreferences, menuEdit, menuPreferences, menuWindow, menuHelp);
         mainBox.getChildren().add(menuBar);

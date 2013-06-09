@@ -34,7 +34,7 @@ public class ShutdownDialogDemo extends Application {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(20, 20, 0, 20));
         vbox.setSpacing(10);
-        Label title = new Label("Möchten Sie den Computer jetzt ausschalten?");
+        Label title = new Label("M\u00F6chten Sie den Computer jetzt ausschalten?");
         title.setStyle("-fx-font-weight: bold");
         vbox.getChildren().add(title);
 
@@ -44,7 +44,7 @@ public class ShutdownDialogDemo extends Application {
         VBox.setMargin(info, new Insets(14, 0, 0, 0));
         vbox.getChildren().add(info);
 
-        CheckBox checkBox = new CheckBox("Beim nächsten Anmelden alle Fenster wieder öffnen");
+        CheckBox checkBox = new CheckBox("Beim n\u00E4chsten Anmelden alle Fenster wieder \u00F6ffnen");
         checkBox.setAllowIndeterminate(false);
         vbox.getChildren().add(checkBox);
 

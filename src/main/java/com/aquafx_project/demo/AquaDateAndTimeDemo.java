@@ -83,7 +83,7 @@ public class AquaDateAndTimeDemo extends Application {
         grid.setVgap(5);
         grid.setPadding(new Insets(25, 30, 0, 60));
 
-        CheckBox box1 = new CheckBox("Datum und Uhrzeit in der Menüleiste anzeigen");
+        CheckBox box1 = new CheckBox("Datum und Uhrzeit in der Men\u00FCleiste anzeigen");
         box1.setSelected(true);
         grid.add(box1, 0, 0, 3, 1);
 
@@ -152,7 +152,7 @@ public class AquaDateAndTimeDemo extends Application {
         lockView.setPreserveRatio(true);
         lockView.setFitHeight(36);
         footerBox.getChildren().add(lockView);
-        Label info = new Label("Zum Schützen auf das Schloss klicken.");
+        Label info = new Label("Zum Sch\u00FCtzen auf das Schloss klicken.");
         info.setStyle("-fx-font-size: 12");
         info.setPadding(new Insets(0, 0, 3, 0));
         footerBox.getChildren().add(info);
@@ -173,7 +173,7 @@ public class AquaDateAndTimeDemo extends Application {
         MenuBar menuBar = new MenuBar();
         Menu menuSystemPreferences = new Menu("Systemeinstellungen");
         Menu menuServices = new Menu("Dienste");
-        MenuItem menuNoService = new MenuItem("Keine Dienste Verfügbar");
+        MenuItem menuNoService = new MenuItem("Keine Dienste Verf\u00FCgbar");
         menuNoService.setDisable(true);
 
         MenuItem menuServPref = new MenuItem("Dienste Enistellungen ...");
@@ -184,7 +184,7 @@ public class AquaDateAndTimeDemo extends Application {
         menuHideOthers.setAccelerator(KeyCombination.keyCombination("Alt+shortcut+H"));
         MenuItem menuShowAll = new MenuItem("Alle einblenden");
         menuShowAll.setDisable(true);
-        menuSystemPreferences.getItems().addAll(new MenuItem("Über Systemeinstellungen"), new SeparatorMenuItem(), menuServices,
+        menuSystemPreferences.getItems().addAll(new MenuItem("\u00DCber Systemeinstellungen"), new SeparatorMenuItem(), menuServices,
                 new SeparatorMenuItem(), menuHide, menuHideOthers, menuShowAll, new MenuItem("Systemeinstellungen beenden"));
 
         Menu menuEdit = new Menu("Bearbeiten");
@@ -194,7 +194,7 @@ public class AquaDateAndTimeDemo extends Application {
         menuPreferences.getItems().addAll(new MenuItem("..."));
 
         Menu menuWindow = new Menu("Fenster");
-        MenuItem windowClose = new MenuItem("Schließen");
+        MenuItem windowClose = new MenuItem("Schlie\u00dfen");
         windowClose.setAccelerator(KeyCombination.keyCombination("shortcut+W"));
         MenuItem windowDock = new MenuItem("Im Dock ablegen");
         windowDock.setAccelerator(KeyCombination.keyCombination("shortcut+M"));
@@ -205,7 +205,7 @@ public class AquaDateAndTimeDemo extends Application {
         Menu menuHelp = new Menu("Hilfe");
         MenuItem help = new MenuItem("Systemeinstellungen-Hilfe");
         help.setAccelerator(KeyCombination.keyCombination("shortcut+?"));
-        menuHelp.getItems().addAll(new MenuItem("Schließen"), help);
+        menuHelp.getItems().addAll(new MenuItem("Schlie\u00dfen"), help);
 
         menuBar.getMenus().addAll(menuSystemPreferences, menuEdit, menuPreferences, menuWindow, menuHelp);
         pane.getChildren().add(menuBar);

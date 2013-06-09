@@ -80,13 +80,13 @@ public class IconTabPaneDemo extends Application {
         vbox.setSpacing(8);
 
         CheckBox box1 = new CheckBox("Alle Dateinamensuffixe einblenden");
-        CheckBox box2 = new CheckBox("Vor dem Ändern eines Suffixes nachfragen");
+        CheckBox box2 = new CheckBox("Vor dem \u00C4ndern eines Suffixes nachfragen");
         box2.setSelected(true);
         CheckBox box3 = new CheckBox("Vor dem Entleeren des Papierkorbs nachfragen");
         box3.setSelected(true);
         CheckBox box4 = new CheckBox("Papierkorb sicher entleeren");
 
-        Label info = new Label("Bei Suchvorgängen:");
+        Label info = new Label("Bei Suchvorg\u00E4ngen:");
         info.setPadding(new Insets(9, 0, 0, 0));
 
         ObservableList<String> items = FXCollections.observableArrayList("Diesen Mac durchsuchen", "Aktuellen Ordner durchsuchen",
