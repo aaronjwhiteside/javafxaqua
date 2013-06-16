@@ -22,7 +22,7 @@
     /*     default font */
     -fx-font-family: 'lucida-grande';
     -fx-font-size: 13.0;
-    -fx-disabled-opacity: 0.5; 
+    -fx-disabled-opacity: 0.6; 
     
      /* The color to use in ListView/TreeView/TableView to indicate hover. */
     -fx-cell-hover-color: rgb(182.0, 214.0, 253.0);
@@ -1293,7 +1293,7 @@ TODO: effect-chaining!!!
 }
 
 .text-area:disabled {
-     -fx-opacity: 1.0;
+    -fx-opacity: 1.0;
     -fx-background-color: white;
        -fx-border-color: rgb(142.0, 142.0, 142.0) rgb(190.0, 190.0, 190.0) rgb(190.0, 190.0, 190.0) rgb(190.0, 190.0, 190.0);
     -fx-text-fill: rgb(127.0, 127.0, 127.0);
