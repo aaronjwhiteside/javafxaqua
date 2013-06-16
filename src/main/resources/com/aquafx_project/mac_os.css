@@ -1266,8 +1266,9 @@ TODO: effect-chaining!!!
 .text-area {
     -fx-padding: 1.0;
     -fx-skin: "com.aquafx_project.controls.skin.AquaTextAreaSkin";
-       -fx-border-color: rgb(142.0, 142.0, 142.0) rgb(190.0, 190.0, 190.0) rgb(190.0, 190.0, 190.0) rgb(190.0, 190.0, 190.0);
-     -fx-border-width: 1.0;
+    -fx-font-family: 'helvetica';
+    -fx-border-color: rgb(142.0, 142.0, 142.0) rgb(190.0, 190.0, 190.0) rgb(190.0, 190.0, 190.0) rgb(190.0, 190.0, 190.0);
+    -fx-border-width: 1.0;
     -fx-background-color: white;
     -fx-background-insets: 1.0;
     -fx-background-radius: 0.0;
