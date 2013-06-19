@@ -2964,7 +2964,6 @@ TODO: effect-chaining!!!
 .color-picker > .arrow-button, .color-picker.button > .arrow-button > .arrow {
   -fx-background-color: null;
   -fx-border-color: null;
-  -fx-padding: 0.25em 0.366667em 0.25em 0.366667em;
 }
 
 .color-picker.split-button > .arrow-button {
