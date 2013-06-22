@@ -5,3 +5,5 @@ syntax: regexp
 
 .classpath
 .project
+syntax: regexp
+^doc$
