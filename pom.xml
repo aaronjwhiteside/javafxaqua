@@ -3,7 +3,7 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>aquafx</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.1</version>
     <groupId>com.aquafx-project</groupId>
     <packaging>jar</packaging>
     <name>AquaFX</name>
@@ -54,6 +54,35 @@
                     <target>1.7</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+                    <quiet>true</quiet>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-doc</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.1.2</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
         <profiles>
@@ -65,24 +94,24 @@
                     <value>true</value>
                 </property>
             </activation>
-<!--             <build> -->
-<!--                 <plugins> -->
-<!--                     <plugin> -->
-<!--                         <groupId>org.apache.maven.plugins</groupId> -->
-<!--                         <artifactId>maven-gpg-plugin</artifactId> -->
-<!--                         <version>1.1</version> -->
-<!--                         <executions> -->
-<!--                             <execution> -->
-<!--                                 <id>sign-artifacts</id> -->
-<!--                                 <phase>verify</phase> -->
-<!--                                 <goals> -->
-<!--                                     <goal>sign</goal> -->
-<!--                                 </goals> -->
-<!--                             </execution> -->
-<!--                         </executions> -->
-<!--                     </plugin> -->
-<!--                 </plugins> -->
-<!--             </build> -->
+            <!-- <build> -->
+            <!-- <plugins> -->
+            <!-- <plugin> -->
+            <!-- <groupId>org.apache.maven.plugins</groupId> -->
+            <!-- <artifactId>maven-gpg-plugin</artifactId> -->
+            <!-- <version>1.1</version> -->
+            <!-- <executions> -->
+            <!-- <execution> -->
+            <!-- <id>sign-artifacts</id> -->
+            <!-- <phase>verify</phase> -->
+            <!-- <goals> -->
+            <!-- <goal>sign</goal> -->
+            <!-- </goals> -->
+            <!-- </execution> -->
+            <!-- </executions> -->
+            <!-- </plugin> -->
+            <!-- </plugins> -->
+            <!-- </build> -->
         </profile>
     </profiles>
     <dependencies>
