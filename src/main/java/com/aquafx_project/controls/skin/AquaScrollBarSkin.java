@@ -28,9 +28,7 @@
 package com.aquafx_project.controls.skin;
 
 import javafx.animation.FadeTransition;
-import javafx.animation.FadeTransitionBuilder;
 import javafx.animation.SequentialTransition;
-import javafx.animation.SequentialTransitionBuilder;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -98,9 +96,11 @@ public class AquaScrollBarSkin extends ScrollBarSkin implements AquaSkin{
 
     private void fading() {
         if (fadeIn == null) {
-            fadeOutSeq = SequentialTransitionBuilder.create().delay(Duration.millis(2000)).children(
-                    FadeTransitionBuilder.create().delay(Duration.millis(300)).fromValue(1.0).toValue(0.0).onFinished(
-                            new EventHandler<ActionEvent>() {
+            
+            FadeTransition fadeTransition = new FadeTransition(Duration.millis(300));
+            fadeTransition.setFromValue(1.0);
+            fadeTransition.setToValue(0.0);
+            fadeTransition.setOnFinished( new EventHandler<ActionEvent>() {
 
                                 @Override public void handle(ActionEvent event) {
                                     alreadyFaded = false;
@@ -111,16 +111,23 @@ public class AquaScrollBarSkin extends ScrollBarSkin implements AquaSkin{
                                         child.setStyle(null);
                                     }
                                 }
-                            }).build()).node(getSkinnable()).build();
+                            });
+            fadeOutSeq = new SequentialTransition();
+            fadeOutSeq.setDelay(Duration.millis(2000));
+            fadeOutSeq.getChildren().add(fadeTransition);
+            fadeOutSeq.setNode(getSkinnable());
+            
+            fadeIn = new FadeTransition(Duration.millis(100));
+            fadeIn.setNode(getSkinnable());
+            fadeIn.setFromValue(0.0);
+            fadeIn.setToValue(1.0);
+            fadeIn.setOnFinished( new EventHandler<ActionEvent>() {
 
-            fadeIn = FadeTransitionBuilder.create().delay(Duration.millis(100)).node(getSkinnable()).fromValue(0.0).toValue(1.0).onFinished(
-                    new EventHandler<ActionEvent>() {
-
-                        @Override public void handle(ActionEvent event) {
-                            alreadyFaded = true;
-                            fadeOutSeq.playFromStart();
-                        }
-                    }).build();
+                @Override public void handle(ActionEvent event) {
+                    alreadyFaded = true;
+                    fadeOutSeq.playFromStart();
+                }
+            });
         }
         if (fadeIn.getCurrentRate() == 0.0d && !alreadyFaded) {
             fadeIn.play();
