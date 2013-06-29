@@ -3,7 +3,7 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>aquafx</artifactId>
-    <version>0.1</version>
+    <version>0.2-SNAPSHOT</version>
     <groupId>com.aquafx-project</groupId>
     <packaging>jar</packaging>
     <name>AquaFX</name>
@@ -14,13 +14,6 @@
         <artifactId>oss-parent</artifactId>
         <version>7</version>
     </parent>
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
 
     <developers>
         <developer>
@@ -83,37 +76,22 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.1</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
-        <profiles>
-        <profile>
-            <id>release-and-sign-aquafx</id>
-            <activation>
-                <property>
-                    <name>performRelease</name>
-                    <value>true</value>
-                </property>
-            </activation>
-            <!-- <build> -->
-            <!-- <plugins> -->
-            <!-- <plugin> -->
-            <!-- <groupId>org.apache.maven.plugins</groupId> -->
-            <!-- <artifactId>maven-gpg-plugin</artifactId> -->
-            <!-- <version>1.1</version> -->
-            <!-- <executions> -->
-            <!-- <execution> -->
-            <!-- <id>sign-artifacts</id> -->
-            <!-- <phase>verify</phase> -->
-            <!-- <goals> -->
-            <!-- <goal>sign</goal> -->
-            <!-- </goals> -->
-            <!-- </execution> -->
-            <!-- </executions> -->
-            <!-- </plugin> -->
-            <!-- </plugins> -->
-            <!-- </build> -->
-        </profile>
-    </profiles>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
