@@ -1,54 +1,59 @@
 /**
- * Copyright (c) 2013, Claudine Zillmann
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *     * Redistributions of source code must retain the above copyright
- * notice, this list of conditions and the following disclaimer.
- *     * Redistributions in binary form must reproduce the above copyright
- * notice, this list of conditions and the following disclaimer in the
- * documentation and/or other materials provided with the distribution.
- *     * Neither the name of AquaFX, the website aquafx-project.com, nor the
- * names of its contributors may be used to endorse or promote products
- * derived from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
- * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL CLAUDINE ZILLMANN BE LIABLE FOR ANY
- * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
- * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
- * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Copyright (c) 2013, Claudine Zillmann All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without modification, are permitted
+ * provided that the following conditions are met: * Redistributions of source code must retain the
+ * above copyright notice, this list of conditions and the following disclaimer. * Redistributions
+ * in binary form must reproduce the above copyright notice, this list of conditions and the
+ * following disclaimer in the documentation and/or other materials provided with the distribution.
+ * * Neither the name of AquaFX, the website aquafx-project.com, nor the names of its contributors
+ * may be used to endorse or promote products derived from this software without specific prior
+ * written permission.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
+ * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL CLAUDINE ZILLMANN BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+ * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+ * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 package com.aquafx_project.demo;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Separator;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import com.aquafx_project.AquaFx;
+import com.aquafx_project.controls.skin.styles.ControlSizeVariant;
 import com.aquafx_project.controls.skin.styles.TabPaneType;
 
 public class TinyTabPaneDemo extends Application {
 
     @Override public void start(Stage stage) {
-        stage.setTitle("Tiny icon-TP");
+        stage.setTitle("Verknüpfung");
         AquaFx.styleStage(stage, StageStyle.UTILITY);
         Pane root = new Pane();
-        Scene scene = new Scene(root, 215, 300);
+        Scene scene = new Scene(root);
 
         /*
          * Tabpane section
@@ -140,10 +145,66 @@ public class TinyTabPaneDemo extends Application {
         verknuepfung.setPreserveRatio(true);
         verknuepfung.setFitHeight(16);
         tab8.setGraphic(verknuepfung);
+
         Label label8 = new Label("verknuepfung...");
         label8.setPadding(new Insets(15));
-        tab8.setContent(label8);
+
+        TabPane innerTabpane = new TabPane();
+        // innerTabpane.setMinWidth(268);
+        Tab innerTab1 = new Tab("Hyperlink");
+        innerTabpane.getTabs().add(innerTab1);
+        VBox content = new VBox();
+        content.setSpacing(5);
+        content.setPadding(new Insets(10, 20, 10, 15));
+        CheckBox cb = new CheckBox("Als Hyperlink aktivieren");
+        cb.setStyle("-fx-font-weight: bold;");
+        content.getChildren().add(cb);
+        FlowPane flow1 = new FlowPane();
+        Label l1 = new Label("Ziel:");
+        ChoiceBox<String> choice = new ChoiceBox<>(FXCollections.observableArrayList("Webseite"));
+        choice.getSelectionModel().selectFirst();
+        choice.setPrefWidth(140);
+        choice.setDisable(true);
+        flow1.getChildren().addAll(l1, choice);
+        flow1.setAlignment(Pos.CENTER_RIGHT);
+        flow1.setHgap(5);
+        content.getChildren().add(flow1);
+
+        FlowPane flow2 = new FlowPane();
+        Label l2 = new Label("URL:");
+        TextField tf = new TextField();
+        tf.setPrefWidth(140);
+        tf.setDisable(true);
+        flow2.getChildren().addAll(l2, tf);
+        flow2.setAlignment(Pos.CENTER_RIGHT);
+        flow2.setHgap(5);
+        content.getChildren().add(flow2);
+
+        VBox spacer = new VBox();
+        spacer.setPrefSize(1, 50);
+        content.getChildren().add(spacer);
+
+        Separator sep = new Separator(Orientation.HORIZONTAL);
+        sep.setPrefWidth(100);
+        content.getChildren().add(sep);
+        
+        CheckBox cb2 = new CheckBox("Alle Hyperlinks deaktivieren");
+        cb2.setPadding(new Insets(10));
+        content.getChildren().add(cb2);
+        
+        
+        innerTab1.setContent(content);
+
+        Tab innerTab2 = new Tab("Lesez.");
+        innerTabpane.getTabs().add(innerTab2);
+        Tab innerTab3 = new Tab("Serienbrief");
+        innerTabpane.getTabs().add(innerTab3);
+        AquaFx.createTabPaneStyler().setSizeVariant(ControlSizeVariant.MINI).style(innerTabpane);
+        innerTabpane.setPadding(new Insets(10, -10, -10, -10));
+
+        tab8.setContent(innerTabpane);
         tabPane.getTabs().add(tab8);
+        tabPane.getSelectionModel().select(tab8);
 
         Tab tab9 = new Tab();
         Image image9 = new Image(AquaFx.class.getResource("demo/images/pages/quicktime.png").toExternalForm());
