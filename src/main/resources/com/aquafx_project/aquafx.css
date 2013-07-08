@@ -634,7 +634,7 @@
  ******************************************************************************/
 
 .context-menu {
-    -fx-skin: "com.aquafx_project.controls.skin.AquaContextMenuSkin";
+    -fx-skin: "com.aquafx_project.controls.skin.AquaContextMenuSkin"; 
     -fx-border-color: rgb(209.0, 209.0, 209.0, 0.4);
     -fx-border-width: 0.5;
     -fx-border-radius: 6.0;
@@ -1189,19 +1189,19 @@ TODO: effect-chaining!!!
  ******************************************************************************/
 
 .separator > .line {
-    -fx-border-width: 0.083333em;
+    -fx-border-width: 0.5px;
 }
 
 .separator:horizontal > .line {
-    -fx-background-color: null;
-    -fx-padding: 0.133333em 0.0em 0.0em 0.0em;
-    -fx-border-color: rgb(229.0, 229.0, 229.0) transparent transparent transparent;
+    -fx-background-color: rgb(132.0, 132.0, 132.0);
+    -fx-padding: 0.1 0.0 0.0 0.0;
+    -fx-border-color: transparent;
 }
 
 .separator:vertical > .line {
-    -fx-background-color: null;
-    -fx-padding: 0.0em 0.133333em 0.0em 0.0em;
-    -fx-border-color:  transparent rgb(229.0, 229.0, 229.0) transparent transparent;
+    -fx-background-color:  rgb(132.0, 132.0, 132.0);
+    -fx-padding: 0.0 0.1 0.0 0.0;
+    -fx-border-color:  transparent;
 }
 
 /*******************************************************************************

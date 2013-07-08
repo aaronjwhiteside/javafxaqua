@@ -111,7 +111,7 @@ public class AquaFx {
     /**
      * The AQUA_CSS_NAME is a constant, which holds the path to the CSS file for AquaFX.
      */
-    private final static String AQUA_CSS_NAME = AquaFx.class.getResource("mac_os.css").toExternalForm();
+    private final static String AQUA_CSS_NAME = AquaFx.class.getResource("aquafx.css").toExternalForm();
 
     /**
      * A Style Factory adds a Style Class to a Control for the possibility of CSS styling.
