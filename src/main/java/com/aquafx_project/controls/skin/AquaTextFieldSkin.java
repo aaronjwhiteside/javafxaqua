@@ -71,7 +71,7 @@ public class AquaTextFieldSkin extends TextFieldSkin implements AquaSkin {
                     if (newValue.booleanValue()) {
                         if (searchIconPath == null) {
                             searchIconPath = new Region();
-                            searchIconPath.getStyleClass().add("search-icon");
+                            searchIconPath.getStyleClass().add("icon-search");
                         }
                         getChildren().add(searchIconPath);
                     } else if (oldValue != null && searchIconPath != null) {
@@ -90,7 +90,7 @@ public class AquaTextFieldSkin extends TextFieldSkin implements AquaSkin {
                     if (newValue.booleanValue()) {
                         if (cancelSearchIconPath == null) {
                             cancelSearchIconPath = new Region();
-                            cancelSearchIconPath.getStyleClass().add("cancel-search-icon");
+                            cancelSearchIconPath.getStyleClass().add("icon-delete");
 
                             cancelSearchIconPath.setOnMouseClicked(new EventHandler<MouseEvent>() {
                                 @Override public void handle(MouseEvent event) {
