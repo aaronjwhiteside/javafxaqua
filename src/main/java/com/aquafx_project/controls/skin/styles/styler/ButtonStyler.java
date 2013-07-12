@@ -51,11 +51,11 @@ public class ButtonStyler extends Styler<Button> {
     /**
      * ButtonType of a Button.
      */
-    private ButtonType type;
+    protected ButtonType type;
     /**
      * Icon for a Button.
      */
-    private MacOSDefaultIcons icon;
+    protected MacOSDefaultIcons icon;
 
     private ButtonStyler() {}
 

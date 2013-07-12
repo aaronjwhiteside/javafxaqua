@@ -52,11 +52,11 @@ public class ToggleButtonStyler extends Styler<ToggleButton> {
     /**
      * ButtonType of a ToggleButton.
      */
-    private ButtonType type;
+    protected ButtonType type;
     /**
      * Icon for a ToggleButton.
      */
-    private MacOSDefaultIcons icon;
+    protected MacOSDefaultIcons icon;
 
     private ToggleButtonStyler() {}
 
