@@ -50,7 +50,7 @@ public class TextFieldStyler extends Styler<TextField> {
     /**
      * TextFieldType of a TextField.
      */
-    private TextFieldType type;
+    protected TextFieldType type;
 
     /**
      * Creates a new Instance of TextFieldStyler. This has to be the first invocation on
