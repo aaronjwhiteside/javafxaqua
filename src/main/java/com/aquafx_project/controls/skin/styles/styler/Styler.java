@@ -48,7 +48,7 @@ public class Styler<T extends Control> {
     /**
      * The SizeVariant for the Control.
      */
-    protected ControlSizeVariant sizeVariant;
+    private ControlSizeVariant sizeVariant;
 
     /**
      * Adds all StyleDfinitions, which were defined, to the Controls' style class definitions. This
@@ -97,4 +97,8 @@ public class Styler<T extends Control> {
      * incompatible Styles can be combined.
      */
     public void check() {}
+
+    public ControlSizeVariant getSizeVariant() {
+        return sizeVariant;
+    }
 }

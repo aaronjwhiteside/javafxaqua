@@ -52,11 +52,11 @@ public class ToggleButtonStyler extends Styler<ToggleButton> {
     /**
      * ButtonType of a ToggleButton.
      */
-    protected ButtonType type;
+    private ButtonType type;
     /**
      * Icon for a ToggleButton.
      */
-    protected MacOSDefaultIcons icon;
+    private MacOSDefaultIcons icon;
 
     private ToggleButtonStyler() {}
 
@@ -102,7 +102,7 @@ public class ToggleButtonStyler extends Styler<ToggleButton> {
 
     @Override public List<StyleDefinition> getAll() {
         List<StyleDefinition> ret = new ArrayList<>(super.getAll());
-        ret.add(sizeVariant);
+        ret.add(getSizeVariant());
         ret.add(type);
         return ret;
     }
@@ -120,5 +120,13 @@ public class ToggleButtonStyler extends Styler<ToggleButton> {
         if (skin != null && skin instanceof AquaButtonSkin) {
             ((AquaButtonSkin) skin).iconProperty().setValue(icon);
         }
+    }
+
+    public ButtonType getType() {
+        return type;
+    }
+
+    public MacOSDefaultIcons getIcon() {
+        return icon;
     }
 }

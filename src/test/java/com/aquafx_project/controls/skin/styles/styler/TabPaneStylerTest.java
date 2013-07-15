@@ -19,16 +19,16 @@ public class TabPaneStylerTest {
     public void testSetSize() {
         TabPaneStyler styler = TabPaneStyler.create();
         styler.setSizeVariant(ControlSizeVariant.MINI);
-        Assert.assertNotNull(styler.sizeVariant);
-        Assert.assertEquals(ControlSizeVariant.MINI, styler.sizeVariant);
+        Assert.assertNotNull(styler.getSizeVariant());
+        Assert.assertEquals(ControlSizeVariant.MINI, styler.getSizeVariant());
     }
     
     @Test 
     public void testSetType() {
         TabPaneStyler styler = TabPaneStyler.create();
         styler.setType(TabPaneType.ICON_BUTTONS);
-        Assert.assertNotNull(styler.type);
-        Assert.assertEquals(styler.type, TabPaneType.ICON_BUTTONS);
+        Assert.assertNotNull(styler.getType());
+        Assert.assertEquals(styler.getType(), TabPaneType.ICON_BUTTONS);
         Assert.assertTrue(styler.getAll().contains(TabPaneType.ICON_BUTTONS));
     }
     

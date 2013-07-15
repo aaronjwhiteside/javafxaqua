@@ -45,7 +45,7 @@ public class TabPaneStyler extends Styler<TabPane> {
     /**
      * TabPaneType of a TabPane.
      */
-    protected TabPaneType type;
+    private TabPaneType type;
 
     /**
      * Creates a new Instance of TabPaneStyler. This has to be the first invocation on
@@ -76,14 +76,14 @@ public class TabPaneStyler extends Styler<TabPane> {
 
     @Override public void check() {
         if (type != null && (type.equals(TabPaneType.SMALL_ICON_BUTTONS) || type.equals(TabPaneType.ICON_BUTTONS)) 
-                && sizeVariant != null && (sizeVariant.equals(ControlSizeVariant.MINI) || sizeVariant.equals(ControlSizeVariant.SMALL))) {
+                && getSizeVariant() != null && (getSizeVariant().equals(ControlSizeVariant.MINI) || getSizeVariant().equals(ControlSizeVariant.SMALL))) {
             throw new IllegalStyleCombinationException();
         }
     }
 
     @Override public List<StyleDefinition> getAll() {
         List<StyleDefinition> ret = new ArrayList<>(super.getAll());
-        ret.add(sizeVariant);
+        ret.add(getSizeVariant());
         ret.add(type);
         return ret;
     }
@@ -102,5 +102,9 @@ public class TabPaneStyler extends Styler<TabPane> {
                 }
             });
         }
+    }
+
+    public TabPaneType getType() {
+        return type;
     }
 }

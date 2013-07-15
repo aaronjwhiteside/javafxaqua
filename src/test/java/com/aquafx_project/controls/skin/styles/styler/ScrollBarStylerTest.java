@@ -17,7 +17,7 @@ public class ScrollBarStylerTest {
     public void testSetSize() {
         ScrollBarStyler styler = ScrollBarStyler.create();
         styler.setSizeVariant(ControlSizeVariant.MINI);
-        Assert.assertEquals(ControlSizeVariant.MINI, styler.sizeVariant);
+        Assert.assertEquals(ControlSizeVariant.MINI, styler.getSizeVariant());
     }
     
     @Test
@@ -25,9 +25,9 @@ public class ScrollBarStylerTest {
         try {
             ScrollBarStyler styler = ScrollBarStyler.create();
             styler.setSizeVariant(ControlSizeVariant.SMALL);
-            Assert.assertEquals(ControlSizeVariant.SMALL, styler.sizeVariant);
+            Assert.assertEquals(ControlSizeVariant.SMALL, styler.getSizeVariant());
             styler.setSizeVariant(ControlSizeVariant.MINI);
-            Assert.assertEquals(ControlSizeVariant.MINI, styler.sizeVariant);
+            Assert.assertEquals(ControlSizeVariant.MINI, styler.getSizeVariant());
          } catch (Exception e) {
              Assert.fail("No Exception expected");
          } 

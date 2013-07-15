@@ -51,11 +51,11 @@ public class ButtonStyler extends Styler<Button> {
     /**
      * ButtonType of a Button.
      */
-    protected ButtonType type;
+    private ButtonType type;
     /**
      * Icon for a Button.
      */
-    protected MacOSDefaultIcons icon;
+    private MacOSDefaultIcons icon;
 
     private ButtonStyler() {}
 
@@ -100,7 +100,7 @@ public class ButtonStyler extends Styler<Button> {
 
     @Override public List<StyleDefinition> getAll() {
         List<StyleDefinition> ret = new ArrayList<>(super.getAll());
-        ret.add(sizeVariant);
+        ret.add(getSizeVariant());
         ret.add(type);
         return ret;
     }
@@ -119,4 +119,13 @@ public class ButtonStyler extends Styler<Button> {
             ((AquaButtonSkin) skin).iconProperty().setValue(icon);
         }
     }
+    
+    public ButtonType getType() {
+        return type;
+    }
+
+    public MacOSDefaultIcons getIcon() {
+        return icon;
+    }
+
 }

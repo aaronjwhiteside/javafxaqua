@@ -20,23 +20,23 @@ public class ToggleButtonStylerTest {
     public void testSetSize() {
         ToggleButtonStyler styler = ToggleButtonStyler.create();
         styler.setSizeVariant(ControlSizeVariant.MINI);
-        Assert.assertEquals(ControlSizeVariant.MINI, styler.sizeVariant);
+        Assert.assertEquals(ControlSizeVariant.MINI, styler.getSizeVariant());
     }
     
     @Test 
     public void testSetIcon() {
         ToggleButtonStyler styler = ToggleButtonStyler.create();
         styler.setIcon(MacOSDefaultIcons.SHARE);
-        Assert.assertNotNull(styler.icon);
-        Assert.assertEquals(styler.icon, MacOSDefaultIcons.SHARE);
+        Assert.assertNotNull(styler.getIcon());
+        Assert.assertEquals(styler.getIcon(), MacOSDefaultIcons.SHARE);
     }
     
     @Test 
     public void testSetType() {
         ToggleButtonStyler styler = ToggleButtonStyler.create();
         styler.setType(ButtonType.ROUND_RECT);
-        Assert.assertNotNull(styler.type);
-        Assert.assertEquals(styler.type, ButtonType.ROUND_RECT);
+        Assert.assertNotNull(styler.getType());
+        Assert.assertEquals(styler.getType(), ButtonType.ROUND_RECT);
         Assert.assertTrue(styler.getAll().contains(ButtonType.ROUND_RECT));
     }
     

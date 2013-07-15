@@ -20,23 +20,23 @@ public class ButtonStylerTest {
     public void testSetSize() {
         ButtonStyler styler = ButtonStyler.create();
         styler.setSizeVariant(ControlSizeVariant.MINI);
-        Assert.assertEquals(ControlSizeVariant.MINI, styler.sizeVariant);
+        Assert.assertEquals(ControlSizeVariant.MINI, styler.getSizeVariant());
     }
     
     @Test 
     public void testSetIcon() {
         ButtonStyler styler = ButtonStyler.create();
         styler.setIcon(MacOSDefaultIcons.SHARE);
-        Assert.assertNotNull(styler.icon);
-        Assert.assertEquals(styler.icon, MacOSDefaultIcons.SHARE);
+        Assert.assertNotNull(styler.getIcon());
+        Assert.assertEquals(styler.getIcon(), MacOSDefaultIcons.SHARE);
     }
     
     @Test 
     public void testSetType() {
         ButtonStyler styler = ButtonStyler.create();
         styler.setType(ButtonType.ROUND_RECT);
-        Assert.assertNotNull(styler.type);
-        Assert.assertEquals(styler.type, ButtonType.ROUND_RECT);
+        Assert.assertNotNull(styler.getType());
+        Assert.assertEquals(styler.getType(), ButtonType.ROUND_RECT);
         Assert.assertTrue(styler.getAll().contains(ButtonType.ROUND_RECT));
     }
     

@@ -50,7 +50,7 @@ public class TextFieldStyler extends Styler<TextField> {
     /**
      * TextFieldType of a TextField.
      */
-    protected TextFieldType type;
+    private TextFieldType type;
 
     /**
      * Creates a new Instance of TextFieldStyler. This has to be the first invocation on
@@ -81,13 +81,13 @@ public class TextFieldStyler extends Styler<TextField> {
 
     @Override public List<StyleDefinition> getAll() {
         List<StyleDefinition> ret = new ArrayList<>(super.getAll());
-        ret.add(sizeVariant);
+        ret.add(getSizeVariant());
         ret.add(type);
         return ret;
     }
 
     @Override public void check() {
-        if (type != null && type.equals(TextFieldType.SEARCH) && sizeVariant == ControlSizeVariant.MINI) {
+        if (type != null && type.equals(TextFieldType.SEARCH) && getSizeVariant() == ControlSizeVariant.MINI) {
             throw new IllegalStyleCombinationException();
         }
     }
@@ -106,5 +106,9 @@ public class TextFieldStyler extends Styler<TextField> {
                 ((AquaTextFieldSkin) skin).showSearchIconProperty().setValue(false);
             }
         }
+    }
+
+    public TextFieldType getType() {
+        return type;
     }
 }

@@ -19,15 +19,15 @@ public class TextFieldStylerTest {
     public void testSetSize() {
         TextFieldStyler styler = TextFieldStyler.create();
         styler.setSizeVariant(ControlSizeVariant.MINI);
-        Assert.assertEquals(ControlSizeVariant.MINI, styler.sizeVariant);
+        Assert.assertEquals(ControlSizeVariant.MINI, styler.getSizeVariant());
     }
 
     @Test 
     public void testSetType() {
         TextFieldStyler styler = TextFieldStyler.create();
         styler.setType(TextFieldType.ROUND_RECT);
-        Assert.assertNotNull(styler.type);
-        Assert.assertEquals(styler.type, TextFieldType.ROUND_RECT);
+        Assert.assertNotNull(styler.getType());
+        Assert.assertEquals(styler.getType(), TextFieldType.ROUND_RECT);
         Assert.assertTrue(styler.getAll().contains(TextFieldType.ROUND_RECT));
     }
     
