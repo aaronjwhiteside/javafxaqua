@@ -1871,6 +1871,10 @@ TODO: effect-chaining!!!
             rgb(255.0, 255.0, 255.0, 0.4) 85.0%, rgb(245.0, 245.0, 245.0, 0.7) 100.0%);
 }
 
+.progress-bar:indeterminate > .bar {
+    -fx-background-color: transparent;
+}
+
 .progress-bar > .bar {
     -fx-border-color:linear-gradient(to bottom, rgb(161.0, 161.0, 161.0), rgb(208.0, 208.0, 208.0));
     -fx-border-width: 0.0 0.5 0.0 0.0;
@@ -2016,7 +2020,6 @@ TODO: effect-chaining!!!
     -fx-background-color: white;
     -fx-background-insets: 0.0;
     -fx-text-fill: -fx-text-base-color;
-    -fx-cell-size: 1.461538em;
 }
 
 .table-row-cell:odd,
@@ -2034,7 +2037,7 @@ TODO: effect-chaining!!!
 .table-view:row-selection:focused > .virtual-flow > .clipped-container > .sheet > .table-row-cell:filled:focused:selected:hover,
 .tree-table-view:row-selection:focused > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell:filled:focused:selected:hover {
     -fx-background-color: rgb(60.0, 119.0, 212.0);
-    -fx-background-insets: 0.0 0.0 1.0 0.0;
+    -fx-background-insets: 0.0;
 }
 
 /* When the TableView is _not_ focused, we show alternate selection colors */
@@ -2070,6 +2073,7 @@ TODO: effect-chaining!!!
 .table-cell,
 .tree-table-cell {
     -fx-background-color: transparent;
+    -fx-background-insets: 0.0;
     -fx-border-color: transparent;
     -fx-border-width: 0.0em;
     -fx-text-fill: -fx-text-base-color;
@@ -2260,7 +2264,6 @@ TODO: effect-chaining!!!
     -fx-padding: 0.083333em;
     -fx-text-fill: -fx-text-base-color;
     -fx-indent: 13.0;
-    -fx-cell-size: 1.461538em;
 }
 
 .tree-cell .label {
@@ -2272,7 +2275,6 @@ TODO: effect-chaining!!!
 .tree-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-cell:filled:selected:hover,
 .tree-view:focused > .virtual-flow > .clipped-container > .sheet > .tree-cell:filled:focused:selected:hover {
     -fx-background-color: rgb(60.0, 119.0, 212.0);
-    -fx-background-insets: 0.0 0.0 1.0 0.0;
     -fx-text-fill: white;
 }
 
