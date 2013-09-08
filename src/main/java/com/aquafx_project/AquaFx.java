@@ -27,6 +27,11 @@
 
 package com.aquafx_project;
 
+import javafx.scene.control.Control;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
 import com.aquafx_project.controls.skin.styles.ControlSizeVariant;
 import com.aquafx_project.controls.skin.styles.StyleFactory;
 import com.aquafx_project.controls.skin.styles.styler.ButtonStyler;
@@ -46,12 +51,7 @@ import com.aquafx_project.controls.skin.styles.styler.TextAreaStyler;
 import com.aquafx_project.controls.skin.styles.styler.TextFieldStyler;
 import com.aquafx_project.controls.skin.styles.styler.ToggleButtonStyler;
 import com.aquafx_project.controls.skin.styles.styler.ToolBarStyler;
-
-import javafx.application.Application;
-import javafx.scene.control.Control;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import com.guigarage.stylemanager.ApplicationStyleManager;
 
 /**
  * <p>
@@ -108,10 +108,6 @@ import javafx.stage.StageStyle;
  * 
  */
 public class AquaFx {
-    /**
-     * The AQUA_CSS_NAME is a constant, which holds the path to the CSS file for AquaFX.
-     */
-    private final static String AQUA_CSS_NAME = AquaFx.class.getResource("aquafx.css").toExternalForm();
 
     /**
      * A Style Factory adds a Style Class to a Control for the possibility of CSS styling.
@@ -122,7 +118,7 @@ public class AquaFx {
      * Applies AquaFx skinning to the application.
      */
     public static void style() {
-        Application.setUserAgentStylesheet(AQUA_CSS_NAME);
+    	ApplicationStyleManager.getInstance().styleApplication(AquaFxStyle.class.getName());
     }
 
     /**

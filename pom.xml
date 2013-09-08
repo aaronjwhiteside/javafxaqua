@@ -99,5 +99,10 @@
             <version>4.10</version>
             <scope>test</scope>
         </dependency>
+        <dependency> b
+			<artifactId>stylemanager</artifactId>
+			<version>0.1b2</version>
+			<groupId>com.guigarage</groupId>
+		</dependency>
     </dependencies>
 </project>
