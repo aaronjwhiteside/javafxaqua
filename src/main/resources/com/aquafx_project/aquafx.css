@@ -292,6 +292,15 @@
 
 .button{
     -fx-skin: "com.aquafx_project.controls.skin.AquaButtonSkin";
+    -fx-aqua-start-color-1: rgb(183.0, 206.0, 238.0);
+    -fx-aqua-start-color-2: rgb(142.0, 188.0, 237.0);
+    -fx-aqua-start-color-3: rgb(114.0, 174.0, 236.0);
+    -fx-aqua-start-color-4: rgb(178, 218.0, 242.0);
+    -fx-aqua-end-color-1: rgb(203.0, 243.0, 254.0);
+    -fx-aqua-end-color-2: rgb(166.0, 211.0, 248.0);
+    -fx-aqua-end-color-3: rgb(137.0, 198.0, 248.0);
+    -fx-aqua-end-color-4: rgb(203.0, 243.0, 254.0);
+    -fx-aqua-armed-style:"-fx-background-color: linear-gradient(rgb(190, 214, 237) 0%, rgb(178, 213, 237) 100% ), linear-gradient(rgb(165, 193, 238) 0%, rgb(108, 161, 231) 50%, rgb(74, 138, 217) 50%, rgb(105, 167, 236) 75%, rgb(152, 201, 238) 100%), radial-gradient(focus-angle 180deg, focus-distance 95%, center 1% 50%, radius 50%, #78b0ee, transparent), radial-gradient(focus-angle 0deg, focus-distance 95%, center 100% 50%, radius 50%, #78b0ee, transparent); -fx-background-insets: 0, 0, 1 1 1 2, 1 2 1 1; -fx-background-radius: 4, 4, 4, 4; -fx-border-color: rgb(100, 103, 124);";
 }
 
 .toggle-button {
@@ -312,9 +321,12 @@
     -fx-text-fill: -fx-text-base-color;
     -fx-alignment: CENTER;
     -fx-content-display: LEFT;
+
+    -fx-aqua-inner-focus-color: rgb(104, 155, 201, 0.8);
+    -fx-aqua-outer-focus-color: rgb(120, 171, 217);
 }
 
- .button:armed, .button:default:armed{
+.button:armed, .button:default:armed{
     -fx-background-color:
         linear-gradient(rgb(190.0, 214.0, 237.0) 0.0%, rgb(178.0, 213.0, 237.0) 100.0% ),
         linear-gradient(rgb(165.0, 193.0, 238.0) 0.0%, rgb(108.0, 161.0, 231.0) 50.0%,
@@ -328,6 +340,7 @@
     -fx-background-radius: 4.0, 4.0, 4.0, 4.0;
     -fx-border-color: rgb(100.0, 103.0, 124.0);
 }
+
 
 .toggle-button:selected{
     -fx-background-color: rgb(97.0, 97.0, 97.0), -toggle-selected-base, -toggle-shadow;
@@ -427,13 +440,15 @@
     -fx-skin: "com.aquafx_project.controls.skin.AquaRadioButtonSkin";
     -fx-label-padding: 0.0em 0.0em 0.0em 0.384615em;
     -fx-text-fill: -fx-text-base-color;
+    -fx-aqua-inner-focus-color: rgb(104, 155, 201, 0.8);
+    -fx-aqua-outer-focus-color: rgb(120, 171, 217);
 }
 
 .radio-button > .radio,
 .radio-button > .radio.unfocused {
     -fx-border-width: 0.5;
-    -fx-border-insets: 0.0
-0.0 1.0 0.0;     -fx-border-color: rgb(129.0, 129.0, 129.0);
+    -fx-border-insets: 0.0 0.0 1.0 0.0;     
+    -fx-border-color: rgb(129.0, 129.0, 129.0);
     -fx-border-radius: 1.0em;
     -fx-background-color: rgb(250.0, 250.0, 250.0),
         linear-gradient(
@@ -512,6 +527,9 @@
     -fx-skin: "com.aquafx_project.controls.skin.AquaCheckBoxSkin";
     -fx-label-padding: 0.0em 0.0em 0.0em 0.384615em;
     -fx-text-fill: -fx-text-base-color;
+    
+    -fx-aqua-inner-focus-color: rgb(104, 155, 201, 0.8);
+    -fx-aqua-outer-focus-color: rgb(120, 171, 217);
 }
 
 .check-box > .box,
@@ -885,6 +903,9 @@
     -fx-padding: 0.12em 0.0em 0.12em 0.0em;
     -fx-alignment: CENTER;
     -fx-content-display: LEFT;
+    
+    -fx-aqua-inner-focus-color: rgb(104, 155, 201, 0.8);
+    -fx-aqua-outer-focus-color: rgb(120, 171, 217);
 }
 
 .choice-box > .label {
@@ -920,6 +941,8 @@
  ******************************************************************************/
 .slider{
     -fx-skin: "com.aquafx_project.controls.skin.AquaSliderSkin";
+    -fx-aqua-inner-focus-color: rgb(104, 155, 201, 0.8);
+    -fx-aqua-outer-focus-color: rgb(120, 171, 217);
 }
 
 .slider > .thumb {
@@ -1231,6 +1254,9 @@ TODO: effect-chaining!!!
     -fx-highlight-fill: rgb(182.0, 214.0, 253.0);
     -fx-prompt-text-fill: rgb(128.0, 128.0, 128.0);
     -fx-cursor: text;
+    
+    -fx-aqua-inner-focus-color: rgb(104, 155, 201, 0.8);
+    -fx-aqua-outer-focus-color: rgb(120, 171, 217);
 }
 
 .text-field:focused {
@@ -1258,6 +1284,9 @@ TODO: effect-chaining!!!
 .password-field {
     -fx-skin: "com.aquafx_project.controls.skin.AquaPasswordFieldSkin";
     -fx-text-fill: -fx-text-base-color;
+    
+    -fx-aqua-inner-focus-color: rgb(104, 155, 201, 0.8);
+    -fx-aqua-outer-focus-color: rgb(120, 171, 217);
 }
 
 /*******************************************************************************
@@ -1278,6 +1307,9 @@ TODO: effect-chaining!!!
     -fx-text-fill: -fx-text-base-color;
     -fx-prompt-text-fill: rgb(128.0, 128.0, 128.0);
     -fx-highlight-fill: transparent;
+    
+    -fx-aqua-inner-focus-color: rgb(104, 155, 201, 0.8);
+    -fx-aqua-outer-focus-color: rgb(120, 171, 217);
 }
 
 .text-area > .scroll-pane {
@@ -1409,6 +1441,9 @@ TODO: effect-chaining!!!
     -fx-border-color: linear-gradient(rgb(147.0, 147.0, 147.0), rgb(131.0, 131.0, 131.0)),
         linear-gradient(rgb(116.0, 116.0, 116.0), rgb(105.0, 105.0, 105.0));
     -fx-padding: 0.1em 0.0em 0.153846em 0.0em;
+
+    -fx-aqua-inner-focus-color: rgb(104, 155, 201, 0.8);
+    -fx-aqua-outer-focus-color: rgb(120, 171, 217);
 }
 
 .menu-button > .label { 
@@ -1464,6 +1499,9 @@ TODO: effect-chaining!!!
         -fx-skin: "com.aquafx_project.controls.skin.AquaSplitMenuButtonSkin";
     -fx-padding: 0.0em;
     -fx-text-fill: -fx-text-base-color;
+    
+    -fx-aqua-inner-focus-color: rgb(104, 155, 201, 0.8);
+    -fx-aqua-outer-focus-color: rgb(120, 171, 217);
 }
 
 .split-menu-button > .label {
@@ -1860,6 +1898,8 @@ TODO: effect-chaining!!!
     -fx-indeterminate-bar-escape: false;
     -fx-indeterminate-bar-flip: false;
     -fx-indeterminate-bar-animation-time: 0.0;
+    
+    -fx-aqua-determinate-image: "progress.png";
 }
 
 .progress-bar:indeterminate  {
@@ -1869,6 +1909,8 @@ TODO: effect-chaining!!!
         linear-gradient(rgb(255.0, 255.0, 255.0, 0.7) 5.0%, rgb(255.0, 255.0, 255.0, 0.5) 5.0%,
             rgb(255.0, 255.0, 255.0, 0.1) 50.0%, rgb(255.0, 255.0, 255.0, 0.0) 50.0%, rgb(255.0, 255.0, 255.0, 0.0) 60.0%,
             rgb(255.0, 255.0, 255.0, 0.4) 85.0%, rgb(245.0, 245.0, 245.0, 0.7) 100.0%);
+            
+      -fx-aqua-indeterminate-color:rgb(84.0, 169.0, 239.0);      
 }
 
 .progress-bar:indeterminate > .bar {
@@ -2908,6 +2950,9 @@ TODO: effect-chaining!!!
 
 .combo-box {
     -fx-skin: "com.aquafx_project.controls.skin.AquaComboBoxListViewSkin";
+
+    -fx-aqua-inner-focus-color: rgb(104, 155, 201, 0.8);
+    -fx-aqua-outer-focus-color: rgb(120, 171, 217);
 }
 
 /* Customize the ListCell that appears in the ComboBox button itself */
@@ -2965,6 +3010,9 @@ TODO: effect-chaining!!!
     -fx-padding:0.0 1.2 0.0 0.0;
     -fx-alignment: CENTER;
     -fx-content-display: LEFT;
+    
+    -fx-aqua-inner-focus-color: rgb(104, 155, 201, 0.8);
+    -fx-aqua-outer-focus-color: rgb(120, 171, 217);
 }
 
 .color-picker > .arrow-button, .color-picker.button > .arrow-button > .arrow {

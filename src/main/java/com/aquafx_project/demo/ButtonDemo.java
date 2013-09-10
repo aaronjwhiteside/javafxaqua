@@ -701,6 +701,8 @@ public class ButtonDemo extends Application {
         pane.getChildren().add(menuBar);
 
         AquaFx.style();
+        AquaFx.setElementStyle();
+
         stage.setTitle("AquaFX");
         stage.setScene(myScene);
         stage.show();

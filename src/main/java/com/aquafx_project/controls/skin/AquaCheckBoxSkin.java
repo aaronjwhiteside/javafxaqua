@@ -27,22 +27,32 @@
 
 package com.aquafx_project.controls.skin;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.css.CssMetaData;
+import javafx.css.Styleable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Control;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 
+import com.aquafx_project.controls.skin.css.AquaCssProperties;
 import com.aquafx_project.controls.skin.effects.Shadow;
 import com.sun.javafx.scene.control.skin.CheckBoxSkin;
 
 
-public class AquaCheckBoxSkin extends CheckBoxSkin implements AquaSkin{
+public class AquaCheckBoxSkin extends CheckBoxSkin implements AquaSkin, AquaFocusBorder{
 
     public AquaCheckBoxSkin(CheckBox checkbox) {
         super(checkbox);
@@ -110,7 +120,7 @@ public class AquaCheckBoxSkin extends CheckBoxSkin implements AquaSkin{
 
     private void setSelectedFocusBorder() {
         InnerShadow innerFocus = new InnerShadow();
-        innerFocus.setColor(Color.rgb(104, 155, 201, 0.7));
+        innerFocus.setColor((Color) innerFocusColorProperty().get());
         innerFocus.setBlurType(BlurType.ONE_PASS_BOX);
         innerFocus.setRadius(6.5);
         innerFocus.setChoke(0.7);
@@ -118,7 +128,7 @@ public class AquaCheckBoxSkin extends CheckBoxSkin implements AquaSkin{
         innerFocus.setOffsetY(0.0);
 
         DropShadow outerFocus = new DropShadow();
-        outerFocus.setColor(Color.rgb(104, 155, 201));
+        outerFocus.setColor((Color) outerFocusColorProperty().get());
         outerFocus.setBlurType(BlurType.ONE_PASS_BOX);
         outerFocus.setRadius(7.0);
         outerFocus.setSpread(0.7);
@@ -135,7 +145,7 @@ public class AquaCheckBoxSkin extends CheckBoxSkin implements AquaSkin{
 
     private void setFocusBorder() {
         InnerShadow innerFocus = new InnerShadow();
-        innerFocus.setColor(Color.rgb(104, 155, 201));
+        innerFocus.setColor((Color) innerFocusColorProperty().get());
         innerFocus.setBlurType(BlurType.ONE_PASS_BOX);
         innerFocus.setRadius(6.5);
         innerFocus.setChoke(0.7);
@@ -143,7 +153,7 @@ public class AquaCheckBoxSkin extends CheckBoxSkin implements AquaSkin{
         innerFocus.setOffsetY(0.0);
 
         DropShadow outerFocus = new DropShadow();
-        outerFocus.setColor(Color.rgb(104, 155, 201));
+        outerFocus.setColor((Color) outerFocusColorProperty().get());
         outerFocus.setBlurType(BlurType.ONE_PASS_BOX);
         outerFocus.setRadius(5.0);
         outerFocus.setSpread(0.6);
@@ -157,6 +167,7 @@ public class AquaCheckBoxSkin extends CheckBoxSkin implements AquaSkin{
             }
         }
     }
+    
 
     @Override protected void handleControlPropertyChanged(String p) {
         super.handleControlPropertyChanged(p);
@@ -180,5 +191,78 @@ public class AquaCheckBoxSkin extends CheckBoxSkin implements AquaSkin{
                 setDropShadow();
             }
         }
+    }
+    
+    /***********************************************************************************
+     * Adding the possibility to set a CSS-Property *
+     **********************************************************************************/
+
+    @Override public List<CssMetaData<? extends Styleable, ?>> getCssMetaData() {
+        List<CssMetaData<? extends Styleable, ?>> ret = new ArrayList<>(super.getCssMetaData());
+        ret.addAll(getClassCssMetaData());
+        return ret;
+    }
+
+    private static class StyleableProperties {
+        private static final List<CssMetaData<? extends Styleable, ?>> STYLEABLES;
+        static {
+            final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<CssMetaData<? extends Styleable, ?>>(Control.getClassCssMetaData());
+            styleables.add(AquaCssProperties.getInnerFocusColorMetaData());
+            styleables.add(AquaCssProperties.getOuterFocusColorMetaData());
+            STYLEABLES = Collections.unmodifiableList(styleables);
+        }
+    }
+
+    /**
+     * @return The CssMetaData associated with this class, which may include the CssMetaData of its
+     *         super classes.
+     */
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData() {
+        return StyleableProperties.STYLEABLES;
+    }
+
+    
+    /***********************************************************************************
+     * Adding the possibility to set the inner focus color to a Button via CSS-Property *
+     **********************************************************************************/
+
+    private ObjectProperty<Paint> innerFocusColor;
+
+    @Override public final ObjectProperty<Paint> innerFocusColorProperty() {
+        if (innerFocusColor == null) {
+            innerFocusColor = AquaCssProperties.createProperty(this, "innerFocusColor",
+                    AquaCssProperties.getInnerFocusColorMetaData());
+        }
+        return innerFocusColor;
+    }
+
+    @Override public void setInnerFocusColor(Paint innerFocusColor) {
+        innerFocusColorProperty().setValue(innerFocusColor);
+    }
+
+    @Override public Paint getInnerFocusColor() {
+        return innerFocusColor == null ? null : innerFocusColor.getValue();
+    }
+
+    /***********************************************************************************
+     * Adding the possibility to set the outer focus color to a Button via CSS-Property *
+     **********************************************************************************/
+
+    private ObjectProperty<Paint> outerFocusColor;
+
+    @Override public final ObjectProperty<Paint> outerFocusColorProperty() {
+        if (outerFocusColor == null) {
+            outerFocusColor = AquaCssProperties.createProperty(this, "outerFocusColor",
+                    AquaCssProperties.getOuterFocusColorMetaData());
+        }
+        return outerFocusColor;
+    }
+
+    @Override public void setOuterFocusColor(Paint outerFocusColor) {
+        outerFocusColorProperty().setValue(outerFocusColor);
+    }
+
+    @Override public Paint getOuterFocusColor() {
+        return outerFocusColor == null ? null : outerFocusColor.getValue();
     }
 }

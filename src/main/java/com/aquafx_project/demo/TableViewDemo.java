@@ -104,16 +104,19 @@ public class TableViewDemo extends Application {
                 ((Person) t.getTableView().getItems().get(t.getTablePosition().getRow())).setVip(t.getNewValue());
             }
         });
-        table.getColumns().addAll(firstNameCol, lastNameCol, firstEmailCol, secondEmailCol, vipCol);
+        table.getColumns().addAll(firstNameCol);
         table.setItems(data);
         table.setTableMenuButtonVisible(false);
+        table.setFocusTraversable(false);
+        table.getStyleClass().add("hide-header");
+
         tableContainer.getChildren().add(table);
 
         pane.setCenter(tableContainer);
         pane.setStyle("-fx-background-color: white;");
         Scene scene = new Scene(pane);
-        AquaFx.style();
         primaryStage.setScene(scene);
+        AquaFx.style();
         primaryStage.show();
 
     }

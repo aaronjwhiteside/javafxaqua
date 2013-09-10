@@ -45,8 +45,8 @@ import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.ToolBar;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -59,7 +59,7 @@ public class MenuButtonsDemo extends Application {
 
     @Override public void start(Stage stage) throws Exception {
         AquaFx.styleStage(stage, StageStyle.UNIFIED);
-        BorderPane pane = new BorderPane();
+        VBox pane = new VBox();
 
         ToolBar toolBar = new ToolBar();
         Button tbBack = new Button();
@@ -74,19 +74,21 @@ public class MenuButtonsDemo extends Application {
         AquaFx.createButtonStyler().setIcon(MacOSDefaultIcons.SHARE).style(share);
         HBox separator2 = new HBox();
         separator2.setPrefSize(15, 1);
+        HBox separator3 = new HBox();
+        separator3.setPrefSize(15, 1);
 
         ComboBox<String> combo = new ComboBox<String>(FXCollections.observableArrayList("Combo A", "Combo B", "Combo C"));
         ComboBox<String> combo2 = new ComboBox<String>(FXCollections.observableArrayList("Combo A", "Combo B", "Combo C"));
         combo2.setEditable(true);
         ChoiceBox<String> choice = new ChoiceBox<String>(FXCollections.observableArrayList("Choice A", "Choice B", "Choice C"));
-        MenuButton m = new MenuButton("Eats");
+        MenuButton m = new MenuButton("Shutdown");
+        m.setPopupSide(Side.BOTTOM);
         m.getItems().addAll(new MenuItem("Burger"), new MenuItem("Hot Dog"));
-        m.setPopupSide(Side.RIGHT);
 
         SplitMenuButton m2 = new SplitMenuButton();
         m2.setText("Shutdown");
         m2.getItems().addAll(new MenuItem("Logout"), new MenuItem("Sleep"));
-        m2.setPopupSide(Side.RIGHT);
+        m2.setPopupSide(Side.BOTTOM);
 
         ColorPicker colorTB = new ColorPicker(Color.rgb(194, 222, 254));
 
@@ -108,13 +110,10 @@ public class MenuButtonsDemo extends Application {
 
         Button sampleButton = new Button("Button");
         ToggleButton sampleButton2 = new ToggleButton("Toggle");
-        toolBar.getItems().addAll(tbBack, tbForward, separator, share, separator2, combo, combo2, choice, m, m2, seperateIt2,
+        toolBar.getItems().addAll(tbBack, tbForward, share, combo, combo2, choice,separator, m,separator2, m2,separator3,
                 colorTB, sampleButton, sampleButton2, seperateIt, sampleButton4, sampleButton5, sampleButton6);
 
-        pane.setTop(toolBar);
-
-        pane.setCenter(new Label("MenuButtons and other related controls"));
-
+        
         Scene myScene = new Scene(pane, 950, 200);
 
         MenuBar menuBar = new MenuBar();
@@ -125,8 +124,13 @@ public class MenuButtonsDemo extends Application {
         Menu menuView = new Menu("View");
         menuView.getItems().addAll(new MenuItem("Zoom In"), new MenuItem("Zoom Out"));
         menuBar.getMenus().addAll(menuFile, menuEdit, menuView);
+        
         pane.getChildren().add(menuBar);
+        pane.getChildren().add(toolBar);
 
+        pane.getChildren().add(new Label("MenuButtons and other related controls"));
+
+        
         AquaFx.style();
         stage.setTitle("AquaFX");
         stage.setScene(myScene);

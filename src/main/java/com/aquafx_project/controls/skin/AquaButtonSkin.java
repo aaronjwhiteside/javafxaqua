@@ -1,28 +1,23 @@
 /**
- * Copyright (c) 2013, Claudine Zillmann
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *     * Redistributions of source code must retain the above copyright
- * notice, this list of conditions and the following disclaimer.
- *     * Redistributions in binary form must reproduce the above copyright
- * notice, this list of conditions and the following disclaimer in the
- * documentation and/or other materials provided with the distribution.
- *     * Neither the name of AquaFX, the website aquafx-project.com, nor the
- * names of its contributors may be used to endorse or promote products
- * derived from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
- * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL CLAUDINE ZILLMANN BE LIABLE FOR ANY
- * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
- * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
- * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Copyright (c) 2013, Claudine Zillmann All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without modification, are permitted
+ * provided that the following conditions are met: * Redistributions of source code must retain the
+ * above copyright notice, this list of conditions and the following disclaimer. * Redistributions
+ * in binary form must reproduce the above copyright notice, this list of conditions and the
+ * following disclaimer in the documentation and/or other materials provided with the distribution.
+ * * Neither the name of AquaFX, the website aquafx-project.com, nor the names of its contributors
+ * may be used to endorse or promote products derived from this software without specific prior
+ * written permission.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
+ * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL CLAUDINE ZILLMANN BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+ * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+ * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 package com.aquafx_project.controls.skin;
@@ -38,7 +33,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.css.CssMetaData;
 import javafx.css.Styleable;
-import javafx.css.StyleableObjectProperty;
 import javafx.css.StyleableProperty;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -55,37 +49,42 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Paint;
 import javafx.scene.paint.Stop;
 import javafx.util.Duration;
 
+import com.aquafx_project.controls.skin.css.AquaCssProperties;
 import com.aquafx_project.controls.skin.effects.FocusBorder;
 import com.aquafx_project.controls.skin.effects.Shadow;
 import com.aquafx_project.controls.skin.styles.ButtonType;
-import com.aquafx_project.controls.skin.styles.MacOSDefaultIconConverter;
 import com.aquafx_project.controls.skin.styles.MacOSDefaultIcons;
 import com.aquafx_project.util.BindableTransition;
+import com.sun.javafx.css.converters.PaintConverter;
+import com.sun.javafx.css.converters.StringConverter;
 import com.sun.javafx.scene.control.skin.ButtonSkin;
 
-public class AquaButtonSkin extends ButtonSkin implements AquaSkin {
+public class AquaButtonSkin extends ButtonSkin implements AquaSkin, AquaFocusBorder {
 
     private BindableTransition defaultButtonTransition;
 
     private String usualButtonStyle = "-fx-background-color: rgb(255, 255, 255), linear-gradient(#ffffff 20%, #ececec 60%, #ececec 80%, #eeeeee 100%); -fx-background-insets:  0, 1; -fx-background-radius: 4, 4; -fx-border-radius: 4; -fx-border-width: 0.5; -fx-border-color: rgb(129, 129, 129);";
 
-    private String armedButtonStyle = "-fx-background-color: linear-gradient(rgb(190, 214, 237) 0%, rgb(178, 213, 237) 100% ), linear-gradient(rgb(165, 193, 238) 0%, rgb(108, 161, 231) 50%, rgb(74, 138, 217) 50%, rgb(105, 167, 236) 75%, rgb(152, 201, 238) 100%), radial-gradient(focus-angle 180deg, focus-distance 95%, center 1% 50%, radius 50%, #78b0ee, transparent), radial-gradient(focus-angle 0deg, focus-distance 95%, center 100% 50%, radius 50%, #78b0ee, transparent); -fx-background-insets: 0, 0, 1 1 1 2, 1 2 1 1; -fx-background-radius: 4, 4, 4, 4; -fx-border-color: rgb(100, 103, 124);";
+    private String armedButtonStyle = armedStyleProperty().get();
 
     public AquaButtonSkin(Button button) {
         super(button);
+
         registerChangeListener(button.disabledProperty(), "DISABLED");
         registerChangeListener(button.hoverProperty(), "HOVER");
-        if (getSkinnable().isDefaultButton()) {
-            setDefaultButtonAnimation();
-        }
 
         if (getSkinnable().isFocused()) {
             setFocusBorder();
         } else {
             setDropShadow();
+        }
+
+        if (getSkinnable().isDefaultButton()) {
+            // setDefaultButtonAnimation();
         }
         /**
          * if the button is a default button, it has to stop blinking when pressed
@@ -175,8 +174,19 @@ public class AquaButtonSkin extends ButtonSkin implements AquaSkin {
         });
     }
 
+    private FocusBorder focusBorder;
+
+    public FocusBorder getFocusBorder() {
+        if (focusBorder == null) {
+            focusBorder = new FocusBorder();
+        }
+        return focusBorder;
+    }
+
     private void setFocusBorder() {
-        getSkinnable().setEffect(new FocusBorder());
+        getFocusBorder().setInnerFocusColor((Color) innerFocusColorProperty().get());
+        getFocusBorder().setColor((Color) outerFocusColorProperty().get());
+        getSkinnable().setEffect(getFocusBorder());
     }
 
     private void setDropShadow() {
@@ -230,15 +240,15 @@ public class AquaButtonSkin extends ButtonSkin implements AquaSkin {
                 defaultButtonTransition.setAutoReverse(true);
 
                 // The gradient
-                final Color startColor1 = Color.rgb(183, 206, 238);
-                final Color startColor2 = Color.rgb(142, 188, 237);
-                final Color startColor3 = Color.rgb(114, 174, 236);
-                final Color startColor4 = Color.rgb(178, 218, 242);
+                final Color startColor1val = /* Color.rgb(183, 206, 238); */(Color) startColor1Property().get();
+                final Color startColor2val = /* Color.rgb(142, 188, 237); */(Color) startColor2Property().get();
+                final Color startColor3val = /* Color.rgb(114, 174, 236); */(Color) startColor3Property().get();
+                final Color startColor4val = /* Color.rgb(178, 218, 242); */(Color) startColor4Property().get();
 
-                final Color endColor1 = Color.rgb(203, 243, 254);
-                final Color endColor2 = Color.rgb(166, 211, 248);
-                final Color endColor3 = Color.rgb(137, 198, 248);
-                final Color endColor4 = Color.rgb(203, 243, 254);
+                final Color endColor1val = /* Color.rgb(203, 243, 254); */(Color) endColor1Property().get();
+                final Color endColor2val = /* Color.rgb(166, 211, 248); */(Color) endColor2Property().get();
+                final Color endColor3val = /* Color.rgb(137, 198, 248); */(Color) endColor3Property().get();
+                final Color endColor4val = /* Color.rgb(203, 243, 254); */(Color) endColor4Property().get();
 
                 defaultButtonTransition.fractionProperty().addListener(new ChangeListener<Number>() {
 
@@ -247,24 +257,21 @@ public class AquaButtonSkin extends ButtonSkin implements AquaSkin {
                         List<BackgroundFill> list = new ArrayList<>();
 
                         // the animated fill
-                        
+
                         Stop[] stops = new Stop[] { new Stop(0f, Color.color(
-                                (endColor1.getRed() - startColor1.getRed()) * newValue.doubleValue() + startColor1.getRed(),
-                                (endColor1.getGreen() - startColor1.getGreen()) * newValue.doubleValue() + startColor1.getGreen(),
-                                (endColor1.getBlue() - startColor1.getBlue()) * newValue.doubleValue() + startColor1.getBlue())),
-                        new Stop(0.5f, Color.color(
-                                (endColor2.getRed() - startColor2.getRed()) * newValue.doubleValue() + startColor2.getRed(),
-                                (endColor2.getGreen() - startColor2.getGreen()) * newValue.doubleValue() + startColor2.getGreen(),
-                                (endColor2.getBlue() - startColor2.getBlue()) * newValue.doubleValue() + startColor2.getBlue())),
-                        new Stop(0.51f, Color.color(
-                                (endColor3.getRed() - startColor3.getRed()) * newValue.doubleValue() + startColor3.getRed(),
-                                (endColor3.getGreen() - startColor3.getGreen()) * newValue.doubleValue() + startColor3.getGreen(),
-                                (endColor3.getBlue() - startColor3.getBlue()) * newValue.doubleValue() + startColor3.getBlue())),
-                        new Stop(1f, Color.color(
-                                (endColor4.getRed() - startColor4.getRed()) * newValue.doubleValue() + startColor4.getRed(),
-                                (endColor4.getGreen() - startColor4.getGreen()) * newValue.doubleValue() + startColor4.getGreen(),
-                                (endColor4.getBlue() - startColor4.getBlue()) * newValue.doubleValue() + startColor4.getBlue()))};
-                        
+                                (endColor1val.getRed() - startColor1val.getRed()) * newValue.doubleValue() + startColor1val.getRed(),
+                                (endColor1val.getGreen() - startColor1val.getGreen()) * newValue.doubleValue() + startColor1val.getGreen(),
+                                (endColor1val.getBlue() - startColor1val.getBlue()) * newValue.doubleValue() + startColor1val.getBlue())), new Stop(0.5f, Color.color(
+                                (endColor2val.getRed() - startColor2val.getRed()) * newValue.doubleValue() + startColor2val.getRed(),
+                                (endColor2val.getGreen() - startColor2val.getGreen()) * newValue.doubleValue() + startColor2val.getGreen(),
+                                (endColor2val.getBlue() - startColor2val.getBlue()) * newValue.doubleValue() + startColor2val.getBlue())), new Stop(0.51f, Color.color(
+                                (endColor3val.getRed() - startColor3val.getRed()) * newValue.doubleValue() + startColor3val.getRed(),
+                                (endColor3val.getGreen() - startColor3val.getGreen()) * newValue.doubleValue() + startColor3val.getGreen(),
+                                (endColor3val.getBlue() - startColor3val.getBlue()) * newValue.doubleValue() + startColor3val.getBlue())), new Stop(1f, Color.color(
+                                (endColor4val.getRed() - startColor4val.getRed()) * newValue.doubleValue() + startColor4val.getRed(),
+                                (endColor4val.getGreen() - startColor4val.getGreen()) * newValue.doubleValue() + startColor4val.getGreen(),
+                                (endColor4val.getBlue() - startColor4val.getBlue()) * newValue.doubleValue() + startColor4val.getBlue())) };
+
                         LinearGradient gradient = new LinearGradient(0.0, 0.0, 0.0, 1.0, true, CycleMethod.NO_CYCLE, stops);
                         BackgroundFill backkgroudFill = new BackgroundFill(gradient, new CornerRadii(4.0), new Insets(0));
                         list.add(backkgroudFill);
@@ -280,7 +287,7 @@ public class AquaButtonSkin extends ButtonSkin implements AquaSkin {
     }
 
     /***********************************************************************************
-     * Adding the possibility to set an Icon to a Button via CSS-Property *
+     * Adding the possibility to set a CSS-Property *
      **********************************************************************************/
 
     @Override public List<CssMetaData<? extends Styleable, ?>> getCssMetaData() {
@@ -289,24 +296,43 @@ public class AquaButtonSkin extends ButtonSkin implements AquaSkin {
         return ret;
     }
 
+    private static class StyleableProperties {
+        private static final List<CssMetaData<? extends Styleable, ?>> STYLEABLES;
+        static {
+            final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<CssMetaData<? extends Styleable, ?>>(Control.getClassCssMetaData());
+            styleables.add(AquaCssProperties.getIconMetaData());
+            styleables.add(AquaCssProperties.getInnerFocusColorMetaData());
+            styleables.add(AquaCssProperties.getOuterFocusColorMetaData());
+            styleables.add(getStartColor1MetaData());
+            styleables.add(getStartColor2MetaData());
+            styleables.add(getStartColor3MetaData());
+            styleables.add(getStartColor4MetaData());
+            styleables.add(getEndColor1MetaData());
+            styleables.add(getEndColor2MetaData());
+            styleables.add(getEndColor3MetaData());
+            styleables.add(getEndColor4MetaData());
+            styleables.add(getArmedStyleMetaData());
+            STYLEABLES = Collections.unmodifiableList(styleables);
+        }
+    }
+
+    /**
+     * @return The CssMetaData associated with this class, which may include the CssMetaData of its
+     *         super classes.
+     */
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData() {
+        return StyleableProperties.STYLEABLES;
+    }
+
+    /***********************************************************************************
+     * Adding the possibility to set an Icon to a Button via CSS-Property *
+     **********************************************************************************/
+
     private ObjectProperty<MacOSDefaultIcons> icon;
 
     public final ObjectProperty<MacOSDefaultIcons> iconProperty() {
         if (icon == null) {
-            icon = new StyleableObjectProperty<MacOSDefaultIcons>() {
-
-                @Override public CssMetaData<? extends Styleable, MacOSDefaultIcons> getCssMetaData() {
-                    return StyleableProperties.ICON;
-                }
-
-                @Override public Object getBean() {
-                    return AquaButtonSkin.this;
-                }
-
-                @Override public String getName() {
-                    return "icon";
-                }
-            };
+            icon = AquaCssProperties.createProperty(this, "icon", AquaCssProperties.getIconMetaData());
         }
         return icon;
     }
@@ -319,38 +345,429 @@ public class AquaButtonSkin extends ButtonSkin implements AquaSkin {
         return icon == null ? null : icon.getValue();
     }
 
-    private static class StyleableProperties {
-        private static final CssMetaData<Button, MacOSDefaultIcons> ICON = new CssMetaData<Button, MacOSDefaultIcons>("-fx-aqua-icon", MacOSDefaultIconConverter.getInstance()) {
-            @Override public boolean isSettable(Button n) {
-                Skin<?> skin = n.getSkin();
-                if (skin != null && skin instanceof AquaButtonSkin) {
-                    return ((AquaButtonSkin) skin).icon == null || !((AquaButtonSkin) skin).icon.isBound();
-                }
-                return false;
-            }
+    /***********************************************************************************
+     * Adding the possibility to set the inner focus color to a Button via CSS-Property *
+     **********************************************************************************/
 
-            @SuppressWarnings("unchecked") @Override public StyleableProperty<MacOSDefaultIcons> getStyleableProperty(Button n) {
-                Skin<?> skin = n.getSkin();
-                if (skin != null && skin instanceof AquaButtonSkin) {
-                    return (StyleableProperty<MacOSDefaultIcons>) ((AquaButtonSkin) skin).iconProperty();
-                }
-                return null;
-            }
-        };
+    private ObjectProperty<Paint> innerFocusColor;
 
-        private static final List<CssMetaData<? extends Styleable, ?>> STYLEABLES;
-        static {
-            final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<CssMetaData<? extends Styleable, ?>>(Control.getClassCssMetaData());
-            styleables.add(ICON);
-            STYLEABLES = Collections.unmodifiableList(styleables);
+    @Override public final ObjectProperty<Paint> innerFocusColorProperty() {
+        if (innerFocusColor == null) {
+            innerFocusColor = AquaCssProperties.createProperty(this, "innerFocusColor",
+                    AquaCssProperties.getInnerFocusColorMetaData());
         }
+        return innerFocusColor;
     }
 
-    /**
-     * @return The CssMetaData associated with this class, which may include the CssMetaData of its
-     *         super classes.
-     */
-    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData() {
-        return StyleableProperties.STYLEABLES;
+    @Override public void setInnerFocusColor(Paint innerFocusColor) {
+        innerFocusColorProperty().setValue(innerFocusColor);
+    }
+
+    @Override public Paint getInnerFocusColor() {
+        return innerFocusColor == null ? null : innerFocusColor.getValue();
+    }
+
+    /***********************************************************************************
+     * Adding the possibility to set the outer focus color to a Button via CSS-Property *
+     **********************************************************************************/
+
+    private ObjectProperty<Paint> outerFocusColor;
+
+    @Override public final ObjectProperty<Paint> outerFocusColorProperty() {
+        if (outerFocusColor == null) {
+            outerFocusColor = AquaCssProperties.createProperty(this, "outerFocusColor",
+                    AquaCssProperties.getOuterFocusColorMetaData());
+        }
+        return outerFocusColor;
+    }
+
+    @Override public void setOuterFocusColor(Paint outerFocusColor) {
+        outerFocusColorProperty().setValue(outerFocusColor);
+    }
+
+    @Override public Paint getOuterFocusColor() {
+        return outerFocusColor == null ? null : outerFocusColor.getValue();
+    }
+
+    /***********************************************************************************
+     * Adding the possibility to set the colors to a default Button animation via CSS-Property *
+     **********************************************************************************/
+
+    private ObjectProperty<Paint> startColor1;
+
+    public final ObjectProperty<Paint> startColor1Property() {
+        if (startColor1 == null) {
+            startColor1 = AquaCssProperties.createProperty(this, "startColor1", getStartColor1MetaData());
+        }
+        return startColor1;
+    }
+
+    public void setStartColor1(Paint startColor1) {
+        startColor1Property().setValue(startColor1);
+    }
+
+    public Paint getStartColor1() {
+        return startColor1 == null ? null : startColor1.getValue();
+    }
+
+    private static CssMetaData<Control, Paint> startColor1MetaData;
+
+    public static CssMetaData<Control, Paint> getStartColor1MetaData() {
+        if (startColor1MetaData == null) {
+            startColor1MetaData = new CssMetaData<Control, Paint>("-fx-aqua-start-color-1", PaintConverter.getInstance(), Color.BLUE) {
+                @Override public boolean isSettable(Control n) {
+                    Skin<?> skin = n.getSkin();
+                    if (skin != null && skin instanceof AquaButtonSkin) {
+                        return true;
+                    }
+                    return false;
+                }
+
+                @SuppressWarnings("unchecked") @Override public StyleableProperty<Paint> getStyleableProperty(Control n) {
+                    Skin<?> skin = n.getSkin();
+                    if (skin != null && skin instanceof AquaButtonSkin) {
+                        return (StyleableProperty<Paint>) ((AquaButtonSkin) skin).startColor1Property();
+                    }
+                    return null;
+                }
+            };
+        }
+        return startColor1MetaData;
+    }
+
+    private ObjectProperty<Paint> startColor2;
+
+    public final ObjectProperty<Paint> startColor2Property() {
+        if (startColor2 == null) {
+            startColor2 = AquaCssProperties.createProperty(this, "startColor2", getStartColor2MetaData());
+        }
+        return startColor2;
+    }
+
+    public void setStartColor2(Paint startColor2) {
+        startColor2Property().setValue(startColor2);
+    }
+
+    public Paint getStartColor2() {
+        return startColor2 == null ? null : startColor2.getValue();
+    }
+
+    private static CssMetaData<Control, Paint> startColor2MetaData;
+
+    public static CssMetaData<Control, Paint> getStartColor2MetaData() {
+        if (startColor2MetaData == null) {
+            startColor2MetaData = new CssMetaData<Control, Paint>("-fx-aqua-start-color-2", PaintConverter.getInstance(), Color.BLUE) {
+                @Override public boolean isSettable(Control n) {
+                    Skin<?> skin = n.getSkin();
+                    if (skin != null && skin instanceof AquaButtonSkin) {
+                        return true;
+                    }
+                    return false;
+                }
+
+                @SuppressWarnings("unchecked") @Override public StyleableProperty<Paint> getStyleableProperty(Control n) {
+                    Skin<?> skin = n.getSkin();
+                    if (skin != null && skin instanceof AquaButtonSkin) {
+                        return (StyleableProperty<Paint>) ((AquaButtonSkin) skin).startColor2Property();
+                    }
+                    return null;
+                }
+            };
+        }
+        return startColor2MetaData;
+    }
+
+    private ObjectProperty<Paint> startColor3;
+
+    public final ObjectProperty<Paint> startColor3Property() {
+        if (startColor3 == null) {
+            startColor3 = AquaCssProperties.createProperty(this, "startColor3", getStartColor3MetaData());
+        }
+        return startColor3;
+    }
+
+    public void setStartColor3(Paint startColor3) {
+        startColor3Property().setValue(startColor3);
+    }
+
+    public Paint getStartColor3() {
+        return startColor3 == null ? null : startColor3.getValue();
+    }
+
+    private static CssMetaData<Control, Paint> startColor3MetaData;
+
+    public static CssMetaData<Control, Paint> getStartColor3MetaData() {
+        if (startColor3MetaData == null) {
+            startColor3MetaData = new CssMetaData<Control, Paint>("-fx-aqua-start-color-3", PaintConverter.getInstance(), Color.BLUE) {
+                @Override public boolean isSettable(Control n) {
+                    Skin<?> skin = n.getSkin();
+                    if (skin != null && skin instanceof AquaButtonSkin) {
+                        return true;
+                    }
+                    return false;
+                }
+
+                @SuppressWarnings("unchecked") @Override public StyleableProperty<Paint> getStyleableProperty(Control n) {
+                    Skin<?> skin = n.getSkin();
+                    if (skin != null && skin instanceof AquaButtonSkin) {
+                        return (StyleableProperty<Paint>) ((AquaButtonSkin) skin).startColor3Property();
+                    }
+                    return null;
+                }
+            };
+        }
+        return startColor3MetaData;
+    }
+
+    private ObjectProperty<Paint> startColor4;
+
+    public final ObjectProperty<Paint> startColor4Property() {
+        if (startColor4 == null) {
+            startColor4 = AquaCssProperties.createProperty(this, "startColor4", getStartColor4MetaData());
+        }
+        return startColor4;
+    }
+
+    public void setStartColor4(Paint startColor4) {
+        startColor4Property().setValue(startColor4);
+    }
+
+    public Paint getStartColor4() {
+        return startColor4 == null ? null : startColor4.getValue();
+    }
+
+    private static CssMetaData<Control, Paint> startColor4MetaData;
+
+    public static CssMetaData<Control, Paint> getStartColor4MetaData() {
+        if (startColor4MetaData == null) {
+            startColor4MetaData = new CssMetaData<Control, Paint>("-fx-aqua-start-color-4", PaintConverter.getInstance(), Color.BLUE) {
+                @Override public boolean isSettable(Control n) {
+                    Skin<?> skin = n.getSkin();
+                    if (skin != null && skin instanceof AquaButtonSkin) {
+                        return true;
+                    }
+                    return false;
+                }
+
+                @SuppressWarnings("unchecked") @Override public StyleableProperty<Paint> getStyleableProperty(Control n) {
+                    Skin<?> skin = n.getSkin();
+                    if (skin != null && skin instanceof AquaButtonSkin) {
+                        return (StyleableProperty<Paint>) ((AquaButtonSkin) skin).startColor4Property();
+                    }
+                    return null;
+                }
+            };
+        }
+        return startColor4MetaData;
+    }
+
+    private ObjectProperty<Paint> endColor1;
+
+    public final ObjectProperty<Paint> endColor1Property() {
+        if (endColor1 == null) {
+            endColor1 = AquaCssProperties.createProperty(this, "endColor1", getEndColor1MetaData());
+        }
+        return endColor1;
+    }
+
+    public void setEndColor1(Paint endColor1) {
+        endColor1Property().setValue(endColor1);
+    }
+
+    public Paint getEndColor1() {
+        return endColor1 == null ? null : endColor1.getValue();
+    }
+
+    private static CssMetaData<Control, Paint> endColor1MetaData;
+
+    public static CssMetaData<Control, Paint> getEndColor1MetaData() {
+        if (endColor1MetaData == null) {
+            endColor1MetaData = new CssMetaData<Control, Paint>("-fx-aqua-end-color-1", PaintConverter.getInstance(), Color.BLUE) {
+                @Override public boolean isSettable(Control n) {
+                    Skin<?> skin = n.getSkin();
+                    if (skin != null && skin instanceof AquaButtonSkin) {
+                        return true;
+                    }
+                    return false;
+                }
+
+                @SuppressWarnings("unchecked") @Override public StyleableProperty<Paint> getStyleableProperty(Control n) {
+                    Skin<?> skin = n.getSkin();
+                    if (skin != null && skin instanceof AquaButtonSkin) {
+                        return (StyleableProperty<Paint>) ((AquaButtonSkin) skin).endColor1Property();
+                    }
+                    return null;
+                }
+            };
+        }
+        return endColor1MetaData;
+    }
+
+    private ObjectProperty<Paint> endColor2;
+
+    public final ObjectProperty<Paint> endColor2Property() {
+        if (endColor2 == null) {
+            endColor2 = AquaCssProperties.createProperty(this, "endColor2", getEndColor2MetaData());
+        }
+        return endColor2;
+    }
+
+    public void setEndColor2(Paint endColor2) {
+        endColor2Property().setValue(endColor2);
+    }
+
+    public Paint getEndColor2() {
+        return endColor2 == null ? null : endColor2.getValue();
+    }
+
+    private static CssMetaData<Control, Paint> endColor2MetaData;
+
+    public static CssMetaData<Control, Paint> getEndColor2MetaData() {
+        if (endColor2MetaData == null) {
+            endColor2MetaData = new CssMetaData<Control, Paint>("-fx-aqua-end-color-2", PaintConverter.getInstance(), Color.BLUE) {
+                @Override public boolean isSettable(Control n) {
+                    Skin<?> skin = n.getSkin();
+                    if (skin != null && skin instanceof AquaButtonSkin) {
+                        return true;
+                    }
+                    return false;
+                }
+
+                @SuppressWarnings("unchecked") @Override public StyleableProperty<Paint> getStyleableProperty(Control n) {
+                    Skin<?> skin = n.getSkin();
+                    if (skin != null && skin instanceof AquaButtonSkin) {
+                        return (StyleableProperty<Paint>) ((AquaButtonSkin) skin).endColor2Property();
+                    }
+                    return null;
+                }
+            };
+        }
+        return endColor2MetaData;
+    }
+
+    private ObjectProperty<Paint> endColor3;
+
+    public final ObjectProperty<Paint> endColor3Property() {
+        if (endColor3 == null) {
+            endColor3 = AquaCssProperties.createProperty(this, "endColor3", getEndColor3MetaData());
+        }
+        return endColor3;
+    }
+
+    public void setEndColor3(Paint endColor3) {
+        endColor3Property().setValue(endColor3);
+    }
+
+    public Paint getEndColor3() {
+        return endColor3 == null ? null : endColor3.getValue();
+    }
+
+    private static CssMetaData<Control, Paint> endColor3MetaData;
+
+    public static CssMetaData<Control, Paint> getEndColor3MetaData() {
+        if (endColor3MetaData == null) {
+            endColor3MetaData = new CssMetaData<Control, Paint>("-fx-aqua-end-color-3", PaintConverter.getInstance(), Color.BLUE) {
+                @Override public boolean isSettable(Control n) {
+                    Skin<?> skin = n.getSkin();
+                    if (skin != null && skin instanceof AquaButtonSkin) {
+                        return true;
+                    }
+                    return false;
+                }
+
+                @SuppressWarnings("unchecked") @Override public StyleableProperty<Paint> getStyleableProperty(Control n) {
+                    Skin<?> skin = n.getSkin();
+                    if (skin != null && skin instanceof AquaButtonSkin) {
+                        return (StyleableProperty<Paint>) ((AquaButtonSkin) skin).endColor3Property();
+                    }
+                    return null;
+                }
+            };
+        }
+        return endColor3MetaData;
+    }
+
+    private ObjectProperty<Paint> endColor4;
+
+    public final ObjectProperty<Paint> endColor4Property() {
+        if (endColor4 == null) {
+            endColor4 = AquaCssProperties.createProperty(this, "endColor4", getEndColor4MetaData());
+        }
+        return endColor4;
+    }
+
+    public void setEndColor4(Paint endColor4) {
+        endColor4Property().setValue(endColor4);
+    }
+
+    public Paint getEndColor4() {
+        return endColor4 == null ? null : endColor4.getValue();
+    }
+
+    private static CssMetaData<Control, Paint> endColor4MetaData;
+
+    public static CssMetaData<Control, Paint> getEndColor4MetaData() {
+        if (endColor4MetaData == null) {
+            endColor4MetaData = new CssMetaData<Control, Paint>("-fx-aqua-end-color-4", PaintConverter.getInstance(), Color.BLUE) {
+                @Override public boolean isSettable(Control n) {
+                    Skin<?> skin = n.getSkin();
+                    if (skin != null && skin instanceof AquaButtonSkin) {
+                        return true;
+                    }
+                    return false;
+                }
+
+                @SuppressWarnings("unchecked") @Override public StyleableProperty<Paint> getStyleableProperty(Control n) {
+                    Skin<?> skin = n.getSkin();
+                    if (skin != null && skin instanceof AquaButtonSkin) {
+                        return (StyleableProperty<Paint>) ((AquaButtonSkin) skin).endColor4Property();
+                    }
+                    return null;
+                }
+            };
+        }
+        return endColor4MetaData;
+    }
+
+    private ObjectProperty<String> armedStyle;
+
+    public final ObjectProperty<String> armedStyleProperty() {
+        if (armedStyle == null) {
+            armedStyle = AquaCssProperties.createProperty(this, "armedStyle", getArmedStyleMetaData());
+        }
+        return armedStyle;
+    }
+
+    public void setArmedStyle(String armedStyle) {
+        armedStyleProperty().setValue(armedStyle);
+    }
+
+    public String getArmedStyle() {
+        return armedStyle == null ? null : armedStyle.getValue();
+    }
+
+    private static CssMetaData<Control, String> armedStyleMetaData;
+
+    public static CssMetaData<Control, String> getArmedStyleMetaData() {
+        if (armedStyleMetaData == null) {
+            armedStyleMetaData = new CssMetaData<Control, String>("-fx-aqua-armed-style", StringConverter.getInstance()) {
+                @Override public boolean isSettable(Control n) {
+                    Skin<?> skin = n.getSkin();
+                    if (skin != null && skin instanceof AquaButtonSkin) {
+                        return true;
+                    }
+                    return false;
+                }
+
+                @SuppressWarnings("unchecked") @Override public StyleableProperty<String> getStyleableProperty(Control n) {
+                    Skin<?> skin = n.getSkin();
+                    if (skin != null && skin instanceof AquaButtonSkin) {
+                        return (StyleableProperty<String>) ((AquaButtonSkin) skin).armedStyleProperty();
+                    }
+                    return null;
+                }
+            };
+        }
+        return armedStyleMetaData;
     }
 }

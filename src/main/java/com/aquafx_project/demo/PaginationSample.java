@@ -28,11 +28,12 @@
 package com.aquafx_project.demo;
 
 import com.aquafx_project.AquaFx;
+import com.sun.javafx.scene.control.skin.PaginationSkin;
 
 import javafx.application.Application;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Pagination;
-import javafx.scene.Node;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -98,6 +99,10 @@ public class PaginationSample extends Application {
     public void start(final Stage stage) throws Exception {
         pagination = new Pagination(28, 0);
         pagination.getStyleClass().add(Pagination.STYLE_CLASS_BULLET);
+        pagination.setStyle("-fx-arrows-visible: true;");
+        PaginationSkin skin = new PaginationSkin(pagination);
+        pagination.setSkin(skin);
+        skin.setArrowsVisible(true);
         pagination.setPageFactory(new Callback<Integer, Node>() {
  
             @Override
@@ -111,15 +116,16 @@ public class PaginationSample extends Application {
         });
  
         AnchorPane anchor = new AnchorPane();
+//        anchor.setStyle("-fx-background-color: white;");
         AnchorPane.setTopAnchor(pagination, 10.0);
         AnchorPane.setRightAnchor(pagination, 10.0);
         AnchorPane.setBottomAnchor(pagination, 10.0);
         AnchorPane.setLeftAnchor(pagination, 10.0);
         anchor.getChildren().addAll(pagination);
-        Scene scene = new Scene(anchor, 500, 300);
+        Scene scene = new Scene(anchor);
         stage.setScene(scene);
         stage.setTitle("PaginationSample");
-        AquaFx.style();
+        AquaFx.setElementStyle();
         stage.show();
     }
 }

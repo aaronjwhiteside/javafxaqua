@@ -27,13 +27,24 @@
 
 package com.aquafx_project.controls.skin;
 
-import javafx.scene.control.PasswordField;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.css.CssMetaData;
+import javafx.css.Styleable;
+import javafx.scene.control.Control;
+import javafx.scene.control.PasswordField;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+
+import com.aquafx_project.controls.skin.css.AquaCssProperties;
 import com.aquafx_project.controls.skin.effects.FocusBorder;
 import com.sun.javafx.scene.control.skin.PasswordFieldSkin;
 
 
-public class AquaPasswordFieldSkin extends PasswordFieldSkin implements AquaSkin{
+public class AquaPasswordFieldSkin extends PasswordFieldSkin implements AquaSkin, AquaFocusBorder{
 
     public AquaPasswordFieldSkin(PasswordField passwordfield) {
         super(passwordfield);
@@ -45,8 +56,19 @@ public class AquaPasswordFieldSkin extends PasswordFieldSkin implements AquaSkin
         registerChangeListener(passwordfield.focusedProperty(), "FOCUSED");
     }
 
+    private FocusBorder focusBorder;
+
+    public FocusBorder getFocusBorder() {
+        if (focusBorder == null) {
+            focusBorder = new FocusBorder();
+        }
+        return focusBorder;
+    }
+    
     private void setFocusBorder() {
-        getSkinnable().setEffect(new FocusBorder());
+        getFocusBorder().setInnerFocusColor((Color) innerFocusColorProperty().get());
+        getFocusBorder().setColor((Color) outerFocusColorProperty().get());
+        getSkinnable().setEffect(getFocusBorder());
     }
 
     @Override protected void handleControlPropertyChanged(String p) {
@@ -59,5 +81,78 @@ public class AquaPasswordFieldSkin extends PasswordFieldSkin implements AquaSkin
                 getSkinnable().setEffect(null);
             }
         }
+    }
+    
+    /***********************************************************************************
+     * Adding the possibility to set a CSS-Property *
+     **********************************************************************************/
+
+    @Override public List<CssMetaData<? extends Styleable, ?>> getCssMetaData() {
+        List<CssMetaData<? extends Styleable, ?>> ret = new ArrayList<>(super.getCssMetaData());
+        ret.addAll(getClassCssMetaData());
+        return ret;
+    }
+
+    private static class StyleableProperties {
+        private static final List<CssMetaData<? extends Styleable, ?>> STYLEABLES;
+        static {
+            final List<CssMetaData<? extends Styleable, ?>> styleables = new ArrayList<CssMetaData<? extends Styleable, ?>>(Control.getClassCssMetaData());
+            styleables.add(AquaCssProperties.getInnerFocusColorMetaData());
+            styleables.add(AquaCssProperties.getOuterFocusColorMetaData());
+            STYLEABLES = Collections.unmodifiableList(styleables);
+        }
+    }
+
+    /**
+     * @return The CssMetaData associated with this class, which may include the CssMetaData of its
+     *         super classes.
+     */
+    public static List<CssMetaData<? extends Styleable, ?>> getClassCssMetaData() {
+        return StyleableProperties.STYLEABLES;
+    }
+
+    
+    /***********************************************************************************
+     * Adding the possibility to set the inner focus color to a Button via CSS-Property *
+     **********************************************************************************/
+
+    private ObjectProperty<Paint> innerFocusColor;
+
+    @Override public final ObjectProperty<Paint> innerFocusColorProperty() {
+        if (innerFocusColor == null) {
+            innerFocusColor = AquaCssProperties.createProperty(this, "innerFocusColor",
+                    AquaCssProperties.getInnerFocusColorMetaData());
+        }
+        return innerFocusColor;
+    }
+
+    @Override public void setInnerFocusColor(Paint innerFocusColor) {
+        innerFocusColorProperty().setValue(innerFocusColor);
+    }
+
+    @Override public Paint getInnerFocusColor() {
+        return innerFocusColor == null ? null : innerFocusColor.getValue();
+    }
+
+    /***********************************************************************************
+     * Adding the possibility to set the outer focus color to a Button via CSS-Property *
+     **********************************************************************************/
+
+    private ObjectProperty<Paint> outerFocusColor;
+
+    @Override public final ObjectProperty<Paint> outerFocusColorProperty() {
+        if (outerFocusColor == null) {
+            outerFocusColor = AquaCssProperties.createProperty(this, "outerFocusColor",
+                    AquaCssProperties.getOuterFocusColorMetaData());
+        }
+        return outerFocusColor;
+    }
+
+    @Override public void setOuterFocusColor(Paint outerFocusColor) {
+        outerFocusColorProperty().setValue(outerFocusColor);
+    }
+
+    @Override public Paint getOuterFocusColor() {
+        return outerFocusColor == null ? null : outerFocusColor.getValue();
     }
 }
