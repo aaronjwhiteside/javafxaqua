@@ -204,6 +204,9 @@ public class AquaProgressBarSkin extends ProgressBarSkin implements AquaSkin {
                         int start = 1 - (int) ((38 * bar.getHeight() / 20) * newValue.doubleValue());
                         
                         String imageString= determinateImageProperty().get();
+                        if(imageString == null){
+                            imageString= "progress.png";
+                        }
                         Image image = new Image(AquaFx.class.getResource("controls/skin/"+imageString).toExternalForm());
                         
                         ImagePattern pattern = new ImagePattern(image, start, 0, (38 * bar.getHeight() / 20), bar.getHeight(), false);
