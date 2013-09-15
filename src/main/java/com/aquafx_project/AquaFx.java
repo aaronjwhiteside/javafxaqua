@@ -113,6 +113,7 @@ public class AquaFx {
     private final static String AQUA_CSS_NAME = AquaFx.class.getResource("aquafx.css").toExternalForm();
     private final static String FIRE_CSS_NAME = AquaFx.class.getResource("aquafx-fire.css").toExternalForm();
     private final static String EARTH_CSS_NAME = AquaFx.class.getResource("aquafx-earth.css").toExternalForm();
+    private final static String WIND_CSS_NAME = AquaFx.class.getResource("aquafx-wind.css").toExternalForm();
 
     /**
      * A Style Factory adds a Style Class to a Control for the possibility of CSS styling.
@@ -138,6 +139,12 @@ public class AquaFx {
         Application.setUserAgentStylesheet(AQUA_CSS_NAME);
 //        ApplicationStyleManager.getInstance().styleApplication(AquaFxStyle.class.getName());
         StyleManager.getInstance().addUserAgentStylesheet(EARTH_CSS_NAME);
+    }
+    
+    public static void setWindStyle(){
+        Application.setUserAgentStylesheet(AQUA_CSS_NAME);
+//        ApplicationStyleManager.getInstance().styleApplication(AquaFxStyle.class.getName());
+        StyleManager.getInstance().addUserAgentStylesheet(WIND_CSS_NAME);
     }
     
     /**
