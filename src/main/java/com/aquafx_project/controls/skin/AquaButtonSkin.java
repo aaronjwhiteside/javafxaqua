@@ -84,7 +84,7 @@ public class AquaButtonSkin extends ButtonSkin implements AquaSkin, AquaFocusBor
         }
 
         if (getSkinnable().isDefaultButton()) {
-            // setDefaultButtonAnimation();
+            setDefaultButtonAnimation();
         }
         /**
          * if the button is a default button, it has to stop blinking when pressed
@@ -240,15 +240,23 @@ public class AquaButtonSkin extends ButtonSkin implements AquaSkin, AquaFocusBor
                 defaultButtonTransition.setAutoReverse(true);
 
                 // The gradient
-                final Color startColor1val = /* Color.rgb(183, 206, 238); */(Color) startColor1Property().get();
-                final Color startColor2val = /* Color.rgb(142, 188, 237); */(Color) startColor2Property().get();
-                final Color startColor3val = /* Color.rgb(114, 174, 236); */(Color) startColor3Property().get();
-                final Color startColor4val = /* Color.rgb(178, 218, 242); */(Color) startColor4Property().get();
+                final Color startColor1val = Color.rgb(183, 206, 238); // (Color)
+                                                                       // startColor1Property().get();
+                final Color startColor2val = Color.rgb(142, 188, 237); // (Color)
+                                                                       // startColor2Property().get();
+                final Color startColor3val = Color.rgb(114, 174, 236); // (Color)
+                                                                       // startColor3Property().get();
+                final Color startColor4val = Color.rgb(178, 218, 242); // (Color)
+                                                                       // startColor4Property().get();
 
-                final Color endColor1val = /* Color.rgb(203, 243, 254); */(Color) endColor1Property().get();
-                final Color endColor2val = /* Color.rgb(166, 211, 248); */(Color) endColor2Property().get();
-                final Color endColor3val = /* Color.rgb(137, 198, 248); */(Color) endColor3Property().get();
-                final Color endColor4val = /* Color.rgb(203, 243, 254); */(Color) endColor4Property().get();
+                final Color endColor1val = Color.rgb(203, 243, 254); // (Color)
+                                                                     // endColor1Property().get();
+                final Color endColor2val = Color.rgb(166, 211, 248); // (Color)
+                                                                     // endColor2Property().get();
+                final Color endColor3val = Color.rgb(137, 198, 248); // (Color)
+                                                                     // endColor3Property().get();
+                final Color endColor4val = Color.rgb(203, 243, 254); // (Color)
+                                                                     // endColor4Property().get();
 
                 defaultButtonTransition.fractionProperty().addListener(new ChangeListener<Number>() {
 

@@ -112,6 +112,7 @@ import com.sun.javafx.css.StyleManager;
 public class AquaFx {
     private final static String AQUA_CSS_NAME = AquaFx.class.getResource("aquafx.css").toExternalForm();
     private final static String FIRE_CSS_NAME = AquaFx.class.getResource("aquafx-fire.css").toExternalForm();
+    private final static String EARTH_CSS_NAME = AquaFx.class.getResource("aquafx-earth.css").toExternalForm();
 
     /**
      * A Style Factory adds a Style Class to a Control for the possibility of CSS styling.
@@ -127,12 +128,18 @@ public class AquaFx {
     }
     
     
-    public static void setElementStyle(){
+    public static void setFireStyle(){
         Application.setUserAgentStylesheet(AQUA_CSS_NAME);
 //        ApplicationStyleManager.getInstance().styleApplication(AquaFxStyle.class.getName());
         StyleManager.getInstance().addUserAgentStylesheet(FIRE_CSS_NAME);
     }
-
+    
+    public static void setEarthStyle(){
+        Application.setUserAgentStylesheet(AQUA_CSS_NAME);
+//        ApplicationStyleManager.getInstance().styleApplication(AquaFxStyle.class.getName());
+        StyleManager.getInstance().addUserAgentStylesheet(EARTH_CSS_NAME);
+    }
+    
     /**
      * Styles the Stage to the given StageStyle. Possible StageStyles are:
      * <ul>
