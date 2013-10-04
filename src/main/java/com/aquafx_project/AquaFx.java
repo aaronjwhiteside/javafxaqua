@@ -27,7 +27,6 @@
 
 package com.aquafx_project;
 
-import javafx.application.Application;
 import javafx.scene.control.Control;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -53,7 +52,6 @@ import com.aquafx_project.controls.skin.styles.styler.TextFieldStyler;
 import com.aquafx_project.controls.skin.styles.styler.ToggleButtonStyler;
 import com.aquafx_project.controls.skin.styles.styler.ToolBarStyler;
 import com.guigarage.stylemanager.ApplicationStyleManager;
-import com.sun.javafx.css.StyleManager;
 
 /**
  * <p>
@@ -110,10 +108,6 @@ import com.sun.javafx.css.StyleManager;
  * 
  */
 public class AquaFx {
-    private final static String AQUA_CSS_NAME = AquaFx.class.getResource("aquafx.css").toExternalForm();
-    private final static String FIRE_CSS_NAME = AquaFx.class.getResource("aquafx-fire.css").toExternalForm();
-    private final static String EARTH_CSS_NAME = AquaFx.class.getResource("aquafx-earth.css").toExternalForm();
-    private final static String WIND_CSS_NAME = AquaFx.class.getResource("aquafx-wind.css").toExternalForm();
 
     /**
      * A Style Factory adds a Style Class to a Control for the possibility of CSS styling.
@@ -124,27 +118,19 @@ public class AquaFx {
      * Applies AquaFx skinning to the application.
      */
     public static void style() {
-        Application.setUserAgentStylesheet(AQUA_CSS_NAME);
-//    	ApplicationStyleManager.getInstance().styleApplication(AquaFxStyle.class.getName());
+        ApplicationStyleManager.getInstance().styleApplication(AquaFxStyle.class.getName());
     }
     
-    
     public static void setFireStyle(){
-        Application.setUserAgentStylesheet(AQUA_CSS_NAME);
-//        ApplicationStyleManager.getInstance().styleApplication(AquaFxStyle.class.getName());
-        StyleManager.getInstance().addUserAgentStylesheet(FIRE_CSS_NAME);
+        ApplicationStyleManager.getInstance().styleApplication(AquaFxFireStyle.class.getName());
     }
     
     public static void setEarthStyle(){
-        Application.setUserAgentStylesheet(AQUA_CSS_NAME);
-//        ApplicationStyleManager.getInstance().styleApplication(AquaFxStyle.class.getName());
-        StyleManager.getInstance().addUserAgentStylesheet(EARTH_CSS_NAME);
+        ApplicationStyleManager.getInstance().styleApplication(AquaFxEarthStyle.class.getName());
     }
     
-    public static void setWindStyle(){
-        Application.setUserAgentStylesheet(AQUA_CSS_NAME);
-//        ApplicationStyleManager.getInstance().styleApplication(AquaFxStyle.class.getName());
-        StyleManager.getInstance().addUserAgentStylesheet(WIND_CSS_NAME);
+    public static void setAirStyle(){
+        ApplicationStyleManager.getInstance().styleApplication(AquaFxAirStyle.class.getName());
     }
     
     /**
