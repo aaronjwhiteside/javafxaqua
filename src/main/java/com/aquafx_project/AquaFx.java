@@ -1,28 +1,23 @@
 /**
- * Copyright (c) 2013, Claudine Zillmann
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *     * Redistributions of source code must retain the above copyright
- * notice, this list of conditions and the following disclaimer.
- *     * Redistributions in binary form must reproduce the above copyright
- * notice, this list of conditions and the following disclaimer in the
- * documentation and/or other materials provided with the distribution.
- *     * Neither the name of AquaFX, the website aquafx-project.com, nor the
- * names of its contributors may be used to endorse or promote products
- * derived from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
- * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL CLAUDINE ZILLMANN BE LIABLE FOR ANY
- * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
- * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
- * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Copyright (c) 2013, Claudine Zillmann All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without modification, are permitted
+ * provided that the following conditions are met: * Redistributions of source code must retain the
+ * above copyright notice, this list of conditions and the following disclaimer. * Redistributions
+ * in binary form must reproduce the above copyright notice, this list of conditions and the
+ * following disclaimer in the documentation and/or other materials provided with the distribution.
+ * * Neither the name of AquaFX, the website aquafx-project.com, nor the names of its contributors
+ * may be used to endorse or promote products derived from this software without specific prior
+ * written permission.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
+ * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL CLAUDINE ZILLMANN BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+ * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+ * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 package com.aquafx_project;
@@ -62,8 +57,8 @@ import com.guigarage.stylemanager.ApplicationStyleManager;
  * <li>changing the style of the {@link Stage} for different {@link StageStyle} types</li>
  * <li>changing the size of controls</li>
  * <li>styling panes to have a Mac OS look</li>
- * <li>providing {@link com.aquafx_project.controls.skin.styles.styler.Styler Styler} instances for skinned
- * Controls</li>
+ * <li>providing {@link com.aquafx_project.controls.skin.styles.styler.Styler Styler} instances for
+ * skinned Controls</li>
  * </ul>
  * 
  * <p>
@@ -120,19 +115,28 @@ public class AquaFx {
     public static void style() {
         ApplicationStyleManager.getInstance().styleApplication(AquaFxStyle.class.getName());
     }
-    
-    public static void setFireStyle(){
+
+    /**
+     * Applies AquaFx Fire skinning to the application.
+     */
+    public static void setFireStyle() {
         ApplicationStyleManager.getInstance().styleApplication(AquaFxFireStyle.class.getName());
     }
-    
-    public static void setEarthStyle(){
+
+    /**
+     * Applies AquaFx Earth skinning to the application.
+     */
+    public static void setEarthStyle() {
         ApplicationStyleManager.getInstance().styleApplication(AquaFxEarthStyle.class.getName());
     }
-    
-    public static void setAirStyle(){
+
+    /**
+     * Applies AquaFx Air skinning to the application.
+     */
+    public static void setAirStyle() {
         ApplicationStyleManager.getInstance().styleApplication(AquaFxAirStyle.class.getName());
     }
-    
+
     /**
      * Styles the Stage to the given StageStyle. Possible StageStyles are:
      * <ul>
@@ -167,7 +171,9 @@ public class AquaFx {
     }
 
     /**
-     * Resizes the given Control to the given {@link com.aquafx_project.controls.skin.styles.ControlSizeVariant ControlSizeVariant}. Possible ControlSizeVariants are:
+     * Resizes the given Control to the given
+     * {@link com.aquafx_project.controls.skin.styles.ControlSizeVariant ControlSizeVariant}.
+     * Possible ControlSizeVariants are:
      * <ul>
      * <li>ControlSizeVariant.REGULAR - Regular size of a control. This is the default value with a
      * font size of 13.</li>

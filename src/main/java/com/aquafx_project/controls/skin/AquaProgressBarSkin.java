@@ -34,6 +34,7 @@ import java.util.List;
 import javafx.animation.Animation.Status;
 import javafx.animation.Interpolator;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -76,7 +77,12 @@ public class AquaProgressBarSkin extends ProgressBarSkin implements AquaSkin {
         if (progressBar.isIndeterminate()) {
             setIndeterminateProgressAnimation();
         } else {
-            setDeterminateProgressAnimation();
+            Platform.runLater(new Runnable() {
+                
+                @Override public void run() {
+                    setDeterminateProgressAnimation();                    
+                }
+            });
         }
         registerChangeListener(progressBar.disabledProperty(), "DISABLED");
         registerChangeListener(progressBar.indeterminateProperty(), "INDETERMINATE");
