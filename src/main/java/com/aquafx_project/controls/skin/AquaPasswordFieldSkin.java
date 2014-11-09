@@ -41,10 +41,10 @@ import javafx.scene.paint.Paint;
 
 import com.aquafx_project.controls.skin.css.AquaCssProperties;
 import com.aquafx_project.controls.skin.effects.FocusBorder;
-import com.sun.javafx.scene.control.skin.PasswordFieldSkin;
+import com.sun.javafx.scene.control.skin.TextFieldSkin;
 
 
-public class AquaPasswordFieldSkin extends PasswordFieldSkin implements AquaSkin, AquaFocusBorder{
+public class AquaPasswordFieldSkin extends TextFieldSkin implements AquaSkin, AquaFocusBorder{
 
     public AquaPasswordFieldSkin(PasswordField passwordfield) {
         super(passwordfield);

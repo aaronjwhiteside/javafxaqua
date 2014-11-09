@@ -38,10 +38,10 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TabPane.TabClosingPolicy;
 
-import com.aquafx_project.controls.skin.rt21682.TabPaneSkinHack;
+import com.sun.javafx.scene.control.skin.TabPaneSkin;
 
 // public class AquaTabPaneSkin extends TabPaneSkin implements AquaSkin{
-public class AquaTabPaneSkin extends TabPaneSkinHack implements AquaSkin{
+public class AquaTabPaneSkin extends TabPaneSkin implements AquaSkin{
 
     public AquaTabPaneSkin(TabPane tabPane) {
         super(tabPane);

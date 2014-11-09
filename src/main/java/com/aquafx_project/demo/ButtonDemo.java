@@ -1,32 +1,26 @@
 /**
- * Copyright (c) 2013, Claudine Zillmann
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *     * Redistributions of source code must retain the above copyright
- * notice, this list of conditions and the following disclaimer.
- *     * Redistributions in binary form must reproduce the above copyright
- * notice, this list of conditions and the following disclaimer in the
- * documentation and/or other materials provided with the distribution.
- *     * Neither the name of AquaFX, the website aquafx-project.com, nor the
- * names of its contributors may be used to endorse or promote products
- * derived from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
- * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL CLAUDINE ZILLMANN BE LIABLE FOR ANY
- * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
- * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
- * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Copyright (c) 2013, Claudine Zillmann All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without modification, are permitted
+ * provided that the following conditions are met: * Redistributions of source code must retain the
+ * above copyright notice, this list of conditions and the following disclaimer. * Redistributions
+ * in binary form must reproduce the above copyright notice, this list of conditions and the
+ * following disclaimer in the documentation and/or other materials provided with the distribution.
+ * * Neither the name of AquaFX, the website aquafx-project.com, nor the names of its contributors
+ * may be used to endorse or promote products derived from this software without specific prior
+ * written permission.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
+ * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL CLAUDINE ZILLMANN BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+ * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+ * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 package com.aquafx_project.demo;
-
 
 import javafx.application.Application;
 import javafx.beans.property.ReadOnlyBooleanWrapper;
@@ -262,7 +256,7 @@ public class ButtonDemo extends Application {
         tb2.setToggleGroup(group);
         AquaFx.createToggleButtonStyler().setType(ButtonType.CENTER_PILL).style(tb2);
         toggleGroupBox.getChildren().add(tb2);
-        ToggleButton tb3 =  new ToggleButton("Third");
+        ToggleButton tb3 = new ToggleButton("Third");
         tb3.setToggleGroup(group);
         AquaFx.createToggleButtonStyler().setType(ButtonType.RIGHT_PILL).style(tb3);
         toggleGroupBox.getChildren().add(tb3);
@@ -407,13 +401,13 @@ public class ButtonDemo extends Application {
         choiceBoxBox.getChildren().add(choices2);
         collectorVBox.getChildren().add(choiceBoxBox);
         ObservableList<String> items = FXCollections.observableArrayList("A", "B", "C");
-        HBox editableComboBoxBox =new HBox();
+        HBox editableComboBoxBox = new HBox();
         editableComboBoxBox.setSpacing(10);
         editableComboBoxBox.setPadding(new Insets(10));
         ComboBox<String> combo1 = new ComboBox<String>(items);
         combo1.setEditable(true);
         editableComboBoxBox.getChildren().add(combo1);
-        ComboBox<String> combo2 =  new ComboBox<String>(items);
+        ComboBox<String> combo2 = new ComboBox<String>(items);
         combo2.setDisable(true);
         combo2.setEditable(true);
         editableComboBoxBox.getChildren().add(combo2);
@@ -421,7 +415,7 @@ public class ButtonDemo extends Application {
         HBox comboBoxBox = new HBox();
         comboBoxBox.setSpacing(10);
         comboBoxBox.setPadding(new Insets(10));
-        ComboBox<String> combo3 =  new ComboBox<String>(items);
+        ComboBox<String> combo3 = new ComboBox<String>(items);
         combo3.setPromptText("test");
         combo3.setEditable(false);
         comboBoxBox.getChildren().add(combo3);
@@ -454,7 +448,7 @@ public class ButtonDemo extends Application {
         HTMLEditor htmlEditor = new HTMLEditor();
         htmlEditor.setPrefHeight(200);
         htmlEditor.setPrefWidth(300);
-        
+
         htmlbox.getChildren().add(htmlEditor);
         tabHTMLBox.setContent(htmlbox);
         tabPane.getTabs().add(tabHTMLBox);
@@ -595,7 +589,7 @@ public class ButtonDemo extends Application {
 
         Tab tabTreeTableBox = new Tab();
         tabTreeTableBox.setText("TreeTable");
-        HBox treeTableContainer =  new HBox();
+        HBox treeTableContainer = new HBox();
         treeTableContainer.setPadding(new Insets(10));
         TreeItem<Person> rootTreeTableItem = new TreeItem<Person>(new Person("Chef", "Chef", "chef@business.de", "chef@business.de", true));
         rootTreeTableItem.setExpanded(true);
@@ -656,7 +650,7 @@ public class ButtonDemo extends Application {
 
         Tab tabListBox = new Tab();
         tabListBox.setText("List");
-        HBox listContainer =  new HBox();
+        HBox listContainer = new HBox();
         listContainer.setSpacing(10);
         listContainer.setPadding(new Insets(10));
         ListView<String> list = new ListView<String>();

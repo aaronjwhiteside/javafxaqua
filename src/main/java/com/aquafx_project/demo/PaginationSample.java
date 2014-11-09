@@ -125,7 +125,7 @@ public class PaginationSample extends Application {
         Scene scene = new Scene(anchor);
         stage.setScene(scene);
         stage.setTitle("PaginationSample");
-        AquaFx.setElementStyle();
+        AquaFx.style();
         stage.show();
     }
 }
